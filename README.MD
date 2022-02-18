@@ -60,7 +60,7 @@
 
 
 ### Python
--
+- [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 
 
 <br>

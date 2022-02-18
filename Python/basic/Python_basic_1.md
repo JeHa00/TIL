@@ -30,7 +30,7 @@
 
 ```
 
-**- 결론 : 선언을 한다는 건 메모리 값을 할당하는 걸 의미한다. 이는 `id` 값을 통해 `고유주소`를 확인하여 알 수 있다. \***
+\*\*- 결론 : 선언을 한다는 건 메모리 값을 할당하는 걸 의미한다. 이는 `id` 값을 통해 `고유주소`를 확인하여 알 수 있다. \*\*
 
 ### 1.2 동시 선언
 
@@ -57,7 +57,7 @@
 - 이러한 걸 `동시선언` 이라고 하며, 파이썬에서는 가능하다.
 - 이처럼 하나 하나 최적화를 시키면 원활하고 빠른 프로그램 실행 흐름이 가능하다.
 
-**- 결론: 여러 변수에 똑같은 값을 할당하면 파이썬은 내부에서 하나만 만들어진다. \***
+\*\*- 결론: 여러 변수에 똑같은 값을 할당하면 파이썬은 내부에서 하나만 만들어진다. \*\*
 
 <br>
 
@@ -104,10 +104,11 @@ Change Value
 
 # 2. Object References
 
-- 변수가 할당 상태일 때, 아래와 같은 상태가 일어나는 걸 의미한다. (예 : n = 700이라 선언했을 때)
-- 1. type에 맞는 object를 생성: type을 통해서 class 'int'라는 오브제트가 생성됨을 알 수 있다.
-- 2. 값 생성: 700을 안에서 생성
-- 3. 콘솔 출력 : 700이 출력된다.
+변수가 할당 상태일 때, 아래와 같은 상태가 일어나는 걸 의미한다. (예 : n = 700이라 선언했을 때)
+
+첫 번째, type에 맞는 object를 생성: type을 통해서 class 'int'라는 오브제트가 생성됨을 알 수 있다.  
+두 번쨰, 값 생성: 700을 안에서 생성  
+세 번째, 콘솔 출력 : 700이 출력된다.
 
 - 더 다양한 예제를 살펴보자.
 
@@ -137,24 +138,21 @@ Change Value
 
 ```
 
+<br>
+
 # 3. 다양한 변수 선언방법 (규칙) 과 예약어
 
 - 이 규칙들을 가지고 변수를 선언하면 세련되고, 코드를 재활용할 때 가독성이 좋은 소스 코드로 만들 수 있다.
 
-> 1.  Camel Case
->     method를 선언할 때 사용. ex) numberOfCollegeGraduates
+> Camel Case : method를 선언할 때 사용. ex) numberOfCollegeGraduates
+> Pascal Case : 언어 상관 없이 class를 주로 선언할 때 사용. ex) umberOfCollegeGraduates
+> snake case: 파이썬에서 변수를 선언 시 사용. ex) number_of_college_graduates
 
-> 2.  Pascal Case
->     언어 상관 없이 class를 주로 선언할 때 사용. ex) NumberOfCollegeGraduates
-
-Camel과 Pascal의 차이는 첫 문자가 소문자냐 대문자냐의 차이
-
-> snake case
-> 파이썬에서 변수를 선언 시 사용. ex) number_of_college_graduates
+Camel과 Pascal의 차이는 첫 문자가 소문자냐 대문자냐의 차이다.
 
 - 이외에 허용하는 변수 선언 법은 다음과 같다.
-  > 숫자로 시작하지 않는다.
-  > 변수는 되도록 snake case로 선언한다.
+  > 숫자로 시작하지 않는다.  
+  > 변수는 되도록 snake case로 선언한다.  
   > 예약어 같이 문법에 사용되는 단어는 변수명으로 불가능하다.
 
 ```yml
@@ -189,4 +187,4 @@ continue	global	pass
 
 # Reference
 
--[Python tutorial](https://python-course.eu/python-tutorial/data-types-and-variables.php)
+- [Python tutorial](https://python-course.eu/python-tutorial/data-types-and-variables.php)

@@ -141,11 +141,11 @@ Change Value
 
 - 이 규칙들을 가지고 변수를 선언하면 세련되고, 코드를 재활용할 때 가독성이 좋은 소스 코드로 만들 수 있다.
 
-> Camel Case
-> method를 선언할 때 사용. ex) numberOfCollegeGraduates
+> 1.  Camel Case
+>     method를 선언할 때 사용. ex) numberOfCollegeGraduates
 
-> Pascal Case
-> 언어 상관 없이 class를 주로 선언할 때 사용. ex) NumberOfCollegeGraduates
+> 2.  Pascal Case
+>     언어 상관 없이 class를 주로 선언할 때 사용. ex) NumberOfCollegeGraduates
 
 Camel과 Pascal의 차이는 첫 문자가 소문자냐 대문자냐의 차이
 
@@ -153,9 +153,9 @@ Camel과 Pascal의 차이는 첫 문자가 소문자냐 대문자냐의 차이
 > 파이썬에서 변수를 선언 시 사용. ex) number_of_college_graduates
 
 - 이외에 허용하는 변수 선언 법은 다음과 같다.
-  > - 숫자로 시작하지 않는다.
-  > - 변수는 되도록 snake case로 선언한다.
-  > - 예약어 같이 문법에 사용되는 단어는 변수명으로 불가능하다.
+  > 숫자로 시작하지 않는다.
+  > 변수는 되도록 snake case로 선언한다.
+  > 예약어 같이 문법에 사용되는 단어는 변수명으로 불가능하다.
 
 ```yml
 > age = 1

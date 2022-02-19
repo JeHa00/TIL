@@ -9,7 +9,6 @@
 > 3. Integer 정수형 출력
 > 4. Float 실수형 출력
 
----
 
 <br>
 
@@ -25,6 +24,7 @@
 \": 문자
 \000: 널 문자
 ```
+<br>
 
 ### 1.2 기본 출력
 
@@ -40,8 +40,8 @@
 
 
 # 아무것도 출력되지 않는다.
-> pirnt('')
-> pirnt()
+> print('')
+> print()
 ```
 
 결과는 다음과 같다.
@@ -54,28 +54,225 @@ JeHa start!
 
 JeHa start!
 ```
+<br>
 
 ### 1.3 Separator 옵션
 
 > 여러 data를 열거하여 출력할 때, 분리할 string 을 입력하여 각 data 사이 사이에 입력할 수 있다.
 
-> print('python', 'start!', sep='@')
-
 ```yml
-> python @ start!
-``
+> print('python', 'start!', sep='@')
+python @ start!
 
-`
+> print('p','y','t','h','o','n')
+p y t h o n
+
+> print('p','y','t','h','o','n', sep = '')
+python
+
+> print('010', '6677', '6677', sep = '-' )
+010-6677-6677
+
+> print('python', 'google.com', sep = '@')
+python@google.com
+```
+
+<br>
 
 ### 1.4 End 옵션
 
 > print에는 자동적으로 행간을 나누는 기능이 있다. 이를 end를 통해서 합칠 수 있다.
 
-### 1.5 file 옵션
+```yml
+> print('I')
+> print('love')
+> print('u')
+
+I
+Love
+u
+
+> print('I', end = ' ')
+> print('love', end = ' ')
+> print('u')
+
+I love u
+```
+
+
+<br>
+
+## 2. String 문자열 출력 (s)
+
+> d는 정수, s는 string, f는 실수를 의미한다.  
+> % 로 formatting 하는 방법과 .format 을 사용해서 formatting하는 방법이 있다.   
+> 다 익숙해져야 하지만, 후자를 더 빈번히 사용한다.  
+
+```yml
+# 순서에 맞게 자동적으로 mapping 해준다.
+> print('%s %s' % ('one','two))
+> print('{} {}'.format('one','two'))
+
+# 순서를 지정해서도 할 수 있다. 
+# index[1] 은 two, index[0]은 one 이므로, 교차해서 mapping 된다.
+> print('{1} {0}'.format('one','two'))
+
+one two
+one two
+two one
+```
+> 전체 자릿수를 지정하는 방법과 정렬 방향을 바꾸는 방법을 알아보겠다. 
+
+```yml
+# 문자열 총 자리 수는 10자리를 의미한다. 
+# 오른쪽 정렬
+# 즉, blank 시작은 왼쪽부터다. 
+> print('%10s' % (likelike))
+# 왼쪽 blank는 2칸이다. 
+  likelike 
+
+# 방향을 반대로 하기 위해서는 (-)를 붙힌다: 왼쪽정렬
+> print('%-10s' % (likelike))
+likelike  
+```
+> 위 내용을 `.format`으로 표현해보자.  
+**format은 string을 입력할 때 's'를 입력하지 않아도 된다.**
+
+```yml
+
+# 오른쪽 정렬
+> print('{:>10}'.format('likelike'))
+ likelike
+
+# 왼쪽 정렬
+> print('{:<10}'.format('likelike'))
+likelike  
+
+> print('{:10}'.format('likelike'))
+likelike  
+
+
+# 가운데 정렬
+> print('{:^10}'.format('likelike'))
+ likelike 
+
+# blank에는 언더바가 있도록 하는 것
+> print('{:_>10}'.format(like))
+______like
+
+```
+
+> 그러면 지정한 자릿수보다 문자열이 더 길다면??
+
+```yml
+> print('%5s' % ('likelike'))
+likelike  
+# 다 출력된다.
+```
+> 지정한 자릿수를 넘는 문자열 부분들을 절삭하고 싶다면??
+
+```yml
+# . 점을 아래와 같이 표시한다.
+> print('%.5s' % 'likelike')
+likel
+
+# 이것은 어떻게 출력될까??
+> print('%10.5s' % ('likelike'))
+
+# 지정한 문자열 총 자리수는 10자리고, 5자리를 넘으면 절삭한다. 
+# blank가 5자리고, 왼쪽에서부터 오른쪽 방향으로 채워진다.
+# 나머지 5자리에 문자가 채워진다.
+_____likel
+
+# format으로 표현해보자
+> print('{:>10.5}'.format('likelike'))
+```
+
+**결론** 
+**- print('-%n1.n2s' % ('출력하기 원하는 문자열'))**
+  > n1은 전체 자릿수   
+  > n2는 출력되길 원하는 문자열의 총 자리수를 의미  
+  > '-'는 정렬 방향을 역으로 한다.  
+  > 정렬 방향 default는 오른쪽, (-)는 왼쪽 정렬을 의미  
+**- print('{:^ > < n1.n2}'.format('string'))**
+  > n1은 전체 자릿수   
+  > n2는 출력되길 원하는 문자열의 총 자리수를 의미  
+  > '^' 는 가운데 정렬  
+  > '>'은 오른쪽 정렬, '<' 는 왼쪽 정렬을 의미  
+---
+
+
+<br>
+
+
+## 3. Integer 정수형 출력 (d)
+
+> `.format` 은 문자열 `s`는 입력하지 않는다.  
+>  정수형 `d` or `i`, 실수형 `f` 은 입력한다.
+
+```yml
+> print('%d %d' % (1, 2))
+1,2 
+
+> print('{} {}'.format(1,2))
+1,2 
+
+> print('{1} {0}.format(1,2)')
+2,1
+
+> print('%4d' % (24))
+> print('{:>4d}'.format(24))
+> print('{:4d}'.format(24))
+  24
+  
+> print('%-4d' % (24))
+> print('{:<4d}'.format(24))
+24  
+
+> print('{:^4d}'.format(24))
+ 24
+ 
+> print('{:_>4d}'.format(24))
+__24
+
+> print('{:_<4d}'.format(24))
+24__
+
+> print('{:_^4d}'.format(24))
+_24_
+
+```
+**결론**  
+
+- print('-%n1d' % (integer))
+  > n1은 전체 자릿수   
+  > '-'는 정렬 방향을 역으로 한다.  
+  > 정렬 방향 default는 오른쪽, (-)는 왼쪽 정렬을 의미  
+- print('{:^ > < n1d}'.format(integer))
+  > n1은 전체 자릿수   
+  > '^' 는 가운데 정렬  
+  > '>'은 오른쪽 정렬, '<' 는 왼쪽 정렬을 의미  
+
+---
+
+
+<br>
+
+
+## 3. Float 실수형 출력 (f)
+
+```yml
+
+
+```
+
+---
+
+
 
 <br>
 
 # Reference
 
 - [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
-```
+

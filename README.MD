@@ -59,7 +59,7 @@
 
 
 
-### Python
+### [Python](https://github.com/JeHa00/TIL/tree/master/Python)
 - [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 
 
@@ -104,5 +104,14 @@
 
 
 <br>
+
+
+### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
+- What is git ??
+
+
+<br>
+
+
 
 

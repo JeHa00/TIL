@@ -45,7 +45,7 @@ VCS를 통해서 큰 노력 없이
 
 ## 1.1 Local Version Control System (LVCS, 로컬 버전 관리)
 
-![image]()
+<p align="center"><image src ="https://git-scm.com/book/en/v2/images/local.png" width = '400' height ='400'/></p>
 
 [LVCS 탄생 계기]  
 - 많은 사람은 버전을 관리하기 위해 directory로 파일을 복사하는 방법을 사용한다.
@@ -66,7 +66,7 @@ VCS를 통해서 큰 노력 없이
 
 ## 1.2 Central Version Control System (CVCS, 중앙 집중식 버전 관리)
 
-![iamge]()
+<p align="center"><image src ="https://git-scm.com/book/en/v2/images/centralized.png" width = '400' height ='400'/></p>
 
 [CVCS 탄생 계기]
 - 위의 LVCS의 장점에도 불구하고, LVCS는 다른 개발자와 협업 시에 사용할 때에는 적절한 tool이 아니었다. 
@@ -99,7 +99,8 @@ VCS를 통해서 큰 노력 없이
 
 ## 1.3 Distributed Version Control System (DVCS, 분산 버전 관리 시스템)
 
-![image]()
+<p align="center"><image src ="https://git-scm.com/book/en/v2/images/distributed.png" width = '400' height ='400'/></p>
+
 
 [DVCS 장점]
 - 첫 번째, Git과 같은 **DVCS는 단순히 파일의 마지막 스냅샷을 checkout하지 않고, 저장소를 전부 복제한다.**    
@@ -134,7 +135,7 @@ VCS를 통해서 큰 노력 없이
 # 3. Key point of Git : 데이터를 다루는 방식의 차이
 
 
-## 3.1 파일의 변화가 아니라 스냅샵의 스트림
+## 3.1 Snapshots, Not Differences
 
 VCS들과 Git의 가장 큰 차이점은 데이터를 다루는 방식에 있다.
   - VCS는 `각 파일의 변화`를 시간 순으로 관리하면서 파일들의 집합을 관리한다.
@@ -142,6 +143,16 @@ VCS들과 Git의 가장 큰 차이점은 데이터를 다루는 방식에 있다
     - 그래서 Git은 데이터를 **snapshot stream**처럼 취급한다.
     - 그래서 Git은 프로젝트의 상태를 저장할 때마다, 파일이 존재하는 그 순간을 중요하게 여긴다. 
     - 그래서 Git은 파일이 달라지지 않으면 성능을 위해 새로 저장하지 않는다. 
+
+
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/155179219-cf4c2d80-642e-484a-9d85-29c3854f64bc.png" width = '400' height ='200'/></p>
+ <p align="center">[VCS: Storing data as changes to a base version of each file]</p>
+                        
+
+<br>
+
+<p align="center"><image src ="https://git-scm.com/book/en/v2/images/snapshots.png" width = '400' height ='200'/></p>
+<p align="center">[Git: Storing data as snapshots of the project over time]</p>
 
 <br>
 
@@ -193,15 +204,16 @@ Git은 무엇을 하든 Git database에 데이터를 추가한다.
 
 > 이 부분에 대한 자세한 내용은 Chapter 2를 참고한다.
 
-- Git 파일은 **세 가지 상태(: Commited, Modified, Staged)** 로 관리한다.  
+- Git 파일은 **3가지 상태(: Commited, Modified, Staged)** 로 관리한다.  
     - Commited: 데이터가 local database에 안전하게 저장된 상태  
     - Modified: 수정한 파일을 아직 local database에 커밋하지 않은 상태  
     - Staged: 현재 수정한 파일을 곧 커밋할 것이라고 표시한 상태   
     
-![image]()
+
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/155178102-6a7f4148-1f83-4f05-9b40-2410bcf080e2.png" width = '500' height ='400'/></p>
     
     
-- 이 3가지 상태는 **Git project의 3가지 단계(: Working directory, Staging Area, .git Directory(Repository)**와 연결된다.    
+**- 이 3가지 상태는 Git project의 3가지 단계(: Working directory, Staging Area, .git Directory(Repository)와 연결된다.**
 
 - Git directory는
     - Git의 핵심이다.

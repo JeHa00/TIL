@@ -1,4 +1,4 @@
-# What is Git?? 
+# Chapter 1: What is Git?? 
 
 > [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291) 자체 스터디 내용  
 > 이번 장은 Git을 처음 접하는 분들에게 필요한 내용이다.  

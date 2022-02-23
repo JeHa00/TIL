@@ -148,7 +148,9 @@ Changes to be committed:
 > **`git add` 명령어로 `Untracked`상태에서 `Tracked` 상태로 이동된다.** 
 
 <br>
+
 - `Tracked` 상태인 `README.md` 파일을 수정한 후, `git status` 를 입력해보자.
+
 ```yml
 > git status
 On branch master
@@ -158,8 +160,8 @@ Changes not staged for commit:
   (use "git checkout -- <file>..." to discard changes in working directory)
   
   modified: README.md
-
 ```
+
 - `README.md` 파일은 `Changes to be committed:` 에 있다가 `Changes not staged for commit:` 으로 옮겨졌다. 
 - 이는 수정한 파일이 `Tracked` 상태이지만, `Staged` 상태는 아니라는 것이다. 즉, 수정된 파일이므로 `Modified` 상태임을 말한다. 
 - `Modified` 상태에서 `Staged` 상태로 바꿔보자.

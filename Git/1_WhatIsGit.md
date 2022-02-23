@@ -86,7 +86,7 @@ VCS를 통해서 큰 노력 없이
   - 중앙 DB가 있는 하드디스크에 문제가 생기면 project의 모든 history를 잃는다. (client가 가진 snapshot 제외)
 
 > - **checkout: git checkout으로 사용되는 것처럼 사용할 branch를 지정하여 연결하는 걸 의미한다.**
-> - **snapshot: 변경된 파일 전체를 저장하는 것이 아닌 수정된 부분만을 저장하는 방식으로, 사진 찍는 것과 같아 snapshot이라 한다.**
+> - **snapshot: 특정 시점에서 파일, 폴더 또는 워크스페이스의 상태**
 
 <br>
 
@@ -262,3 +262,4 @@ Git은 무엇을 하든 Git database에 데이터를 추가한다.
 
 - [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291)
 - [더북(TheBook:Git 교과서)](https://thebook.io/080212/ch04/04/02/)
+- [git snapshot](https://coding-lks.tistory.com/162)

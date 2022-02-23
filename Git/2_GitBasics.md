@@ -106,6 +106,8 @@ nothing to commit, working directory clean
   - 현재 branch는 기본 branch인 master다. 
   - 현재 `Tracked` 나 `Modified` 상태인 파일이 없다.
 
+<br>
+
 > **`git status`는 현재 파일의 상태를 확인하기 위해 사용되는 명령어다.**  
 
 <br>

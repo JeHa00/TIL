@@ -19,6 +19,8 @@
 
 ## 2.1.1 기존 directory를 Git 저장소로 만들기
 
+<br>
+
 > git init
 > git add .
 > git commit -m 'message'
@@ -47,9 +49,13 @@
 
 > git clone [url]
 
+<br>
+
 - 언제 clone하는가?
   - 다른 project에 참여하려거나 (contribute)
   - Git 저장소를 복사하고 싶을 때  
+
+<br>
 
 - `git clone`은 project history를 전부 복사한다.
   - 그래서, 서버의 디스크가 망가져도 client 저장소 중에서 아무거나 하나 가져와 복구하면 된다.
@@ -214,11 +220,11 @@ Changes to be committed:
   modified: README.md
 
 ```
- - `Changes not staged for commit:`에서 `Changes to be committed:'로 옮겨졌다. 
+ - `Changes not staged for commit:`에서 `Changes to be committed:`로 옮겨졌다. 
  - 최신 상태가 `Staged`에 올랐다는 걸 확인할 수 있다.
 
-> **`git add` 명령어는 새로운 파일을 추적할 때 뿐만 아니라, 수정한 파일을 `Staged`상태로 만들 때에도 사용된다.**
-> **`git add` 명령어는 `프로젝트에 파일을 추가하는` 라기보다는, `다음 커밋에 추가하는` 명령어다.
+> **`git add` 명령어는 새로운 파일을 추적할 때 뿐만 아니라, 수정한 파일을 `Staged`상태로 만들 때에도 사용된다.**  
+> **`git add` 명령어는 `프로젝트에 파일을 추가하는` 라기보다는, `다음 커밋에 추가하는` 명령어다.**  
 
 ---
 

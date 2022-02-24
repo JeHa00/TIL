@@ -21,9 +21,9 @@
 
 <br>
 
-> git init
-> git add .
-> git commit -m 'message'
+> git init  
+> git add.  
+> git commit -m 'message'  
 
 <br>
 

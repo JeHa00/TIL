@@ -107,7 +107,8 @@
 
 
 ### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
-- What is git ??
+- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
+- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md) 
 
 
 <br>

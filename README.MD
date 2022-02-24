@@ -35,6 +35,11 @@
 <br>
 
 
+### [Python](https://github.com/JeHa00/TIL/tree/master/Python)
+- [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
+
+
+<br>
 
 ### Algorithm
 
@@ -53,14 +58,6 @@
 
 ### Datebase
 -
-
-
-<br>
-
-
-
-### [Python](https://github.com/JeHa00/TIL/tree/master/Python)
-- [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 
 
 <br>

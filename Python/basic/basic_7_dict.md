@@ -1,6 +1,7 @@
 ﻿# Python basic 7: python dictionary
 
 <br>
+
 # Intro
 
 > 1. [dictionary 선언](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_7_dict.md#1-dictionary-%EC%84%A0%EC%96%B8)

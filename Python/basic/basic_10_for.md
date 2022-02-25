@@ -267,8 +267,6 @@ multiply by 2: (8+0j)
 # true가 1이기 때문에 3이 나온다.
 ```
 
----s
-
 <br>
 
 ## 5. for ~ else 구문

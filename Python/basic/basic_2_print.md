@@ -4,10 +4,10 @@
 
 # Intro
 
-> 1. 기본 출력
-> 2. String 문자열 출력
-> 3. Integer 정수형 출력
-> 4. Float 실수형 출력
+> 1. [기본 출력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_2_print.md#1-%EA%B8%B0%EB%B3%B8-%EC%B6%9C%EB%A0%A5)
+> 2. [String 문자열 출력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_2_print.md#2-string-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%B6%9C%EB%A0%A5-s)
+> 3. [Integer 정수형 출력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_2_print.md#3-integer-%EC%A0%95%EC%88%98%ED%98%95-%EC%B6%9C%EB%A0%A5-d)
+> 4. [Float 실수형 출력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_2_print.md#3-float-%EC%8B%A4%EC%88%98%ED%98%95-%EC%B6%9C%EB%A0%A5-f)
 
 <br>
 

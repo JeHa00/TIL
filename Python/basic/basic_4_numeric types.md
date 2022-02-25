@@ -278,7 +278,7 @@ reversed2:  ['e', 'l', 'p', 'p', 'A']
 > reverse 와 reversed 의 차이
 >
 > - reverse 는 list 함수를 단순히 뒤집어서 저장해주는 역할로, 리턴값이 없어서 for문 같은 조건문 반복문에 사용하지 못 한다.
-> - reversed는 기존 리스트의 값을 변경하지 않으면서 return 값만을 원할 때 reversed 함수를 사용한다.
+> - reversed는 `id` 값으로 나온다. 그래서 reverse 값을 원하면 형 변환을 해야 한다. 또한, 기존 리스트의 값을 변경하지 않으면서 return 값만을 원할 때 reversed 함수를 사용한다.
 
 ---
 

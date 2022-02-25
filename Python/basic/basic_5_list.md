@@ -2,11 +2,11 @@
 
 # Intro
 
-> 1. List 선언
-> 2. List 인덱싱, 슬라이싱
-> 3. List 연산
-> 4. List 함수
-> 5. List 수정, 삭제
+> 1. [List 선언](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#1-list-%EC%84%A0%EC%96%B8)
+> 2. [List indexing, slicing](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#2-list-indexing-slicing)
+> 3. [List 연산](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#3-list-%EC%97%B0%EC%82%B0)
+> 4. [List 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#4-list-%ED%95%A8%EC%88%98)
+> 5. [List 수정, 삭제](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#5-list-%EC%88%98%EC%A0%95-%EC%82%AD%EC%A0%9C)
 
 <br>
 
@@ -83,7 +83,7 @@ e - ['B', 'a', 's', 'e']
 
 ```
 
-- slicing: 같은 데이터 타입으로로, 원하는 부분의 데이터를 뽑아내는 것
+- slicing: 같은 데이터 타입으로, 원하는 부분의 데이터를 뽑아내는 것
 
 ```yml
 > d = [1000, 1000.5, 'Ace', 'Base', 'Captine']
@@ -202,11 +202,9 @@ a - 2
 
 ## 5. List 수정, 삭제
 
-<br>
-
 ### 5.1 slicing과 index를 사용하여 수정, 삭제하는 방법
 
-수정하기
+ - 수정하기
 
 ```yml
 
@@ -242,7 +240,7 @@ a - 2
 
 <br>
 
-삭제하기
+ - 삭제하기
 
 ```yml
 
@@ -284,7 +282,7 @@ c - 85
 
 ```
 
-- pop()
+- pop( )
 
   > `stack` 자료 구조에서 마지막에 들어온 애가 가장 먼저 나갑니다: last in, first out로 LIFO라 한다.  
   > 예1) 음식을 접시에 담을 때, 마지막에 쌓은 접시를 꺼내서 사용한다.

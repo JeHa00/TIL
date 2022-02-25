@@ -6,7 +6,6 @@
 > 4. [문자형 형 변환(Type conversion), 문자형 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#4-%EB%AC%B8%EC%9E%90%ED%98%95-%ED%98%95-%EB%B3%80%ED%99%98type-conversion-%EB%AC%B8%EC%9E%90%ED%98%95-%ED%95%A8%EC%88%98)
 > 5. [**Slicing**](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#5-slicing)
 
----
 
 <br>
 

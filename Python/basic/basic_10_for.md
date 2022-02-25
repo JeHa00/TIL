@@ -4,10 +4,10 @@
 
 ## Intro
 
-> 1. for ~ range pattern: 3가지
-> 2. Iterables 자료형 활용과 Iterable 함수
-> 3. break, continue 문
-> 4. for ~ else 구문
+> 1. [for ~ range pattern: 3가지](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_10_for.md#1-for--range-pattern-3%EA%B0%80%EC%A7%80)
+> 2. [Iterables 자료형 활용과 Iterable 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_10_for.md#2-iterator-%EC%9E%90%EB%A3%8C%ED%98%95-%ED%99%9C%EC%9A%A9%EA%B3%BC-iterable-%ED%95%A8%EC%88%98)
+> 3. [break, continue 문](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_10_for.md#3-break-continue-%EB%AC%B8)
+> 4. [for ~ else 구문](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_10_for.md#5-for--else-%EA%B5%AC%EB%AC%B8)
 
 <br>
 
@@ -19,7 +19,6 @@
 - `<collection>` 이란 반복 가능한 객체, `iterable object (= interator)`를 말한다.
 - 그러면 어떤 게 `iterator` 인가?? `dir()` method를 사용했을 때 `__iter__` 을 확인할 수 있으면 `iterator`다.
 - 예를 들어서 string, list, tuple, dictionary, set을 말한다.
--
 
 ```yml
 > for i in <collection>:

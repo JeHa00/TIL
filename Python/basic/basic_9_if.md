@@ -4,10 +4,10 @@
 
 ## Intro
 
-> 1. 제어문 - 제어문 기본 형식
-> 2. 제어문 - 연산자
-> 3. 제어문 - 참거짓 판별 종류
-> 4. 제어문 - 다중 조건문, 중첩 조건문, in & not in
+> 1. [제어문 - 제어문 기본 형식](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#1-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%A0%9C%EC%96%B4%EB%AC%B8-%EA%B8%B0%EB%B3%B8-%ED%98%95%EC%8B%9D)
+> 2. [제어문 - 연산자](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#2-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%97%B0%EC%82%B0%EC%9E%90)
+> 3. [제어문 - 참거짓 판별 종류](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#3-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%B0%B8%EA%B1%B0%EC%A7%93-%ED%8C%90%EB%B3%84-%EC%A2%85%EB%A5%98)
+> 4. [제어문 - 다중 조건문, 중첩 조건문, in & not in](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#4-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EB%8B%A4%EC%A4%91-%EC%A1%B0%EA%B1%B4%EB%AC%B8-%EC%A4%91%EC%B2%A9-%EC%A1%B0%EA%B1%B4%EB%AC%B8-in--not-in)
 
 <br>
 

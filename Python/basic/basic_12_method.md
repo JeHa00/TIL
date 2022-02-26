@@ -8,8 +8,8 @@
 > 2. [함수 선언 및 사용](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#2-%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8-%EB%B0%8F-%EC%82%AC%EC%9A%A9)
 > 3. [Packing, Unpakcing](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#3-packing-unpacking)
 > 4. [중첩 함수(Nested function)](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#4-%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)
-> 5. [람다(Lambda) 함수(익명함수)]()
-> 6. [함수 Type Hint]()
+> 5. [람다(Lambda) 함수(익명함수)](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#5-%EB%9E%8C%EB%8B%A4lambda-%ED%95%A8%EC%88%98-%EC%9D%B5%EB%AA%85%ED%95%A8%EC%88%98)
+> 6. [함수 Type Hint](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#6-%ED%95%A8%EC%88%98-type-hint)
 
 <br>
 

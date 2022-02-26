@@ -1,13 +1,13 @@
-# Python basic 12: method , packing&unpacking, lambda
+# Python basic 12: method , packing & unpacking, lambda
 
 <br>
 
 ## Intro
 
-> 1. [함수 중요성]()
-> 2. [함수 선언 및 사용]()
-> 3. [Packing, Unpakcing]()
-> 4. [중첩 함수]()
+> 1. [함수 중요성](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#1-%ED%95%A8%EC%88%98-%EC%A4%91%EC%9A%94%EC%84%B1)
+> 2. [함수 선언 및 사용](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#2-%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8-%EB%B0%8F-%EC%82%AC%EC%9A%A9)
+> 3. [Packing, Unpakcing](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#3-packing-unpacking)
+> 4. [중첩 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#4-%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)
 > 5. [람다(Lambda) 개념]()
 
 <br>
@@ -20,13 +20,6 @@
   - 하나의 기능을 각 소스마다 중복하여 집어 넣으면, 그 기능을 수정해야할 경우, 다 수정해야하는 번거로움이 있다. 이런 것들이 비효율적이기 때문에, 함수로 만들면 한 번의 수정으로 다 수정할 수 있다.
 - 세 번째, `코드의 안정성`이 좋아진다.
   - 그 이유는 개발자가 자신이 담당하는 함수에만 집중할 수 있기 때문에, 함수 이외의 부분과 나눠서 생각할 수 있다.
-
-<br>
-
-- 함수 정의 구조
-
-> def function_name(parameter):
-> \t code
 
 ---
 

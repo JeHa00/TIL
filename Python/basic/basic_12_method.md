@@ -8,9 +8,7 @@
 > 2. [함수 선언 및 사용]()
 > 3. [Packing, Unpakcing]()
 > 4. [중첩 함수]()
-> 5. [함수 Hint]()
-> 6. [기타 사용법]()
-> 7. [람다(Lambda) 개념]()
+> 5. [람다(Lambda) 개념]()
 
 <br>
 
@@ -82,10 +80,8 @@ TypeError: cannot unpack non-iterable NoneType object
 >    y2 = x * 20
 >    y3 = x * 30
 >    return y1, y2, y3
-
 # unpacking
 > x1, x2, x3 = func_mul1(10)
-
 > print(x1, x2, x3)
 100 200 300
 
@@ -101,7 +97,7 @@ TypeError: cannot unpack non-iterable NoneType object
 >    y1 = x * 10
 >    y2 = x * 20
 >    y3 = x * 30
->    return (y1, y2, y3)
+>    return (y1, y2, y3)  # tuple 형식
 
 > t1 = func_mul1(10)
 > print(t1, type(t1))
@@ -112,7 +108,7 @@ TypeError: cannot unpack non-iterable NoneType object
 >    y1 = x * 10
 >    y2 = x * 20
 >    y3 = x * 30
->    return [y1, y2, y3]
+>    return [y1, y2, y3]  # list 형식
 
 > t1 = func_mul2(10)
 > print(t1, type(t1))
@@ -123,7 +119,7 @@ TypeError: cannot unpack non-iterable NoneType object
 >    y1 = x * 10
 >    y2 = x * 20
 >    y3 = x * 30
->    return {'v1' : y1, 'v2' : y2, 'v3' : y3}
+>    return {'v1' : y1, 'v2' : y2, 'v3' : y3} # keyword 형식
 
 > t1 = func_mul3(10)
 > print(t1, type(t1))
@@ -150,9 +146,9 @@ dict_values([100, 200, 300])
   - 인자란 `함수 기능에 필요한 값`을 말한다.
   - `기본값`이 있다.
     - `기본값`이란 미리 기본으로 지정된 값을 말한다.
-  - `Positional argument`는 인자값이 `위치`에 의해 결정되는 방법이다.
+  - `Positional argument`는 인자값이 `위치`에 의해 결정되는 인자다.
     - `순서`가 중요하다.
-  - `Keyword argument`는 `매개변수 이름`에 의해 결정되는 방법이다.
+  - `Keyword argument`는 key value가 `key`에 의해 결정되는 인자다.
     - `순서 상관 없이` `keyword`가 중요하다.
 
 <br>
@@ -189,17 +185,20 @@ dict_values([100, 200, 300])
 - `print` 함수처럼 함수가 받을 인자(argument)의 갯수를 유연하게 지정하기 위해 Python은 `packing`을 지원한다.
 - `packing` 은
   - `arguments`를 `하나의 객체`로 합쳐서 받을 수 있도록 한다.
-  - `positional argument` 와 `keyword argument`를 사용하는 방식이 있다.
-  - `positional argument`는 `*` 한개를 매개변수 앞에 붙여서 사용한다. 이 때는 `tuple` type 으로 `하나의 객체`가 됩니다.
-  - `keyword argument`는 `*` 두 개 즉, `**`를 매개변수 앞에 붙여서 사용한다.
-  - `keyword argument`는 패킹한 인자들을 keyword와 value로 넘길 때 사용합니다. 즉, `dictionary` type으로 관리합니다.
+  - `positional argument` packing 과 `keyword argument` packing이 있다.
+- `positional argument` packing은
+  - `*` 한 개를 매개변수 앞에 붙여서 사용한다.
+  - 이 때는 `tuple` type 으로 `하나의 객체`가 된다.
+- `keyword argument` packing은
+  - `*` 두 개 즉, `**`를 매개변수 앞에 붙여서 사용한다.
+  - `keyword`와 `value`로 구성된 `dictionary` type으로 `하나의 객체`가 된다.
 
 <br>
 
-- `positional argument`를 사용하는 방법
+- `positional argument` packing을 사용하는 방법
 - parameter를 입력할 때, 입력되는 수만큼 (x, y, z, a, b)로 입력할 수 있다.
-- 하지만, `*args`를 사용해서 packing 한 후, unpacking 하여 사용할 수 있다.
-- `args`는 매개변수 명으로 자유롭게 명명한다.
+- 하지만, `*args`를 사용하여 하나의 객체로서 packing 하여 간단히 관리할 수 있다.
+- `args`는 매개변수 명으로, 자유롭게 명명한다.
 
 <br>
 
@@ -222,7 +221,8 @@ dict_values([100, 200, 300])
 
 ```
 
-- `enumerate ()` 를 사용하여 `positional arguments`를 설명하겠다.
+- `enumerate ()` 를 사용하여 `positional arguments` packing을 설명하겠다.
+- `enumerate ()`를 `for ~ in`문에 사용하겠다.
 
 ```yml
 # args == arguments
@@ -234,9 +234,11 @@ dict_values([100, 200, 300])
 > args_func('Lee')
 Result : 0 Lee
 
+# 위치인자로 보낸 모든 객체들('Lee', 'Park')을 *args로 하나의 객체로서 관리해준다.
 > args_func('Lee', 'Park')
 Result : 0 Lee
 Result : 1 Park
+
 
 > args_func('Lee', 'Park', 'Kim')
 Result : 0 Lee
@@ -244,13 +246,14 @@ Result : 1 Park
 Result : 2 Kim
 ```
 
-- `dictionary unpakcing`을 사용하는 방법
+- `keyword argument` packing을 사용하는 방법
 
 ```yml
 > def kwargs_func(**kwargs):
 >     for v in kwargs.keys():
 >       print("{}".format(v), kwargs[v])
 
+# keyword arguments를 packing 하여 dictionary로 관리한다.
 > kwargs_func(name1='Apple')
 name1 Apple
 
@@ -262,6 +265,48 @@ name2 Window
 name1 Apple
 name2 Window
 name3 Choice
+```
+
+- `positional argument` 와 `keyword argument`를 같이 사용해보자.
+
+```yml
+> def example(args_1, args_2, *args, **kwargs):
+>    print(args_1, args_2, args, kwargs)
+> example(10, 20, 'Lee', 'Kim', 'Park', 'Cho', age1=20, age2=30, age3=40)
+10 20 ('Lee', 'Kim', 'Park', 'Cho') {'age1': 20, 'age2': 30, 'age3': 40}
+
+# args_1, args_2 로 총 2개이므로, print의 매개변수 앞에서 2개까지가 일반적인 positional argument이다.
+
+#  그 뒤에, *args 는 positional argument packing이므로 제한 없다. tuple 로 출력된 걸 확인할 수 있다.
+
+# 맨 마지막 인자는 ** 이므로, keyword argument packing이다. dictionary로 출력된 걸 확인할 수 있다.
+
+```
+
+### 3.3 Unpacking
+
+- `Unpacking`은 `packing`과는 반대로 여러개의 객체를 포함하고 있는 하나의 객체를 풀어준다.
+- **`Unpacking` 시 해체되는 `인자의 수`와 매칭되는 `변수의 수`가 동일해야 가능하다.**
+- `packing` 시에는 `매개변수`에 `*`을 붙였지만, `unpacking` 시에는 `argument` 앞에 `*`를 붙여서 사용합니다.
+
+```yml
+> def sum(a, b, c):
+>  return a + b + c
+> number = (1, 2, 3)
+> print(sum(*number))
+6
+```
+
+- 또는 다음과 같은 방식으로 `unpacking` 할 수 있다.
+
+```yml
+> def func_mul1(x):
+>    y1 = x * 10
+>    y2 = x * 20
+>    y3 = x * 30
+>    return y1, y2, y3
+# unpacking
+> x1, x2, x3 = func_mul1(10)
 ```
 
 ---
@@ -279,3 +324,4 @@ name3 Choice
 
 - [Positional argument, Keyword argument](https://wikidocs.net/22799)
 - [Packing, Unpacking](https://wikidocs.net/22801)
+- [enumerate](https://docs.python.org/ko/3.6/library/functions.html?highlight=enumerate#enumerate)

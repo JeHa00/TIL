@@ -7,8 +7,9 @@
 > 1. [함수 중요성](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#1-%ED%95%A8%EC%88%98-%EC%A4%91%EC%9A%94%EC%84%B1)
 > 2. [함수 선언 및 사용](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#2-%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8-%EB%B0%8F-%EC%82%AC%EC%9A%A9)
 > 3. [Packing, Unpakcing](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#3-packing-unpacking)
-> 4. [중첩 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#4-%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)
-> 5. [람다(Lambda) 개념]()
+> 4. [중첩 함수(Nested function)](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_12_method.md#4-%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98)
+> 5. [람다(Lambda) 함수(익명함수)]()
+> 6. [함수 Type Hint]()
 
 <br>
 
@@ -270,7 +271,7 @@ name3 Choice
 
 # args_1, args_2 로 총 2개이므로, print의 매개변수 앞에서 2개까지가 일반적인 positional argument이다.
 
-#  그 뒤에, *args 는 positional argument packing이므로 제한 없다. tuple 로 출력된 걸 확인할 수 있다.
+# 그 뒤에, *args 는 positional argument packing이므로 제한 없다. tuple 로 출력된 걸 확인할 수 있다.
 
 # 맨 마지막 인자는 ** 이므로, keyword argument packing이다. dictionary로 출력된 걸 확인할 수 있다.
 
@@ -306,15 +307,140 @@ name3 Choice
 
 <br>
 
-## 4. 중첩 함수
+## 4. 중첩 함수 (Nested function)
 
 - `중첩 함수`는 `함수형 프로그래밍`과 관련 있다.
 - `함수형 프로그래밍`에서 중첩함수로 많이 사용된다.
+- 함수 내부에 정의된 또 다른 함수를 말한다.
+- 호출하는 함수는 `부모 함수` 이다.
+- `부모 함수`의 하위 함수를 호출할 수 없다.
+  - `부모 함수`의 매개변수를 받아서 사용한다.
+
+```yml
+# 중첩 함수
+> def nested_func(num):  # 부모 함수
+>    def func_in_func(num): # 부모 함수의 매개변수를 받아서 사용 가능
+>      print(num)
+>    print("In func")
+>    func_in_func(num + 100)
+
+> nested_func(100)
+200
+
+# 부모 함수의 하위 함수를 호출하여 사용할 수 없다.
+> func_in_func(100)
+NameError: name 'func_in_func' is not defined
+
+```
 
 ---
+
+<br>
+
+## 5. 람다(lambda) 함수 (익명함수)
+
+- 람다식의 장점 from python 공식 사이트
+
+  - 메모리 절약
+  - 가독성 향상
+  - 코드 간결
+
+- 람다식의 단점 (많은 실력자 분들이 람다식을 부정적으로 피력한다.)
+
+  - 과한 사용 시, 가독성 감소된다. 왜냐하면 `익명 함수`이기 때문이다.
+  - (빈번히 언급됨)
+  - (일반적인 함수는 함수명을 보고 그 기능을 추측할 수 있다.)
+
+- 일반적인 함수와 람다식 함수의 차이
+- `일반적인 함수`는 `함수명`이 있기 때문에, `객체 생성` 된다. 그 후, `resource(memory)를 할당`한다.
+- 하지만, `람다식 함수`는
+  - `즉시 실행 함수` 라서,
+  - `Heap` 영역에 저장되고 (Heap 초기화),
+  - 메모리 초기화를 한다.
+  - 초기화로 메모리를 효율적으로 사용할 수 있다.
+  - 함수명이 존재하지 않아, `익명 함수`라 한다. 그래서 별도의 변수에 할당해야 한다.
+
+```yml
+> def mul_func(x, y):
+>   return x * y
+
+> print(mul_func(10, 50))
+500
+
+# 첫 번째: 이미 변수에 할당해 놓은 일반적인 함수를 넣는 방법
+> mul_func_var = mul_func
+> print(mul_func_var(10, 50))
+500
+
+# 두 번째: 자주 쓰는 람다 함수이기 때문에, 정의를 해서 변수로 넘기는 방식
+# 일시적으로 그 자리에서 함수가 필요할 때 사용한다.
+# def 와 return이 없어도 가능하다.
+# 람다식을 넣은 함수
+> lambda_mul_func = lambda x,y : x * y
+> print(lambda_mul_func(10, 50))
+500
+
+# 함수 안에서 함수를 인자로 받는 함수
+> def func_final(x, y, func):
+>     print(x * y * func(1,1))
+
+# 첫 번째 방식
+> func_final(10, 50, mul_func_var)
+500
+
+# 두 번째 방식
+> func_final(10, 50, lambda_mul_func)
+500
+
+# 세 번째 방식: 바로 그 자리에서 람다식을 써서 넘기는 방법
+> func_final(10, 50, lambda x,y : x * y)
+
+```
+
+- 위 방식대로 총 함수를 정의하는데 `3가지 방식`이 있다.
+- 각 방식에 대해서 언제 무엇을 써야할지 생각해보자.
+
+## 6. 함수 Type Hint
+
+- 함수의 `매개변수`와 함수의 `결과값`이 `무슨 데이터 타입인지` 알려주기 위해 `python 3.5` 부터 나온 기능이다.
+- `def <function-name>(parameter1: <data type>) -> <함수 결과값의 data type>`
+
+```yml
+
+# 아래 예시처럼 각 매개변수의 데이터 타입이 무엇인지 알려준다.
+# 그리고, 함수의 결과값의 데이터 타입도 알려준다.
+> def tot_length1(word: str, num: int) -> int:
+>    return len(word) * num
+
+# 아래 함수는 위 함수와 동일하다.
+> def tot_length1(word, num):
+>    return len(word) * num
+
+> print('hint exam1 : ', tot_length1("i love you", 10))
+> print(type(tot_length1("i love you", 10)))
+hint exam1 : 100
+<class 'int'>
+
+> def tot_length2(word: str, num: int) -> None:
+>    print('hint exam2 : ', len(word) * num)
+
+
+> print(tot_length2("niceman", 10))
+> print(type(tot_length2("i love you", 10)))
+hint exam2 : 70
+<class 'Nonetype'>
+
+```
+
+- `tot_length2`의 data type이 `Nonetype`인 이유는 `return 값`이 없기 때문이다.
+
+---
+
+<br>
 
 ## Reference
 
 - [Positional argument, Keyword argument](https://wikidocs.net/22799)
 - [Packing, Unpacking](https://wikidocs.net/22801)
 - [enumerate](https://docs.python.org/ko/3.6/library/functions.html?highlight=enumerate#enumerate)
+- [lambda function](https://wikidocs.net/22804)

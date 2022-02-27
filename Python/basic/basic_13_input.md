@@ -4,12 +4,14 @@
 
 ## Intro
 
-> 1. [사용자 입력]()
-> 2. [형 변환 입력]()
+> 1. [사용자 입력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_13_input.md#1-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5)
+> 2. [형 변환 입력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_13_input.md#2-%ED%98%95-%EB%B3%80%ED%99%98-%EC%9E%85%EB%A0%A5)
 
 <br>
 
 - `input` 함수는 `기본 타입`은 `string` 이므로, `string` 외의 원하는 형태가 있다면 반드시 `type conversion(형 변환)`을 해야 한다.
+
+<br>
 
 ## 1. 사용자 입력
 

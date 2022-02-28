@@ -4,10 +4,10 @@
 
 ## Intro
 
-> 1. OOP란?
-> 2. Class와 instance의 차이
-> 3. Self 의 이해: class method, instance method
-> 4. class, instance variable
+> 1. [OOP란?](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_14_class.md#1-oop%EB%9E%80)
+> 2. [Class와 instance의 차이](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_14_class.md#2-class%EC%99%80-instatnce%EC%9D%98-%EC%B0%A8%EC%9D%B4)
+> 3. [Self 의 이해: class method, instance method](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_14_class.md#3-self-%EC%9D%98-%EC%9D%B4%ED%95%B4-class-method-instance-method)
+> 4. [class, instance variable](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_14_class.md#4-class-instance-variable)
 
 <br>
 
@@ -129,7 +129,8 @@ False 2542532857088 2542532856992 2542532856560
 
 - `namespace` 확인하기
 - `namespace` 란
-  - 객체를 인스턴스화 할 때, instance의 속성들이 `dictionary` 형태로 저장되는 공간으로, instance들이 가지고 있는 속성들을 확인할 수 있다.
+  - 객체를 인스턴스화 할 때, instance의 속성들이 `dictionary` 형태로 저장되는 공간으로,   
+  - instance들이 가지고 있는 속성들을 확인할 수 있다.  
 - `class`는 하나지만, 서로 다른 속성들을 확인할 수 있다.
 - `instance`만의 공간이다.
 - `instance`의 `namespace`를 확인할 때는 `__dict__` 를 사용한다.

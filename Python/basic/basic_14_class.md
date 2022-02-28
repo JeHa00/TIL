@@ -6,9 +6,8 @@
 
 > 1. OOP란?
 > 2. Class와 instance의 차이
-> 3. Self의 이해
-> 4. instance method
-> 5. class, instance variable
+> 3. Self 의 이해: class method, instance method
+> 4. class, instance variable
 
 <br>
 
@@ -203,7 +202,7 @@ mikky is a firstdog
 
 <br>
 
-## 3. Self의 이해
+## 3. Self 의 이해: class method, instance method
 
 - `__init__`이 없으면 파이썬이 내부적으로 알아서 클래스를 만들 때 내부적으로 실행한다.
 - `instance 변수`를 만들지 않고 사용할 것이기 때문에 `__init__`을 만들지 않는다.
@@ -264,4 +263,112 @@ Typeerror: func2() missing 1 required positional argument: 'self'
 > SelfTest.func2(f)
 2332370018256
 Func2 called
+```
+
+---
+
+<br>
+
+## 4. class, instance variable
+
+- `class variable`은 `instance`의 공통된 변수라서, `instance`의 `namespace`에 있을 것 같지만 없다.
+- `class variable`은 `class`의 `namespace`에 있다.
+- 하지만, 인스턴스화된 변수를 통해서 `class variable`에 접근한다면 `namespace`에서 찾을 수 없어도 `class variable`만 출력할 수 있다.
+- `instance attribute`를 만들어서 사용할 것이기 때문에 `__init__` 생성자를 사용한다.
+- 그리고 `생성자`와는 반대로 `소멸자: 객체가 소멸될 때 즉, 메모리에서 지워질 때 자동으로 호출되는 함수`를 사용했다.
+
+```yml
+> class Warehouse():
+>    # class variable
+>    stock_num = 0
+>
+>    def __init__(self, name): # 생성자
+>        # instance variable
+>        # mapping
+>        self.name = name
+>        Warehouse.stock_num += 1
+>
+>    def __del__(self): # 소멸자
+>        Warehouse.stock_num -= 1
+
+# user1 instance의 name을 Lee로 한다.
+> user1 = Warehouse('Lee')
+# user2 instance의 name을 Cho로 한다.
+> user2 = Warehouse('Cho')
+
+> print(Warehouse.stock_num)
+2
+
+> print(user1.name)
+Lee
+
+> print(user2.name)
+Cho
+
+## instance의 namespace에서는 공통적으로 가지고 있는 클래스 변수를 찾을 수 없다.
+> print(user1.__dict__)
+{'name': 'Lee'}
+> print(user2.__dict__)
+{'name': 'Cho'}
+
+## class의 namespace에서 찾을 수 있다.
+> print(Warehouse.__dict__)
+{'__module__': '__main__', 'stock_num': 2, '__init__': <function Warehouse.__init__ at 0x000002DC6B59F8B0>, '__del__': <function Warehouse.__del__ at 0x000002DC6B59F940>, '__dict__': <attribute '__dict__' of 'Warehouse'
+objects>, '__weakref__': <attribute '__weakref__' of 'Warehouse' objects>, '__doc__': None}
+
+## 그런데 <instance name>.<class variable name> 을 입력하면 `class variable`의 값이 출력된다.
+## 이는 class의 namespace에서 python이 찾아서 출력한 것이다.
+> print(user1.stock_num)
+2
+
+## 소멸자를 사용하여 instance를 삭제하면, stock_num이 1로 감소한 걸 확인할 수 있다.
+> del user1
+> print('after', Warehouse.__dict__)
+{'__module__': '__main__', 'stock_num': 1, '__init__': <function Warehouse.__init__ at 0x000002DC6B59F8B0>, '__del__': <function Warehouse.__del__ at 0x000002DC6B59F940>, '__dict__': <attribute '__dict__' of 'Warehouse'
+objects>, '__weakref__': <attribute '__weakref__' of 'Warehouse' objects>, '__doc__': None}
+
+```
+
+- 파이썬은 object의 이름을 다음 순서로 찾는다.
+  - `instance`의 namespace -> `class`의 namespace -> `super`의 namespace (해당 class의 상위 class를 의미한다.)
+
+<br>
+
+- 마지막 예제
+
+```yml
+## Dog라는 class를 만든다.
+> class Dog():
+>       # 클래스 변수 선언
+>     species = 'Firstdog'
+
+>       # 생성자 및 인스턴스 속성 생성 그리고 mapping
+>     def __init__(self, name, age):
+>         self.name = name
+>         self.age = age
+
+>       # 인스턴스 메소드
+>     def info(self):
+>        return '{} is {} years old'.format(self.name, self.age)
+
+>       # 인스턴스 메소드
+>       # sound는 호출 시에 입력한다.
+>    def speak(self, sound):
+>        return '{} says {}!'.format(self.name, sound)
+
+## 인스턴스화 + 인스턴스 속성값 입력
+> c = Dog('july', 4)
+> d = Dog('Marry', 10)
+
+## 인스턴스 메소드 호출
+> print(c.info())
+july is 4 years old
+> print(d.info())
+Marry is 10 years old
+
+## 인스턴스 메소드 호출 + sound 매개변수 입력
+> print(c.speak('wal wal'))
+july says wal wal!
+> print(d.speak('Mung Mung'))
+Marry says Mung Mung!
 ```

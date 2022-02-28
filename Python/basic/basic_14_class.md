@@ -6,7 +6,7 @@
 
 > 1. OOP란?
 > 2. Class와 instance의 차이
-> 3. Self 개념
+> 3. Self의 이해
 > 4. instance method
 > 5. class, instance variable
 
@@ -42,19 +42,16 @@
 - 소프트웨어로 구현할 대상을 `객체(Object)`라 한다.
 - 그리고, 이 `객체(Object)`를 `class`라는 `틀`을 통해서 소프트웨어적으로 묘사한 것을 `instance`라 한다.
 - 그렇기 때문에 `instance`는 `객체(Object)`라는 개념에 포함된다.
--
 
 <br>
 
-- `namespace(이름공간)` : 객체를 인스턴스화 할 때 instance의 속성들이 `dictionary` 형태로 저장되는 공간
-  - 인스턴스만의 공간
 - `Class variable(클래스 변수)` 는
   - 직접 접근이 가능하다.
   - 클래스 변수는 공유된다. == 모든 인스턴스에서 동일하게 가지고 있는 것
 - `instance variable(인스턴스 변수)` 는
   - `self`가 붙은 것들이 `instance varible(인스턴스 변수)`다.
-  - 객체마다 별도로 존재한다.
   - 인스턴스화된 변수로 접근이 가능하다.
+  - 객체마다 별도로 존재한다.
   - 위에 설명한대로 `namespace`라는 그 인스턴스만의 공간을 별도로 갖고 있어서, namespace를 통해 확인한다.
 
 <br>
@@ -69,6 +66,7 @@
 <br>
 
 - `class`를 만들어보자.
+- `__init__`은 파이썬에서 클래스가 초기화될 때, 반드시 호출되는 함수다.
 
 ```yml
 ## class 만들기
@@ -78,12 +76,11 @@
 # 파이썬의 모든 class는 object를 상속받기 때문에, 선언 방법은 자유롭다.
 > class Dog():  # class Dog 도 가능하다.
 
->    ## 클래스 속성 지정
->    # 클래스 속성은 모든 인스턴스에서 동일하다.
+>    ## 클래스 변수 지정
+>    # 클래스 변수는 모든 인스턴스에서 동일하다.
 >    species = "firstdog"
 >
 >    # 모든 class는 초기화 method 및 인스턴스 속성을 가질 수 있다.
->    # __init__은 파이썬에서 클래스가 초기화될 때, 반드시 호출되는 함수다.
 >    # self 후에, 인스턴스에 사용할 변수 속성들을 입력한다.
 >    def __init__(self, name, age):
 
@@ -132,9 +129,11 @@ False 2542532857088 2542532856992 2542532856560
 ### 2.4 namespace 확인하기
 
 - `namespace` 확인하기
-- `namespace` 란 다시 말하자면
+- `namespace` 란
   - 객체를 인스턴스화 할 때, instance의 속성들이 `dictionary` 형태로 저장되는 공간으로, instance들이 가지고 있는 속성들을 확인할 수 있다.
 - `class`는 하나지만, 서로 다른 속성들을 확인할 수 있다.
+- `instance`만의 공간이다.
+- `instance`의 `namespace`를 확인할 때는 `__dict__` 를 사용한다.
 
 ```yml
 ## namespace 확인하기
@@ -143,4 +142,126 @@ False 2542532857088 2542532856992 2542532856560
 
 dog1 {'name': 'mikky', 'age': 2}
 dog2 {'name': 'baby', 'age': 3}
+```
+
+### 2.5 class 속성, instance 속성 확인하기
+
+- `Class variable(클래스 변수)` 는
+  - 직접 접근이 가능하다.
+  - 클래스 변수는 공유된다. == 모든 인스턴스에서 동일하게 가지고 있다.
+- `instance variable(인스턴스 변수)` 는
+  - `self`가 붙은 것들이 `instance varible(인스턴스 변수)`다.
+  - 인스턴스화된 변수로 접근이 가능하다.
+  - 객체마다 별도로 존재한다.
+  - 위에 설명한대로 `namespace`라는 그 인스턴스만의 공간을 별도로 갖고 있어서, namespace를 통해 확인한다.
+
+<br>
+
+- `클래스 변수`에 접근하기
+
+```yml
+## 클래스로 직접 접근하기
+> print(Dog.species)
+firstdog
+
+## 인스턴스화된 변수를 통해서 접근하기
+> print(a.species)
+firstdog
+> print(b.species)
+firstdog
+
+# 직접 접근이 가능하며, 하나의 값을 공유한다는 걸 알 수 있다.
+```
+
+- `instance 변수`에 접근하기
+
+```yml
+
+## 인스턴스화된 변수를 통해서 instance 속성에 접근하기
+# a와 b를 인스턴스화했기 때문에 a와 b로 접근이 가능하다.
+> print('{} is {} and {} is {}'.format(a.name, a.age, b.name, b.age))
+mikky is 2 and baby is 3
+
+
+> if a.species == 'firstdog':
+>    print('{0} is a {1}'.format(a.name, a.species))
+mikky is a firstdog
+
+```
+
+- 위 예제들을 통해서 `class`의 장점을 다시 한 번 확인할 수 있다.
+
+- `class`의 장점
+  - `class` 하나를 만들어놓고 찍어내듯이 사용할 수 있다.
+  - `instance`만의 공간도 있고, 공유하는 공간이 있다.
+  - 그래서 `코드의 재사용성`이 좋다는 것이다.
+  - `코드의 재사용성`이 좋다는 의미는 더 구체적으로 말하자면
+    - 객체지향에 입각하여 불필요한 중복을 방지하고, 깔끔한 코드를 통해 프로그램 개발을 할 수 있다.
+    - 생산성이 향상되고, 성능도 코드에 따라 좋아진다.
+
+---
+
+<br>
+
+## 3. Self의 이해
+
+- `__init__`이 없으면 파이썬이 내부적으로 알아서 클래스를 만들 때 내부적으로 실행한다.
+- `instance 변수`를 만들지 않고 사용할 것이기 때문에 `__init__`을 만들지 않는다.
+- `dir()`로 변수 내부를 확인할 수 있다.
+- 매개변수에 `self` 가 있으면 `instance method`다.
+- 매개변수에 `self`가 없다면 `class method` 다.
+- `method` 호출하기
+  - `class method` 1가지 방법
+    - 주의 사항: 인스턴스화한 변수를 통해서 `class method`를 호출하면 error가 뜬다.
+    - `class`로 바로 호출하는 방법 (1-1 방법)
+  - `instance method` 2가지 방법
+    - 첫 번째: 인스턴스화한 변수를 통해서 `instance method`를 호출하는 방법 (2-1 방법)
+    - 두 번째: 클래스로 접근하여 매개변수에 인스턴스를 넘겨주는 방법 (2-2 방법)
+
+```yml
+> class SelfTest:
+>   def func1():
+>       print('Func1 called')
+>   def func2(self):
+>       print(id(self))
+>       print('Func2 called')
+
+## 변수를 인스턴스화 한다.
+> f = SelfTest()
+
+## dir로 변수 내부를 확인한다.
+> print(dir(f))
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'func1', 'func2']
+
+## 인스턴스화된 f를 통해서 func1을 호출해보자.
+# func1에는 매개변수가 없는데, 1개가 넘어갔다는 걸 알 수 있다.
+> f.func1
+TypeError: func1() takes 0 positional arguments but 1 was given
+
+## 그러면 인스턴스화된 f를 통해서 func2를 호출해보자. (2-1 방법)
+> f.func2
+2799723753424
+Func2 called
+
+## 그리고, f의 id 값을 호출해보자.
+> print(id(f))
+2799723753424
+
+## id(f.func2) 와 id(f) 가 같다는 걸 알 수 있다.
+## 즉, self가 있는 method는 instance의 method인 걸 알 수 있다.
+## f는 인스턴스화한 변수이기 때문에 func1로 넘어가는 것이 아닌, self가 있는 func2로 넘어간다.
+
+## class method 호출하기 (1-1 방법)
+> SelfTest.func1()
+Func1 called
+
+
+## 만약 역으로 클래스로 접근하여 func2를 호출한다면??
+# func2가 요구하는 매개변수 1개를 놓쳐다는 error를 확인했다.
+> SelfTest.func2()
+Typeerror: func2() missing 1 required positional argument: 'self'
+# 그러면 매개변수 1개를 입력해보자. (2-2 방법)
+> SelfTest.func2(f)
+2332370018256
+Func2 called
 ```

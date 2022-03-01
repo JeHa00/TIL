@@ -1,17 +1,17 @@
-# Python basic 9: python 흐름 제어문 (제어문)
+# Python basic 9: python 흐름 제어문 (조건문)
 
 <br>
 
 ## Intro
 
-> 1. [제어문 - 제어문 기본 형식](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#1-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%A0%9C%EC%96%B4%EB%AC%B8-%EA%B8%B0%EB%B3%B8-%ED%98%95%EC%8B%9D)
-> 2. [제어문 - 연산자](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#2-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%97%B0%EC%82%B0%EC%9E%90)
-> 3. [제어문 - 참거짓 판별 종류](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#3-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%B0%B8%EA%B1%B0%EC%A7%93-%ED%8C%90%EB%B3%84-%EC%A2%85%EB%A5%98)
-> 4. [제어문 - 다중 조건문, 중첩 조건문, in & not in](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#4-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EB%8B%A4%EC%A4%91-%EC%A1%B0%EA%B1%B4%EB%AC%B8-%EC%A4%91%EC%B2%A9-%EC%A1%B0%EA%B1%B4%EB%AC%B8-in--not-in)
+> 1. [조건문 기본 형식](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#1-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%A0%9C%EC%96%B4%EB%AC%B8-%EA%B8%B0%EB%B3%B8-%ED%98%95%EC%8B%9D)
+> 2. [연산자](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#2-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%97%B0%EC%82%B0%EC%9E%90)
+> 3. [참거짓 판별 종류](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#3-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%B0%B8%EA%B1%B0%EC%A7%93-%ED%8C%90%EB%B3%84-%EC%A2%85%EB%A5%98)
+> 4. [다중 조건문, 중첩 조건문, in & not in](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#4-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EB%8B%A4%EC%A4%91-%EC%A1%B0%EA%B1%B4%EB%AC%B8-%EC%A4%91%EC%B2%A9-%EC%A1%B0%EA%B1%B4%EB%AC%B8-in--not-in)
 
 <br>
 
-## 1. 제어문 - 제어문 기본 형식
+## 1. 조건문 기본 형식
 
 - `콜론(:)`으로 끝나는 부분을 `헤더(Header)`라고 한다.
 - 헤더의 마지막 콜론은 바로 뒤에 `스위트`가 이어진다.
@@ -44,7 +44,7 @@ Good
 
 <br>
 
-## 2. 제어문 - 연산자
+## 2. 연산자
 
 - 연산자에는 지난 번에 봤던 산술 연산자 그리고, 관계 연산자, 논리 연산자가 있다.
 - 관계 연산자에는 `>`, `>=`, `<`, `<=`, `==`, `!=` 가 있다.
@@ -120,7 +120,7 @@ e4 :  False
 
 <br>
 
-## 3. 제어문 - 참거짓 판별 종류
+## 3. 참거짓 판별 종류
 
 - 참 : "values", [values], (values), {values}, 1
 - 거짓 : "", [], (), {}, 0, None
@@ -152,11 +152,11 @@ You are in: Seoul
 
 <br>
 
-## 4. 제어문 - 다중 조건문, 중첩 조건문, in & not in
+## 4. 다중 조건문, 중첩 조건문, in & not in
 
 <br>
 
-### 4.1 제어문 - 다중 조건문
+### 4.1  다중 조건문
 
 - 동일한 syntax의 조건문이 여러 개일 조건문을 `다중 조건문`이라 한다.
 
@@ -177,7 +177,7 @@ Grade : A
 
 <br>
 
-### 4.2 제어문 - 중첩 조건문
+### 4.2 중첩 조건문
 
 - 한 syntax 조건문 하에 여러 개의 조건문을 `중첩 조건문`이라 한다.
 
@@ -200,7 +200,7 @@ Grade : A
 
 <br>
 
-### 4.3 제어문 - in & not in
+### 4.3 in & not in
 
 - `A in B` : B 안에 A가 있으면 참
 - `A not in B` : B 안에 A가 없으면 참

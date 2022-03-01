@@ -1,4 +1,4 @@
-# Python basic 16: 파이썬 모듈(module)
+# Python basic 16: 파이썬 패키지(package)
 
 ## Intro
 

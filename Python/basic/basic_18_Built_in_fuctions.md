@@ -70,6 +70,8 @@ C
 > print(list(filter(conv_pos, [1, -3, 2, 0, -5, 6])))
 [-3, -5, 6]
 
+## 단 한 번 쓸 함수를 위해 위에처럼 정의하면 분량이 늘어난다. 이럴 때, lamda 함수를 사용한다.
+> print(list(filter(lambda x: abs(x) > 2, [1, -3, 2, 0, -5, 6])))
 ```
 
 <br>
@@ -118,4 +120,112 @@ y
 # blank가 제일 작은 값이라, 아무것도 없어보인다.
 > print(min('python study'))
 
+
+```
+
+<br>
+
+- **`map`: iterable 객체 요소를 `지정한 함수`를 실행 후 추출**
+- **`map`: map(func, \*iterables) --> map object**
+  - **Make an iterator that computes the function using arguments from each of the iterables.**
+- 데이터 전처리 과정에서 많이 사용한다.
+-
+
+```yml
+>  def conv_abs(x):
+>      return abs(x)
+
+>  print(list(map(conv_abs,[1,-3,2,0,-5,6])))
+[1, 3, 2, 0, 5, 6]
+
+## 또는 위에 함수 정의를 하지 않고, 람다 함수를 사용한다.
+
+
+>  print(list(map(lambda x:abs(x),[1,-3,2,0,-5,6])))
+[1, 3, 2, 0, 5, 6]
+
+```
+
+<br>
+
+- `pow` : 제곱값 반환
+
+```yml
+> print(pow(2,10))
+1024
+```
+
+<br>
+
+- `range`: 반복가능한 객체(Iterable) 반환
+
+```yml
+> print(range(1,10,2))
+range(1, 10, 2)
+
+> print(list(range(1,10,2)))
+[1, 3, 5, 7, 9]
+
+> print(list(range(0,-15,-1))
+[0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14]
+
+```
+
+<br>
+
+- `round`: 반올림
+
+```yml
+## 소수점 둘쨰자리에서 반올림한다.
+> print(round(6.5781, 2))
+6.58
+> print(round(5.6))
+6
+```
+
+<br>
+
+- `sum`: 반복가능한 객체(Iterable) 합 반환
+
+```yml
+> print(sum([6, 7, 8, 9, 10]))
+40
+> print(sum(range(1,101)))
+5050
+```
+
+<br>
+
+- `type`: 자료형의 type을 확인
+
+```yml
+> print(type(3))
+<class 'int'>
+
+> print(type({}))
+<class 'dict'>
+
+> print(type(()))
+<class 'tuple'>
+
+> print(type([]))
+<class 'list'>
+```
+
+<br>
+
+- `zip`: Iterable 객체의 요소를 묶어서 tuple type으로 반환
+- `zip`: A zip object yielding tuples until an input is exhausted.
+
+```yml
+> print(list(zip([10,20,30],[40,50,777])))
+[(10, 40), (20, 50), (30, 777)]
+
+# 짝이 맞는 것만 반환한다.
+# list 안에 tuple type의 argument가 담겨져있다.
+> print(list(zip([10,20,],[40,50,777])))
+[(10, 40), (20, 50)]
+
+> print(type(list(zip([10,20,30],[40,50,777]))[0]))
+<class 'tuple'>
 ```

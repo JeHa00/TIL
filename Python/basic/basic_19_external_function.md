@@ -3,29 +3,56 @@
 - 여러 외장 함수들 중 sys, pickle, os, time, random, webbrowser 에 대해 예제 실습으로 알아보겠다.
 - 특히 sys, os, time은 훨씬 자주 사용되므로 중요하다.
 - 외장함수는 `import`를 하는 것부터 시작한다.
-- 이 포스팅은 외장 함수에는 이런 것들이 있다는 정도로만 정리하자.
-- 해당 포스팅으로는 각 외장 모듈을 다 알 수 없다.
-- 추가적인 학습을 반드시 해서 TIL에 올리자.
+- 이 포스팅의 목적은 외장 함수에는 이런 것들이 있다는 기록하기 위해서다. 해당 포스팅으로는 각 외장 모듈에 대한 내용이 부족하니, 추가적인 학습을 반드시 해서 TIL에 올리자.
 
-### 1. sys
+## 1. sys
 
 - `sys` 모듈은 파이썬 인터프리터가 제공하는 변수와 함수를 직접 제어할 수 있게 해주는 모듈이다.
 
 - `sys.argv`는 명령행에 인수를 전달하도록 하는 명령어다.
 
 ```yml
+> import sys
 
+## module 파일이 있는 위치들이 출력된다.
+> print(sys.path)
+
+## 강제 종료 함수다. 함부로 사용하지 않는다.
+# visual studio code에서는 작동되지 않는다. 해당 언어 shell에서 작동한다.
+> sys.exit()
 ```
 
 ---
 
 <br>
 
-### 2. pickle
+## 2. pickle
 
-- `pickle` 모듈은 텍스트 상태의 데이터가 아닌 객체의 형태를 그대로 유지하면서, 파일에 저장하고 불러올 수 있게 하는 모듈이다.
+- `pickle` 모듈은 텍스트 상태의 데이터가 아닌 객체의 형태를 그대로 유지하면서, 파일에 저장하고 불러올 수 있게 하는 파이썬이 제공하는 모듈이다.
+- 파이썬 객체를 파일에 저장하는 과정을 피클링(pickling)이라 하고, 파일에서 객체를 읽어오는 과정을 언피클링(unpickling)이라 한다.
+- `test.obj`라는 파일이 binary 형식으로 작성된다.
+- 이 test.obj에 `pickle.dump()` 명령어로 `obj` 변수 내용을 저장한다.
+- 그리고 나서, `pickle.load()` 명령어로 `test.obj` 파일을 읽는다.
 
 ```yml
+> import pickle
+
+# w: write , b: binary, r: read
+> f = open('test.obj', 'wb')
+> obj = {1: 'python', 2: 'study', 3: 'basic'}
+> pickle.dump(obj, f)
+# 열고 나서 반드시 닫아야 한다.
+# 쓴 resource는 컴퓨터한테 반드시 반환해야 한다.
+> f.close()
+
+## binary file은 컴퓨터가 처리하는 파일 형식이다.
+## 사람이 알아보기 힘든 상태로, txt 파일은 이 binary 파일을 사람이 읽기 쉽게 만든 파일 형식이다.
+## 그러면 이걸 어떻게 열 수 있을까??
+
+> f = open("test.obj", 'rb')
+> data = pickle.load(f)
+> print(data)
+> f.close()
 
 ```
 
@@ -33,7 +60,7 @@
 
 <br>
 
-### 3. os
+## 3. os
 
 - `OS 모듈`은 환경 변수나 디렉터리, 파일 등의 OS 자원을 제어할 수 있게 해주는 모듈이다.
 
@@ -54,7 +81,7 @@ rudtl
 
 <br>
 
-### 4. time
+## 4. time
 
 - `time 모듈`은 시간과 관련된 모듈이다.
 
@@ -96,7 +123,7 @@ Wed Mar  2 20:42:50 2022
 
 <br>
 
-### 5. random
+## 5. random
 
 - `random`은 난수(규칙이 없는 임의의 수)를 발생시키는 모듈
 
@@ -137,7 +164,7 @@ Wed Mar  2 20:42:50 2022
 
 <br>
 
-### 6. webbrowser
+## 6. webbrowser
 
 - `webbrowser`는 본인 OS의 web browser를 실행한다.
 
@@ -160,3 +187,4 @@ Wed Mar  2 20:42:50 2022
 ## Reference
 
 - [라이브러리](https://wikidocs.net/33)
+- [pickling](https://www.youtube.com/watch?v=Z24atwS8TZ0)

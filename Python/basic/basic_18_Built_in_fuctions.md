@@ -130,7 +130,6 @@ y
 - **`map`: map(func, \*iterables) --> map object**
   - **Make an iterator that computes the function using arguments from each of the iterables.**
 - 데이터 전처리 과정에서 많이 사용한다.
--
 
 ```yml
 >  def conv_abs(x):

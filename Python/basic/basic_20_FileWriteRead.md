@@ -4,8 +4,8 @@
 
 ## Intro
 
-> 1. [Read file (파일 읽기)]()
-> 2. [Write file (파일 쓰기)]()
+> 1. [Read file (파일 읽기)](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_20_FileWriteRead.md#1-read-file-%ED%8C%8C%EC%9D%BC-%EC%9D%BD%EA%B8%B0)
+> 2. [Write file (파일 쓰기)](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_20_FileWriteRead.md#2-write-file-%ED%8C%8C%EC%9D%BC-%EC%93%B0%EA%B8%B0)
 
 <br>
 

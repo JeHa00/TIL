@@ -2,11 +2,11 @@
 
 # Intro
 
-> 1. [파이썬의 모든 자료형](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_3_numeric%20types.md#1-%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%98-%EB%AA%A8%EB%93%A0-%EC%9E%90%EB%A3%8C%ED%98%95)
-> 2. [숫자형 타입 선언](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_3_numeric%20types.md#2-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8)
-> 3. [연산자 활용](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_3_numeric%20types.md#3-%EC%97%B0%EC%82%B0%EC%9E%90-%ED%99%9C%EC%9A%A9)
-> 4. [형 변환](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_3_numeric%20types.md#4-%ED%98%95-%EB%B3%80%ED%99%98)
-> 5. [외부 모듈 사용](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_3_numeric%20types.md#5-%EC%99%B8%EB%B6%80-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9)
+> 1. [파이썬의 모든 자료형](#1-파이썬의-모든-자료형)
+> 2. [숫자형 데이터 선언](#2-숫자형-데이터-선언)
+> 3. [연산자 활용](#3-연산자-활용)
+> 4. [형 변환](#4-형-변환)
+> 5. [외부 모듈 사용](#5-외부-모듈-사용)
 
 ## 1. 파이썬의 모든 자료형
 

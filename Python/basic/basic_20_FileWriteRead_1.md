@@ -1,4 +1,4 @@
-# Python basic 20: 파일 입출력
+# Python basic 20: 파일 입출력 1
 
 <br>
 
@@ -85,6 +85,30 @@ your cards right.
 
 # it_news.txt 파일의 내용이 문자 하나 하나로 쪼개져서 list로 출력된다.
 >   print(list(c))
+
+```
+
+- `read()` 함수에 intger type의 인자를 넣으면, 입력한 값만큼의 Byte를 읽는다. 그리고, 또 실행하면 이어서 읽는다. 왜냐하면 cursor가 움직이기 때문이다.
+- `seek()` 함수를 사용하여 이 cursor의 위치를 초기화할 수 있다.
+-
+
+```yml
+> with open('./resource/it_news.txt', 'r', encoding='UTF-8') as f:
+>    c = f.read(20)
+>    print(c)
+Right now gamers can
+
+# 다시 처음부터 20Byte를 읽어오는 것이 아니라, 전 마지막 읽은 부분부터 시작한다.
+>    c = f.read(20)
+>    print(c)
+ pay just $1 for acc
+
+# seek은 커서의 이동 위치를 말해준다. 0,0으로 이동하고 다시 20byte 만큼 읽겠다.
+>   f.seek(0,0)
+
+>    c = f.read(20)
+>    print(c)
+Right now gamers can
 
 ```
 

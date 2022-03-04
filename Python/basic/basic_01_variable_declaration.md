@@ -1,8 +1,8 @@
 # Python basic 1: 다양한 변수 선언법
 
-> 1. [변수 할당 설명](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_1_%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md#1-%EB%B3%80%EC%88%98-%ED%95%A0%EB%8B%B9-%EC%84%A4%EB%AA%85)
-> 2. [Object Identity](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_1_%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md#2-object-references)
-> 3. [변수 네이밍 규칙과 예약어](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_1_%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md#3-%EB%8B%A4%EC%96%91%ED%95%9C-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8%EB%B0%A9%EB%B2%95-%EA%B7%9C%EC%B9%99-%EA%B3%BC-%EC%98%88%EC%95%BD%EC%96%B4)
+> 1. [변수 할당 설명](##-1.-변수-할당-설명)
+> 2. [Object Identity]
+> 3. [변수 네이밍 규칙과 예약어]
 
 
 <br>

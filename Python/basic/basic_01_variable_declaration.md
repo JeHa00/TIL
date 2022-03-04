@@ -101,7 +101,7 @@ Change Value
 
 <br>
 
-# 2. Object References
+# 2. Object Identity
 
 변수가 할당 상태일 때, 아래와 같은 상태가 일어나는 걸 의미한다. (예 : n = 700이라 선언했을 때)
 

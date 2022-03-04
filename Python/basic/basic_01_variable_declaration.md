@@ -1,10 +1,8 @@
 # Python basic 1: 다양한 변수 선언법
 
-> 1. [변수 할당 설명](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_1_%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md#1-%EB%B3%80%EC%88%98-%ED%95%A0%EB%8B%B9-%EC%84%A4%EB%AA%85)
-> 2. [Object Identity](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_1_%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md#2-object-references)
-> 3. [변수 네이밍 규칙과 예약어](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_1_%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md#3-%EB%8B%A4%EC%96%91%ED%95%9C-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8%EB%B0%A9%EB%B2%95-%EA%B7%9C%EC%B9%99-%EA%B3%BC-%EC%98%88%EC%95%BD%EC%96%B4)
-
----
+> 1. [변수 할당 설명](#1-변수-할당-설명)
+> 2. [Object Identity](#2-Object-Identity)
+> 3. [변수 네이밍 규칙과 예약어](#3-다양한-변수-선언방법-과-예약어)
 
 <br>
 
@@ -102,7 +100,7 @@ Change Value
 
 <br>
 
-# 2. Object References
+# 2. Object Identity
 
 변수가 할당 상태일 때, 아래와 같은 상태가 일어나는 걸 의미한다. (예 : n = 700이라 선언했을 때)
 
@@ -140,7 +138,7 @@ Change Value
 
 <br>
 
-# 3. 다양한 변수 선언방법 (규칙) 과 예약어
+# 3. 다양한 변수 선언방법 과 예약어
 
 - 이 규칙들을 가지고 변수를 선언하면 세련되고, 코드를 재활용할 때 가독성이 좋은 소스 코드로 만들 수 있다.
 

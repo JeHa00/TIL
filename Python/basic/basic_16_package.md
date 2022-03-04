@@ -2,9 +2,9 @@
 
 ## Intro
 
-> 1. [Package 구조](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_16_package.md#1-pacakge-%EA%B5%AC%EC%A1%B0)
-> 2. [패키지 경로 및 패키지 함수 실행](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_16_package.md#2-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B2%BD%EB%A1%9C-%EB%B0%8F-%ED%8C%A8%ED%82%A4%EC%A7%80-%ED%95%A8%EC%88%98-%EC%8B%A4%ED%96%89)
-> 3. [`__init__.py` 가 존재하는 이유](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_16_package.md#3-__init__py-%EA%B0%80-%EC%A1%B4%EC%9E%AC%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)
+> 1. [Package 구조](#1-pacakge-구조)
+> 2. [패키지 경로 및 패키지 함수 실행](#2-패키지-경로-및-패키지-함수-실행)
+> 3. [`__init__.py` 가 존재하는 이유](#3-__init__py-가-존재하는-이유)
 
 ## 1. Pacakge 구조
 

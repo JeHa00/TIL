@@ -1,11 +1,12 @@
 # Python basic 4: 문자형 사용
 
-> 1. [문자열 생성, 출력 그리고, 길이](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#1-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%83%9D%EC%84%B1-%EC%B6%9C%EB%A0%A5-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EA%B8%B8%EC%9D%B4)
-> 2. [Escape, raw string and multi line](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#2-escape-raw-string-and-multi-line)
-> 3. [문자형 연산](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#3-%EB%AC%B8%EC%9E%90%ED%98%95-%EC%97%B0%EC%82%B0)
-> 4. [문자형 형 변환(Type conversion), 문자형 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#4-%EB%AC%B8%EC%9E%90%ED%98%95-%ED%98%95-%EB%B3%80%ED%99%98type-conversion-%EB%AC%B8%EC%9E%90%ED%98%95-%ED%95%A8%EC%88%98)
-> 5. [**Slicing**](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_4_string.md#5-slicing)
+## Intro
 
+> 1. [문자열 생성, 출력 그리고, 길이](#-1-문자열-생성,-출력-그리고,-길이)
+> 2. [Escape, raw string and multi line](#-2-Escape-raw-string-and-multi-line)
+> 3. [문자형 연산](#-3-문자형-연산)
+> 4. [문자형 형 변환(Type conversion), 문자형 함수](<#-4-문자형-형-변환(Type-conversion),-문자형-함수>)
+> 5. [**Slicing**](#-5-Slicing)
 
 <br>
 

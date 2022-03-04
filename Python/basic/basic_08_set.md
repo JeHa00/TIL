@@ -4,11 +4,10 @@
 
 # Intro
 
-> 1. [Sets 선언](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_8_set.md#1-sets-%EC%84%A0%EC%96%B8)
-> 2. [Sets type conversion](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_8_set.md#2-sets-type-converison)
-> 3. [집합 자료형 활용: Sets 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_8_set.md#3-%EC%A7%91%ED%95%A9-%EC%9E%90%EB%A3%8C%ED%98%95-%ED%95%A8%EC%88%98-sets-%ED%95%A8%EC%88%98)
-> 4. [Sets 수정, 추가, 제거](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_8_set.md#4-sets-%EC%88%98%EC%A0%95-%EC%B6%94%EA%B0%80-%EC%A0%9C%EA%B1%B0)
-
+> 1. [Sets 선언](#1-sets-선언)
+> 2. [Sets type conversion](#2-sets-type-converison)
+> 3. [집합 자료형 활용: Sets 함수](#3-집합-자료형-함수-sets-함수)
+> 4. [Sets 수정, 추가, 제거](#4-sets-수정-추가-제거)
 
 <br>
 
@@ -18,11 +17,9 @@
 - mutable 자료형 => 수정 O, 삭제 O
 - 집합 자료형 활용에 핵심이다.
 
-
 ---
 
 <br>
-
 
 ## 1. Sets 선언
 
@@ -71,7 +68,7 @@ f <class 'set'> {42, 3.14159, 'foo', (1, 2, 3)}
 
 ## 2. Sets type converison
 
-- 파이썬의 장점 중 하나: 간단한 형 변환  
+- 파이썬의 장점 중 하나: 간단한 형 변환
 - `sets`에 중복으로 값을 입력해도, 중복을 허락하지 않기 때문에 type conversion 시에도 중복된 값들은 하나만 있는 걸 확인할 수 있다.
 - `tuple`로 변환
 
@@ -220,4 +217,3 @@ False
 set()
 
 ```
-

@@ -4,9 +4,9 @@
 
 # Intro
 
-> 1. [dictionary 선언](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_7_dict.md#1-dictionary-%EC%84%A0%EC%96%B8)
-> 2. [dictionary value 출력과 수정](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_7_dict.md#2-dictionary-value-%EC%B6%9C%EB%A0%A5%EA%B3%BC-%EC%88%98%EC%A0%95)
-> 3. [dictionary 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_7_dict.md#3-dictionary-%ED%95%A8%EC%88%98)
+> 1. [dictionary 선언](#1-dictionary-선언)
+> 2. [dictionary value 출력과 수정](#2-dictionary-value-출력과-수정)
+> 3. [dictionary 함수](#3-dictionary-함수)
 
 <br>
 
@@ -22,9 +22,7 @@
 
 ---
 
-
 <br>
-
 
 ## 1. dictionary 선언
 

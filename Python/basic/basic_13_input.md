@@ -4,8 +4,8 @@
 
 ## Intro
 
-> 1. [사용자 입력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_13_input.md#1-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5)
-> 2. [형 변환 입력](https://github.com/JeHa00/TIL/edit/master/Python/basic/basic_13_input.md#2-%ED%98%95-%EB%B3%80%ED%99%98-%EC%9E%85%EB%A0%A5)
+> 1. [사용자 입력](#1-사용자-입력)
+> 2. [형 변환 입력](#2-형-변환-입력)
 
 <br>
 

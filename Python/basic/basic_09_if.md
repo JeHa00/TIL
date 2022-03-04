@@ -4,10 +4,10 @@
 
 ## Intro
 
-> 1. [조건문 기본 형식](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#1-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%A0%9C%EC%96%B4%EB%AC%B8-%EA%B8%B0%EB%B3%B8-%ED%98%95%EC%8B%9D)
-> 2. [연산자](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#2-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%97%B0%EC%82%B0%EC%9E%90)
-> 3. [참거짓 판별 종류](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#3-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EC%B0%B8%EA%B1%B0%EC%A7%93-%ED%8C%90%EB%B3%84-%EC%A2%85%EB%A5%98)
-> 4. [다중 조건문, 중첩 조건문, in & not in](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_9_if.md#4-%EC%A0%9C%EC%96%B4%EB%AC%B8---%EB%8B%A4%EC%A4%91-%EC%A1%B0%EA%B1%B4%EB%AC%B8-%EC%A4%91%EC%B2%A9-%EC%A1%B0%EA%B1%B4%EB%AC%B8-in--not-in)
+> 1. [조건문 기본 형식](#1-조건문-기본-형식)
+> 2. [연산자](#2-연산자)
+> 3. [참거짓 판별 종류](#3-참거짓-판별-종류)
+> 4. [다중 조건문, 중첩 조건문, in & not in](#4-다중-조건문-중첩-조건문-in--not-in)
 
 <br>
 
@@ -19,7 +19,7 @@
 - if - elif - else
   > `if 식: 스위트` => if 문으로, 반드시 1개 필요하다.  
   > `elif 식: 스위트` => elif 문으로, 없어도 되며 있으면 n개 가능 (여러개 가능)  
-  > `else 식: 스위트` => else 문으로, 없어도 되며 있으면 1개만 가능  
+  > `else 식: 스위트` => else 문으로, 없어도 되며 있으면 1개만 가능
 
 <br>
 
@@ -156,7 +156,7 @@ You are in: Seoul
 
 <br>
 
-### 4.1  다중 조건문
+### 4.1 다중 조건문
 
 - 동일한 syntax의 조건문이 여러 개일 조건문을 `다중 조건문`이라 한다.
 

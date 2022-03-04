@@ -1,12 +1,13 @@
 # Python basic 6: python tuple
+
 <br>
 
 # Intro
 
-> 1. [tuple 선언](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_6_tuple.md#1-tuple-%EC%84%A0%EC%96%B8)
-> 2. [tuple indexing, slicing, 연산](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_6_tuple.md#2-tuple-indexing-slicing-%EC%97%B0%EC%82%B0)
-> 3. [tuple 함수: index, count](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_6_tuple.md#3-tuple-%ED%95%A8%EC%88%98-index-count)
-> 4. [tuple의 중요한 특징: packing & unpacking](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_6_tuple.md#4-tuple%EC%9D%98-%EC%A4%91%EC%9A%94%ED%95%9C-%ED%8A%B9%EC%A7%95-packing--unpacking)
+> 1. [tuple 선언](#1-tuple-선언)
+> 2. [tuple indexing, slicing, 연산](#2-tuple-indexing-slicing-연산)
+> 3. [tuple 함수: index, count](#3-tuple-함수-index-count)
+> 4. [tuple의 중요한 특징: packing & unpacking](#4-tuple의-중요한-특징-packing--unpacking)
 
 <br>
 
@@ -19,9 +20,7 @@
   - 수정이 안된다. => del, remove, slicing, insert 로 값 변경이 안된다.
   - list 와 마찬가지로 다양한 타입이 함께 포함될 수 있다.
 
-
 ---
-
 
 <br>
 

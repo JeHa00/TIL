@@ -2,11 +2,11 @@
 
 # Intro
 
-> 1. [List 선언](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#1-list-%EC%84%A0%EC%96%B8)
-> 2. [List indexing, slicing](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#2-list-indexing-slicing)
-> 3. [List 연산](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#3-list-%EC%97%B0%EC%82%B0)
-> 4. [List 함수](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#4-list-%ED%95%A8%EC%88%98)
-> 5. [List 수정, 삭제](https://github.com/JeHa00/TIL/blob/master/Python/basic/basic_5_list.md#5-list-%EC%88%98%EC%A0%95-%EC%82%AD%EC%A0%9C)
+> 1. [List 선언](#1-list-선언)
+> 2. [List indexing, slicing](#2-list-indexing-slicing)
+> 3. [List 연산](#3-list-연산)
+> 4. [List 함수](#4-list-함수)
+> 5. [List 수정, 삭제](#5-list-수정-삭제)
 
 <br>
 
@@ -204,7 +204,7 @@ a - 2
 
 ### 5.1 slicing과 index를 사용하여 수정, 삭제하는 방법
 
- - 수정하기
+- 수정하기
 
 ```yml
 
@@ -240,7 +240,7 @@ a - 2
 
 <br>
 
- - 삭제하기
+- 삭제하기
 
 ```yml
 

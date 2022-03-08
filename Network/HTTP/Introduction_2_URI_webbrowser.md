@@ -51,53 +51,135 @@
 ### 1.2 URL 분석
 
 > **URL 전체 문법 구조**  
-> **scheme://[userinfo@]host[:port][/path][?query][#fragment]**  
-> 예시: https://www.google.com:443/search?q=hello&hl=ko
+> **scheme://[userinfo@]host[:port][/path][?query][#fragment]**
+
+- 예시: https://www.google.com:443/search?q=hello&hl=ko
+- 프로토콜: `https`
+- 호스트명: `google.com`
+- 포트번호: `443`
+- path: `\search`
+- query parameter: `?q=hello&hl=ko`
 
 <br>
-
-#### **- scheme (ex: https)**
 
 **- scheme (ex: https)**
 
 > **scheme:**//[userinfo@]host[:port][/path][?query][#fragment]  
 > **https:**//www.google.com:443/search?q=hello&hl=ko
 
+- 주로 프로토콜을 사용한다.
+  - 프로토콜이란 어떤 방식으로 자원에 접근할건지 약속된 규칙이다.
+  - 예: http, https, ftp 등등
+- http는 80포트, https는 443포트를 주로 사용하며 포트는 생략 가능하다.
+- https는 http에 보안 사용을 추가한 것이다. (HTTP Secure)
+
+<br>
+
 **- userinfo**
 
 > scheme://**[userinfo@]**host[:port][/path][?query][#fragment]  
 > https://www.google.com:443/search?q=hello&hl=ko
 
+- URL에 사용자 정보를 포함해서 인증할 때 사용한다.
+- 하지만 거의 사용하지 않는다.
+
+<br>
+
 **- host (ex: www.google.com)**
 
-> scheme://[userinfo@]**host**[:port][/path][?query][#fragment]
-> https://**www.google.com**:443/search?q=hello&hl=ko
+> scheme://[userinfo@]**host**[:port][/path][?query][#fragment]  
+> https://www.google.com:443/search?q=hello&hl=ko
+
+- 호스트명이다.
+- domain 명 또는 IP 주소를 직접 입력한다.
+
+<br>
 
 **- PORT (ex: 443)**
 
 > scheme://[userinfo@]host **[:port]**[/path][?query][#fragment]  
-> https://www.google.com **:443**/search?q=hello&hl=ko
+> https://www.google.com:443/search?q=hello&hl=ko
+
+- 접속 포트
+- 일반적으로 생략한다. 생략시 http는 80, https는 443이다.
+
+<br>
 
 **- path (ex: /search)**
 
 > scheme://[userinfo@]host[:port]**[/path]**[?query][#fragment]  
-> https://www.google.com:443 **/search**?q=hello&hl=ko
+> https://www.google.com:443/search?q=hello&hl=ko
+
+- 리소스의 경로다.
+- 계층적 구조로 되어있다.
+  - /home/file1.jpg
+  - /members
+  - /members/100, /item/iphone12
+
+<br>
 
 **- query (ex: q=hello&hl=ko)**
 
 > scheme://[userinfo@]host[:port][/path]**[?query]**[#fragment]  
-> https://www.google.com:443/search?**q=hello&hl=ko**
+> https://www.google.com:443/search?q=hello&hl=ko
+
+- key = value 형태로 되어 있다.
+- ?로 시작하며 &로 추가 가능하다.
+  - ex) ?keyA=valueA&keyB=valueB
+- query parameer, query string 등으로 불린다. 웹서버에 제공하는 파라미터, 문자형태다.  
+  <br>
 
 **- fragment (ex: getting-started-introducing-spring-boot)**
 
 > scheme://[userinfo@]host[:port][/path][?query]**[#fragment]**  
-> https://docs.spring.io/spring-boot/docs/current/reference/html/gettingstarted.html#**getting-started-introducing-spring-boot**
+> https://docs.spring.io/spring-boot/docs/current/reference/html/gettingstarted.html#getting-started-introducing-spring-boot
+
+- html 내부 북마크 등에 사용한다.
+- 서버에 전송하는 정보가 아니다.
 
 ---
 
 <br>
 
 ## 2. 웹 브라우저 요청 흐름
+
+다음 URL을 가지고 `https://www.google.com:443/search?q=hello&hl=ko` 웹 브라우저가 어떻게 요청해서 진행되는지 흐름을 파악해보자.
+
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0d4da4fb-b09a-40e9-ab1f-999c50f6e373%2FUntitled.png&blockId=af1f546e-4ecf-4089-9af4-504777ae78da" width = '400' height ='200'/></p>
+
+1. DNS 조회: google.comd을 DNS에서 조회하여 해당 IP 주소를 찾는다.
+2. HTTPS PORT는 생략한다. `443`
+3. HTTP 요청 메시지를 클라이언트가 생성한다. HTTP 요청 메시지는 다음과 같다.
+
+<p align="left"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F92d6ece1-5c3b-4bd5-8820-3d787ea97123%2FUntitled.png&blockId=852f034f-65a1-4e63-bcc9-581c399aecb6" width = '400' height ='200'/></p>
+
+그러면 'Itroduction 1: Internet Network' 에서 학습한 과정이 진행된다.
+
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/156995792-e9d1254f-2424-4b55-81a5-ac5dfba9ef30.PNG" width = '400' height ='200'/></p>
+
+<br>
+
+### HTTP 메시지 전송
+
+1. resource 요청 시, Application layer에서 HTTP 메세지를 생성한다.
+2. 3 way handshake를 통해 socket에 연결한다.
+3. socket library를 통해 transmission layer 계층으로 데이터를 전송한다.
+4. transmission layer 계층에서 HTTP를 포함한 TCP 정보를 씌운다.
+5. TCP 정보를 포함하는 IP 패킷을 생성한다.
+
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157241361-b1b91484-f73b-4c2a-86b5-5dbf066b85a6.PNG 
+" width = '400' height ='200'/></p>
+
+6. 서버는 패킷이 도착하면 패킷의 내부 HTTP method를 해석해서 정보에 맞는 동작을 한다.
+7. 서버에서 HTTP 응답 메세지를 생성한다.
+
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5488679c-ffc0-4e0f-bc6b-7a0b7ad4b812%2FUntitled.png&blockId=d9d14474-2768-4145-b2e8-ffd62f37750d 
+   " width = '400' height ='200'/></p>
+
+8. 클라이언트에서는 응답 메세지를 받아 HTML 렌더링을 한다.
+
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157242597-f69fba96-1411-4b06-a930-9c423dcefb3a.PNG 
+   " width = '400' height ='200'/></p>
 
 ---
 

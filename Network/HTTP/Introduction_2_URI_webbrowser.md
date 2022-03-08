@@ -56,7 +56,9 @@
 
 <br>
 
-**- scheme**
+#### **- scheme (ex: https)**
+
+**- scheme (ex: https)**
 
 > **scheme:**//[userinfo@]host[:port][/path][?query][#fragment]  
 > **https:**//www.google.com:443/search?q=hello&hl=ko
@@ -66,27 +68,27 @@
 > scheme://**[userinfo@]**host[:port][/path][?query][#fragment]  
 > https://www.google.com:443/search?q=hello&hl=ko
 
-**- host**
+**- host (ex: www.google.com)**
 
 > scheme://[userinfo@]**host**[:port][/path][?query][#fragment]
 > https://**www.google.com**:443/search?q=hello&hl=ko
 
-**- PORT**
+**- PORT (ex: 443)**
 
 > scheme://[userinfo@]host **[:port]**[/path][?query][#fragment]  
 > https://www.google.com **:443**/search?q=hello&hl=ko
 
-**- path**
+**- path (ex: /search)**
 
 > scheme://[userinfo@]host[:port]**[/path]**[?query][#fragment]  
 > https://www.google.com:443 **/search**?q=hello&hl=ko
 
-**- query**
+**- query (ex: q=hello&hl=ko)**
 
 > scheme://[userinfo@]host[:port][/path]**[?query]**[#fragment]  
 > https://www.google.com:443/search?**q=hello&hl=ko**
 
-**- fragment**
+**- fragment (ex: getting-started-introducing-spring-boot)**
 
 > scheme://[userinfo@]host[:port][/path][?query]**[#fragment]**  
 > https://docs.spring.io/spring-boot/docs/current/reference/html/gettingstarted.html#**getting-started-introducing-spring-boot**

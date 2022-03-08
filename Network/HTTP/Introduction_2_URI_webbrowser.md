@@ -167,19 +167,17 @@
 4. transmission layer 계층에서 HTTP를 포함한 TCP 정보를 씌운다.
 5. TCP 정보를 포함하는 IP 패킷을 생성한다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157241361-b1b91484-f73b-4c2a-86b5-5dbf066b85a6.PNG 
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fae85500c-c564-44fd-b00b-7b3e56cbd170%2FUntitled.png&blockId=ee29bb53-512a-4196-ab9a-19aeb78e20fd" 
 " width = '400' height ='200'/></p>
 
-6. 서버는 패킷이 도착하면 패킷의 내부 HTTP method를 해석해서 정보에 맞는 동작을 한다.
-7. 서버에서 HTTP 응답 메세지를 생성한다.
+1. 서버는 패킷이 도착하면 패킷의 내부 HTTP method를 해석해서 정보에 맞는 동작을 한다.
+2. 서버에서 HTTP 응답 메세지를 생성한다.
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5488679c-ffc0-4e0f-bc6b-7a0b7ad4b812%2FUntitled.png&blockId=d9d14474-2768-4145-b2e8-ffd62f37750d 
-   " width = '400' height ='200'/></p>
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5488679c-ffc0-4e0f-bc6b-7a0b7ad4b812%2FUntitled.png&blockId=d9d14474-2768-4145-b2e8-ffd62f37750d" width = '400' height ='200'/></p>
 
 8. 클라이언트에서는 응답 메세지를 받아 HTML 렌더링을 한다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157242597-f69fba96-1411-4b06-a930-9c423dcefb3a.PNG 
-   " width = '400' height ='200'/></p>
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157242597-f69fba96-1411-4b06-a930-9c423dcefb3a.PNG" width = '400' height ='200'/></p>
 
 ---
 

@@ -1,4 +1,4 @@
-# HTTP Introduction 1: 인터넷 네트워크
+# HTTP Introduction 1: Internet Network
 
 <br>
 
@@ -10,11 +10,11 @@
 
 <br>
 
-출처를 먼저 밝히고, 마지막 Refence에도 추가로 표기한다. HTTP에 관한 학습내용의 기본 출처는 김영한님의 [모든 개발자를 위한 HTTP 웹 기본지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC) 이다. 강의를 듣고 정리한 내용과 모르는 부분에 대한 추가 내용을 합쳐 올린다.
+HTTP에 관한 학습내용의 기본 출처는 김영한님의 [모든 개발자를 위한 HTTP 웹 기본지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC) 이다. 강의를 듣고 정리한 내용과 모르는 부분에 대한 추가 내용을 합쳐 올린다.
 
 <br>
 
-이 강의는 HTTP에 대한 웹 기본지식으르 설명하는 강의이므로, 내용이 간략할 수 있다.   
+이 강의는 HTTP에 대한 웹 기본지식을 설명하는 강의이므로, 내용이 간략할 수 있다.  
 프레임워크를 사용하여 웹 개발을 배우기 전에, HTTP에 대해 기본적인 지식을 알고 시작하고 싶어 HTTP 공부를 시작한다.  
 이 강의에 대해 공부 후, 네트워크 전반에 대해 공부한다.
 
@@ -26,9 +26,7 @@
 
 컴퓨터는 랜선 또는 인터넷 망을 통해서 통신한다. 그리고 인터넷 망은 수 많은 서버들로 구성되어 있으며, 이 서버들을 `node(노드)`라 한다.
 
-
-그러면 수 많은 node들을 거쳐서 '어떻게'  data를 보낼 수 있을까??
-
+그러면 수 많은 node들을 거쳐서 '어떻게' data를 보낼 수 있을까??
 
 바로 `IP` 라는 규약을 통해서 보낸다.
 
@@ -66,7 +64,6 @@ IP의 역할은
 
 <p align="center"><image src ="https://user-images.githubusercontent.com/78094972/156990234-fb6eb71f-8dac-46c2-898b-108feed75217.PNG" width = '400' height ='200'/></p>
 
-
 위의 이미지는 클라이언트의 패킷을 전달하는 내용이다. 서버의 패킷을 전달하는 것도 동일한 원리다.
 
 ---
@@ -99,7 +96,7 @@ IP의 역할은
 
 <br>
 
-이를 해결한 것이 바로 `TCP` 다. TCP에 대해 알기에 앞서 `인터넷 프로토콜 스택의 4계층`에 대해 알아보자. 
+이를 해결한 것이 바로 `TCP` 다. TCP에 대해 알기에 앞서 `인터넷 프로토콜 스택의 4계층`에 대해 알아보자.
 
 <br>
 
@@ -121,14 +118,14 @@ IP의 역할은
 <br>
 
 - resource 요청 시, Application layer에서 HTTP 메세지를 생성한다.  
--> 3 way handshake를 통해 socket에 연결한다.  
--> socket library를 통해 transmission layer 계층으로 데이터를 전송한다.  
--> transmission layer 계층에서 HTTP를 포함한 TCP 정보를 씌운다.  
--> TCP 정보를 포함하는 IP 패킷을 생성한다.  
--> 패킷 정보가 인터넷을 거쳐서 서버에 도착한다.  
--> 패킷이 서버에 도착하면 패킷과 TCP 세그먼트는 버리고, HTTP 메시지를 서버가 해석한다.  
--> HTTP 응답 메시지를 마찬가지 방식으로 packet을 생성하여 응답 패킷을 전달한다.  
--> 수 많은 노드들을 통해서 응답 패킷이 도착하면, 웹 브라우저가 HTML 렌덩리하여 화면에 보여준다.  
+  -> 3 way handshake를 통해 socket에 연결한다.  
+  -> socket library를 통해 transmission layer 계층으로 데이터를 전송한다.  
+  -> transmission layer 계층에서 HTTP를 포함한 TCP 정보를 씌운다.  
+  -> TCP 정보를 포함하는 IP 패킷을 생성한다.  
+  -> 패킷 정보가 인터넷을 거쳐서 서버에 도착한다.  
+  -> 패킷이 서버에 도착하면 패킷과 TCP 세그먼트는 버리고, HTTP 메시지를 서버가 해석한다.  
+  -> HTTP 응답 메시지를 마찬가지 방식으로 packet을 생성하여 응답 패킷을 전달한다.  
+  -> 수 많은 노드들을 통해서 응답 패킷이 도착하면, 웹 브라우저가 HTML 렌덩리하여 화면에 보여준다.
 
 <br>
 
@@ -191,7 +188,7 @@ IP의 역할은
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F21919f79-8bac-49f3-b09f-7ee52b30b00b%2FUntitled.png&blockId=3c3cd24f-4f23-4f41-9cea-94c1cabe8cb0" width = '400' height ='200'/></p>
 
-----
+---
 
 ### 2.2. TCP 문제점의 해결책: UDP
 
@@ -252,6 +249,7 @@ Port number는
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1a902ca4-a148-494f-9f35-487ac50bdba4%2FUntitled.png&blockId=f2c0a3ec-9692-4046-a177-16784339df70" width = '400' height ='200'/></p>
 
 ---
+
 ## Reference
 
 - [모든 개발자를 위한 HTTP 웹 기본지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC)

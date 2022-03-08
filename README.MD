@@ -35,7 +35,7 @@
 <br>
 
 
-### [Python](https://github.com/JeHa00/TIL/tree/master/Python) & [Django]()
+### [Python](https://github.com/JeHa00/TIL/tree/master/Python) & [Django]
 - [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 
 
@@ -43,8 +43,8 @@
 
 <br>
 
-### [Network]()
-- [HTTP]()
+### [Network](https://github.com/JeHa00/TIL/tree/master/Network)
+- [HTTP](https://github.com/JeHa00/TIL/tree/master/Network/HTTP)
 
 
 <br>

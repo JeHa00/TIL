@@ -167,7 +167,7 @@
 4. transmission layer 계층에서 HTTP를 포함한 TCP 정보를 씌운다.
 5. TCP 정보를 포함하는 IP 패킷을 생성한다.
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fae85500c-c564-44fd-b00b-7b3e56cbd170%2FUntitled.png&blockId=ee29bb53-512a-4196-ab9a-19aeb78e20fd" 
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157241361-b1b91484-f73b-4c2a-86b5-5dbf066b85a6.PNG" 
 " width = '400' height ='200'/></p>
 
 1. 서버는 패킷이 도착하면 패킷의 내부 HTTP method를 해석해서 정보에 맞는 동작을 한다.

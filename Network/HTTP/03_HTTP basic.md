@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+# Intro
 
 > 1. [모든 것이 HTTP](#1-모든-것이-http)
 > 2. [클라이언트 서버 구조](#2-클라이언트-서버-구조)
@@ -22,9 +22,9 @@
 
 <br>
 
-## 1. 모든 것이 HTTP
+# 1. 모든 것이 HTTP
 
-### 1.1 HTTP란? (**지금은 HTTP 시대!**)
+## 1.1 HTTP란? (**지금은 HTTP 시대!**)
 
 : HTML 같은 문서 간에 링크를 통해 연결할 수 있는 프로토콜을 의미한다.
 : 하지만, 이제는 문서 뿐만 아니라 **HTTP 메세지에 모든 것을 전송**한다.
@@ -37,7 +37,7 @@
 
 <br>
 
-### 1.2 HTTP 역사 (HTTP/1.1을 기준으로 학습)
+## 1.2 HTTP 역사 (HTTP/1.1을 기준으로 학습)
 
 - HTTP/0.9 1991년: GET 메서드만 지원, HTTP 헤더X
 - HTTP/1.0 1996년: 메서드, 헤더 추가
@@ -50,7 +50,7 @@
 
 <br>
 
-### 1.3 기반 프로토콜
+## 1.3 기반 프로토콜
 
 - `TCP` 기반으로 작동하는 프로토콜은 `HTTP/1.1`, `HTTP/2` 다.
 - `UDP` 기반으로 작동하는 프로토콜은 `HTTP/3` 다.
@@ -73,7 +73,7 @@
 
 <br>
 
-### 1.4 HTTP 특징
+## 1.4 HTTP 특징
 
 - 클라이언트 서버 구조
 - 무상태 프로토콜(stateless), 비연결성
@@ -91,7 +91,7 @@
 
 <br>
 
-## 2. 클라이언트 서버 구조
+# 2. 클라이언트 서버 구조
 
 - HTTP는 클라이언트와 서버 구조로 되어있다.
 - 클라이언트는 HTTP 메세지를 만들어서 서버에 요청(request)을 보낸 후, 서버로부터 응답(response)이 올 때까지 기다린다.
@@ -107,9 +107,9 @@
 
 <br>
 
-## 3. Stateful, Stateless
+# 3. Stateful, Stateless
 
-### 3.1 Stateful
+## 3.1 Stateful
 
 - **`Stateful`** 이란??
 
@@ -163,7 +163,7 @@
 
 <br>
 
-### 3.2 Stateless
+## 3.2 Stateless
 
 - **`Stateless`** 란??
 
@@ -225,7 +225,7 @@
 
 <br>
 
-### 3.3 정리
+## 3.3 정리
 
 - Stateful (상태유지): 중간에 서버가 변경되면 안된다.
 
@@ -237,9 +237,9 @@
 
 <br>
 
-## 4. 비연결성 (connectionless)
+# 4. 비연결성 (connectionless)
 
-### 4.1 연결을 유지하는 모델
+## 4.1 연결을 유지하는 모델
 
 <p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157386174-01e9379a-9c31-4423-8043-fb25905a794d.PNG" width = '400' height ='200'/> </p>
 
@@ -249,7 +249,7 @@
 
 <br>
 
-### 4.2 연결을 유지하지 않는 모델 (비연결성)
+## 4.2 연결을 유지하지 않는 모델 (비연결성)
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3a68a360-1286-42f6-9ad4-5e67ad947497%2FUntitled.png&blockId=84d8efb1-84c7-4c81-825d-47a8c45ad880" width = '400' height ='200'/> </p>
 
@@ -279,7 +279,7 @@
 
 <br>
 
-### 4.3 HTTP 지속 연결: 비연결성의 한계 해결 방법
+## 4.3 HTTP 지속 연결: 비연결성의 한계 해결 방법
 
 비연결성의 한계를 해결한 방법인 `HTTP 지속 연결`에 대해 알아보자.
 
@@ -312,14 +312,14 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 <br>
 
-## 5. HTTP 메시지
+# 5. HTTP 메시지
 
 - HTTP 메시지 구조를 알아보자.
   - 공백 라인은 아래 순서로, 필수로 존재해야 한다.
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1c1ade79-e244-4886-953b-ba3c12b4f115%2FUntitled.png&blockId=1f0cf7a3-cd02-4903-92ed-e9782fe18f93" width = '400' height ='200'/> </p>
 
-### 5.1 시작 라인(start line)
+## 5.1 시작 라인(start line)
 
 - start line은 요청 메시지와 응답 메시지 로 나눠진다.  
 
@@ -329,7 +329,7 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 <br>
 
-### 5.1.1 요청 메시지
+## 5.1.1 요청 메시지
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9963de80-40e6-4cf3-a0cb-b048ab516fbc%2FUntitled.png&blockId=e21b890c-1a01-4393-8025-55d95e9d0705" width = '400' height ='200'/> </p>
 
@@ -348,7 +348,7 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
   
   - HTTP verison (GET /search?q=hello&hl=ko **HTTP/1.1**)
 
-### 5.1.2 응답 메시지
+## 5.1.2 응답 메시지
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F085e5d58-f33b-4406-999f-e07072372050%2FUntitled.png&blockId=cf01f06f-02d7-47a5-be2b-d21d8d042dcf" width = '400' height ='200'/> </p>
 
@@ -363,7 +363,7 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 <br>
 
-### 5.2 HTTP header
+## 5.2 HTTP header
 
  - **healder - field = field - name ":" OWS field - value OWS**
   - OWS: 띄어쓰기 허용
@@ -378,14 +378,14 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 <br>
 
-### 5.3 HTTP message body
+## 5.3 HTTP message body
 
 - **실제 전송할 데이터**
 - HTML 문서, 이미지, 영상, JSON 등등 byte로 표현할 수 있는 모든 데이터 전송 가능 
 
 ---
 
-## HTTP 정리
+# HTTP 정리
 - HTTP 메시지에 모든 것을 전송한다.
 - HTTP 역사: HTTP/1.1을 기준으로 학습한다.
 - 클라이언트 서버 구조이다.
@@ -398,7 +398,7 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 <br>
 
-## Reference
+# Reference
 
 - [모든 개발자를 위한 HTTP 웹 기본지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC)
 - [URI와 웹 브라우저 요청 흐름](https://catsbi.oopy.io/6befbf82-ce78-4fb9-bb87-805ec1048855)

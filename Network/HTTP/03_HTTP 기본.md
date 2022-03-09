@@ -37,7 +37,7 @@
 
 <br>
 
-### 1.2 HTTP 역사
+### 1.2 HTTP 역사 (HTTP/1.1을 기준으로 학습)
 
 - HTTP/0.9 1991년: GET 메서드만 지원, HTTP 헤더X
 - HTTP/1.0 1996년: 메서드, 헤더 추가
@@ -68,8 +68,8 @@
 - h3는 http/3 고, h2는 http/2 를 의미한다.
 - 구글은 h3를 사용하고, 네이버는 h2를 사용한다.
 
-<p align="left"><image src ="https://user-images.githubusercontent.com/78094972/157368318-ca06aad3-5926-4e3f-a4c9-7168daa68fc1.PNG" width = '500' height ='200'/></p>  
-<p align="right"> <image src ="https://user-images.githubusercontent.com/78094972/157368348-06f8e79f-3f69-40bc-a24c-2cac341bd340.PNG" width = '400' height ='200'/></p>
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157368318-ca06aad3-5926-4e3f-a4c9-7168daa68fc1.PNG" width = '600' height ='300'/></p>  
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/157368348-06f8e79f-3f69-40bc-a24c-2cac341bd340.PNG" width = '500' height ='350'/></p>
 
 <br>
 
@@ -79,6 +79,9 @@
 - 무상태 프로토콜(stateless), 비연결성
 - HTTP 메시지
 - 단순함, 확장 가능
+  - HTTP는 단순하고, 스펙도 읽어볼만 하다. 
+  - HTTP 메시지도 매우 단순하다. 
+  - 크게 성공하는 표준 기술의 하나의 예로, 단순하지만 확장 가능한 기술이다.     
 
 <br>
 
@@ -108,7 +111,7 @@
 
 ### 3.1 Stateful
 
-**`Stateful`** 이란??
+- **`Stateful`** 이란??
 
 <br>
 
@@ -116,7 +119,7 @@
 
 <br>
 
-**`Stateful(상태 유지)`** 의 문제점은 무엇일까??
+- **`Stateful(상태 유지)`** 의 문제점은 무엇일까??
 
 <br>
 
@@ -162,7 +165,7 @@
 
 ### 3.2 Stateless
 
-**`Stateless`** 란??
+- **`Stateless`** 란??
 
 <br>
 
@@ -202,7 +205,7 @@
 
 <br>
 
-그러면 서버 증설이 무한히 가능하다면 어떤 이점이 있을까???
+- 그러면 서버 증설이 무한히 가능하다면 어떤 이점이 있을까???
 
 <br>
 
@@ -288,13 +291,13 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 아래 이미지를 참조하자.
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F37024fde-ab57-4953-9fd1-62dda7951b1f%2FUntitled.png&blockId=1fca311e-5841-45d2-8770-a9821f766e86" width = '400' height ='200'/> </p>
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F37024fde-ab57-4953-9fd1-62dda7951b1f%2FUntitled.png&blockId=1fca311e-5841-45d2-8770-a9821f766e86" width = '600' height ='400'/> </p>
 
 <br>
 
 그러면 HTTP 지속 연결로 어떻게 변했을까??
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F46a04f27-85b1-4573-931a-88e7df14c211%2FUntitled.png&blockId=318906c9-6dfc-4a2e-a813-0d08920d69ac" width = '400' height ='200'/> </p>
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F46a04f27-85b1-4573-931a-88e7df14c211%2FUntitled.png&blockId=318906c9-6dfc-4a2e-a813-0d08920d69ac" width = '600' height ='400'/> </p>
 
 클라이언트는 서버와 연결을 한 다음, 필요한 자원들을 모두 다운받을 떄까지 요청/응답이 반복된 뒤 종료된다.
 
@@ -302,7 +305,7 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 또한, HTTP/2,3으로 오면서 더 빨라졌다. 특히, HTTP 3으로 오면서 UDP를 사용하여 연결 속도 자체도 줄어들었다.
 
-> - 실무 상황에서 특정 시간에 발생하는 대용량 트랙픽의 경우, 수만명이 동시 요청하기 떄문에 무상태로 서버를 설계해야 대응할 수 있는 부분이 매우 많아진다.
+> - 실무 상황에서 특정 시간에 발생하는 대용량 트랙픽의 경우, 수만명이 동시 요청하기 떄문에 무상태로 서버를 설계해야 대응할 수 있는 부분이 매우 많아진다.  
 >   예) 선착순 이벤트, 명절 KTX 예약, 학과 수업 등록, 선착순 할인 이벤트
 
 ---
@@ -312,23 +315,84 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 ## 5. HTTP 메시지
 
 - HTTP 메시지 구조를 알아보자.
-  - 공백 라인은 위 순서로, 필수로 존재해야 한다.
+  - 공백 라인은 아래 순서로, 필수로 존재해야 한다.
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1c1ade79-e244-4886-953b-ba3c12b4f115%2FUntitled.png&blockId=1f0cf7a3-cd02-4903-92ed-e9782fe18f93" width = '400' height ='200'/> </p>
 
-### 5.1 시작 라인
+### 5.1 시작 라인(start line)
+
+- start line은 요청 메시지와 응답 메시지 로 나눠진다.  
+
+- start line = request - line (요청 메시지) / status - line  (응답 메시지)
+  - request-line = method SP(공백) request-target SP HTTP-version CRLF(엔터)  
+  - status-line = HTTP-version SP status-code SP reason-phrase CRLF
+
+<br>
 
 ### 5.1.1 요청 메시지
 
-- HTTP 메서드
-- 요청 대상
-- HTTP 버전
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9963de80-40e6-4cf3-a0cb-b048ab516fbc%2FUntitled.png&blockId=e21b890c-1a01-4393-8025-55d95e9d0705" width = '400' height ='200'/> </p>
+
+- start line = **request - line (요청 메시지)** / status - line  (응답 메시지)
+  - **request-line** = method SP(공백) request-target SP HTTP-version CRLF(엔터)  
+
+  - HTTP method (**GET** /search?q=hello&hl=ko HTTP/1.1)
+      - 종류: GET, POST, PUT, DELETE ...
+      - 서버가 수행해야 할 동작 지정
+        - GET: 리소스 조회 / POST: 요청 내역 처리
+
+  - request-target (GET **/search?q=hello&hl=ko** HTTP/1.1)
+      - absolute-path[?query] (절대경로[?쿼리])
+      - 절대경로= "/" 로 시작하는 경로
+      - 참고: *, http://...?x=y 와 같이 다른 유형의 경로지정 방법도 있다.
+  
+  - HTTP verison (GET /search?q=hello&hl=ko **HTTP/1.1**)
 
 ### 5.1.2 응답 메시지
 
-### 5.1 header 헤더
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F085e5d58-f33b-4406-999f-e07072372050%2FUntitled.png&blockId=cf01f06f-02d7-47a5-be2b-d21d8d042dcf" width = '400' height ='200'/> </p>
 
-### 5.1 message body
+- start line = request - line (요청 메시지) / status - line  (응답 메시지)
+  - status-line = HTTP-version SP status-code SP reason-phrase CRLF
+  - HTTP version
+  - HTTP 상태 코드: 요청 성공, 실패를 나타냄
+    - 200: 성공
+    - 400: 클라이언트 요청 오류
+    - 500: 서버 내부 오류
+  - 이유 문구: 사람이 이해할 수 있는 짧은 상태 코드 설명 글 
+
+<br>
+
+### 5.2 HTTP header
+
+ - **healder - field = field - name ":" OWS field - value OWS**
+  - OWS: 띄어쓰기 허용
+ - **field - name: 대소문자 구분 없음**
+ - field - value: 대소문자 구문 있음  
+ - 용도
+  -  ****HTTP 전송에 필요한 모든 부가정보가 담겨져 있다. 
+    - 예) 메시지 바디의 내용, 크기, 압축, 인증
+    - 예) 요청 클라이언트(브라우저) 정보, 서버 애플리케이션 정보, 캐시 관리 정보  
+  - 표준 헤더가 너무 많다. (https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
+  - 필요한 경우, 임의의 헤더 추가 가능 
+
+<br>
+
+### 5.3 HTTP message body
+
+- **실제 전송할 데이터**
+- HTML 문서, 이미지, 영상, JSON 등등 byte로 표현할 수 있는 모든 데이터 전송 가능 
+
+---
+
+## HTTP 정리
+- HTTP 메시지에 모든 것을 전송한다.
+- HTTP 역사: HTTP/1.1을 기준으로 학습한다.
+- 클라이언트 서버 구조이다.
+- 무상태 프로토콜(stateless)다. 
+- HTTP 메시지
+- 단순하며 확장 가능하다. 
+- 지금은 HTTP 시대다.
 
 ---
 

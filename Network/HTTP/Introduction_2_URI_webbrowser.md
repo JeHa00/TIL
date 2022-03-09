@@ -25,7 +25,7 @@
   - 로케이터(locater), 이름(name) 또는 둘 다 추가로 분류될 수 있다.
     - from https://www.ietf.org/rfc/rfc3986.txt - 1.1.3. URI, URL, and URN
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F55603624-57bc-422d-a423-1a2f3bc1d490%2FUntitled.png&blockId=7544083d-0ca3-48c5-a59a-1a24553ad18d" width = '400' height ='200'/></p>
+<p align="left"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F55603624-57bc-422d-a423-1a2f3bc1d490%2FUntitled.png&blockId=7544083d-0ca3-48c5-a59a-1a24553ad18d" width = '400' height ='200'/></p>
 
 <br>
 
@@ -44,7 +44,7 @@
 - URN 이름만으로 실제 리소스를 찾을 수 있는 방법이 보편화 되지 않았다.
 - 그래서 **앞으로 URI를 URL과 같은 의미로 이야기하겠다**
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd0c5b0b1-845e-4751-8994-16c6f24fce7e%2FUntitled.png&blockId=9a57f9d6-8a0d-4b02-bd36-20477512065d" width = '400' height ='200'/></p>
+<p align="left"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd0c5b0b1-845e-4751-8994-16c6f24fce7e%2FUntitled.png&blockId=9a57f9d6-8a0d-4b02-bd36-20477512065d" width = '400' height ='200'/></p>
 
 <br>
 
@@ -145,7 +145,7 @@
 
 다음 URL을 가지고 `https://www.google.com:443/search?q=hello&hl=ko` 웹 브라우저가 어떻게 요청해서 진행되는지 흐름을 파악해보자.
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0d4da4fb-b09a-40e9-ab1f-999c50f6e373%2FUntitled.png&blockId=af1f546e-4ecf-4089-9af4-504777ae78da" width = '400' height ='200'/></p>
+<p align="left"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0d4da4fb-b09a-40e9-ab1f-999c50f6e373%2FUntitled.png&blockId=af1f546e-4ecf-4089-9af4-504777ae78da" width = '400' height ='200'/></p>
 
 1. DNS 조회: google.comd을 DNS에서 조회하여 해당 IP 주소를 찾는다.
 2. HTTPS PORT는 생략한다. `443`
@@ -155,7 +155,7 @@
 
 그러면 'Itroduction 1: Internet Network' 에서 학습한 과정이 진행된다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/156995792-e9d1254f-2424-4b55-81a5-ac5dfba9ef30.PNG" width = '400' height ='200'/></p>
+<p align="left"><image src ="https://user-images.githubusercontent.com/78094972/156995792-e9d1254f-2424-4b55-81a5-ac5dfba9ef30.PNG" width = '400' height ='200'/></p>
 
 <br>
 
@@ -167,17 +167,17 @@
 4. transmission layer 계층에서 HTTP를 포함한 TCP 정보를 씌운다.
 5. TCP 정보를 포함하는 IP 패킷을 생성한다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157241361-b1b91484-f73b-4c2a-86b5-5dbf066b85a6.PNG" 
+<p align="left"><image src ="https://user-images.githubusercontent.com/78094972/157241361-b1b91484-f73b-4c2a-86b5-5dbf066b85a6.PNG" 
 " width = '400' height ='200'/></p>
 
 1. 서버는 패킷이 도착하면 패킷의 내부 HTTP method를 해석해서 정보에 맞는 동작을 한다.
 2. 서버에서 HTTP 응답 메세지를 생성한다.
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5488679c-ffc0-4e0f-bc6b-7a0b7ad4b812%2FUntitled.png&blockId=d9d14474-2768-4145-b2e8-ffd62f37750d" width = '400' height ='200'/></p>
+<p align="left"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5488679c-ffc0-4e0f-bc6b-7a0b7ad4b812%2FUntitled.png&blockId=d9d14474-2768-4145-b2e8-ffd62f37750d" width = '400' height ='200'/></p>
 
 8. 클라이언트에서는 응답 메세지를 받아 HTML 렌더링을 한다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157242597-f69fba96-1411-4b06-a930-9c423dcefb3a.PNG" width = '400' height ='200'/></p>
+<p align="left"><image src ="https://user-images.githubusercontent.com/78094972/157242597-f69fba96-1411-4b06-a930-9c423dcefb3a.PNG" width = '400' height ='200'/></p>
 
 ---
 

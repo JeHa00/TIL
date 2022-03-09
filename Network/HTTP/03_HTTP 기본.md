@@ -68,8 +68,8 @@
 - h3는 http/3 고, h2는 http/2 를 의미한다.
 - 구글은 h3를 사용하고, 네이버는 h2를 사용한다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157368318-ca06aad3-5926-4e3f-a4c9-7168daa68fc1.PNG" width = '500' height ='200'/>  <image src ="https://user-images.githubusercontent.com/78094972/157368348-06f8e79f-3f69-40bc-a24c-2cac341bd340.PNG" width = '400' height ='200'/></p>
-<p align="left"> </p>
+<p align="left"><image src ="https://user-images.githubusercontent.com/78094972/157368318-ca06aad3-5926-4e3f-a4c9-7168daa68fc1.PNG" width = '500' height ='200'/></p>  
+<p align="right"> <image src ="https://user-images.githubusercontent.com/78094972/157368348-06f8e79f-3f69-40bc-a24c-2cac341bd340.PNG" width = '400' height ='200'/></p>
 
 <br>
 
@@ -206,13 +206,13 @@
 
 <br>
 
-같은 기능을 하는 서버 어떠한 것을 선택해도 가능하기 때문에, 서버의 **`수평 확장`**에 유리하다.
+같은 기능을 하는 서버 어떠한 것을 선택해도 가능하기 때문에, 서버의 **`수평 확장`** 에 유리하다.
 
 <p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb6939ea2-0d68-4986-bc51-92a9eaf1b0a6%2FUntitled.png&blockId=8367b500-6305-4a9d-972d-babc19570513" width = '500' height ='300'/> </p>
 
 <br>
 
-좋은 이점들이 많지만, 모든 것을 `stateless (무상태)`로 할 수 없다. 실무 한계가 존재한다.
+좋은 이점들이 많지만, 모든 것을 `stateless(무상태)` 로 할 수 없다. 실무 한계가 존재한다.
 
 - 무상태 예시: 로그인이 필요 없는 단순한 서비스 소개 화면
 - 상태 유지 예시: 로그인
@@ -238,8 +238,7 @@
 
 ### 4.1 연결을 유지하는 모델
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157386174-01e9379a-9c31-4423-8043-fb25905a794d.PNG
-" width = '400' height ='200'/> </p>
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/157386174-01e9379a-9c31-4423-8043-fb25905a794d.PNG" width = '400' height ='200'/> </p>
 
 - TCP/IP 연결로 새로운 클라이언트와 연결하면서 이전 클라이언트와의 연결을 유지하고 있다.
 - 서버의 자원이 연결을 유지하는데 `계속 소모`된다.
@@ -249,8 +248,7 @@
 
 ### 4.2 연결을 유지하지 않는 모델 (비연결성)
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3a68a360-1286-42f6-9ad4-5e67ad947497%2FUntitled.png&blockId=84d8efb1-84c7-4c81-825d-47a8c45ad880
-" width = '400' height ='200'/> </p>
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3a68a360-1286-42f6-9ad4-5e67ad947497%2FUntitled.png&blockId=84d8efb1-84c7-4c81-825d-47a8c45ad880" width = '400' height ='200'/> </p>
 
 - TCP/IP 연결 후, 클라이언트와 서버의 요청 응답 흐름이 끝나면 연결을 종료한다.
 - 그리고 다른 클라이언트와 연결 시, 이전 클라이언트와의 연결을 하지 않는다.
@@ -290,15 +288,13 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 
 아래 이미지를 참조하자.
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F37024fde-ab57-4953-9fd1-62dda7951b1f%2FUntitled.png&blockId=1fca311e-5841-45d2-8770-a9821f766e86
-" width = '400' height ='200'/> </p>
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F37024fde-ab57-4953-9fd1-62dda7951b1f%2FUntitled.png&blockId=1fca311e-5841-45d2-8770-a9821f766e86" width = '400' height ='200'/> </p>
 
 <br>
 
 그러면 HTTP 지속 연결로 어떻게 변했을까??
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F46a04f27-85b1-4573-931a-88e7df14c211%2FUntitled.png&blockId=318906c9-6dfc-4a2e-a813-0d08920d69ac
-" width = '400' height ='200'/> </p>
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F46a04f27-85b1-4573-931a-88e7df14c211%2FUntitled.png&blockId=318906c9-6dfc-4a2e-a813-0d08920d69ac" width = '400' height ='200'/> </p>
 
 클라이언트는 서버와 연결을 한 다음, 필요한 자원들을 모두 다운받을 떄까지 요청/응답이 반복된 뒤 종료된다.
 
@@ -314,6 +310,25 @@ HTTP 초기에는 모든 자료에 대해서 비연결성으로 '연결 -> 응�
 <br>
 
 ## 5. HTTP 메시지
+
+- HTTP 메시지 구조를 알아보자.
+  - 공백 라인은 위 순서로, 필수로 존재해야 한다.
+
+<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1c1ade79-e244-4886-953b-ba3c12b4f115%2FUntitled.png&blockId=1f0cf7a3-cd02-4903-92ed-e9782fe18f93" width = '400' height ='200'/> </p>
+
+### 5.1 시작 라인
+
+### 5.1.1 요청 메시지
+
+- HTTP 메서드
+- 요청 대상
+- HTTP 버전
+
+### 5.1.2 응답 메시지
+
+### 5.1 header 헤더
+
+### 5.1 message body
 
 ---
 

@@ -1,3 +1,4 @@
-name = input('이름을 입력하세요. :')
-
-print('안녕하세요 {}님'.format(name))
+n = 12
+print(id(n))
+n += 1 
+print(id(n))

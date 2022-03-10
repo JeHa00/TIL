@@ -1,12 +1,3 @@
----
-title: "[TIL] Network HTTP method"
-date: 2022-03-10T20:32:24+09:00
-draft: true
-summary: HTTP method인 GET, POST, PUT, PATCH, DELETE 그리고 속성에 대해 알아본다.
-tags: ["TIL", "Network", "HTTP method"]
-categories: ["개발-dev"]
----
-
 # Intro
 
 > 1. [HTTP API 설계해보기(Http method intro.)](#1-http-api-설계해보기-http-method-intro)

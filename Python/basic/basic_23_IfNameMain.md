@@ -9,4 +9,4 @@
 ## Reference
 
 - [[TIL] Python basic 15: module](https://jeha00.github.io/post/python_basic/python_basic_15/)
-- [[python] if _/_/name/_/_ == '_/_/main/_/_/' : 의 정체](https://youngminieo1005.tistory.com/82)
+- [[python] if \_\_name\_\_ == '\_\_main\_\_' : 의 정체](https://youngminieo1005.tistory.com/82)

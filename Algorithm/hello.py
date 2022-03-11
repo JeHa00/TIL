@@ -1,1 +1,0 @@
-print("hello.py: ", __name__)

@@ -8,6 +8,7 @@ def max_of(a: Sequence) -> Any:
     return maximum
 
 if __name__ == '__main__':
+    print(__name__)
     print('배열의 최댓값을 구합니다.')
     num = int(input('원소수를 입력하세요. :'))
     a = []

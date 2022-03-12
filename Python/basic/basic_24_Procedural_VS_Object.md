@@ -4,6 +4,11 @@
 
 ## Intro
 
+> 1. [절차지향 프로그래밍 (Procedural Programming)](#1-절차지향-프로그래밍-procedural-programming)
+> 2. [객체지향 프로그래밍 (Object Oriented Programming)](#2-객체지향-프로그래밍-object-oriented-programming)
+
+<br>
+
 - basic 14 class 에서 언급한 `절차지향 프로그래밍`이 구체적으로 무엇인지 간단히 구현한다.
 - 그 다음 클래스를 사용한 `객체지향 프로그래밍`에 대해 알아보겠다.
 

@@ -205,6 +205,11 @@
   - 클라이언트가 리소스의 URI를 생성하고 관리
   - 여기서 store는 /files
 
+<br>
+
+> 그럼 위 두 방식(Collection, Store) 중 무엇을 많이 사용할까??  
+> 대부분 실무에서는 POST 를 사용하는 Collection 구조를 사용한다. 하지만, file 관리의 경우, Store를 사용한다.
+
 ---
 
 <br>
@@ -224,8 +229,9 @@
 
 <br>
 
-- HTML FORM은 _GET, POST만 지원_
-- GET, POST만 지원하므로 제약이 있다.
+- HTML FORM은 _GET, POST만 지원_ 하므로 제약이 있다.
+- 이런 제약을 해결하기 위해 `동사로 된 리소스 경로`를 사용한다.
+  - 최대한 리소스 개념을 가지고 사용하지만, 안될 때 대체제로 `컨트롤 URI`를 사용한다.
 - AJAX 같은 기술을 사용해서 해결 가능하다 -> 회원 API 참고
 - 여기서는 순수 HTML, HTML FORM 이야기다.
 
@@ -251,6 +257,14 @@
   - 문서, 컬렉션, 스토어로 해결하기 어려운 추가 프로세스 실행
   - 동사를 직접 사용
   - 예) /members/{id}/delete
+
+<br>
+
+> REST API를 보면 해결이 안되는 경우가 있다.
+> 그럴 때, 네 번째 개념인 `컨트롤 URI`가 꼭 있어야 한다.  
+> 문서, collection, store 만으로 부족할 때, `컨트롤 URI` 를 사용한다.
+
+<br>
 
 - https://restfulapi.net/resource-naming 참고하기
   - 여러 사람들이 HTTP API를 하다보니, 좋은 practice가 있다.

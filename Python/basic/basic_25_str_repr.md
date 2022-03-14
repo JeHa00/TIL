@@ -123,8 +123,9 @@ str : t-wau - {'uniform_color': 'red', 'kind': 'LCC', 'price': 3000}
 
 - 그러면 여태까지의 증명으로 다음과 같은 사실을 알 수 있다.
 
-  > - `__str__` 와 `__repr__` 는 클래스의 인스턴스에 대한 memory address를 출력하는 게 아닌, 사용자가 원하는 출력문을 출력한다.
-  > - To customize the string representation of a class instance, the class needs to implement the `__str__` magic method. from [python \_\_str\_\_](https://www.pythontutorial.net/python-oop/python-__str__/)
+  > - `__str__` 와 `__repr__` 는 클래스의 인스턴스에 대한 memory address를 출력하는 게 아닌, 사용자가 원하는 출력문을 출력한다.  
+  > - To customize the string representation of a class instance, the class needs to implement the `__str__` magic method.   
+  > - from [python \_\_str\_\_](https://www.pythontutorial.net/python-oop/python-__str__/)
   > - 그리고 출력문은 위 메소드에서 반환한 형식으로 출력한다.
   > - `__str__` 와 `__repr__` 이 같이 사용되면 `__str__`이 출력된다.
 
@@ -201,7 +202,6 @@ repr : t-wau - {'uniform_color': 'red', 'kind': 'LCC', 'price': 3000}
 - 또한, `__str__`이 별도로 정의되지 않았고, `__repr__`만 정의된 상황이라면
 - `str()`을 실행하면 `__repr__`가 실행된다.
 
-from [파이썬 공식문서 Data model](https://docs.python.org/3/reference/datamodel.html#object.__str__)
 
 <br>
 

@@ -366,16 +366,17 @@
 
 ## 5.2 HTTP header
 
-- **healder - field = field - name ":" OWS field - value OWS**
-- OWS: 띄어쓰기 허용
+> **healder - field = field - name ":" OWS field - value OWS**  
+> (OWS: 띄어쓰기 허용)
+
 - **field - name: 대소문자 구분 없음**
 - field - value: 대소문자 구문 있음
 - 용도
-- **HTTP 전송에 필요한 모든 부가정보가 담겨져 있다.**
-- 예) 메시지 바디의 내용, 크기, 압축, 인증
-- 예) 요청 클라이언트(브라우저) 정보, 서버 애플리케이션 정보, 캐시 관리 정보
-- 표준 헤더가 너무 많다. (https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
-- 필요한 경우, 임의의 헤더 추가 가능
+  - **HTTP 전송에 필요한 모든 부가정보가 담겨져 있다.**
+    - 예) 메시지 바디의 내용, 크기, 압축, 인증
+    - 예) 요청 클라이언트(브라우저) 정보, 서버 애플리케이션 정보, 캐시 관리 정보
+  - 표준 헤더가 너무 많다. (https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
+  - 필요한 경우, 임의의 헤더 추가 가능
 
 <br>
 

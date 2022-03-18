@@ -174,8 +174,7 @@
 
 - 적용 전
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158826983-c53bc366-99a8-4f2a-81c0-b3d18043389d.PNG
-"/></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158826983-c53bc366-99a8-4f2a-81c0-b3d18043389d.PNG"/></p>
 
 - 적용 후
 
@@ -188,8 +187,6 @@
 <br>
 
 ## 2.2 협상과 우선순위 (Quality Values(q))
-
-<br>
 
 ### 2.2.1 협상과 우선순위 첫 번째
 
@@ -289,7 +286,7 @@
 
 <br>
 
-### From
+### 4.1 From
 
 > 유저 에이전트의 이메일 정보
 
@@ -299,7 +296,7 @@
 
 <br>
 
-### Referer
+### 4.2 Referer
 
 > 이전 웹 페이지 주소
 
@@ -312,7 +309,7 @@
 
 <br>
 
-### User-Agent
+### 4.3 User-Agent
 
 > 유저 에이전트 애플리케이션 정보  
 > user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36
@@ -325,9 +322,9 @@
 
 <br>
 
-### Server
+### 4.4 Server
 
-> 요청을 처리하는 ORIGIN 서버의 소프트웨어 정보
+> 요청을 처리하는 ORIGIN 서버의 소프트웨어 정보  
 > 여러 proxy server를 거치고, 최종적으로 나의 요청을 처리하는 서버를 ORIGIN 서버라 한다.
 
 - Server: Apache/2.2.22 (Debian)
@@ -336,7 +333,7 @@
 
 <br>
 
-### Data
+### 4.5 Data
 
 > 메시지가 생성된 날짜
 
@@ -368,7 +365,8 @@
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158827348-62a74669-263b-40d0-aa29-86cd0381c6c4.PNG"/></p>
 
-- 가상 호스트를 통해 여러 도메인을 한 번에 처리할 수 있는 서버에서는 실제 애플리케이션이 여러 개 구동될 수 있다. 이럴 때 HOST가 없이 요청을 하면 어느 도메인으로 들어가야하는지 알 수 없다.
+- 가상 호스트를 통해 여러 도메인을 한 번에 처리할 수 있는 서버에서는 실제 애플리케이션이 여러 개 구동될 수 있다.
+- 이럴 때 HOST가 없이 요청을 하면 어느 도메인으로 들어가야하는지 알 수 없다.
 - 이럴 때, 헤더 정보에 host를 추가하여 어느 도메인으로 들어가야 할지 알 수 있다.
 
 <br>

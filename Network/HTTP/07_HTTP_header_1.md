@@ -479,7 +479,7 @@
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926829-a38a8c12-559c-4185-b9d8-7485376e5aab.PNG"/></p>
 
-- 웹 브라우저 내부에 쿠키 저장소가 있어서, 서버가 만든 쿠키를 이 저장소에 저장한다.
+- 웹 브라우저 내부에 쿠키 저장소가 있어서, 서버가 만든 쿠키를 웹 브라우저가 이 저장소에 저장한다.
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926830-a5be780c-4812-484b-96f9-107c3791a3fe.PNG"/></p>
 

@@ -79,6 +79,8 @@
 
 <p align="center"> <image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc0fbdc83-b061-40a5-86bf-4df7184db205%2FUntitled.png&blockId=8ca73a3f-e079-4d94-9460-2c06876fe5b1"/></p>
 
+<br>
+
 ## 1.0 Representation header 란??
 
 > client와 server 간에 주고 받는 resource의 data를 어떻게 표현할지 결정하는 header
@@ -109,8 +111,6 @@
 
 <br>
 
----
-
 ## 1.2 Content-Encoding
 
 > 표현 데이터의 압축 방식 설명
@@ -127,8 +127,6 @@
 
 <br>
 
----
-
 ## 1.3 Content-Language
 
 > 표현 데이터의 자연어 설명
@@ -142,8 +140,6 @@
   - en-US
 
 <br>
-
----
 
 ## 1.4 Content-Length
 
@@ -174,12 +170,11 @@
 
 <br>
 
-## Accept-Language 적용 전과 후
+## 2.1 Accept-Language 적용 전과 후
 
 - 적용 전
 
-<p align="center"> <image src ="
-https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-927d-6d806dabb014.PNG
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158826983-c53bc366-99a8-4f2a-81c0-b3d18043389d.PNG
 "/></p>
 
 - 적용 후
@@ -190,11 +185,13 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158811068-5b5cf032-2459-481e-aff0-70c0164dcd3d.PNG"/></p>
 
-## 협상과 우선순위 (Quality Values(q))
+<br>
+
+## 2.2 협상과 우선순위 (Quality Values(q))
 
 <br>
 
-### 협상과 우선순위 첫 번째
+### 2.2.1 협상과 우선순위 첫 번째
 
 > 첫 번째: Quality Values(q)가 높을 수록 우선순위가 높다.
 
@@ -214,9 +211,13 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158811071-64ccf151-192e-48c3-a048-94ead11a9dcb.PNG"/></p>
 
-### 협상과 우선순위 두 번째
+<br>
+
+### 2.2.2 협상과 우선순위 두 번째
 
 > 두 번째: 구체적인 것이 우선된다.
+> GET /event  
+> Accept: text/\*, text/plain, text/plain;format=ﬂowed, \*/\*
 
 - Accept: **text/_, text/plain, text/plain;format=flowed, _/\***
 
@@ -225,11 +226,16 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
   - text/\*
   - \*/\*
 
+<br>
+
+### 2.2.3 협상과 우선순위 세 번째
+
+> 세 번째: 구체적인 것을 기준으로 미디어 타입을 맞춘다.
+
 - Media Type 우선도
   - Accept: text/\*;q=0.3, text/html;q=0.7, text/html;level=1,text/html;level=2;q=0.4, \*/\*;q=0.5
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158812968-7956f625-7bdc-45a7-ac1a-86c1463e6201.PNG
-"/></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158827146-187af392-d1f0-4c80-b996-7c76aea0e68f.PNG"/></p>
 
 <br>
 
@@ -245,8 +251,7 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 
 ### 3.1 단순 전송(Content-Length)
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158811074-b3b8b9c0-543d-4a94-939e-2a91d723d6bc.PNG
-"/></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158827075-9a8f0f89-a10f-487b-b8f5-c8d6158fea28.PNG"/></p>
 
 - content의 길이를 알 수 있을 때 사용한다.
 - 한 번에 요청하고,한 번에 받는다.
@@ -256,6 +261,9 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 ### 3.2 압축 전송(Content-Encoding)
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158811077-719df75e-0a38-4c55-aa3c-4a3a97052871.PNG"/></p>
+
+- 서버에서 메세지 바디를 압축해서 전달하는 방식
+- Content-Encoding에 어떻게 압축했는지 알려줘야, 웹 브라우저에서 이에 맞게 풀어서 접근할 수 있다.
 
 <br>
 
@@ -279,42 +287,61 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 
 ## 4. 일반 정보
 
-- From: 유저 에이전트의 이메일 정보
+<br>
 
-  - 일반적으로 잘 사용되지 않음
-  - 검색 엔진 같은 곳에서, 주로 사용
-  - 요청에서 사용
+### From
 
-- Referer: 이전 웹 페이지 주소
+> 유저 에이전트의 이메일 정보
 
-  - 유입 경로 분석을 위해 많이 사용한다.
-  - 현재 요청된 페이지의 이전 웹 페이지 주소
-  - A -> B로 이동하는 경우 B를 요청할 때 Referer: A 를 포함해서 요청
-  - Referer를 사용해서 유입 경로 분석 가능
-  - 요청에서 사용
-  - 참고: referer는 단어 referrer의 오타
+- 일반적으로 잘 사용되지 않는다.
+- 검색 엔진 같은 곳에서, 주로 사용한다.
+- 요청에서 사용한다.
 
-- User-Agent: 유저 에이전트 애플리케이션 정보
+<br>
 
-  - 검사(F12) -> Network -> Headers -> User-Agent 확인
-  - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/
-    537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36
-  - 클리이언트의 애플리케이션 정보(웹 브라우저 정보, 등등)
-  - 통계 정보
-  - 어떤 종류의 브라우저에서 장애가 발생하는지 파악 가능
-  - 요청에서 사용
+### Referer
 
-- Server: 요청을 처리하는 ORIGIN 서버의 소프트웨어 정보
+> 이전 웹 페이지 주소
 
-  - Server: Apache/2.2.22 (Debian)
-  - server: nginx
-  - 응답에서 사용
-  - Origin 서버란??
-    - 여러 node들을 거치고,최종적으로 나의 요청을 처리하는 서버를 ORIGIN 서버라 한다.
+- 유입 경로 분석을 위해 많이 사용한다.
+- 현재 요청된 페이지의 이전 웹 페이지 주소
+- A -> B로 이동하는 경우 B를 요청할 때 Referer: A 를 포함해서 요청한다.
+- Referer를 사용해서 유입 경로 분석이 가능하다.
+- 요청에서 사용한다.
+- 참고: referer는 단어 referrer의 오타다. 이미 너무 많은 곳에서 사용해서 그냥 사용한다.
 
-- Date: 메시지가 생성된 날짜
-  - Date: Tue, 15 Nov 1994 08:12:31 GMT
-  - 응답에서 사용
+<br>
+
+### User-Agent
+
+> 유저 에이전트 애플리케이션 정보  
+> user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36
+
+- 검사(F12) -> Network -> Headers -> User-Agent 확인
+- 클리이언트의 애플리케이션 정보(웹 브라우저 정보, 등등)
+- 통계 정보
+- 어떤 종류의 브라우저에서 장애가 발생하는지 파악 가능
+- 요청에서 사용
+
+<br>
+
+### Server
+
+> 요청을 처리하는 ORIGIN 서버의 소프트웨어 정보
+> 여러 proxy server를 거치고, 최종적으로 나의 요청을 처리하는 서버를 ORIGIN 서버라 한다.
+
+- Server: Apache/2.2.22 (Debian)
+- server: nginx
+- 응답에서 사용한다.
+
+<br>
+
+### Data
+
+> 메시지가 생성된 날짜
+
+- Date: Tue, 15 Nov 1994 08:12:31 GMT
+- 응답에서 사용한다.
 
 <br>
 
@@ -327,6 +354,8 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 - Allow: 허용 가능한 HTTP 메서드
 - Retry-After: 유저 에이전트가 다음 요청을 하기까지 기다려야 하는 시간
 
+<br>
+
 ### 5.1 Host
 
 > GET /search?q=hello&hl=ko HTTP/1.1  
@@ -337,7 +366,10 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 - 하나의 서버가 여러 도메인을 처리할 때
   - 하나의 IP 주소에 여러 도메인이 적용되어 있을 때
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158818365-4b9908e6-c36f-470c-99cd-8a41016d9312.PNG"/></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158827348-62a74669-263b-40d0-aa29-86cd0381c6c4.PNG"/></p>
+
+- 가상 호스트를 통해 여러 도메인을 한 번에 처리할 수 있는 서버에서는 실제 애플리케이션이 여러 개 구동될 수 있다. 이럴 때 HOST가 없이 요청을 하면 어느 도메인으로 들어가야하는지 알 수 없다.
+- 이럴 때, 헤더 정보에 host를 추가하여 어느 도메인으로 들어가야 할지 알 수 있다.
 
 <br>
 
@@ -348,8 +380,8 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 - 웹 브라우저는 3xx 응답의 결과에 Location 헤더가 있으면, Location 위치로 자동 이동
   (리다이렉트)
 - 응답코드 3xx에서 설명
-- 201 (Created): Location 값은 요청에 의해 생성된 리소스 URI
-- 3xx (Redirection):
+- `201 (Created)`: Location 값은 요청에 의해 생성된 리소스 URI
+- `3xx (Redirection)`: Location 값은 요청에 의해 생성된 리소스 URI
 
 <br>
 
@@ -378,23 +410,187 @@ https://user-images.githubusercontent.com/78094972/158811059-a9b0e5b0-e523-4b99-
 
 ## 6. 인증
 
-- Authorization: 클라이언트 인증 정보를 서버에 전달한다.
+### 6.1 Authorization
 
-  - Authorization: Basic xxxxxxxxxxxxxxxx
-  - 인증 관련해서 여러 매커니즘이 있다. 각 매커니즘마다 넣는 헤더가 다르다. 추가적으로 알아보자.
+> 클라이언트 인증 정보를 서버에 전달한다.
 
-- WWW-Authenticate: 리소스 접근시 필요한 인증 방법 정의한다.
+- Authorization: Basic xxxxxxxxxxxxxxxx
+- 인증 관련해서 여러 매커니즘이 있다. 각 매커니즘마다 넣는 헤더가 다르다. 추가적으로 알아보자.
 
-  - 401 Unauthorized 응답과 함께 사용한다.
-  - WWW-Authenticate: Newauth realm="apps", type=1,
-    title="Login to \"apps\"", Basic realm="simple"
-    - 인증할려면 : 이후의 내용들을 참고해서 인증 방법을 만들라는 의미다.
+<br>
+
+### 6.2 WWW-Authenticate
+
+> 리소스 접근시 필요한 인증 방법 정의한다.
+
+- 401 Unauthorized 응답과 함께 사용한다.
+- WWW-Authenticate: Newauth realm="apps", type=1,
+  title="Login to \"apps\"", Basic realm="simple"
+  - 인증할려면 : 이후의 내용들을 참고해서 인증 방법을 만들라는 의미다.
 
 <br>
 
 ---
 
-## 7. 쿠키
+## 7. 쿠키(중요)
+
+<br>
+
+### 7.1 쿠키란??
+
+> 쿠키: HTTP의 stateless 성질 때문에 필요 하에, 서버가 자동 생성하여 클라이언트에 저장하는 데이터  
+> 캐시: 클라이언트 자체에서 페이지 로드를 효율적으로 하려고 저장하는 데이터
+
+- **_매우 많이 사용하고, 많이 중요하다._**
+
+- 웹 브라우저는 서버에서 보낸 이 쿠키를 웹 브라우저 내부에 쿠키 저장소에 저장해 놓았다가, 서버의 응답에 클라이언트가 HTTP 메세지를 보낼 때, 이 쿠키 정보를 포함하여 보내는 용도
+
+- Cookie 를 사용할 때는 `2가지 header`를 사용한다.
+
+  - Set-Cookie: server에서 client로 쿠키를 전달할 때(응답)
+  - Cookie: client가 server에서 받은 쿠키를 저장하고, HTTP 요청 시 서버로 전달할 때
+
+- 그러면 먼저 쿠키를 사용하지 않으면 어떻게 되는지 알아보자.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926817-c0e580c7-fbb4-426e-9600-e152d8dceb30.PNG"/></p>
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926820-412c60b1-0901-4436-8245-7bddda379dd1.PNG"/></p>
+
+- GET으로 `/welcome` resource를 조회한다.
+- 서버에서는 손님으로 인식한다.
+- 로그인을 해야 서버에서 가입된 유저로 인식한다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926821-c036447d-34fb-4ea0-b016-ad77818b256d.PNG"/></p>
+
+- 하지만, 로그인후 다시 welcome page에 접근하면 다시 손님으로 인식한다.
+
+<br>
+
+- HTTP는 `stateless 프로토콜`이기 때문에, 클라이언트와 서버가 요청과 응답을 주고 받으면 연결이 끊어진다.
+- 그래서 클라이언트가 다시 요청하면 서버는 이전 요청을 기억하지 못하기 때문에, 클라이언트와 서버는 서로 상태를 유지하지 않는다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926825-c8787621-2ceb-4b96-bddd-0ffeb99ffe2d.PNG"/></p>
+
+- 이에 대한 대안으로 모든 요청에 사용자 정보가 포함되도록 개발한다면??
+  - 현실적으로 매우 힘들다.
+  - 그래서 이에 대한 대책으로 만든게 `쿠키(cookie)`다.
+
+<br>
+
+- 쿠키를 사용하면 어떻게 되는지 알아보자.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926829-a38a8c12-559c-4185-b9d8-7485376e5aab.PNG"/></p>
+
+- 웹 브라우저 내부에 쿠키 저장소가 있어서, 서버가 만든 쿠키를 이 저장소에 저장한다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926830-a5be780c-4812-484b-96f9-107c3791a3fe.PNG"/></p>
+
+- 서버에 요청을 보낼 때마다 쿠키 저장소를 조회하여 Cookie 라는 HTTP header를 생성한다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158926833-663c1943-f42d-40ef-9996-5b0834ab9efc.PNG"/></p>
+
+- 모든 요청에 쿠키 정보를 자동으로 포함한다.
+
+<br>
+
+### 7.2 쿠키의 사용처와 문제점
+
+> ex) set-cookie: sessionId=abcde1234; expires=Sat, 26-Dec-2020 00:00:00 GMT; path=/; domain=.google.com; Secure
+
+- 사용처
+
+  - 사용자 로그인 세션 관리 (위 이미지 사례)
+  - 광고 정보 tracking
+    - 이 웹 브라우저의 사용자는 이런 광고를 주로 클릭한다는 걸 추적한다.
+
+- 문제점
+
+  - 네트워크 트래픽 추가 유발한다.
+  - 그래서 최소한의 정보만 사용한다.
+    - (세션 id, 인증토큰)
+  - 서버에 전송하지 않고, 웹 브라우저 내부에 데이터를 저장하고 싶으면 웹 스토리지 (localStorage, sessionStroage) 참고
+
+- 주의사항!
+  - 보안에 민감한 데이터는 저장하면 안된다.
+    - ex) 주민번호, 신용카드 번호 등등
+
+<br>
+
+### 7.3 쿠키 - 생명주기 header
+
+> 쿠키가 언제까지 지속되는지 알려주는 header
+
+- Set-Cookie: `expires` = Sat, 26-Dec-2020 04:39:21 GMT
+
+  - 만료일이 되면 쿠키를 삭제한다.
+
+- Set-Cookie: `max-age` = 3600 (3600초)
+
+  - 0이나 음수를 지정하면 쿠키 삭제
+
+- 세션 쿠키: 만료 날짜를 생략하면 브라우저 종료 시까지만 유지
+- 영속 쿠키: 만료 날짜를 입력하면 해당 날짜까지 유지
+
+<br>
+
+### 7.4 쿠키 - domain header
+
+> ex) `domain` = example.org
+
+- 쿠키는 도메인을 지정할 수 있다.
+
+- 2가지 방법
+
+  - **명시**: 명시한 문서 기준 도메인 + 서브 도메인을 포함한다.
+
+    - **domain = example.org 를 지정해서 쿠키 생성**
+      - example.org는 물론이고,
+      - dev.example.org도 쿠키 접근한다.
+
+  - **생략**: `현재 무선 기준 도메인만` 적용한다.
+
+    - example.org에서 쿠키를 생성하고 domain 지정을 생략한다.
+      - exmple.org 에서만 쿠키 접근 가능하다.
+      - dev.example.org는 쿠키 미접근
+        - 하위 도메인은 접근 불가능하다.
+
+<br>
+
+### 7.5 쿠키 - 경로 header
+
+> 예) `path` = /home
+
+- 이 경로를 포함한 하위 경로 페이지만 쿠키 접근 가능하다.
+- 일반적으로 path=/ 루트로 지정한다.
+- 예
+  - **path =/home 지정**
+    - /home -> 가능
+    - /home/level1 -> 가능
+    - /home/level1/level2 -> 가능
+    - /hello -> 불가능
+
+<br>
+
+### 7.6 쿠키 - 보안 header
+
+> `Secure`, `HttpOnly`, `SameSite`
+
+<br>
+
+- `Secure`
+
+  - 쿠키는 http, https를 구분하지 않고 전송한다.
+  - Secure를 적용하면 https인 경우에만 전송
+
+- `HttpOnly`
+
+  - xSS 공격 방지
+  - 자바스크립트에서 접근 불가(document.cookie)
+  - HTTP 전송에만 사용
+
+- `SameSite`
+  - XSRF 공격방지
+  - 요청 도메인과 쿠키에 설정된 도메인이 같은 경우만 쿠키 전송
 
 <br>
 

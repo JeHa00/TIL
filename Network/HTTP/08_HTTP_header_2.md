@@ -33,9 +33,9 @@
 
 ## 1.1 캐시가 없을 때
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005459-4793f519-f8e2-4af3-894f-875b45664987.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005459-4793f519-f8e2-4af3-894f-875b45664987.PNG"></p>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005470-e710e815-a0c0-4c41-9d41-69c3ba901a59.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005470-e710e815-a0c0-4c41-9d41-69c3ba901a59.PNG"></p>
 
 - 클라이언트가 GET 메소드를 사용하여 /star.jpg 를 조회요청을 서버에 보낸다.
 - 서버는 이에 응답하여 HTTP 메세지를 생성하고, HTTP body에 data를 담는다.

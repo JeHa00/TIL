@@ -48,7 +48,7 @@
 
 - 그러면 캐시가 없는 상황에서 서버에 동일한 요청을 또 보내면 어떻게 될까??
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005472-c2031cd5-6a0e-4d53-b971-66c600902097.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005472-c2031cd5-6a0e-4d53-b971-66c600902097.PNG"></p>
 
 - 처음과 동일하게, 총 1.1M의 크기를 다운받는다.
 
@@ -64,18 +64,18 @@
 
 ## 1.2 캐시를 적용할 때
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005479-027ec26e-e0fb-426d-ad3b-df70e2e8a294.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005479-027ec26e-e0fb-426d-ad3b-df70e2e8a294.PNG"></p>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005483-5bcff411-e444-4dfa-a8fd-7b9c298acf57.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005483-5bcff411-e444-4dfa-a8fd-7b9c298acf57.PNG"></p>
 
 - 브라우저에 캐시 저장 공간을 사용한다.
 - 클라이언트의 요청에 서버는 응답 메세지를 생성하며, 클라이언트에게 응답 메세지를 보내면서 결과를 캐시에 저장한다.
 
 <br>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005485-f165358b-54c4-4824-aa04-8bbf7b112923.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005485-f165358b-54c4-4824-aa04-8bbf7b112923.PNG"></p>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005488-55a8093f-0029-41a8-b1f8-2e6fc1e445d7.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005488-55a8093f-0029-41a8-b1f8-2e6fc1e445d7.PNG"></p>
 
 - 그러면 클라이언트의 두 번째 요청 시, 클라이언트는 서버에 요청을 바로 보내는 것이 아니라, 브라우저 캐시에서 캐시 유효 시간을 먼저 검증한다.
 - 유효 시간이 일치하면 캐시에서 조회하여 원하는 데이터를 사용한다.
@@ -92,15 +92,15 @@
 
 ## 1.3 캐시 시간 초과했을 때
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005491-6f8f87a1-a6f2-4168-b86f-e053f88e84c7.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005491-6f8f87a1-a6f2-4168-b86f-e053f88e84c7.PNG"></p>
 
 - 캐시 유효 시간을 검증 요청한다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005492-f81a1019-cc7c-4026-a50a-2ea7bacd1c4f.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005492-f81a1019-cc7c-4026-a50a-2ea7bacd1c4f.PNG"></p>
 
 - 서버에서 다시 전송한다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159005493-bd112193-ab53-4712-b6d4-32f07328d608.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159005493-bd112193-ab53-4712-b6d4-32f07328d608.PNG"></p>
 
 - 응답 결과를 다시 캐시에 저장한다.
 
@@ -124,23 +124,23 @@
 
 <br>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159008398-034f1d5d-cffc-4d8a-8f11-4cdd0449491f.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159008398-034f1d5d-cffc-4d8a-8f11-4cdd0449491f.PNG"></p>
 
 - 캐시 시간 초과로 서버에 재요청 시, `if-modified-since:` header를 메세지에 넣어 보낸다.
 - 이 header가 `조건부 요청` header다.
 - 이 header는 `캐시가 가지고 있는, 데이터 최종 수정일`을 말한다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159008401-dee35854-fd61-48e9-9e6a-39885baa01ca.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159008401-dee35854-fd61-48e9-9e6a-39885baa01ca.PNG"></p>
 
 - 서버에서 클라이언트가 보낸 요청과 서버의 해당 data의 데이터 최종 수정일을 비교한다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159008403-978b6dde-1bca-4aac-b0a1-b8d0781b844b.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159008403-978b6dde-1bca-4aac-b0a1-b8d0781b844b.PNG"></p>
 
 - 동일할 경우, `HTTP body`를 전송하지 않고 `HTTP header`만 전송한다.
 - 데이터가 수정되지 않았기 때문에, `304 Not Modified` 상태이며,
 - 검증헤더인 `Last-Modified` header를 추가한다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159008405-8acd9936-8493-4cd9-95e4-95a5cac2534c.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159008405-8acd9936-8493-4cd9-95e4-95a5cac2534c.PNG"></p>
 
 - 그러면 응답 결과를 재사용하여, header data를 갱신한다.
 
@@ -158,7 +158,7 @@
   - 검사(F12) -> Network tab을 클릭 -> Status 란에 글씨가 연한 것이 Cache에서 불러온 것
   - 다시 이미지 더블클릭 -> 검사 -> Network -> 새로고침(F5) -> 이미지 클릭 -> headers tab -> Request header -> if-modified-since 보기
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159013587-a2616b67-f5f5-4b97-baf1-f373d40eed2e.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159013587-a2616b67-f5f5-4b97-baf1-f373d40eed2e.PNG"></p>
 
 <br>
 
@@ -218,32 +218,32 @@
 
 <br>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034239-a629868d-4ac9-4874-88f1-81a18629e351.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034239-a629868d-4ac9-4874-88f1-81a18629e351.PNG"></p>
 
 - `ETag: aaaaaaaaaa` header 로 서버가 응답했다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034243-6e9994d3-00f8-4535-95a8-f6f0a13c1e20.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034243-6e9994d3-00f8-4535-95a8-f6f0a13c1e20.PNG"></p>
 
 - 그리고 위 Tag 로 응답 결과를 캐시에 저장했다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034244-070ba99f-8ad9-442e-b0dc-91a960fb21e5.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034244-070ba99f-8ad9-442e-b0dc-91a960fb21e5.PNG"></p>
 
 - 두 번째 요청을 했지만, 캐시 시간이 초과된 상황이다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034248-cfb46db5-781e-4b24-b498-d55234bae455.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034248-cfb46db5-781e-4b24-b498-d55234bae455.PNG"></p>
 
 - 서버에 재요청을 보낼 때, 캐시가 가지고 있는 `ETag`의 내용을 `If-None-Match:` header로, 요청 message의 header에 함께 보낸다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034250-80cef4bf-4490-4b66-9a52-6212626d872c.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034250-80cef4bf-4490-4b66-9a52-6212626d872c.PNG"></p>
 
 - 서버에서 응답하는 `ETag`의 내용과 `If-None-Match:`의 내용을 비교한다.
 - 동일하다는 건, 아직 데이터는 수정되지 않았음을 의미한다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034254-235f224d-524f-48f4-b18e-d06a8951f8fc.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034254-235f224d-524f-48f4-b18e-d06a8951f8fc.PNG"></p>
 
 - 데이터가 수정되지 않았기 때문에, `HTTP 헤더`만 보낸다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034259-4649eb43-e181-4f33-9ac2-cf9bf8689444.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159034259-4649eb43-e181-4f33-9ac2-cf9bf8689444.PNG"></p>
 
 - 응답 결과를 재사용하여, 캐쉬 데이터의 헤더 데이터를 갱신한다.
 
@@ -344,12 +344,12 @@
 
 <br>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159041113-bd3c9900-b4f9-49fe-a6cd-b54f38cd722b.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159041113-bd3c9900-b4f9-49fe-a6cd-b54f38cd722b.PNG"></p>
 
 - 원 서버와 클라이언트 사이에 중간 서버 없이, Origin (원) 서버에 직접 접근하는 경우
 - 데이터를 가져오는데 비교적 긴 시간이 걸린다.
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159041121-5909e892-5a06-4fcf-bb05-4fd820ac638f.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159041121-5909e892-5a06-4fcf-bb05-4fd820ac638f.PNG"></p>
 
 - 하지만 이렇게 proxy 캐시 서버를 도입하면 한국에서 보다 빨리 데이터를 받을 수 있다.
 
@@ -395,19 +395,19 @@
 
 - `no-cache`의 기본 동작 (데이터가 수정되지 않은 상황)
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101257-73033a97-cefe-4e54-b410-1e95235151ad.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159101257-73033a97-cefe-4e54-b410-1e95235151ad.PNG"></p>
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101258-53f6d5be-2665-4d37-8a2d-dcf7a408f449.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159101258-53f6d5be-2665-4d37-8a2d-dcf7a408f449.PNG"></p>
 
 <br>
 
 - `no-cache`를 사용한 상황에서 프록시 캐시와 원 서버 간 네트워크 단절이 순간 발생한 경우
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101260-d3e0d59b-259a-4771-9da2-1f51aad9fe55.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159101260-d3e0d59b-259a-4771-9da2-1f51aad9fe55.PNG"></p>
 
 - `must=revalidate` 를 사용한 상황에서 프록시 캐시와 원 서버 간 네트워크 단절이 순간 발생한 경우
 
-<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101256-67c91b6b-3d64-4047-b629-f7f80f334958.PNG"></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/159101256-67c91b6b-3d64-4047-b629-f7f80f334958.PNG"></p>
 
 <br>
 

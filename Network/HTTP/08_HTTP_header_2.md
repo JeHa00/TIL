@@ -167,18 +167,18 @@
 # 3. 검증 헤더와 조건부 요청 2
 
 > 검증 헤더: `Last-Modified`, `ETag`  
-> 조건부 요청 헤더: `If-Modified-Since: Last-Modified`, `If-None-Match:ETag`
+> 조건부 요청 헤더: `If-Modified-Since:`, `Last-Modified`, `If-None-Match:ETag`
 
 - `Last-Modified` header 의 단점을 해결하는 header에 대해 알아보자.
 
-- **검증 헤더**
+- **검증 헤더 (Validator)**
 
   - `Last-Modified`, `ETag`
 
 - **조건부 요청 헤더**
 
-  - `If-Modified-Since: Last-Modified` 사용
-  - `If-None-Match:ETag` 사용
+  - `If-Match`, `If-None-Match:ETag 값` 사용
+  - `If-Modified-Since`, `If-Unmodified-Since: Last-Modified 값` 사용
   - 조건이 만족하면 200 OK
   - 조건이 만족하지 않으면 304 Not Modified
 
@@ -195,9 +195,125 @@
 
 <br>
 
+## 3.1 `If-Modified-Since:`, `Last-Modified` 단점
+
+- 1초 미만(0.x초) 단위로 캐시 조정이 불가능하다.
+- 날짜 기반의 로직을 사용한다.
+- 그래서, 데이터를 수정해서 날짜가 다르지만, 같은 데이터를 수정해서 데이터 결과가 똑같은 경우에도 다시 다운받아야 한다.
+- 위의 문제점으로 서버에서 별도의 캐시 로직을 관리하고 싶은 경우, 다음에 소개되는 Header를 사용한다.
+  - ex) 스페이스나 주석처럼 크게 영향이 없는 변경에서 캐시를 유지하고 싶은 경우
+
+<br>
+
+## 3.2 해결책: `ETag`, `IF-None-Match`
+
+> 날짜 기반의 date가 기준이 아닌 데이터의 버전 이름이 기준
+
+- `ETag`: Entity Tag
+- 캐시용 데이터에 임의의 고유한 버전 이름을 달아둔다.
+  - ex) ETag: "v1.0", ETag: `a2jiodwjekij3`
+- 데이터가 변경되면 이 이름을 바꾸어서 변경한다. (Hash를 다시 생성한다.)
+  - ex) ETag: 'aaaaa', -> ETag: 'bbbbbb'
+- 진짜 단순하게 ETag만 보내서 같으면 유지, 다르면 다시 받기!!
+
+<br>
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034239-a629868d-4ac9-4874-88f1-81a18629e351.PNG"></p>
+
+- `ETag: aaaaaaaaaa` header 로 서버가 응답했다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034243-6e9994d3-00f8-4535-95a8-f6f0a13c1e20.PNG"></p>
+
+- 그리고 위 Tag 로 응답 결과를 캐시에 저장했다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034244-070ba99f-8ad9-442e-b0dc-91a960fb21e5.PNG"></p>
+
+- 두 번째 요청을 했지만, 캐시 시간이 초과된 상황이다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034248-cfb46db5-781e-4b24-b498-d55234bae455.PNG"></p>
+
+- 서버에 재요청을 보낼 때, 캐시가 가지고 있는 `ETag`의 내용을 `If-None-Match:` header로, 요청 message의 header에 함께 보낸다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034250-80cef4bf-4490-4b66-9a52-6212626d872c.PNG"></p>
+
+- 서버에서 응답하는 `ETag`의 내용과 `If-None-Match:`의 내용을 비교한다.
+- 동일하다는 건, 아직 데이터는 수정되지 않았음을 의미한다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034254-235f224d-524f-48f4-b18e-d06a8951f8fc.PNG"></p>
+
+- 데이터가 수정되지 않았기 때문에, `HTTP 헤더`만 보낸다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159034259-4649eb43-e181-4f33-9ac2-cf9bf8689444.PNG"></p>
+
+- 응답 결과를 재사용하여, 캐쉬 데이터의 헤더 데이터를 갱신한다.
+
+<br>
+
 ---
 
 # 4. 캐시와 조건부 요청 헤더
+
+- 캐쉬 제어 헤더의 종류에는 3가지가 있다.
+  - `Cache-Control`: 캐시 제어
+  - `Pragma`: 캐시 제어(하위 호환)
+  - `Expires`: 캐시 유효 기간(하위 호환)
+
+<br>
+
+## 4.1 Cache-Control
+
+> 캐시 지시어(directives)
+
+- `Cache-Control: max-age`
+
+  - 초 단위로, 캐시 유효 시간을 알려준다.
+
+- `Cache-Control: no-cache`
+
+  - 데이터는 캐시해도 되지만, 항상 원(origin) 서버에 검증하고 사용해야 한다.
+    - Origin 서버라 하는 이유는 중간에 여러 proxy 서버가 있기 때문이다.
+
+- `Cache-Contrl: no-store`
+
+  - 데이터에 민감한 정보가 있으므로 저장하면 안된다.
+  - (메모리에서 사용하고 최대한 빨리 삭제)
+
+<br>
+
+## 4.2 Pragma
+
+> 캐시 제어(하위 호환)
+
+- `Pragma:no-cache`
+- HTTP 1.0 의 하위 호환
+  - 하위 호환이라 지금은 대부분 사용하지 않는다.
+  - 하지만, 구글에서는 여러 국가를 지원하기 때문에 사용하고 있다.
+
+<br>
+
+## 4.3 Expires
+
+> 캐시 만료일 지정(하위 호환)  
+> expires: Mon, 01 Jan 1990 00:00:00 GMT
+
+- 캐시 만료일을 정확한 날짜로 지정한다.
+- HTTP 1.0부터 사용한다.
+- 지금은 더 유연한 방법인 `Cache-Control:max-age` 를 권장한다.
+- `Cache-Control:max-age`와 함께 사용하면 `Expires`는 무시된다.
+
+<br>
+
+## 4.4 검증 헤더와 조건부 요청 헤더
+
+- **검증 헤더 (Validator)**
+
+  - ETag: "v1.0", ETag: "asid93jkrh2l"
+  - Last-Modified: Thu, 04 Jun 2020 07:19:24 GMT
+
+- **조건부 요청 헤더**
+
+  - If-Match, If-None-Match: ETag 값 사용
+  - If-Modified-Since, If-Unmodified-Since: Last-Modified 값 사용
 
 <br>
 
@@ -205,11 +321,109 @@
 
 # 5. 프록시 캐시
 
+> Cache-Control  
+> 캐시 지시어(directives) - 기타
+
+- `Cache-Control: public`
+
+  - 응답이 public 캐시에 저장되어도 된다.
+
+- `Cache-Control: private`
+
+  - 응답이 해당 사용자만을 위한 것이다.
+  - private 캐시에 저장해야 한다. (기본값)
+
+- `Cache-Control: s-maxage`
+
+- 프록시 캐시에만 적용되는 max-age
+
+- `Age: 60`(HTTP 헤더)
+
+  - Origin 서버에서 응답 후, proxy 캐시 내에 머문 시간(단위:초)
+  - 우리가 데이터를 받아야 알 수 있다.
+
+<br>
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159041113-bd3c9900-b4f9-49fe-a6cd-b54f38cd722b.PNG"></p>
+
+- 원 서버와 클라이언트 사이에 중간 서버 없이, Origin (원) 서버에 직접 접근하는 경우
+- 데이터를 가져오는데 비교적 긴 시간이 걸린다.
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159041121-5909e892-5a06-4fcf-bb05-4fd820ac638f.PNG"></p>
+
+- 하지만 이렇게 proxy 캐시 서버를 도입하면 한국에서 보다 빨리 데이터를 받을 수 있다.
+
 <br>
 
 ---
 
 # 6. 캐시 무효화
+
+> 확실한 캐시 무효화 응답  
+> `Cache-Control: no-cache`, `Cache-Control: no-store`, `Cache-Control: must-revalidate`  
+> `Pragma: no-cache` : HTTP 1.0 하위호환
+
+- 캐시 무효화가 필요한 이유:
+
+  - 캐쉬를 적용하려고 하지 않아도, 웹 브라우저들이 임의로 적용한다.
+  - 그래서, 이 페이지는 캐쉬를 넣으면 안된다면, 위 헤더들을 반드시 넣어야 한다.
+
+- **Cache-Control directives(캐시 지시어) - 확실한 캐시 무효화**
+
+  - `Cache-Control: no-cache`
+
+    - 데이터는 캐시해도 되지만, 항상 원 서버에 검증하고 사용해야 한다.
+    - Header 이름 혼동 주의!
+
+  - `Cache-Control: no-store`
+
+    - 데이터에 민감한 정보가 있으므로 저장하면 안된다.  
+      (메모리에서 사용하고 최대한 빨리 삭제)
+
+  - `Cache-Control: must-revalidate`
+
+    - _캐시 만료 후, 최초 조회시_ 원 서버에 검증해야 한다.
+    - _원 서버 접근 실패시 반드시 오류가 발생해야한다. - 504(Gateway Timeout)_ => `no-cache`와의 차이점
+    - must-revalidate는 캐시 유효 시간이라면 캐시를 사용함
+
+  - `Pragma: no-cache`
+    - HTTP 1.0 하위 호환
+
+<br>
+
+## no-cache vs must-revalidate
+
+- `no-cache`의 기본 동작 (데이터가 수정되지 않은 상황)
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101257-73033a97-cefe-4e54-b410-1e95235151ad.PNG"></p>
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101258-53f6d5be-2665-4d37-8a2d-dcf7a408f449.PNG"></p>
+
+<br>
+
+- `no-cache`를 사용한 상황에서 프록시 캐시와 원 서버 간 네트워크 단절이 순간 발생한 경우
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101260-d3e0d59b-259a-4771-9da2-1f51aad9fe55.PNG"></p>
+
+- `must=revalidate` 를 사용한 상황에서 프록시 캐시와 원 서버 간 네트워크 단절이 순간 발생한 경우
+
+<p align="center"> <image src =https://user-images.githubusercontent.com/78094972/159101256-67c91b6b-3d64-4047-b629-f7f80f334958.PNG"></p>
+
+<br>
+
+- 정리
+
+  - 프록시 캐시와 원 서버 간 네트워크 단절이 순간 발생한 경우
+  - `no-cache`
+
+    - 원 서버에 접근할 수 없는 경우, 서버 설정에 따라서 프록시 서버에서 응답할 수 있다.
+    - 응답한 data가 오류보다 오래된 데이터라도 보여준다.
+    - _단, 오류인지는 알려주지 않는다._
+
+  - `must=revalidate`
+    - 원 서버에 접근할 수 없는 경우, **항상 오류**가 발생해야 한다.
+    - _504 Gateway Timeout_ 으로 응답한다.
+    - _오류인지 알려준다_
 
 <br>
 

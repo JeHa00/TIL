@@ -88,27 +88,25 @@
 
 # Special method란 ??
 
-> class 안에서 정의할 수 있는 특별한 method.  
-> double under-bar로 시작한다.
+> - class 안에서 정의할 수 있는 특별한 method.  
+> - double under-bar로 시작한다.
 
 - 그렇다면 왜 특별할까??
 
-> 내장(Buit-in)되어 있는 method를 사용자가 새롭게 정의하여 사용하기 때문이다.  
-> 그래서 Special method를 통해서 클래스끼리의 연산도 가능해진다.
-
-- 이미 만들어진 것을 가져다 사용하여, low level에서 효율적인 코딩을 작성할 수 있다.
+> - 내장(Buit-in)되어 있는 method를 사용자가 오버라이딩하여 사용할 수 있기 때문이다. 
+> - 그래서 Special method를 통해서 클래스끼리의 연산도 가능해진다.
+> - 그래서 low level에서 효율적인 코딩을 작성할 수 있다.  
 
 - 그래서 `Magic method`라고도 한다.
 
 - 우리가 사용한 모든 데이터 타입은 `클래스`다.
+  - 그래서 많은 연산의 백그라운드에는 이 method가 사용하고 있었던 셈이다.  
 
 - `dir()`은 인자로 들어간 클래스 객체에서 사용할 수 있는 `Special method`를 보여준다.
 
-- 이 `special method`로 구현하면 더 low level에서 가능하다.
-
-> special method는 클래스 안에 정의된 method다.  
-> `__add__` 는 `dir()`로 확인할 수 있듯이 <class 'int'> 안에 정의된 method다.  
-> 많은 magic method들이 이렇게 클래스 하에 존재한다.
+> - special method는 클래스 안에 정의된 method다.  
+> - `__add__` 는 `dir()`로 확인할 수 있듯이 <class 'int'> 안에 정의된 method다.  
+> - 많은 magic method들이 이렇게 클래스 하에 존재한다.
 
 ```yml
 > n = 10

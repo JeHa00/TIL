@@ -19,10 +19,10 @@
 > - 일급 함수(일급 객체, first-clss)란??
 >   - 객체 취급되는 함수
 > - 다음 4가지 특징을 가지는 함수를 말한다.
->   - 1. 런타임 초기화: 실행 시점에서 초기화한다.
->   - 2. 함수를 변수에 할당 가능하다.
->   - 3. 함수를 인수로 전달 가능하다. (Higher - order function의 첫 번째 특징)
->   - 4. 함수를 결과값으로서 반환 가능하다. (Higher - order function의 첫 번째 특징)
+>   1. 런타임 초기화: 실행 시점에서 초기화한다.
+>   2. 함수를 변수에 할당 가능하다.
+>   3. 함수를 인수로 전달 가능하다. (Higher - order function의 첫 번째 특징)
+>   4. 함수를 결과값으로서 반환 가능하다. (Higher - order function의 첫 번째 특징)
 
 - 위 일급 함수의 특징들은 `파이썬 함수의 특징`이라고 할 수 있다.
 - 그러면 first-class는 왜 중요한가??
@@ -128,9 +128,9 @@ factorial
 
 # 1.3 고위 함수의 두 가지 특징을 가지는 함수
 
-> - Higher - order function (고위함수)의 특징
-> - 1. 함수를 인수로 전달 가능하다.
-> - 2. 함수를 결과값으로서 반환 가능하다.
+> Higher - order function (고위함수)의 특징
+> 1. 함수를 인수로 전달 가능하다.
+> 2. 함수를 결과값으로서 반환 가능하다.
 
 - 고위 함수의 대표적인 예로는 `map`, `filter`, `reduce`, `lambda` 등이 있다.
 
@@ -156,7 +156,11 @@ factorial
 [1, 6, 120]
 ```
 
+<br>
+
 - `reduce` : 여러 원소를 하나의 원소로 줄이기 위해, 왼쪽에서부터 오른쪽 방향으로 축적하며 함수를 적용해간다.
+
+<br>
 
 ```yml
 ## reduce
@@ -180,10 +184,10 @@ factorial
 
 # 2. 익명 함수(lambda)
 
-> 이름 없는 함수로, 익명 함수다.
-> 그래서 익명 함수가 복잡할 때, 주석을 사용해야 한다.
-> 하지만, 되도록 함수를 만들어서 사용하자.
-> 일반 함수 형태로 `refactoring`을 권장한다.
+> 이름 없는 함수로, 익명 함수다.  
+> 그래서 익명 함수가 복잡할 때, 주석을 사용해야 한다.  
+> 하지만, 되도록 함수를 만들어서 사용하자.  
+> 일반 함수 형태로 `refactoring`을 권장한다.  
 
 ```yml
 > print(reduce(lambda x, t : x + t, range(1,11)))
@@ -196,8 +200,10 @@ factorial
 
 # 3. Callable 설명
 
-> - callable이란??
-> - 호출 연산자로, 인자가 호출 가능한지 확인하는 함수
+> callable이란??  
+> - 호출 연산자로, 인자가 호출 가능한지 확인하는 함수  
+
+<br>
 
 - 호출한다는 건 무슨 의미일까???
 
@@ -211,7 +217,11 @@ factorial
 > 3.14(334)
 ```
 
+<br>
+
 - 이를 `callable`로 확인해보자.
+
+<br>
 
 ```yml
 > print(callable(str), callable(list), callable(var_func), callable(3.14))
@@ -226,10 +236,14 @@ True True True False
 
 # 4. Partial 사용법
 
-> - 인수를 고정할 때 사용하는 함수로, 콜백 함수에 사용한다.
-> - 매우 중요하다.
+> - 인수를 고정할 때 사용하는 함수로, 콜백 함수에 사용한다.  
+> - 매우 중요하다.  
+
+<br>
 
 - 코드로 알아보자.
+
+<br>
 
 ```yml
 > from operator import mul
@@ -257,8 +271,8 @@ True True True False
 
 # 5. Signature
 
-> signature(callable, \*, follow_wrapped=True)
-> 인자로 callable을 취하고, annotation을 반환한다.
+> signature(callable, \*, follow_wrapped=True)  
+> 인자로 callable을 취하고, annotation을 반환한다.  
 
 - `signature` 함수는 `inspect` module에서 import한다.
 - `inspect` module은 모듈은 모듈, 클래스, 메서드, 함수, 트레이스백, 프레임 객체 및 코드 객체와 같은 라이브 객체에 대한 정보를 얻는 데 도움이 되는 몇 가지 유용한 함수를 제공한다.
@@ -267,6 +281,8 @@ True True True False
   - 메서드의 소스 코드를 꺼내오거나,
   - 함수의 인자 리스트를 추출하고 포맷하거나,
   - 자세한 트레이스백을 표시하는 데 필요한 모든 정보를 얻는 데 도움이 될 수 있다.
+
+<br>
 
 ```yml
 > from inspect import signature

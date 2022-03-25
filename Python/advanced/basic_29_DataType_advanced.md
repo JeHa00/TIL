@@ -5,7 +5,7 @@
 > 3. [list comprehension](#3-list-comprehension)
 > 4. [Advanced tuple with unpacking](#4-advanced-tuple-with-unpacking)
 > 5. [Advanced dictionary](#5-advanced-dictionary)
-> 6. [Advanced set](#6-set-comprehension)
+> 6. [Advanced set](#6-advanced-set)
 
 <br>
 
@@ -33,7 +33,6 @@
      ex) string, bytes, byte array, array, memoryview...
 
 ```yml
-
 # Container의 예: 정수, 실수, 문자열 같이 서로 다른 자료형을 담을 수 있다.
 > a = [3, 3.0, 'a']
 
@@ -70,9 +69,13 @@
 
 - `id()` 을 사용하여 mutable과 immutable에 대해 자세히 알아보자.
 
-- mutable: 함수 안에서 매개변수의 값을 변경하면 객체 자체를 업데이트한다. 따라서, 매개변수의 값을 변경하면 호출하는 쪽의 실제 인수는 변경된다.
+- mutable:
 
-- immutable: 함수 안에서 매개변수의 값을 변경하면 다른 객체를 생성하고, 그 객체에 대한 참조로 업데이트된다. 따라서 매개변수의 값을 변경해도 호출하는 쪽의 실제 인수에는 영향을 주지 않는다.
+  - 함수 안에서 매개변수의 값을 변경하면 객체 자체를 업데이트한다. 따라서, 매개변수의 값을 변경하면 호출하는 쪽의 실제 인수는 변경된다.
+
+- immutable:
+
+  - 함수 안에서 매개변수의 값을 변경하면 다른 객체를 생성하고, 그 객체에 대한 참조로 업데이트된다. 따라서 매개변수의 값을 변경해도 호출하는 쪽의 실제 인수에는 영향을 주지 않는다.
 
 - 예시를 들어보자.
 
@@ -101,7 +104,8 @@ TypeError: 'str' object does not support item assignment
 
   - 이는 int형 객체 12의 값 자체를 변경한 것이 아니라, 다른 정수형 객체 13을 참조하도록 업데이트된 것이다.
 
-- `immutable`은 값 자체를 변경할 수 없기 때문에, 다른 객체를 참조한다. 그래서 `id`가 바뀐다.
+- `immutable`은 값 자체를 변경할 수 없기 때문에, 다른 객체를 참조한다.
+- 그래서 `id`가 바뀐다.
 
 - 그래서 `누적 변수`를 출력하면 `id`가 달라지는 걸 알 수 있다.
 
@@ -123,13 +127,14 @@ TypeError: 'str' object does not support item assignment
 [0, 2, 3] 2249826233536
 ```
 
-- list는 `mutable`이라 성분값을 수정할 수 있다. 수정 후, `id`을 확인하면 수정 전과 동일한 걸 알 수 있다.
+- list는 `mutable`이라 성분값을 수정할 수 있다.
+- 수정 후, `id`을 확인하면 수정 전과 동일한 걸 알 수 있다.
 
 <br>
 
 > - **정리**
->   - **_`immutable`_**은 value가 변경되지 못하기 때문에, **`id`** 값을 바꾼다.
->   - **_`mutable`_**은 value를 수정할 수 있기 때문에, **`id`** 값을 바꾸지 않는다.
+>   - **_`immutable`_** 은 value가 변경되지 못하기 때문에, **`id`** 값을 바꾼다.
+>   - **_`mutable`_** 은 value를 수정할 수 있기 때문에, **`id`** 값을 바꾸지 않는다.
 
 <br>
 
@@ -347,7 +352,7 @@ TypeError: divmod expected 2 arguments, got 1
 - tuple은 `immutable`이지만, `unpacking`으로 풀을 수 있다.
 
 ```yml
-# return: Return an object that produces a sequence of integers from start (inclusive) to stop (exclusive) by step
+# range: Return an object that produces a sequence of integers from start (inclusive) to stop (exclusive) by step
 > x, y, rest = range(10)
  ValueError: too many values to unpack (expected 3)
 
@@ -462,7 +467,7 @@ TypeError: unhashable type: 'list'
 ```
 
 - `setdefault`를 사용하여 훨씬 짧은 코드로 key가 중복된 tuple을 dictionary로 구현했다.
-- `setdefault`를 사용하여 구현할 때, `[]` 가 아닌 `()`로 했다면 tuple이므로, 만들 수 없다.
+- `setdefault`를 사용하여 `[]` 가 아닌 `()`로 했다면 tuple이므로, 만들 수 없다.
 
 <br>
 
@@ -551,7 +556,6 @@ False True
 ```yml
 > s1.add('Melon')
 
-
 # s5인 경우, immutable로 바꼈기 때문에, 수정할 수 없다는 걸 확인했다.
 > s5.add('Melon')
 AttributeError: 'frozenset' object has no attribute 'add'
@@ -601,6 +605,7 @@ None
               4 BUILD_LIST               1
               6 CALL_FUNCTION            1
               8 RETURN_VALUE
+None
 ```
 
 - set([10]) 은 5단계, {10}은 3단계로 s1처럼 선언하는 방식이 더 빠르다는 걸 알 수 있다.
@@ -653,3 +658,4 @@ None
 - [인프런 파이썬 중급](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%A4%91%EA%B8%89-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
 - [python 공식문서: list comprehension](https://docs.python.org/3/tutorial/datastructures.html?highlight=list%20comprehension#list-comprehensions)
 - [[Python] list comprehension에 대한 즐거운 이해](https://shoark7.github.io/programming/python/about-list-comprehension-python)
+- [자료구조와 함께 배우는 알고리즘 입문 - 파이썬편](https://book.naver.com/bookdb/book_detail.nhn?bid=16419115)

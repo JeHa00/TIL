@@ -13,7 +13,7 @@
 
 # 1.LEGB rules(Scoping rules)
 
-> 변수(variable)의 생존 범위에 관련된 규칙
+> 변수(variable)의 생존 범위(lifetime)에 관련된 규칙
 
 - Python scope 개념을 알아야 하는 이유:
   - 신뢰성 있고, 유지보수성이 좋은 프로그램을 작성할 수 있다.
@@ -41,7 +41,7 @@
 
 <br>
 
-## 1.3 파이썬의 이름과 범위들
+## 1.3 파이썬의 이름(name)과 범위(scope)들
 
 - 파이썬에서의 변수들에 값이 할당될 때, 즉 파이썬 names을 다음과 같은 방법들로 만들 때 변수들은 존재하게 된다.
   - 변수(variable): 변수에 값을 할당하면, 변수는 만들어진다.
@@ -60,12 +60,23 @@
 
 ## 1.5 Python scope와 namespace의 관계
 
-- **Namespace** : python의 여러 scope level이 합쳐진 것으로, dictionary data type로 구현되었다.
-- 그리고, Python이 name을 저장하는 구체적인 원리다.
+> **Namespace** : python의 name이 dictionary data type으로 구현된 것
+
+- dictionary가 Python이 name을 저장하는 구체적인 원리다.
+
 - Namespace는 또한 `__dir__` 명령어에 저장되어 있다.
+
+- namespace는 각각 다른 `수명 시간(life time)`을 가지고 있다. 왜냐하면 각각 다른 지점에서 만들어지기 때문이다.
+
+  - from [Python-course.eu: Namespaces](https://python-course.eu/python-tutorial/namespaces.php)
+
 - 즉, **`__dir__`은 Namespace를 확인할 수 있는 명령어이고, 할당된 name이 가지는 scope을 보여준다.**
+
   - `.__dict__.keys()` 로 key value로 indexing하여 확인할 수 있다.
-  - python은 name의 존재유무를 확인하기 위해서, `여러 scope levels(or namespace)`를 찾아본다.
+
+  - python은 name의 존재유무를 확인하기 위해서, 여러 scope levels(or namespace)를 찾아본다.
+
+    - local namespace -> global namespace -> global or module namespace -> built-in namespace
 
 <br>
 
@@ -73,12 +84,13 @@
 
 <p align="center"><image src ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcf0kvQ%2FbtqzVDW0VvA%2FdDklbytc0lkJ96o5NBicI0%2Fimg.png"/></p>
 
-- local -> enclosing -> global -> built-in scope 순서로 주어진 name을 파이썬이 찾는다.
+- local namespace -> enclosing namespace -> global(or module) namespace-> built-in scope namespace 순서로 주어진 name을 파이썬이 찾는다.
 
 - **Local(or function) scope**: Python function의 body 또는 code block 부분이 local scope
 
   - fuction 내에서 정의한 name들만 포함한다.
   - 이 `function의 코드에서만` local scope에 있는 name을 확인할 수 있다.
+  - lifetime of a local namespace: 할당된 function이 종료되면 끝난다.
 
 - **Enclosing(ornonlocal) scope**: 중첩함수(nested functions)를 위해서만 존재하는 scope
 
@@ -89,12 +101,14 @@
 
   - 프로그램 또는 모듈에서 `최고 수준으로` 정의한 이름들을 포함한다.
   - `어느 코드에서든지` Global scope에 있는 name을 확인할 수 있다.
-  - [Top level이란??](https://jeha00.github.io/post/python_basic/python_basic_23_ifnamemain/#22-top-level-%EC%9D%B4%EB%9E%80)
+    - [Top level이란??](https://jeha00.github.io/post/python_basic/python_basic_23_ifnamemain/#22-top-level-%EC%9D%B4%EB%9E%80)
+  - lifetime of a module namespace: 일반적으로 script가 끝날 때까지만 지속된다.
 
-- **Built-in scope**: script를 run할 대마다 만들어지는 특별한 scope
+- **Built-in scope**: script를 run할 때마다 만들어지는 특별한 scope
 
   - `Python 안에 내장된` 예약어들, functions들 등등의 name을 포함한다.
-  - 이 scope 또한 Global scope처럼 `어느 코드에서든지` name을 확인할 수 있다.
+  - 이 scope 또한 Global scope처럼 `어느 코드에서든지` name을 확인한다.
+  - Built-in namespace는 python interpreter가 시작되면 만들어지고, 절대로 삭제되지 않는다.
 
 <br>
 
@@ -156,12 +170,16 @@ The cube of 30 is : 27000
 >     print(f'Printing var from outer_func() : {var}')
 
 > outer_func()
+Printing var from inner_func(): 100
+Printing var from outer_func(): 100
+
 > inner_func()
+NameError: name 'inner_func' is not defined
 ```
 
 - `outer_func()`을 호출할 때, `outer_func()`의 local scope이 만들어진다. 이 scope은 동시에 `inner_func()`의 `enclosing scope`이라고도 한다.
   - `global scope`과 `local scope` 둘 다 아니고, 이 사이에 놓여있는 특별한 scope을 의미한다.
-- 또한, `inner_func()`은 enclosing function인 outer_func이 실행되는 동안에만 유지되는 일시적인 함수다. 즉, `outer_func()`의 code에서만 `inner_func()`은 찾을 수 있다.
+- 또한, `inner_func()`은 enclosing function인 outer_func이 실행되는 동안에만 유지되는 일시적인 함수다. 즉, `outer_func()`의 code에서만 `inner_func()`을 찾을 수 있다.
 
 <br>
 
@@ -221,6 +239,80 @@ UnboundLocalError: local variable 'var' referenced before assignment
 
 <br>
 
+## 1.10 LEGB rules: summary
+
+```yml
+# This area is the global or module scope
+> number = 100
+> def outer_func():
+>      # This block is the local scope of outer_func()
+>      # It's also the enclosing scope of inner_func()
+>     def inner_func():
+>         # This block is the local scope of inner_func()
+>         print(number)
+>
+>     inner_func()
+
+> outer_func()
+100
+```
+
+- Inside inner_func(): local scope 이지만, number variable는 존재하지 않는다.
+- Inside outer_func(): the enclosing scope 이다. 여기에는 number variable이 정의되지 않았다.
+- In the module scope: the global scope 이다. number variable을 찾을 수 있어서 출력할 수 있다.
+- 만약 number variable이 the global scope에서 정의되지 않는다면, 파이썬은 built-in scope에서 찾을 것이다.
+
+<br>
+
+## 1.11 LEGB rules: Built-in scope
+
+- Built-in scope은 `builtins` 라 불리는 표준 라이브러리 모듈로서 실행되는 특별한 파이썬 scope이다.
+- 파이썬은 LEGB 에서 마지막으로 built-in을 찾는다.
+- 이 scope에서는 어느 모듈이든지 import할 필요 없이 names을 사용할 수 있다.
+- `builtins` 안에 있는 name들은 언제나 Python의 global scope에, `__builtins__`로 담겨진다. 밑에 예제를 보자.
+
+```yml
+> dir()
+['__annotations__', '__builtins__',..., '__package__', '__spec__']
+
+> dir(__builtins__)
+['ArithmeticError', 'AssertionError',..., 'tuple', 'type', 'vars', 'zip']
+```
+
+- `dir()`의 첫 호출에서 `__builtins__`을 확인할 수 있다.
+- 그리고 `__builtins__`를 dir로 내부를 들여다보면, 파이썬의 built-in names의 전체 목록을 얻을 수 있다.
+
+<br>
+
+- 또 한 가지 특징은 global scope에서 어떠한 built-in names이든 오버라이드할 수 있다.
+- 하지만 우연히 또는 부주의하게 이렇게 오버라이드가 된다면 위험하며, bugs를 찾기 어렵다. 그래서 이런 종류의 실행은 최대한 피하는 게 낫다.
+
+```yml
+# a built-in fuction의 표준 사용
+> abs(-15)
+15
+
+# global scope에서 built-in name을 재정의한다.
+> abs = 20
+
+> abs(-15)
+TypeError: 'int' object is not callable
+
+> del abs
+> abs(-15)
+15
+```
+
+## 1.12 LEGB rules: finally summary
+
+<p align="center"><image src ="
+https://user-images.githubusercontent.com/78094972/160286468-2f395646-c83f-44ae-a5c9-b34f8c638d7d.PNG
+"/></p>
+
+- From: [Python Scope & the LEGB rule: Resolving Names in Your code](https://realpython.com/python-scope-legb-rule/)
+
+<br>
+
 ---
 
 # 2. Stack and Heap
@@ -232,6 +324,7 @@ UnboundLocalError: local variable 'var' referenced before assignment
 # Reference
 
 - [파이썬 프로그래밍 기초 - 지역 변수와 전역 변수](https://www.youtube.com/watch?v=xNaBCSnm3Hg&list=PLUWNXmQtLdmDCRVur4eHjKhLZtipVexCE&index=13)
+- [Python-course.eu: Namespaces](https://python-course.eu/python-tutorial/namespaces.php)
 - [스코핑 룰(Scoping rule)](https://blog.hexabrain.net/283)
 - [자료구조와 함께 배우는 알고리즘 입문 파이썬편](http://www.yes24.com/Product/Goods/91219874)
 - [Python Scope & the LEGB rule: Resolving Names in Your code](https://realpython.com/python-scope-legb-rule/)

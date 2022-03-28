@@ -309,9 +309,7 @@ TypeError: 'int' object is not callable
 
 ## 1.12 LEGB rules: finally summary
 
-<p align="center"><image src ="
-https://user-images.githubusercontent.com/78094972/160286468-2f395646-c83f-44ae-a5c9-b34f8c638d7d.PNG
-"/></p>
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/160286468-2f395646-c83f-44ae-a5c9-b34f8c638d7d.PNG"/></p>
 
 - From: [Python Scope & the LEGB rule: Resolving Names in Your code](https://realpython.com/python-scope-legb-rule/)
 

@@ -84,7 +84,7 @@
 
 <p align="center"><image src ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbOsMlk%2FbtqSScz12Dt%2F76hosfnaej6J0798NwJKV0%2Fimg.png"/></p>
 
-- local namespace -> enclosing namespace -> global(or module) namespace-> built-in scope namespace 순서로 주어진 name을 파이썬이 찾는다.
+- local namespace -> enclosing namespace -> global(or module) namespace-> built-in scope namespace 순서로 주어진 name을 찾는다.
 
 - **Local(or function) scope**: Python function의 body 또는 code block 부분이 local scope
 
@@ -177,26 +177,29 @@ Printing var from outer_func(): 100
 NameError: name 'inner_func' is not defined
 ```
 
-- `outer_func()`을 호출할 때, `outer_func()`의 local scope이 만들어진다. 이 scope은 동시에 `inner_func()`의 `enclosing scope`이라고도 한다.
+- `outer_func()`을 호출할 때, `outer_func()`의 local scope이 만들어진다.
+- 이 scope은 동시에 `inner_func()`의 `enclosing scope`이라고도 한다.
   - `global scope`과 `local scope` 둘 다 아니고, 이 사이에 놓여있는 특별한 scope을 의미한다.
-- 또한, `inner_func()`은 enclosing function인 outer_func이 실행되는 동안에만 유지되는 일시적인 함수다. 즉, `outer_func()`의 code에서만 `inner_func()`을 찾을 수 있다.
+- 또한, `inner_func()`은 enclosing function인 outer_func이 실행되는 동안에만 유지되는 일시적인 함수다.
+- 즉, `outer_func()`의 code에서만 `inner_func()`을 찾을 수 있다.
 
 <br>
 
 ## 1.9 LEGB rules: Modules - The Global Scope
 
-- 1. 프로그램을 실행한 순간부터 `global scope`에 있는 것이다.
+1. 프로그램을 실행한 순간부터 `global scope`에 있는 것이다.
 
-- 2. 이 `global scope`은 module file과 깊은 연관이 있기 때문에, `module scope`이라고도 한다.
+2. 이 `global scope`은 module file과 깊은 연관이 있기 때문에, `module scope`이라고도 한다.
 
-- 3. 그리고 현재 실행되는 script 또는 module이 entry point 역할을 한다면, 이 시점부터 scope of `__main__`이 된다.
+3. 그리고 현재 실행되는 script 또는 module이 entry point 역할을 한다면, 이 시점부터 scope of `__main__`이 된다.
 
-- 4. namespace를 확인하기 위해서 `dir()`을 사용할 때, 아무런 인자 없이 사용하면 `main global Python scope`에서 이용가능한 name list를 얻는다.
+4. namespace를 확인하기 위해서 `dir()`을 사용할 때, 아무런 인자 없이 사용하면 `main global Python scope`에서 이용가능한 name list를 얻는다.
 
-- 5. 프로그램 실행할 때 단 하나의 `global Python scope`만이 존재한다. 그리고, 프로그램 실행이 끝나야 scope이 종료된다.
+5. 프로그램 실행할 때 단 하나의 `global Python scope`만이 존재한다. 그리고, 프로그램 실행이 끝나야 scope이 종료된다.
 
-- 6. local scope에 있는 global 변수를 참조하거나 접근할 수 있다.
-  - 하지만, local scope에서 global variable에 값을 할당할려고 하면 Error가 발생된다.
+6. local scope에 있는 global 변수를 참조하거나 접근할 수 있다.
+
+- 하지만, local scope에서 global variable에 값을 할당할려고 하면 Error가 발생된다.
 
 ```yml
 # a global variable
@@ -209,7 +212,8 @@ NameError: name 'inner_func' is not defined
 UnboundLocalError: local variable 'var' referenced before assignment
 ```
 
-- global variable을 업데이트하려고 시도했지만, local scope 내에서는 global variable을 선언할 수 없기 때문에, 파이썬에서는 `var` 이라는 동일한 이름으로 local variable을 새롭게 만들었다.
+- global variable을 업데이트하려고 시도했지만, local scope 내에서는 global variable을 선언할 수 없기 때문에,
+- 파이썬에서는 `var` 이라는 동일한 이름으로 local variable을 새롭게 만들었다.
 
 - 그리고, 이 과정에서 첫 번째 할당 `var + 1` 전에 local var을 사용하려고 시도한 걸 알았기 때문에 Error가 발생된다.
 
@@ -285,7 +289,7 @@ UnboundLocalError: local variable 'var' referenced before assignment
 <br>
 
 - 또 한 가지 특징은 global scope에서 어떠한 built-in names이든 오버라이드할 수 있다.
-- 하지만 우연히 또는 부주의하게 이렇게 오버라이드가 된다면 위험하며, bugs를 찾기 어렵다. 그래서 이런 종류의 실행은 최대한 피하는 게 낫다.
+- 하지만 부주의하게 이렇게 오버라이드가 된다면 위험하며, bugs를 찾기 어렵다. 그래서 이런 종류의 실행은 최대한 피하는 게 낫다.
 
 ```yml
 # a built-in fuction의 표준 사용

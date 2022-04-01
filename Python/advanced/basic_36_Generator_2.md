@@ -1,7 +1,9 @@
 # Intro
 
 > 1. [병행성과 병렬성이란??](#1-병행성과-병렬성이란)
-> 2. [Generator](#2-generator)
+> 2. [Generator란?](#2-generator란)
+> 3. [Generator 예제](#3-generator-예제)
+> 4. [Generator 관련 중요 함수들](#4-generator-관련-중요-함수들)
 
 <br>
   
@@ -24,40 +26,51 @@
 
 <br>
 
-# 2. Generator
+---
 
-<br>
-
-## 2.1 Generator란?
+# 2 Generator란?
 
 > - 모든 값을 메모리에 올려두고 이용하는 게 아닌,
 > - 필요할 때마다 한 번에 한 개의 항목을 생성해서 메모리에 올려두고 반환하는 객체.
 > - 그래서 메모리를 유지하지 않기 때문에, 효율적으로 사용할 수 있다.
 
 - Generator는 iterator의 한 종류로, 위와 같은 이유로 매우 강력한 iterator다.
-- 그래서, 출력하기 위해 `next()` 를 사용한다.
+- 연산을 필요한 순간까지 미루는 걸 `Lazy evaluation`이라 한다.
+- iterator이므로 출력하기 위해 `next()` 를 사용한다.
 
 - Generator function이 일반 function과의 차이는 **`yield`** statement다.
 
-- Generator = iterator + yield
+- **Generator = iterator + yield**
 
-  - **`yield`**를 사용하면 generator로 인식한다.
+- **공통점**:
 
-- `yield` 또한 `return` 처럼 값을 반환한다.
+  - `yield` 또한 `return` 처럼 값을 반환한다.
 
-- 차이점:
+- **차이점**:
 
-  - `return`을 사용할 경우 지역 변수가 사라지지만, `yield`는 local을 나가도 사라지지 않는다.
+  - `return`을 사용할 경우 지역 변수가 사라지지만,
+  - `yield`는 local을 나가도 사라지지 않는다.
+  - 그리고, `yield`는 제네레이터를 반환한다.
 
 - **Generator의 장점**
 
-  1. list comprehension, dictionary comprehension 등 데이터 양이 증가하면 메모리 사용량이 증가하는데, 이 때 제네레이터를 사용하여 메모리 사용량을 줄일 수 있다.
+  1. list comprehension, dictionary comprehension 등 데이터 양이 증가하면 메모리 사용량이 증가하는데, 이 때 제네레이터를 사용하여 메모리 사용량을 줄이고, 수행시간도 절약해준다.
   2. 단위 실행 가능한 코루틴(Coroutine) 구현과 연동이 가능하다.
   3. 작은 메모리 조각으로 사용 가능하다.
 
-## 2.2 Generator 예제
+- **Generator 주의사항**
+  - generator는 실행 시, 함수의 몸체를 실행하는 게 아니라, generator 함수가 가진 객체를 반환하는 일을 한다.
+  - 한 번 생성해서 반환한 객체를 보관하지 않기 때문에, 이전 코드를 실행한 후, 추가 코드를 실행하면 아무런 객체도 출력되지 않는다.
 
-- 첫 번째 예제
+<br>
+
+---
+
+# 3. Generator 예제
+
+<br>
+
+## 3.1 예제 1
 
 ```yml
 # Generator Ex1
@@ -96,12 +109,13 @@ StopIteration
 
 <br>
 
-- 두 번째 예제
-  - 이 예제가 단순히 동일한 일을 하는 것처럼 보이지만,
-  - 생성된 값을 미리 메모리에 만들어 두는 게 아닌,
-  - for 문에서 필요한 때마다 generator로부터 받아온다.
-  - 즉, 메모리에서 보관하지 않는다.
-  - `list comprehension` 과 유사해보이지만, `소괄호()`를 사용하여 `generator expression`을 만들 수 있다.
+## 3.2 예제 2
+
+- 이 예제가 단순히 동일한 일을 하는 것처럼 보이지만,
+- 생성된 값을 미리 메모리에 만들어 두는 게 아닌,
+- for 문에서 필요한 때마다 generator로부터 받아온다.
+- 즉, 메모리에서 보관하지 않는다.
+- `list comprehension` 과 유사해보이지만, `소괄호()`를 사용하여 `generator expression`을 만들 수 있다.
 
 ```yml
 # list comprehension
@@ -131,7 +145,8 @@ A Point.A Point.A Point.
 B Point.B Point.B Point.
 
 # Generator
-# Generator이기 때문에, yield까지 있는 단계를 다 출력했다.
+# Generator이기 때문에, 사용하는 순간에만 함수를 실행했다.
+# 그래서 Start, continue, End 까지 출력되었다.
 > for i in temp3:
 >   print(i)
 Start
@@ -144,14 +159,126 @@ End
 - 그러면 list comprehension과 generator를 더 자세히 비교해보자.
 
 ```yml
+> import time
 
+> l = [1, 2, 3, 4]
 
+> def print_iter(iter):
+>     for element in iter:
+>         print(element)
 
+> def lazy_return(num):
+>     print("sleep 1s")
+>     time.sleep(1)
+>     return num
+
+> print('comprehension_list = ')
+> comprehension_list = [lazy_return(i) for i in L]
+> print_iter(comprehension_list)
+
+> print('generator_exp = ')
+> generator_exp = [lazy_return(i) for i in L]
+> print_iter(generator_exp)
+sleep 1s
+sleep 1s
+sleep 1s
+1
+2
+3
+
+generator_exp=
+sleep 1s
+1
+sleep 1s
+2
+sleep 1s
+3
 ```
+
+- 위 code review
+
+  - list comprehension은 함수를 미리 다 실행시켜서 'sleep 1s' 문자열이 먼저 출력되었다.
+  - 하지만, generator는 실제로 값을 출력하기 전까지 실행하지 않았다.
+  - 값을 사용하는 순간에만 함수를 실행하고 있다.
+
+- 이 내용을 더 자세히 확인해보자.
+- print_iter를 아래와 같이 수정한 후, 실행하자.
+
+```yml
+> def print_iter(iter):
+>    for element in iter:
+
+# element가 1일 떄 코드 실행은 중단된다.
+>         if element == 1:
+>             break
+>         print(element)
+
+>  print_iter(comprehension_list)
+comprehension_list=
+sleep 1s
+sleep 1s
+sleep 1s
+
+> print_iter(generator_exp)
+generator_exp=
+sleep 1s
+```
+
+- 위 code review
+
+  - list comprehension은 lazy_return 함수를 모두 실행한 후, print_iter 함수를 실행할 때 멈췄다.
+  - generator expression은 print_iter 함수가 실행 시, lazy_return 함수를 실행한 걸 확인할 수 있다.
+
+- 이번에는 속도를 비교해보자.
+
+```yml
+> start_time = time.time()
+> comprehension_list=[lazy_return(i) for i in L]
+> print_iter(comprehension_list)
+> print(time.time()-start_time)
+
+sleep 1s
+sleep 1s
+sleep 1s
+3.0265092849731445
+
+> start_time = time.time()
+> generator_exp = (lazy_return(i) for i in L)
+> print_iter(generator_exp)
+> print(time.time()-start_time)
+
+sleep 1s
+1.0092661380767822
+```
+
+- 위 code review
+
+  - 제네레이터를 사용했을 때 시간이 단축되었다.
+
+- 이번에는 메모리를 비교해보자.
+
+```yml
+> import sys
+
+# 크기를 늘렸다.
+> L = [1,2,3,4,5,6,7,8,9,10]
+
+> comprehension_list=[lazy_return(i) for i in L]
+> print(sys.getsizeof(comprehension_list))
+
+> generator_exp = (lazy_return(i) for i in L)
+> print(sys.getsizeof(generator_exp))
+
+184 #list comprehension
+112 # generator
+```
+
+- 데이터의 크기가 커질수록 제네레이터의 효율성이 더 두드러지게 나타난다!!
+- 이렇게 어떤 값이 실제로 쓰일 때까지 그 값의 연산을 뒤로 미루는 방식을 `Lazy Evaluation`이라 한다.
 
 <br>
 
-## 2.3 Generator 관련 중요 함수들
+## 4. Generator 관련 중요 함수들
 
 - Generator 관련 함수들은 `itertools`를 import하는 것부터 시작한다.
 - 계속 복습을 하면서 활용해보도록 하자.
@@ -306,3 +433,4 @@ E  :  ['E', 'E', 'E']
 
 - [인프런 파이썬 중급](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%A4%91%EA%B8%89-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
 - [itertools — Function to create an etherator for efficient looping](https://docs.python.org/ko/3/library/itertools.html#itertools.product)
+- [Python - generator](https://velog.io/@soojung61/Python-generator)

@@ -280,6 +280,8 @@ could
 do
 > print(next(wi))
 tomorrow
+> print(next(wi))
+Stopped Iteration
 ```
 
 - 구현했지만, 코드량이 많아진다. 그러면 제네레이터를 사용해서 구현해보자.

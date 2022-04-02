@@ -6,7 +6,7 @@
 > 4. [Generator 관련 중요 함수들](#4-generator-관련-중요-함수들)
 
 <br>
-  
+
 - 병행성을 위한 방법으로 generator와 coroutine을 알아보고자 한다.
 - 이번 포스팅에서는 `generator`를 알아본다.
 - 그리고, 병행성과 병렬성이 개념적으로 무엇인지 학습한다.
@@ -283,12 +283,14 @@ sleep 1s
 
 <br>
 
-## 4. Generator 관련 중요 함수들
+# 4. Generator 관련 중요 함수들
 
 - Generator 관련 함수들은 `itertools`를 import하는 것부터 시작한다.
 - 계속 복습을 하면서 활용해보도록 하자.
 
 <br>
+
+## 4.1 itertools.count(시작값, 증가값)
 
 - 첫 번째는 `itertools.count(시작값, 증가값)` 이다.
 - 시작값에서 증가하여, 증가값만큼 커져서 무한히 출력된다.
@@ -315,6 +317,8 @@ sleep 1s
 
 <br>
 
+## 4.2 itertools.takewhile(predicate, iter)
+
 - 두 번째는 `itertools.takewhile(predicate, iter)` 다.
 - iter의 원소들 중 predicate의 조건에 참인 값들을 반환한다.
 - predicate는 영어 단어 자체의 의미로는 영어 문법의 서술부를 의미한다.
@@ -335,6 +339,10 @@ sleep 1s
 998.5
 ```
 
+<br>
+
+## 4.3 itertools.filterfalse(predicate, iter)
+
 - 세 번째는 `itertools.filterfalse(predicate, iter)` 이다.
 - 두 번째인 `itertools.takewhile`과 반대 의미를 가진 함수다.
 - iter 원소들 중에서 predicate의 조건에 부정인 값들을 반환한다.
@@ -349,6 +357,10 @@ sleep 1s
 4
 5
 ```
+
+<br>
+
+## 4.4 itertools.accumulate(iterable, func=operator.add)
 
 - 네 번째는 `itertools.accumulate(iterable, func=operator.add)` 이다.
 - iterable의 누적 합계나, 다른 이항함수 func의 누적 결과를 반환하는 iterator를 만든다.
@@ -368,6 +380,10 @@ sleep 1s
 5050
 ```
 
+<br>
+
+## 4.5 itertools.chanin(\*itertables)
+
 - 다섯 번째는 `itertools.chanin(*itertables)`이다.
 - 첫 번째 iterable에서 소진될 때까지 원소들을 반환한 후, 다음 이터러블로 넘어간다.
 - 이런 식으로 iterables의 모든 iterable이 소진될 때까지 진행하는 iterator를 만든다.
@@ -386,6 +402,10 @@ sleep 1s
 > print(list(gen6))
 [(0, 'A'), (1, 'B'), (2, 'C'), (3, 'D'), (4, 'E')]
 ```
+
+<br>
+
+## 4.6 itertools.product(\*iterables, repeat=)
 
 - 여섯 번째는 `itertools.product(*iterables, repeat=1)` 다.
 - 입력 이터러블들(iterables)의 데카르트 곱을 반환한다.
@@ -411,6 +431,10 @@ gen7 -  [('A',), ('B',), ('C',), ('D',), ('E',)]
 ('D', 'A'), ('D', 'B'), ('D', 'C'), ('D', 'D'), ('D', 'E'),
 ('E', 'A'), ('E', 'B'), ('E', 'C'), ('E', 'D'), ('E', 'E')]
 ```
+
+<br>
+
+## 4.7 itertools.groupby(iterable, key = none)
 
 - 일곱 번쨰는 `itertools.groupby(iterable, key = none)` 이다.
 - (분류기준, 분류기준으로 묶인 데이터) 순서인 tuple로 값을 반환한다.

@@ -265,8 +265,14 @@ inner >>> [15, 35, 40] / 3
 ```
 
 - 바로 위의 예시처럼 `nonlocal`을 사용하는 방법 그리고, UnboundLocalError를 설명할 때 언급한 `global` 을 사용하는 법이 잘못된 closure 사용법이다.
+
+  - `nonlocal`은 local variable 하위에 또 local scope이 있을 때, 상위 local variable을 수정할 때 사용한다.
+  - `global`은 local scope에서 global variable에 접근하고자 할 때 사용한다.
+
 - UnboundLocalError 를 설명했을 때와는 달리 변수를 전역으로 한게 아닌 자유 변수로 만들었다.
+
 - 그래서 closure지만, 좋은 방법이 아니다.
+
 - 왜냐하면 함수 내에 전역 변수와 연결되는 게 있다면 _디버깅_ 할 때 쉽지 않다.
 
 ---

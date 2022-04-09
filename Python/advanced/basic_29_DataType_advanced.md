@@ -229,34 +229,6 @@ Classes(rank='D', number='1'), Classes(rank='D', number='2'), Classes(rank='D', 
 - 코드 몇 줄을 줄이기 위해서 가독성이 많이 떨어진다면 오히려 삼가해야할 방법이라 생각한다.
 - 그래서 reference에서는 `filter`와 `map`을 사용하라고 권고한다.
 
-- map(function, iterator) --> map object
-
-  - Make an iterator that computes the function using arguments from each of the iterables.
-  - Stops when the shortest iterable is exhausted.
-
-- filter(function or None, iterable) --> filter object
-  - Return an iterator yielding those items of iterable for which function(item) is true.
-  - If function is None, return the items that are true.
-
-<br>
-
-```yml
-> chars = '+_)(*&^%$#@!~)'
-
-> print(map(ord, chars))
-<map object at 0x00000271BDE3DF70>
-
-# map fuction이 chars라는 iterator를 ord function으로 계산하여 그 결과를 iterator로 만든다.
-# filter fuction이 map으로 만든 iterator를 lambda 함수에 참인 iterator로 만든다.
-> print(filter(lambda x : x > 40, map(ord, chars)))
-<filter object at 0x0000017CE1B5DC40>
-
-> code_list4 = list(filter(lambda x : x > 40, map(ord, chars)))
-
-> print(code_list4)
-[43, 95, 41, 42, 94, 64, 126, 41]
-```
-
 <br>
 
 ## 3.2 list comprehension의 주의사항

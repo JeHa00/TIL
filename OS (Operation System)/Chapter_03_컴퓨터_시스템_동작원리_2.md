@@ -34,7 +34,7 @@
    → A는 CPU에게 system call이라는 SW interrupt를 발생  
    → CPU는 프로그램 A의 코드를 실행하던 일을 멈추고, 현재 상태를 프로그램의 PCB에 저장한다  
    → CPU의 제어권이 운영체제에게 넘어간다  
-   → A가 입출력 연산을 요청했으므로, 운영체제가 프로세스 A를 봉쇄상태로 표시 + 운영체제는 인터럽트 처리루틴 수행  
+   → A가 입출력 연산을 요청했으므로, 운영체제가 프로세스 A를 봉쇄상태로 표시 그리고, 운영체제는 인터럽트 처리루틴 수행  
    → CPU는 컨트롤러에게 입출력 연산을 요청  
    → 컨트롤러는 A가 요청한 데이터를 디스크로부터 자신의 로컬 버퍼로 읽어온다  
    → 컨트롤러가 읽어오는 동안 CPU를 다른 프로그램 B에 할당해 계속 CPU가 일을 할 수 있도록 한다  
@@ -58,7 +58,7 @@
   → 프로세스 B가 CPU를 할당받아 명령을 수행하고, 프로세스 A는 입출력 작업을 수행한다.  
   → 프로세스 A가 입출력 작업을 완료할 때까지 CPU를 프로세스 A에게 할당 안한다.  
   → 또한, CPU를 프로세스 A에게 할당해도 명령을 수행하지 못하도록 봉쇄한다.  
-  → 프로세스 A가 입출력 작업을 완료 후, 연산 완료의 통보로서 인터럽트를 보내야 CPU가 프로세스 A가 할당된다.
+  → 프로세스 A가 입출력 작업을 완료 후, 연산 완료의 통보로서 인터럽트를 보내야 CPU가 프로세스 A가 할당.
 
 - **입출력 작업을 수행 중인 프로세스에게 CPU를 할당해도 명령을 수행하지 못하는 이유**
   - 입출력 중인 프로그램의 상태를 **_봉쇄 상태(Bblocked state)_** 로 전환하기 때문
@@ -74,7 +74,7 @@
 
 ### 5.1.3 Summary
 
-- 동기식 입출력을 요청한 프로그램은 입출력이 완료될 때까지 다음 명령을 수행할 수 없기 때문에, CPU가 낭비된다.
+- 동기식 입출력을 요청한 프로그램은 입출력이 완료될 때까지 다음 명령을 수행할 수 없어 CPU가 낭비된다.
 - 그러나, CPU의 효율적인 사용을 위해 입출력이 수행하는 동안 다른 프로그램에게 CPU를 양도하면 동시에 다수의 입출력 연산이 일어날 수 있다.
 - 그래서 다수의 프로그램이 동시에 입출력 연산을 요청하는 경우 동기성(synchronization)을 보장하기 위해 장치마다 큐를 두어 요청된 순서대로 처리할 수 있도록 한다.
 
@@ -92,7 +92,7 @@
 - **_DMA( Direct Memory Access)_** 란??
   - CPU의 중재 없이 device controller가 device의 buffer stroage의 내용을 메모리에 block 단위로 직접 복사한 후, CPU에 interrupt를 발생시키는 장치
 - **_왜 DMA가 필요한가???_**
-  - Interrupt가 발생하면 CPU가 controller의 local buffer와 memory 사이에서 데이터를 옮기는 일을 수행한다.
+  - Interrupt가 발생하면 CPU가 controller의 local buffer와 memory 사이에서 데이터를 옮기는 일을 수행.
   - 만약 사용자 프로그램이 CPU를 사용하는 중에 I/O 장치가 interrupt를 많이 걸면, CPU가 많은 방해를 받아 CPU 효율이 많이 떨어진다.
   - 그래서 DMA가 CPU를 대신하여 local buffer에서 메모리로 읽어오는 작업을 수행한다.
   - 또한, CPU는 바이트(byte) 단위로 읽어오는데 **byte가 아닌 block이라는 큰 단위로 정보를 메모리로 읽어온 후에** CPU에게 인터럽트를 발생시켜 해당 작업의 완료를 알리기 때문에, **인터럽트의 빈도를 줄인다.**
@@ -171,10 +171,10 @@
 - _전환 mechanism_
   - CPU는 보안 관련 명령을 수행하기 전에는 항상 mode bit가 0인지 확인한다.
   - 입출력 명령도 보안 관련 명령이므로, 사용자 프로그램이 입출력을 직접 할 수 없고, 운영체제가 한다.
-  - 그래서, 사용자 프로그램이 입출력 작업을 하고 싶으면 sw interrupt인 system call을 CPU에 걸어서 운영체제가 CPU를 할당 받고, interrupt vector가 가리키는 위치를 통해 interrupt service routine으로 이동한다.
+  - 그래서, 사용자 프로그램이 입출력을 하고 싶으면 sw interrupt인 system call을 CPU에 걸어서 운영체제가 CPU를 할당 받고, interrupt vector가 가리키는 위치를 통해 interrupt service routine으로 이동한다.
   - sw interrupt를 거는 순간 mode bit 는 1에서 0으로 세팅되어 입출력 명령을 수행할 수 있다.
 
-<p align="center"> <image src ="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e6ff5565-3556-4fb4-a5cd-ed4048744fff/kernel_mode.png"/></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/163322482-5e78c22d-f94e-4022-9839-b6c826446b73.PNG"/></p>
 
 <br>
 

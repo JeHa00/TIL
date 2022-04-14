@@ -1,12 +1,3 @@
----
-title: "[TIL] OS Chapter 04: 프로그램의 구조와 실행"
-date: 2022-04-15T00:27:39+09:00
-draft: false
-summary: 프로그램의 구조와 실행에 대해 설명한다. 예를 들어 프로그램의 주소영역, PCB, Program counter, 일반 명령과 특권 명령, Virtual memory, kernel mode와 user mode 등등을 알아본다.
-tags: ["TIL", "OS"]
-categories: ["개발-dev OS"]
----
-
 # 0. Introduction
 
 > 1. [프로그램의 구조와 인터럽트](#1-프로그램의-구조와-인터럽트)
@@ -75,6 +66,8 @@ categories: ["개발-dev OS"]
   - **OS가 존재하는 메모리 위치** 를 가리키면 **CPU가 'kernel mode' 에서 수행 중**
   - **사용자 프로그램의 메모리 위치** 를 가리키면 **CPU가 'user mode' 에서 수행 중**
 
+<br>
+
 ## 2.2 일반 명령과 특권 명령
 
 - **일반 명령**
@@ -89,6 +82,8 @@ categories: ["개발-dev OS"]
 - **운영체제를 향한 사용자 프로그램의 대행 요청: system call**
   - 사용자 프로그램이 특권 명령을 사용하고자 할 때, 사용자 프로그램이 특권 명령을 수행할 수 없으므로 운영체제에게 대행 요청 **system call** 을 한다.
   - 그러면 CPU의 제어권이 운영체제에게 넘어가서 특권 명령을 수행한다.
+
+<br>
 
 ## 2.3 인터럽트 라인을 세팅하는 이유
 
@@ -192,6 +187,8 @@ categories: ["개발-dev OS"]
 - interrupt line setting을 통해 interrupt가 발생했으면 현재 수행하던 process를 멈추고, 운영체제의 인터럽트 처리 루틴으로 이동하여, 인터럽트 처리를 수행한다.
 - 인터럽트 처리를 마치면 인터럽트 발생 직전의 프로세스에게 CPU 제어권이 넘어간다.
 
+<br>
+
 ## 5.2 Interrupt의 서로 다른 중요도
 
 - 인터럽트 처리 중, 또 다른 인터럽트가 발생한 경우에는 어떻게 처리되는가???
@@ -206,19 +203,31 @@ categories: ["개발-dev OS"]
 
 # 6. 시스템 콜
 
-- system call 사용의 예
+- **system call 사용의 예**
 
-  - process가 CPU에서 명령을 수행하던 중 I/O 작업이 필요한 경우, **sw interrupt인 system call**을 통해 kernel 함수를 호출한다.  
-    → kernel 함수는 사용자 프로그램이 수행할 수 없으므로, CPU 제어권을 OS에게 넘겨야 하는데,  
-    → OS에게 넘기기 위해서 인터럽트 라인을 세팅하는 명령을 실행하여, CPU에게 interrupt가 발생했다는 걸 알린다.  
-    → CPU는 program counter가 가리키는 명령을 하나씩 실행한 후, interrupt line을 체크하여 interrupt 발생을 확인한다.  
-    → interrupt를 확인한 CPU는 현재 실행 중인 process를 멈춘 후, process의 실행 상태를 PCB에 저장한다.  
-    → OS는 interrupt line을 통해서 어느 종류의 interrupt인지 확인한 후, interrupt vector가 가리키는 interrut service routine을 찾아 실행하여, 요청한 I/O에 해당하는 device controller에게 I/O 명령을 한다.  
-    → I/O 요청이 수행되는 동안, 해당 process는 데이터가 없어서 다음 명령을 수행할 수 없으므로, CPU를 다른 process에게 이양한다.  
-    → 다른 process의 작업을 CPU가 작업하는 도중에, I/O 작업이 완료되면 device controller가 CPU에게 interrupt를 발생시켜 I/O 작업 완료를 알린다. 이 때 발생한 interrupt는 HW interrupt다.  
-    → iterrupt 처리 내용으로 device controller가 device로부터 읽어와서 local buffer에 저장한 내용을 메모리로 복사해온다.  
-    → 복사 후, I/O 작업을 요청했던 process에게 다시 CPU를 얻을 수 있는 권한을 준다.  
+  - process가 CPU에서 명령을 수행하던 중 I/O 작업이 필요한 경우, **sw interrupt인 system call**을 통해 kernel 함수를 호출한다.
+
+    → kernel 함수는 사용자 프로그램이 수행할 수 없으므로, CPU 제어권을 OS에게 넘겨야 하는데,
+
+    → OS에게 넘기기 위해서 인터럽트 라인을 세팅하는 명령을 실행하여, CPU에게 interrupt가 발생했다는 걸 알린다.
+
+    → CPU는 program counter가 가리키는 명령을 하나씩 실행한 후, interrupt line을 체크하여 interrupt 발생을 확인한다.
+
+    → interrupt를 확인한 CPU는 현재 실행 중인 process를 멈춘 후, process의 실행 상태를 PCB에 저장한다.
+
+    → OS는 interrupt line을 통해서 어느 종류의 interrupt인지 확인한 후, interrupt vector가 가리키는 interrut service routine을 찾아 실행하여, 요청한 I/O에 해당하는 device controller에게 I/O 명령을 한다.
+
+    → I/O 요청이 수행되는 동안, 해당 process는 데이터가 없어서 다음 명령을 수행할 수 없으므로, CPU를 다른 process에게 이양한다.
+
+    → 다른 process의 작업을 CPU가 작업하는 도중에, I/O 작업이 완료되면 device controller가 CPU에게 interrupt를 발생시켜 I/O 작업 완료를 알린다. 이 때 발생한 interrupt는 HW interrupt다.
+
+    → iterrupt 처리 내용으로 device controller가 device로부터 읽어와서 local buffer에 저장한 내용을 메모리로 복사해온다.
+
+    → 복사 후, I/O 작업을 요청했던 process에게 다시 CPU를 얻을 수 있는 권한을 준다.
+
     → 그러면 I/O 작업을 이제 완료한 process는 CPU를 기다리는 큐에 삽입되고, CPU의 제어권은 iterrupt를 당한 process에게 넘어가서 하던 작업을 계속 수행한다.
+
+<br>
 
 - **process가 CPU를 빼앗기는 경우: 2가지**
   - **Timer의 CPU 할당 시간이 만료된 경우, interrupt가 발생**
@@ -226,9 +235,8 @@ categories: ["개발-dev OS"]
     - 한 process가 CPU를 독점하는 걸 방지
   - **process가 I/O 작업 같은 kernel code 수행이 필요한 경우 sw interrupt인 system call 하는 경우**
     - 시간이 오래 걸리는 I/O 작업이 수행하는 동안, CPU를 다른 process에게 할당한다.
-      - 그 이유는???
-        - 입출력 작업을 요청한 process에게 CPU를 할당해도 파일 데이터가 있어야 당장 다음 명령을 수행할 수 있는데,
-        - I/O 연산 속도는 CPU 연산 속도보다 매우 느리기 때문에, 긴 기다리는 시간 동안 CPU가 일을 할 수 없어 비효율적이기 때문이다.
+      - 입출력 작업을 요청한 process에게 CPU를 할당해도 파일 데이터가 있어야 당장 다음 명령을 수행할 수 있는데,
+      - I/O 연산 속도는 CPU 연산 속도보다 매우 느리기 때문에, 긴 기다리는 시간 동안 CPU가 일을 할 수 없어 비효율적이기 때문이다.
 
 <br>
 

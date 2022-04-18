@@ -1,4 +1,4 @@
-p# 0. Introduction
+# 0. Introduction
 
 > 1. [프로세스의 개념](#1-프로세스의-개념)
 > 2. [프로세스의 상태(Process state)](#2-프로세스의-상태-process-state)

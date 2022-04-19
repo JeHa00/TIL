@@ -9,9 +9,7 @@
 
 인프런에서 [Integerous](https://github.com/namjunemy)님이 만드신 강의를 통해서 [namjunemy](https://github.com/namjunemy)님의 Github TIL 을 보고 많은 걸 느껴 시작한다.
 
-
 <br>
-
 
 ## 작성 규칙
 
@@ -23,106 +21,85 @@
 - contributions를 초록색으로 채우는 것에 집착하지 않는다.
 - Reference를 확실히 명시하며, 참고를 허용하는 자료만 사용한다.
 
-
 <br>
-
-
-
 
 ## 분류
 
-
 <br>
 
-
 ### [Python](https://github.com/JeHa00/TIL/tree/master/Python) & [Django]
+
 - [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 - [Python advanced](https://github.com/JeHa00/TIL/tree/master/Python/advanced)
-
-
 
 <br>
 
 ### [Network](https://github.com/JeHa00/TIL/tree/master/Network)
-- [HTTP](https://github.com/JeHa00/TIL/tree/master/Network/HTTP)
 
+- [HTTP](https://github.com/JeHa00/TIL/tree/master/Network/HTTP)
 
 <br>
 
 ### Algorithm
-- 
 
-
-<br>
-
-
-
-### [OS](https://github.com/JeHa00/TIL/tree/master/OS%20(Operation%20System))
-- [Chapter 02: 운영체제 개요](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_02_%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C_%EA%B0%9C%EC%9A%94.md)
-- [Chapter 03: 컴퓨터 시스템 동작원리 上](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_1.md)
-- [Chapter 03: 컴퓨터 시스템 동작원리 下](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_2.md)
-- [Chapter 04: 프로그램의 구조와 실행](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_04_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98%EA%B5%AC%EC%A1%B0%EC%99%80%EC%8B%A4%ED%96%89.md)
-- [Chapter 05: 프로세스 관리](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_05_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B4%80%EB%A6%AC.md)
-
+-
 
 <br>
 
+### [OS](<https://github.com/JeHa00/TIL/tree/master/OS%20(Operation%20System)>)
 
+- [Chapter 02: 운영체제 개요](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_02_%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C_%EA%B0%9C%EC%9A%94.md>)
+- [Chapter 03: 컴퓨터 시스템 동작원리 上](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_1.md>)
+- [Chapter 03: 컴퓨터 시스템 동작원리 下](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_2.md>)
+- [Chapter 04: 프로그램의 구조와 실행](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_04_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98%EA%B5%AC%EC%A1%B0%EC%99%80%EC%8B%A4%ED%96%89.md>)
+- [Chapter 05: 프로세스 관리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_05_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B4%80%EB%A6%AC.md>)
+- [Chapter 06: CPU 스케쥴링]
+- [Chapter 07: 메모리 관리]
+- [Chapter 08: 가상 메모리]
+- [Chapter 09: 디스크 관리]
+- [Chapter 10: 웹캐싱 기법]
+
+<br>
 
 ### Datebase
+
 -
 
-
 <br>
-
-
 
 ### Html CSS
+
 -
 
-
 <br>
-
-
 
 ### Javascript
+
 -
 
-
 <br>
-
-
 
 ### Docker
+
 -
 
-
 <br>
-
-
 
 ### Kubernetes
+
 -
 
-
 <br>
-
-
 
 ### Cloud
+
 -
 
-
 <br>
-
 
 ### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
-- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
-- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md) 
 
+- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
+- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md)
 
 <br>
-
-
-
-

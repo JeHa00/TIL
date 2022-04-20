@@ -472,6 +472,8 @@
 
 # 9. Thread
 
+<br>
+
 ## 9.1 Thread란??
 
 - **A Thread (or lightweight process) is a basic unit of CPU utilization**

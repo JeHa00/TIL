@@ -53,7 +53,7 @@
 - [Chapter 03: 컴퓨터 시스템 동작원리 下](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_2.md>)
 - [Chapter 04: 프로그램의 구조와 실행](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_04_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98%EA%B5%AC%EC%A1%B0%EC%99%80%EC%8B%A4%ED%96%89.md>)
 - [Chapter 05: 프로세스 관리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_05_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B4%80%EB%A6%AC.md>)
-- [Chapter 06: CPU 스케쥴링]
+- [Chapter 06: CPU 스케쥴링](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_06_CPU_%EC%8A%A4%EC%BC%80%EC%A5%B4%EB%A7%81.md>)
 - [Chapter 07: 메모리 관리]
 - [Chapter 08: 가상 메모리]
 - [Chapter 09: 디스크 관리]

@@ -340,7 +340,10 @@
 
 ### 5.5 멀티레벨 큐(Multi-level queue)
 
-> ready queue를 여러 개로 분할해 관리하는 스케쥴링 기법
+> - ready queue를 여러 개로 분할해 관리하는 스케쥴링 기법
+> - 공정하지 않은 알고리즘이지만, 우선순위가 높은 프로세스가 더 빨리 CPU를 얻어야 하기 때문이다.
+
+  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164484103-7ed46059-0a87-4a76-b132-55a28eaf7623.png"/></p>
 
 - **이 기법의 경우, 다음과 같은 문제점이 발생한다.**
 
@@ -349,42 +352,49 @@
 
 - **첫 번째 문제에 대한 해결책: 프로세스의 성격에 맞는 스케쥴링을 사용한다.**
 
-  - 전위 큐(foreground queue): 대화형 작업을 담기 위한 전위 -> 응답시간을 짧게 하기 위해 Round robin scheduling 사용
-  - 후위 큐(background queue): 계산 위주의 작업을 담기 위한 후위 -> 응답 시간이 큰 의미를 가지지 않기 때문에, FCFS 사용
+  - 전위 큐(foreground queue): 대화형 작업(interactive job)을 담기 위한 전위
+    -> 응답시간을 짧게 하기 위해 Round robin scheduling 사용
+  - 후위 큐(background queue): 계산 위주의 작업을 담기 위한 후위
+    -> 응답 시간이 큰 의미를 가지지 않기 때문에, 그리고 context switching overhead를 줄이기 위해 FCFS 사용
 
 - **두 번째 문제에 대한 해결책: 고정 우선순위 방식(fixed priority scheduling)**
 
-  - 여러 개의 준비 큐에 대해서 어느 큐에 먼저 CPU를 할당할 것인지 결정하는 스케쥴링이 필요한데,
-  - 가장 쉽게 생각할 수 있는 방법이 _고정 우선순위 방식_ 이다.
-    - Queue에 고정적인 우선순위를 부여해, 우선순위가 높은 큐를 먼저 서비스 -> 낮은 큐는 우선순위가 높은 큐가 비어있을 때만 서비스 실행.
+  - Fixed priority scheduling(고정 우선순위 방식)
+    - Queue에 고정적인 우선순위를 부여하는 방식
+      - 우선순위가 높은 큐를 먼저 서비스 -> 낮은 큐는 우선순위가 높은 큐가 비어있을 때만 서비스 실행.
     - 즉, 전위 큐에 있는 프로세스에게 우선적으로 CPU를 부여하고, 전위 큐가 비어 있는 경우에만 후위 큐에 있는 프로세스에게 CPU를 할당한다.
+    - 하지만, _starvation_ 이 발생할 수 있다.
 
 - **두 번재 문제에 대한 또 다른 해결책: time slice**
-  - 각 queue에 CPU 시간을 적절한 비율로 할당한다.
-    - ex) 전위큐: 80% , 후위큐: 20%
+  - 각 queue에 CPU 시간을 적절한 비율로 할당
+    - ex) RR인 전위 큐: 80% , FCFS인 후위 큐: 20%
 
 <br>
 
 ### 5.6 멀티레벨 피드백 큐(Multi-level Feedback Queue)
 
-> 멀티레벨 큐와 거의 다 동일하나, 차이점은 process가 하나의 queue에서 다른 큐로 이동이 가능하다.
+> 멀티레벨 큐와 거의 다 동일하나, 차이점은 process가 하나의 queue에서 다른 큐로 이동이 가능하다.  
+> 즉, 프로세스의 우선순위가 바뀔 수 있다.
+
+  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164484385-69a85293-56f5-455a-b08b-1611d24335d2.PNG"/></p>
 
 - **우선순위 스케쥴링의 aging 기법을 멀티레벨 피드백 큐 방식으로 구현하면,**
 
   - 기다렸으면 우선순위가 낮은 큐에서 높은 큐로 승격시키는 방식이다.
+  - 차근 차근 시간을 늘려 때문에, CPU 사용 시간을 예측할 필요가 없다.
 
 - **멀티레벨 피드백 큐를 정의하는 요소들**
 
   - 큐의 수
   - 각 큐의 스케쥴링 알고리즘
     - 프로세스를 상위 큐로 승격시키는 기준
-  - 프로세스를 하위 큐로 강등시키는 기준
-  - 프로세스가 도착했을 때, 들어갈 큐를 결정하는 기준 등등
+    - 프로세스를 하위 큐로 강등시키는 기준
+    - 프로세스가 도착했을 때, 들어갈 큐를 결정하는 기준 등등
 
 - **멀티레벨 피드백 큐의 동작 예**
-  - 프로세스가 준비 큐에 도착하면 우선순위가 가장 높은 큐(Round robine, 할당시간 5)에 줄을 선다.  
+  - 프로세스가 준비 큐에 도착하면 우선순위가 가장 높은 큐(Round robine, 할당시간 8)에 줄을 선다.  
     -> CPU 사용시간이 짧은 대화형 프로세스라면 빨리 서비스 박고 작업완료할 수 있다.  
-    -> CPU burst가 긴 process라면 하위 큐(Round robine, 할당시간 10)로 강등시킨다.
+    -> CPU burst가 긴 process라면 하위 큐(Round robine, 할당시간 16)로 강등시킨다.
     -> 그럼에도 완료하지 못하면 계산위주의 프로세스로 간주하여 최하위 큐인 FCFS scheduling을 적용
 
 <br>
@@ -397,12 +407,14 @@
 
 - 하지만, **반드시 특정 CPU가 실행**해야 한다든가 ex) 미용실에서 특정 미용사로 예약한 경우
 
-- 또한, **각 CPU 별 부하가 적절히 분산**되도록 하는 매커니즘이 필요하다.
+- **Load sharing**
 
-- **다중처리기 스케쥴링의 방식: 대칭형 다중처리(Symetric multi-processing)와 비대칭형 다중처리(asymmetric multiprogramming)**
+  - 각 CPU 별 부하가 적절히 분산되도록 하는 매커니즘이 필요하다.
 
-  - 대칭형 다중처리: CPU가 각자 알아서 스케줄링을 결정하는 방식
-  - 비대칭형 다중처리: 하나의 CPU가 다른 모든 CPU의 스케줄링 및 데이터 접근을 책임지고, CPU는 거기에 따라 움직이는 방식
+- **다중처리기 스케쥴링의 방식**
+
+  - 대칭형 다중처리(SMP, Symetric Multi-Processing): 모든 CPU가 대등해서 각자 알아서 스케줄링을 결정하는 방식
+  - 비대칭형 다중처리(asymmetric multiprogramming): 하나의 CPU가 다른 모든 CPU의 스케줄링 및 데이터 접근을 책임지고, CPU는 거기에 따라 움직이는 방식
 
 <br>
 
@@ -416,18 +428,34 @@
 
 <br>
 
+### 5.9 Thread scheduling
+
+- **Thread를 구현하는 방식 2가지**
+  - Local Scheduling (by user process)
+    - User level thread의 경우, process가 thread를 직접 관리하고 OS는 thread의 존재를 모른다.
+    - 그래서 OS는 이 thread에게 CPU를 줄지 결정한다.
+    - 그리고, process 내부에서 어떤 thread에게 줄지를 결정한다.
+  - Global Scheduling (by OS)
+    - Kernel level thread의 경우, 일반 프로세스와 마찬가지로 커널의 단기 스케쥴러가 어떤 thread를 스케줄할지 결정
+    - 즉, OS가 thread의 존재를 인지한다.
+
+<br>
+
 ---
 
 ## 6. 스케쥴링 알고리즘의 평가
 
 - **스케쥴링 알고리즘의 성능을 평가하는 방법에는 큐잉모델(Queuing model), 구현 및 실측(Implementation & measrrement), 시뮬레이션(Simulation)가 있다.**
   - Queueing model: 이론가들이 수행하는 방식
-    - 수학적 계산을 통해 성능 지표(CPU 처리량, Process 평균 대기시간 등)를 구한다.
+    - 수학적 계산을 통해 performance index(CPU 처리량, Process 평균 대기시간 등)를 구한다.
+    - 밑에 방식이 훨씬 많이 사용된다.
   - Implementation & measurement: 이론가가 아닌 구현가들이 수행하는 방식
     - 동일한 program을 원래 kernel과 CPU scheduler code를 수정한 kernel에서 수행한 후, 실행시간을 측정하여 알고리즘을 평가한다.
+    - 이 방법이 어려우면 밑에 방법을 사용한다.  
   - Simulation: 가상으로 CPU scheduling program을 작성하는 방식
     - 가상으로 CPU scheduling program을 작성한 후, 프로그램의 CPU 요청을 입력값으로 넣어 어떠한 결과가 나오는지 확인하는 방법
     - 그래서 가상으로 생성된 값과 실제 system에서 추출한 입력값(이를 trace라 한다.)을 비교한다.
+
 
 <br>
 
@@ -437,3 +465,4 @@
 
 - [운영체제와 정보기술의 원리](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158903589&orderClick=LAG&Kc=)
 - [kocw 이화여자대학교 운영체제 - 반효경 교수 -](http://www.kocw.net/home/cview.do?lid=3dd1117c48123b8e)
+- [컴퓨터 엔지니어로 살아남기](https://getchan.github.io/cs/OS_5/)

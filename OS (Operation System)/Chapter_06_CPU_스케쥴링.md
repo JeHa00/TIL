@@ -243,7 +243,7 @@
   - 들어온 순서가 P2, P3, P1 일 때
     - 대기시간: P1 = 6, P2 = 0, P3 = 3
     - 평균 대기시간: (6+0+3)/3 = 3
-    <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164449789-cc9d22d7-f221-4f83-9f6b-bc897e191404.PNG)"/></p>
+    <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164449789-cc9d22d7-f221-4f83-9f6b-bc897e191404.PNG"/></p>
 
 <br>
 
@@ -273,10 +273,10 @@
 
   - 비선점형
 
-  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164451643-b6bc61bc-ea3f-4b9f-9097-1f088050736a.PNG)"/></p>
+  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164451643-b6bc61bc-ea3f-4b9f-9097-1f088050736a.PNG"/></p>
 
   - 선점형
-  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164451957-43b6277b-830a-4f09-819f-6c3d375989bb.PNG)"/></p>
+  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164451957-43b6277b-830a-4f09-819f-6c3d375989bb.PNG"/></p>
 
 <br>
 
@@ -334,7 +334,7 @@
 
     - **하지만, CPU burst 시간이 균일하지 않은 경우가 대부분이기 때문에, Round robine은 FCFS보다 합리적**
 
-  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164458802-d87defe3-7159-4e00-aaa8-6c97c05e8acc.PNG)"/></p>
+  <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164458802-d87defe3-7159-4e00-aaa8-6c97c05e8acc.PNG"/></p>
 
 <br>
 

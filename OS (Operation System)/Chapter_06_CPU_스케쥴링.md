@@ -238,12 +238,12 @@
 
     - 대기시간: P1 = 0, P2 = 24, P3 = 27
     - 평균 대기시간: (0 + 24 + 27 ) / 3 = 17
-    <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164449468-3bd69ed3-a8db-4080-b100-04cd83aa3c5f.PNG"  width = '400' height ='200'/></p>
+    <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164449468-3bd69ed3-a8db-4080-b100-04cd83aa3c5f.PNG"  width = '500' height ='200'/></p>
 
   - 들어온 순서가 P2, P3, P1 일 때
     - 대기시간: P1 = 6, P2 = 0, P3 = 3
     - 평균 대기시간: (6+0+3)/3 = 3
-    <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164449789-cc9d22d7-f221-4f83-9f6b-bc897e191404.PNG"  width = '400' height ='200'/></p>
+    <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164449789-cc9d22d7-f221-4f83-9f6b-bc897e191404.PNG"  width = '500' height ='200'/></p>
 
 <br>
 

@@ -1,8 +1,5 @@
 # 0. Introduction
 
-> 1. [주소 바인딩](#1-주소-바인딩)
-> 2. [메모리 관리와 관련된 용어](#2-메모리-관리와-관련된-용어)
-> 3. [물리적 메모리의 할당 방식](#3-물리적-메모리의-할당-방식)
 > 4. [페이징 기법](#4-페이징-기법)
 > 5. [세그먼테이션](#5-세그먼테이션)
 > 6. [페이지드 세그먼테이션](#6-페이지드-세그먼테이션)
@@ -11,356 +8,6 @@
 
 - 해당 내용은 [운영체제와 정보기술의 원리 -반효경 지음-](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158903589&orderClick=LAG&Kc=) 와 [kocw 이화여자대학교 운영체제 - 반효경 교수 -](http://www.kocw.net/home/cview.do?lid=3dd1117c48123b8e)를 보고 정리한 내용이다.
 - 정확하지 않은 내용이 있다면 말씀해주시면 감사하겠습니다.
-
-<br>
-
----
-
-# 1. 주소(address) 바인딩
-
-<br>
-
-## 1.1 주소란??
-
-> - 서로 다른 위치를 구분하기 위해 사용하는 일련의 숫자
-> - 크게 논리적 주소와 물리적 주소로 나뉠 수 있다.
-
-- **Memory는 주소를 통해 접근하는 저장장치다.**
-- **컴퓨터 시스템은 32bit 혹은 64bit의 주소체계를 사용하는데,**
-  - 32bit는 2^(32) 가지, 64bit는 2^(64) 가지의 서로 다른 메모리 위치를 구분할 수 있다.
-- **byte 단위로 메모리 주소를 부여한다.**
-
-<br>
-
-## 1.2 논리적 주소, 물리적 주소
-
-- **논리적 주소(logical address, virtual address)란?**
-
-  - 프로세스마다 독립적으로 가지는 주소 공간
-  - 각 프로세스마다 0번지부터 시작
-  - CPU가 보는 주소는 logical address다.
-    - 물리적 메모리에 올라오는 위치는 다를지라도, 코드 상의 내용은 compile 시 내용이기 때문.
-
-- **물리적 주소(physical address)란?**
-
-  - 메모리에 실제로 올라가는 위치
-  - 물리적 주소의 낮은 주소 영역에는 kernel이 올라간다.
-  - 물리적 주소의 높은 주소 영역에는 user process들이 올라간다.
-
-- **프로세스가 실행되기 위해서**
-  - 해당 프로그램이 물리적 메모리에 올라가 있어야 한다.
-  - 해당 논리적 주소가 물리적 메모리의 어느 위치에 매핑되는지 확인해야 한다.
-
-<br>
-
-## 1.3 주소 바인딩(address binding)
-
-> logical address를 physical address로 연결시켜서, physical address를 결정하는 작업
-
-- Symbolic address --(compile)--> Logical address --(address binding)--> Physical address
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164484385-69a85293-56f5-455a-b08b-1611d24335d2.PNG"/></p>
-
-- **주소 바인딩 방식 3가지**: 물리적 메모리 주소가 결정되는 시기에 따라 분류된다.
-
-  - 컴파일 타임 바인딩(compile time binding)
-  - 로드 타임 바인딩(load time binding)
-  - 실행시간 바인딩(execution time binding or run time binding)
-
-    | 방식 이름 | compile time binding | load time binding | run time binding |
-    | 시기 | 컴파일 시 | 프로그램 실행이 시작 시 (변경 가능 X) | 프로그램 실행이 시작 시, (변경 가능 O) |
-    |swapping 효과|좋지 안음|좋지 않음|좋음|
-
-- **Compile time binding**
-
-  - 컴파일 시, 논리적인 주소와 물리적인 주소 다 생성된다.
-  - compiler는 _절대 코드_ 를 생성한다.
-    - 그래서 program이 올라가 있는 물리적 메모리의 시작위치를 변경할려면 컴파일을 다시 해야 한다.
-  - 물리적 주소의 0번지부터 시작한다.
-  - 현대의 시분할 컴퓨터 환경에서는 잘 사용하지 않는 기법
-
-- **Load time binding**
-
-  - 컴파일 시에는 논리적인 주소만 결정된다.
-  - 이를 실행하고 나서, 메모리가 비어있는 곳부터 올린다.
-  - 로더(loader)의 책임 하에 물리적 메모리 주소 부여
-    - Loader: user program을 memory에 적재시키는 프로그램
-  - compiler가 _재배치 가능 코드_ 를 생성한 경우 가능
-
-- **Run time binding**
-  - Load time binding 처럼 실행 시, physical address가 생성된다.
-  - 실행을 시작한 후에도 물리적 메모리상의 위치(물리적 주소)를 옮길 수 있는 방식
-  - CPU가 주소 참조 시, address mapping table을 이용해 원하는 데이터가 물리적 메모리의 어느 위치에 존재하는지 확인한다.
-  - `MMU(Memory Management Unit)` 라는 하드웨어적 지원이 필요
-
-<br>
-
-## 1.4 MMU 기법(MMU scheme)
-
-> 기준 레지스터를 사용하여 logical address를 physical address로 mapping해주는 HW device
-
-- **가정**
-
-  - 프로그램의 주소 공간이 메모리의 한 장소에 연속적으로 적재되는 걸 가정한다.
-
-- **MMU scheme**
-
-  - 사용자 프로세스가 CPU에서 수행되여 생성해내는 모든 논리적 주소값에 대해 **_base register(= relocation register)_** 의 값을 더하여 물리적 주소값을 얻어낸다.
-  - _base register_ = CPU가 사용하려는 프로세스의 물리적 메모리 시작 주소
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165417203-6204b9ba-09a6-4433-838c-4fb697d183a3.PNG"/></p>
-
-- **user program**
-
-  - _logical address_ 만을 다룬다.
-  - 실제 _physical address_ 를 볼 수 없으며, 알 필요가 없다.
-
-- **예시**
-
-  - CPU가 논리적 주소: 123번지 정보를 요청
-  - 기준 레지스터(=재배치 레지스터): 23000
-  - 물리적 주소 = 123 + 23000 = 23123
-  - 물리적 주소 23123번지에서 CPU가 요청한 정보를 찾는다.
-  - 논리적 주소란 기준 레지스터로부터 얼마나 떨어져 있는지를 나타내는 것
-
-- **동일한 논리적 주소**
-
-  - 프로세스는 각 자신만의 고유한 주소 공간을 가진다.
-  - 그래서 동일한 논리적 주소라고 할 지라도, 서로 다른 내용을 담는다.
-  - _MMU 기법에서 프로세스가 바뀔 때마다 기준 레지스터의 값을 바뀌는 프로세스에 해당되는 값으로 재설정한다._
-
-- **메모리 보안**
-  - Problem
-    - 가상 메모리에 기준 레지스터를 더했을 때, 해당 프로세스의 주소 공간을 벗어나는 경우,
-    - 다른 프로세스 영역에 침범하거나, kernel 영역을 변경해 치명적인 결과를 초래할 수 있다.
-  - Solution
-    - **_한계 레지스터(limit register)_** 를 사용하여, 프로세스 자신의 주소 공간을 넘어서는 메모리 참조를 하는지 확인한다.
-      - **_한계 레지스터(limit register)_**: 논리적 주소의 범위
-    - 벗어날 경우, trap을 발생시켜 해당 프로세스를 강제종료시킨다.
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165416345-7ee411ec-ad78-4bf0-b2ec-4849c3598f71.PNG"/></p>
-
-<br>
-
----
-
-# 2. 메모리 관리와 관련된 용어
-
-<br>
-
-## 2.1 동적 로딩(Dynamic loading)
-
-> - 다중 프로그래밍 환경에서 메모리를 효율적으로 사용하기 위한 기법
-> - 프로세스의 주소 공간 전체를 메모리에 다 올려놓는 게 아닌, 해당 부분이 불릴 때에마다 메모리에 적재하는 방식
-
-- **loading: 물리적 메모리로 올리는 것**
-- **부분적으로만 올리는 이유**
-  - 실제 프로그램의 코드 중 상당 부분 = 가끔씩 사용하는 방어용 코드 -> 주소 공간 전체 loading -> 메모리 낭비 초래
-- **동적 로딩 -> 더 많은 프로그램 로딩 가능 -> 메모리 이용 효율성 향상**
-- 운영체제의 지원 없이 프로그래머가 코드로 구현 가능하고, OS는 라이브러리를 통해 지원 가능
-
-<br>
-
-## 2.2 중첩(overlays)
-
-> 메모리보다 큰 프로세스를 실행하기 위해서 프로세스의 주소 공간을 분할해 실제 필요한 부분만을 메모리에 적재하는 기법
-
-- **중첩과 동적 로딩의 차이점: 목적**
-  - 동적 로딩의 목적: 메모리에 multi-process를 실행하기 위한 용도
-  - 중첩의 목적: single-process를 실행하기 위한 환경에서 메모리 용량보다 큰 프로세스를 실행하기 위한 용도
-  - 운영체제의 지원 없이 프로그래머가 직접 구현해야 한다.
-
-<br>
-
-## 2.3 스와핑(Swapping)
-
-> 프로세스의 주소 공간 전체를 메모리에서 backing store로 쫓아내는 것
-
-- **스왑 영역(Swap area)란??**
-
-  - 다른 말로 _백킹 스토어(backing store)_ 라고 한다.
-  - 디스크 내의 파일 시스템과는 별도로 존재하는 일정 영역으로,
-    - **파일 시스템** 은 전원이 나가도 유지되어야 하는 비휘발성 저장공간이지만,
-    - **스왑 영역** 은 프로세스가 수행 중인 동안에만 디스크에 일시적으로 저장하는 휘발성 영역이다.
-    - 프로세스 실행이 종료되면 메모리에서 디스크로 내려놓는다. (swap out)
-  - 그리고, 다음과 같은 특징을 가져야 한다.
-    - 다수의 사용자 프로세스를 담을 수 있을 만큼 충분히 큰 저장 공간이다.
-    - 어느 정도의 접근 속도가 보장되야 한다.
-
-- **Swap in & out**
-
-  - Swap in: disk -> memory 올리는 작업
-  - Swap out: memory -> disk 내리는 작업
-
-- **스와핑이 일어나는 과정**
-
-  - 첫 번째: _Swapper(스와퍼)라 불리는 중기 스케쥴러_ 에 의해 swap out할 process를 선정한다.
-
-    - 선정 기준: priority
-      - priority가 낮은 프로세스를 swap out
-      - priority가 높은 프로세스를 swap in
-
-  - 두 번째: 선정된 process를 메모리에 올라간 주소 공간 전체 내용을 disk swap area로 아웃시켜서 메모리의 프로세스 수를 조절한다.
-
-    - 즉, Swapper로 멀티 프로그래밍 정도(degree of multi-programming)를 조절한다.
-
-    - 메모리에 많은 프로그램이 올라오면 할당되는 메모리 양이 지나치게 적어져, 시스템 전체 성능이 감소되기 때문이다.
-
-  - **Swap time**
-    - Swap time: swapping에 소요되는 시간
-    - Transfer time: 데이터를 읽고 쓰는 전송 시간
-    - Swap time은 디스크를 탐색하는 것보다 disk sector에서 transfer time이 대부분을 차지한다.
-    - 즉, transfer time 은 swap 되는 양에 비례
-
-- **address binding에 따른 swapping**
-  - compile time binding & load time binding: 다시 swap in 시, 원래 존재하던 메모리 위치로 다시 올라가야 해서 swapping의 효과가 좋지 않다.
-  - runtime binding은 추후 빈 메모리 영역 아무 곳에나 프로세스를 올리기 때문에, swapping으로 인한 효과가 좋다.
-
-<br>
-
-## 2.4 동적 연결(Dynamic linking))
-
-- **연결(linking)이란??**
-
-  - 목적 파일(object file)과 이미 컴파일된 라이브러리 파일을 묶어서 하나의 실행파일을 생성하는 과정
-    - Object file: 프로그래머가 작성한 source code를 컴파일하여 생성된 파일
-
-- **정적 연결(static linking)과 동적 연결(dynamic linking)의 차이: 첫 번째**
-
-  - **정적 연결**: 프로그래머가 작성한 코드와 라이브러리가 _모두 합쳐진 상태에서_ 실행파일이 생성되는 방식으로, 연결된 상태에서 실행파일을 생성하는 방식
-
-    - 라이브러리가 프로그램의 실행 파일 코드에 포함되어, 실행파일의 크기가 상대적으로 크다.
-
-  - **동적 연결** : _라이브러리를 포함하지 않는_ 생성된 실행 파일이 _라이브버리 호출 시_, 연결이 이뤄지는 방식
-
-    - 그래서 라이브러리의 위치를 찾기 위해 라이브러리 호출 부분에 _stub_ 이라는 작은 코드를 둔다.
-    - 이 stub을 통해 해당 라이브러리 루틴이 메모리에 이미 존재하는지 먼저 살펴본다.
-      - 메모리에 이미 존재 -> 그 메모리 위치에서 직접 참조
-      - 메모리에 없음 -> 디스크에서 읽어옴
-
-- **정적 연결(static linking)과 동적 연결(dynamic linking)의 차이: 두 번째**
-
-  - **정적 연결**: 첫 번째 차이점으로 인해 동일한 라이브러리를 각 프로세스가 _개별적으로_ 메모리에 적재해야 하므로, 물리적 메모리가 낭비된다.
-
-    - 동일한 라이브러리 코드여도 각 프로세스의 주소 공간에 독자적으로 존재하는 코드이므로 별도의 적재가 필요하다.
-    - 그 결과, 메모리 낭비가 심하다.
-
-  - **동적 연결**: 라이브러리를 호출하면 되므로 _메모리에 한 번만_ 적재하여 낭비되지 않는다.
-
-    - 공용으로 쓰는 라이브러리를 shared library 라 한다.
-
-- **Summary**
-
-  | 연결 종류 | 정적 연결 | 동적 연결 |
-  | 연결 시기 | 실행 파일 생성 전 | 실행 파일 생성 후, 호출 시|
-  | 적재 횟수 | 각 프로세스 개별적으로 | 메모리에 한 번만|
-  |실행 파일에 라이브러리 포함 유무| O | X |  
-  | 메모리 낭비 발생 | O | X |
-
-<br>
-
----
-
-# 3. 물리적 메모리의 할당 방식
-
-- 물리적 메모리 할당 방식과 사용자 영역 관리 방식은 다음과 같다.
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165253477-335490e5-4c30-49e5-8d87-7aafbd875f5f.PNG"/></p>
-
-<br>
-
-## 3.1 연속할당(Contiguous allocation) 방식
-
-> 프로세스를 메모리에 올릴 때, 주소 공간을 여러 개로 분할하지 않고, 메모리의 한 곳에 연속적으로 적재하는 방식
-
-- **고정분할 방식** 과 **가변분할 방식** 으로 나눠진다.
-- 연속적으로 할당하기 때문에 물리적 메모리 주소로 mapping 하는 게 쉽다.
-- 연속 할당 기법에서는 프로세스의 주소 공간 전체를 담을 수 있는 가용공간을 찾아야 한다.
-  - **가용 공간(hole)** : 사용되지 않은 메모리 공간으로, 메모리 내의 여러 곳에서 산발적으로 존재할 수 있다.
-- 이 가용공간(hole)은 물리적 메모리 내부에 산발적으로 존재하기 때문에, 효율적으로 관리하기 위해서 운영체제는 사용 중인 공간과 가용 공간에 대한 정보를 각각 유지한다.
-
-<br>
-
-### 3.1.1 고정분할(Fixed partition) 방식
-
-> 물리적 메모리를 영구적인 분할(partition)로 미리 나누어두고, 각 분할에 오직 하나의 프로세스만을 적재해 실행하는 방식
-
-- **이에 따라 다음과 같은 특징을 가진다.**
-
-  - 미리 나누는 분할의 크기는 다 동일할 수도 있고, 다르게 할 수도 있다.
-  - 동시에 메모리에 올릴 수 있는 프로그램의 수가 고정되었다.
-  - 수행 가능한 프로그램의 최대 크기 또한 제한된다.
-  - 외부 조각(external fragmentation)과 내부 조각(internal fragmentation)이 발생한다.
-
-- **외부 조각과 내부 조각에 대해 알아보자.**
-
-  |조각 종류 |외부 조각|내부 조각|
-  | When | 프로그램 크기 > 분할 크기 | 프로그램 크기 < 분할 크기 |
-  |할당 유무|할당하지 않은 조각 |할당된 조각|
-
-  - 외부 조각:
-    - 프로그램의 크기가 분할 크기보다 커서 프로그램을 적재하지 못하여 발생하는 메모리 공간
-    - 하지만, 분할 크기보다 작은 프로그램이 도착하면 이 외부조각에 적재할 수 있다.
-  - 내부 조각:
-    - 하나의 분할에 프로그램을 적재한 후, 남아서 사용되지 않는 메모리 공간
-    - 남은 공간에 충분히 적재할 수 있는 프로그램이 있을지라도, 이미 할당된 조각이므로 다른 프로그램에 할당할 수 없다.
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165446743-8ba76f95-5c65-48ed-a700-650bf3d40607.PNG"/></p>
-
-<br>
-
-### 3.1.2 가변분할(Variable partition) 방식
-
-> - 미리 분할시키는 것이 아닌 프로그램이 실행될 때마다 메모리에 순서대로 차곡차곡 쌓는 방식
-> - 그래서, 분할의 크기, 개수가 동적으로 변한다.
-> - 현대의 컴퓨터가 사용하는 방식
-
-- 분할의 크기를 프로그램 크기보다 일부러 크게 할당하지 않기 때문에, **내부조각이 발생하지 않는다.**
-
-- **Problem 1:외부조각**
-
-  - 메모리에 존재하는 프로그램이 종료될 경우, 중간에 빈 공간이 발생하는데,
-  - 이 공간이 새로 시작하는 프로그램보다 작을 경우 **외부조각이 발생할 가능성**이 있다.
-
-- **Solution 1: Compaction**
-
-  - 외부조각 같은 hole을 해결하는 방법으로 **_컴팩션(compaction)_**을 사용한다.
-    - Compaction이란???
-      - 물리적 메모리 중에서 프로세스에 의해 사용 중인 메모리 영역을 한 쪽으로 몰고, 가용 공간들을 다른 한쪽으로 모아서 하나의 큰 가용공간을 만드는 방법
-  - 메모리 위치를 상당 부분 이동해야 해서 **비용이 매우 많이 들기 때문에**, 최소한의 메모리 이동으로 얻을려고 한다.
-  - 또한, 수행 중인 프로세스의 물리적 메모리 위치를 옮겨야 하므로, 실행 도중 프로세스 주소를 동적으로 바꿀 수 있는 **`run time binding` 방식을 지원하는 환경에서만 수행**할 수 있다.
-
-- **Problem 2: 동적 메모리 할당 문제(Dynamic storage-allocation problem)**
-
-  - size가 n인 프로세스를 메모리 내 가용 공간 중 어떤 위치에 올릴 지 결정하는 문제
-
-- **Solution 2: 3가지**
-
-  - 아래 3가지 방법들 중 첫 번째와 두 번째가 속도와 공간 이용률 측면에서 효과적이다.
-  - 최초적합(first-fit) 방법
-    - size가 n 이상인 것 중 **가장 먼저 찾아지는 hole**에 프로세스를 할당하는 방법으로,
-    - 시간적인 측면에서 효율적이다.
-  - 최적적합(best-fit) 방법
-    - size가 n 이상인 **가장 작은 hole**을 찾아 새로운 프로그램을 할당하는 방법으로,
-    - 모든 hole의 리스트를 탐색하므로 시간적 오버헤드가 발생하지만,
-    - 공간적인 측면에서는 효율적이다.
-  - 최악적합(Worst-fit) 방법
-    - **가장 크기가 큰 hole**을 찾아 새로운 프로그램을 할당하는 방법으로,
-    - 시간적 오버헤드가 발생하고, 가용 공간을 빨리 소진한다.
-
-<br>
-
-## 3.2 불연속할당(Noncontiguous allocation) 기법
-
-> 물리적 메모리의 여러 위치에 **분산되어** 올라가는 메모리 할당 기법
-
-- **프로그램을 분할하는 기준에 따라 여러 방법으로 나눠진다.**
-
-  - 페이징(paging) 기법: 동일한 크기로 나누어 메모리에 올리는 기법
-  - 세그먼테이션(segmentation) 기법: 크기는 일정하지 않지만, 의미 단위로 나누어 메모리에 올리는 기법
-  - 페이지드 세그먼테이션(paged segmentation) 기법: segmentation을 기본으로 한 후, paging 기법으로 나누어 메모리에 올리는 기법
-
-- 그러면 위 3가지 기법들에 대해 알아보자.
 
 <br>
 
@@ -409,8 +56,8 @@
 
 ## 4.2 페이지 테이블의 구현
 
-> - page table: paging 기법에서 주소 변환을 하기 위한 자료 구조로, 물리적 메모리에 위치한다.
-> - page table에 접근하기 위해 2개의 레지스터를 사용한다.
+> - **page table: paging 기법에서 주소 변환을 하기 위한 자료 구조로, 물리적 메모리에 위치한다.**
+> - **page table에 접근하기 위해 2개의 레지스터를 사용한다.**
 
 - **page table에 접근하기 위한 2개의 레지스터는 다음과 같다.**
 
@@ -460,105 +107,173 @@
 
 ## 4.3 계층적 페이징
 
-> 2개 이상의 page table을 통해서 물리적 메모리에 접근하는 기법
+> **2개 이상의 page table을 통해서 물리적 메모리에 접근하는 기법으로, 각 페이지를 다시 페이지화시키는 기법**
+
+<br>
+
+### 4.3.1 Twp-level page table이란???
 
 - **2단계 페이징 기법(Two-level page table)은 outer-page table과 inner-page table을 통해서 Physical memory에 접근한다.**
 
-- **2단계 페이징 기법을 사용하는 배경과 이유**
+<br>
 
-  - 현대의 컴퓨터는 address space가 매우 큰 프로그램을 지원한다.
+### 4.3.2 Two-level page table을 사용하는 이유
 
-    - 컴퓨터 시스템에서의 K, M, G
-      - K = 2^(10) = Kilo
-      - M = 2^(20) = Mega
-      - G = 2^(30) = Giga
-    - 32 bit address 사용 시: 2^(32) byte (= 4G byte)의 주소 공간
+- **현대의 컴퓨터는 address space가 매우 큰 프로그램을 지원한다.**
 
-    - 페이지의 크기가 4KB일 때, 4GB / 4KB = 1M 개의 page table entry(항목)이 필요
+  - 컴퓨터 시스템에서의 K, M, G
+    - K = 2^(10) = Kilo
+    - M = 2^(20) = Mega
+    - G = 2^(30) = Giga
+  - 32 bit address 사용 시: 2^(32) byte (= 4G byte)의 주소 공간
 
-    - 페이지의 항목이 4 byte 라면 한 프로세스 당 페이지 테이블을 위해 1M x 4byte = 4MB 크기의 메모리 공간이 필요하다.
+  - 페이지의 크기가 4KB일 때, 4GB / 4KB = 1M 개의 page table entry(항목)이 필요
 
-  - 그러면 수행 중인 프로세스의 수가 증가하여 전체 메모리의 상당 부분이 page table에 할애되어 실제로 사용 가능한 메모리 공간이 크게 줄어든다.
+  - 페이지의 항목이 4 byte 라면 한 프로세스 당 페이지 테이블을 위해 1M x 4byte = 4MB 크기의 메모리 공간이 필요하다.
 
-  - 그래서 이 낭비를 줄이고자, two-level paging 기법을 사용한다.
-  - 프로그램의 대부분은 방어용 코드로 주로 사용하는 코드의 부분은 적다.   
-  - 그래서, 사용되지 않는 주소 공간에 대해서는 외부페이지 테이블의 항목을 NULL로 설정하며, 여기에 대응하는 내부 페이지 테이블을 생성하지 않는다.  
-  - 
+- **이런 상황에서 왜 2단계 페이징 기법을 사용하는가??**
 
-  - 속도의 측면에서는 한 번 더 거쳐야 하기 때문에, 시간이 더 걸린다.
+  - page table이 2개라서 공간 낭비일 것 같지만, 다음과 같은 이유로 효과가 더 크기 때문에 사용한다.
+  - 프로그램의 대부분은 방어용 코드로 주로 사용하는 페이지 수는 적다.
+  - 그래서, 사용되지 않는 주소 공간에 대해서는 outer page table의 항목을 NULL로 설정하며, 여기에 대응하는 inner page table을 생성하지 않는다.
+  - 그 결과, page table의 공간을 줄일 수 있기 때문에, 속도가 느려도 사용한다.
+  - 사용하지 않는 주소 공간에 대해서 outer page table에 생성하는 이유는 page table의 자료구조 특성상 index로 작용하기 때문이다.
 
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165732044-6ce1d363-0a50-484b-bc9a-2bfbc16e9bd6.PNG"/></p>
 
-- **Two-level Paging example**
+<br>
 
-  - logical address의 구성
-    - two level 이므로, 두 종류의 페이지 번호(P1,P2)
-    - 페이지 오프셋(d)
-  - page table 자체가 page로 구성되기 때문에, page number는 다음과 같이 나눠진다.
-  - 따라서, logical address는 다음과 같다.
+### 4.3.3 Two-level page table의 구성과 갯수, 크기 계산
 
-    - P1: outer page table의 index
-    - P2: inner page table의 index
+- **logical address의 구성**
 
-- outer page table과 inner page table 갯수와 크기
+  - two level 이므로, 두 종류의 페이지 번호(P1,P2)
+  - 페이지 오프셋(d)
+  - P1: outer page table의 index
+  - P2: inner page table의 index
 
-  - outer page table의 entry 하나 당 inner page table이 하나 만들어진다.
-  - inner page table 하나의 크기가 page 크기와 동일하다.
-  - page table entry 하나의 크기가 4 byte라고 했는데, 그러면 entry 갯수는 1K 개다.
+- outer page table의 entry 하나 당 inner page table이 하나 만들어진다.
+- inner page table 하나의 크기가 page 크기와 동일하다.
+- page table entry 하나의 크기가 **_4 byte_** 라고 했는데, 그러면 entry 갯수는 **_1K_** 개다.
+- page 크기가 **_4KB_** 이고, **_32bit_** 주소체계라고할 때, page number와 page offset의 크기는 다음과 같다.
 
-  - 다음과 같은 순서로 찾는다.
-    - 첫 번째: outer page table로부터 P1만큼 떨어진 위치에서 _inner page table의 주소_ 를 얻는다.
-      - inner page table은 여러개가 있다. outer page table의 한 entry당 하나의 inner page table이 만들어진다.
-    - 두 번째: innter page table로부터 P2만큼 떨어진 위치에서 요청된 페이지가 존재하는 _프레임의 위치_ 를 얻는다.
-    - 세 번째: 해당 프레임으로부터 d 만큼 떨어진 곳에서 원하는 정보에 접근한다.
+  - page 크기가 4K = 2^(12) 이므로, 한 페이지를 구분하기 위해서는 page offset은 **_12bit_** 가 필요하다.
+  - page table entry가 4byte이므로, 내부 페이지 테이블은 1KB = 2^(10) 개의 항목을 가진다.
+  - 2^(10)개를 구분하기 위해서는 P2는 **_10bit_** 가 필요하다.
+  - 그러면 총 32bit 주소체계에서 22bit를 사용했으므로, P1에는 **_10bit_** 가 할당된다.
+    | P1 | P2 |Page offset|
+    |----|----|----|
+    | 10bit | 10bit | 12bit |
+
+- 다음과 같은 순서로 찾는다.
+  - 첫 번째: outer page table로부터 P1만큼 떨어진 위치에서 _inner page table의 주소_ 를 얻는다.
+    - inner page table은 여러개가 있다. outer page table의 한 entry당 하나의 inner page table이 만들어진다.
+  - 두 번째: innter page table로부터 P2만큼 떨어진 위치에서 요청된 페이지가 존재하는 _프레임의 위치_ 를 얻는다.
+  - 세 번째: 해당 프레임으로부터 d 만큼 떨어진 곳에서 원하는 정보에 접근한다.
+
+<br>
+
+### 4.3.4 multi-level page의 문제점과 해결책
+
+- **Problem**
+  : 프로그램의 주소공간의 크기와 메모리 메모리 접근 시간이 비례하여 증가하는 문제 발생.
+
+  - process의 address space가 커질수록 page table의 크기도 커지므로, 주소 변환을 위한 메모리 공간 낭비 점점 심각해지기 때문에, 다단계 페이지 테이블이 필요.
+
+  - 하지만, 이에 따라 공간은 절약할 수 있지만 메모리 접근시간이 크게 늘어나는 문제가 발생.
+
+- **Solution: TLB**  
+  : TLB 와 함께 사용하여 메모리 접근 시간을 줄일 수 있고, 다단계 page table을 사용하여 메모리 공간의 효율적 사용 효과는 매우 크다.
+
+<br>
+
+## 4.4 메모리 보호(Memory Protection)
+
+> **메모리 보호를 위해 page table의 각 entry마다 보호 비트(protection bit)와 유효-무효 비트(valid-invalid bit)를 둔다.**
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165677100-dcb70c52-30a2-478e-a463-52344bdf835c.jpg"/></p>
 
-- **Problem 1**
-  : 프로그램의 주소공간의 크기와 메모리 메모리 접근 시간이 비례하여 증가하는 문제점 발생
+- **보호 비트(Protection bit)**: 각 page에 대한 연산 접근 권한을 설정하는데 사용
 
-  - process의 address space가 커질수록 page table의 크기도 커지므로, 주소 변환을 위한 메모리 공간 낭비 점점 심각해지기 때문에, 다단계 페이지 테이블이 필요하다.
+  - read / write / read-only
 
-  - 하지만, 이에 따라 공간은 절약할 수 있지만 메모리 접근시간이 크게 늘어나는 문제가 발생한다.
+- **유효-무효 비트(Valid-Invalid bit)**: 해당 페이지의 내용에 접근을 허용하는지 결정
 
-- **Solution1**  
-  : TLB 를 사용하여 시간적 오버헤드를 줄인다.
-
-<br>
-
-## 4.4 역페이지 테이블
+  - `valid` 로 세팅: 해당 메모리 프레임에 그 페이지가 존재 -> 접근 허용
+  - `invalid` 로 세팅 -> 유효한 접근 권한 X
+    - 첫 번재 경우, 프로세스가 그 주소 부분을 사용 X
+    - 두 번째 경우, 해당 페이지가 물리적 메모리에 올라있지 않고, 백킹스토어에 존재
 
 <br>
 
-## 4.5 공유 페이지
+## 4.5 역페이지 테이블(Inverted page table)
 
-> shared code(공유 코드)를 담고 있는 페이지
+- **page table이 매우 큰 이유**
+
+  - 모든 process 별로 그 logical address에 대응하는 모든 page에 대해 page table entry를 다 구성해야 하기 때문이다.
+  - 대응하는 page가 메모리에 존재하든 안하든 page table에는 entry로 존재
+
+- **Inverted page table**
+
+> **logical address에 대해 page table을 만드는 것이 아닌, physical address에 대해 page table을 만드는 것**
+
+- **시스템 전체에(system-wide) page table을 하나만 두는 방법**
+
+  - physical address는 1개이기 때문에, physical address에 대해 page table을 만든다는 건 하나만 만드는 걸 의미한다.
+  - 각 프로세스마다 page table을 두는 게 아니다.
+
+- **page table entry 수 = Physical memory의 page frame 수**
+
+  - Physical memory의 page frame 하나당 page table에 하나의 entry를 둔 것
+  - page table entry 수 =! process의 page 갯수
+
+- **각 page table entry는 각각의 물리적 메모리의 page frame이 담고 있는 내용 표시**
+
+  - process의 id(pid), logical address(p)
+  - 어떤 process의 p번째 페이지인지를 확인하기 위해 pid를 저장해야 한다.
+
+- **단점: 테이블 전체를 탐색해야 한다.**
+
+  - 역페이지 테이블에 주소 변환 요청이 들어오면, 그 주소를 담은 페이지가 물리적 메모리에 존재하는지 여부를 판단하기 위해, 페이지 테이블 전체를 다 탐색해야한다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165745426-e37842f5-596e-4d6d-95b1-87f80a05315a.PNG"/></p>
+
+- physical address를 보고 logical address로 바꾸는 것이기 때문에, 목적에 맞지 않다.
+- 그러면 이 table을 통해서 어떻게 전환할 것인가??
+
+  - 논리주소에 해당되는 P가 물리적 메모리 어디에 올라가는지를 찾을라면 이 entry를 다 찾아서 해당되는 P가 F 번째에 나오면, f번째에 있는 물리적 프레임에 있다는 걸로 파악한다.
+  - table의 장점인 index를 통해서 찾을 수 있는 장점이 없다.
+
+- 그래서 시간이 아닌 단지 공간을 줄이기 위해서 사용되는 것이다.
+
+- **해결책: associative register 사용한다.**
+  - 연관 레지스터를 사용하여 병렬탐색을 하여 시간적 효율성을 높인다.
+  - 단, 비용이 비싸다.
+
+<br>
+
+## 4.6 공유 페이지(Shared page)
+
+> **shared code(공유 코드)를 담고 있는 페이지**
 
 - **shared code란??**
 
   - 메모리 공간의 효율적인 사용을 위해, 여러 프로세스에서 공통으로 사용되도록 작성된 코드
   - 재진입 가능코드 (re-entrant code) 또는 순수 코드(pure code)라 한다.
   - read-only 특성을 가진다.
+    -shared memory 기법에서는 read - write다.
 
-- **공유되는 페이지이므로 물리적 메모리에 하나만 적재되어 메모리를 효율적으로 사용할 수 있다.**
-- **하지만, 이런 특성으로 모든 프로세스의 논리적 주소 공간에 동일한 위치에 존재해야하는 제약점이 있다.**
+- **프로세스 간 공유 페이지이므로 물리적 메모리에 하나만 적재하여 효율적으로 사용한다.**
+- **하지만, 이 특성으로 모든 프로세스의 _logical address space_ 의 동일한 위치에 존재해야하는 제약점이 있다.**
+
+  - 왜냐하면 logical address에서 실행 시작하여 physical address에 올라갈 때, logical address에 연결되기 때문이다.
+  - Address binding 내용에서 이미지를 참고하자.
 
 - **private page(사유 페이지)**
-  - 공유 페이지와 대비되는 개념으로, 프로세스끼리 공유하지 않고 프로세스별로 독자적으로 사용하는 페이지
+  - 공유 페이지와 대비되는 개념으로, 프로세스끼리 공유하지 않고 독자적으로 사용하는 페이지
   - 사유 페이지는 해당 프로세스의 논리적 주소 공간 중 어더한 위치에 있어도 무방하다.
 
-<p align="center"> <image src =""/></p>
-
-<br>
-
-## 4.6 메모리 보호
-
-> 메모리 보호를 위해 page table의 각 항목에 보호 비트(protection bit)와 유효-무효 비트(valid-invalid bit)를 둔다.
-
-- **보호 비트(protection bit)**: 각 페이지에 대한 접근 권한을 설정하는데 사용한다.
-  - 읽기-쓰기/읽기 전용 등의 접근 권한을 말한다.
-- **유효-무효 비트(valid-invalid bit)**: 해당 페이지의 내용에 접근을 허용하는지 결정한다.
-  - 유효로 세팅: 해당 메모리 프레임에 그 페이지가 존재 -> 접근이 허용
-  - 무효로 세팅: 프로세스가 그 주소 부분을 사용 X 또는, 해당 페이지가 물리적 메모리에 올라있지 않고, 백킹스토어에 존재 -> 유효한 접근 권한 X
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165756401-a43070d6-6222-47ea-8f59-e9d181db0d42.PNG"/></p>
 
 <br>
 
@@ -568,10 +283,32 @@
 
 > 프로세스의 virtual memory를 의미 단위의 segment로 나눠서 물리적 메모리에 올리는 기법
 
-- 프로세스의 주소 공간을 크기 단위가 아닌 의미 단위(logical unit)로 나눈 것이기 때문에, 크기가 균일하지 않다.
-- 그래서 부가적인 관리 오버헤드가 뒤따른다.
+- **프로세스의 주소 공간을 크기 단위가 아닌 의미 단위(logical unit)로 나눈 것이기 때문에, 크기가 균일하지 않다.**
 
-## 5.1 Segment table
+  - main (), function, global variables, stack...
+
+- **그래서 부가적인 관리 오버헤드가 뒤따른다.**
+
+- **segment 크기 기준**
+
+  - 프로그램은 의미 단위인 여러 개의 segment로 구성한다.
+  - 작게는 프로그램을 구성하는 함수 하나 하나를 segment로 정의한다.
+  - 크게는 프로그램 전체를 하나의 세그먼트로 정의한다.
+  - 일반적으로는 code, data, stack 부분이 하나씩의 segment로 정의된다.
+
+<br>
+
+## 5.1 Segmentation Architecture
+
+<br>
+
+## 5.1.1 Logical address
+
+> 두 가지 [segment-number, offset]로 구성
+
+<br>
+
+### 5.1.2 Segment table
 
 > Segmentation에서 주소 변환을 위해 사용하는 table
 
@@ -579,14 +316,18 @@
 
   - 기준점:
     - 물리적 메모리에서 각 세그먼트의 시작위치를 나타낸다.
-    - **_Segment Table Base Register(STBR)_** 가 이 정보를 담고 있다.
   - 한계점:
     - 각 세그먼트의 길이를 나타낸다.
-    - **_Segment Table Length Register(STLR)_** 가 길이 정보는 아니지만, 프로세스의 세그먼트 개수를 담고 있다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165777227-608c1f88-9365-41d8-adaa-1c4113b57e24.PNG)"/></p>
 
 - **길이 정보를 보관하는 이유**
 
   - 페이징 기법과는 달리 각 segment의 길이가 균일하지 않기 때문이다.
+
+- **Segment Table Base Register(STBR)** : 물리적 메모리에서의 segment table의 위치
+
+- **Segment Table Length Register(STLR)** : 프로세스의 segment의 수
 
 - **Logical address를 physical address로 변환하기 위한 두 가지 사항**
 

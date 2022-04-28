@@ -11,6 +11,12 @@
 
 <br>
 
+- 이번 chapter 내용인 메모리 관리는 물리적인 메모리 관리로, 주요 내용은 address binding이다.
+- address binding에서의 OS의 역할은 없고, 다 HW가 해야한다.
+- address binding을 할 때마다 OS에게 CPU 제어권을 양도해도, 결국 물리적 메모리에 instruction을 실행하는 건 CPU다. 그래서 HW가 해야한다.
+
+<br>
+
 # 1. 주소(address) 바인딩
 
 <br>

@@ -11,6 +11,12 @@
 
 <br>
 
+- 이번 chapter 내용인 메모리 관리는 물리적인 메모리 관리로, 주요 내용은 address binding이다.
+- address binding에서의 OS의 역할은 없고, 다 HW가 해야한다.
+- address binding을 할 때마다 OS에게 CPU 제어권을 양도해도, 결국 물리적 메모리에 instruction을 실행하는 건 CPU다. 그래서 HW가 해야한다.
+
+<br>
+
 ---
 
 # 4. 페이징 기법
@@ -304,7 +310,7 @@
 
 ## 5.1.1 Logical address
 
-> 두 가지 [segment-number, offset]로 구성
+> 두 가지 [s: segment-number, d: offset]로 구성
 
 <br>
 
@@ -315,34 +321,50 @@
 - 이 table은 **기준점(base)** 와 **한계점(limit)** 을 가진다.
 
   - 기준점:
-    - 물리적 메모리에서 각 세그먼트의 시작위치를 나타낸다.
+    - 물리적 메모리에서 각 세그먼트의 시작위치를 의미.
   - 한계점:
-    - 각 세그먼트의 길이를 나타낸다.
+    - 각 세그먼트의 길이를 의미.
+    - 페이징 기법과는 달리 각 segment의 길이가 균일하지 않기 때문이다.
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165777227-608c1f88-9365-41d8-adaa-1c4113b57e24.PNG)"/></p>
+- segment의 갯수에 따라 table entry 수가 결정된다.
 
-- **길이 정보를 보관하는 이유**
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165777227-608c1f88-9365-41d8-adaa-1c4113b57e24.PNG"/></p>
 
-  - 페이징 기법과는 달리 각 segment의 길이가 균일하지 않기 때문이다.
+- **CPU 안에 주소 변환을 위한 2개의 레지스터**
 
-- **Segment Table Base Register(STBR)** : 물리적 메모리에서의 segment table의 위치
+  - **Segment Table Base Register(STBR)** : 물리적 메모리에서의 segment table의 시작위치
 
-- **Segment Table Length Register(STLR)** : 프로세스의 segment의 수
+  - **Segment Table Length Register(STLR)** : 프로세스의 segment의 길이와 갯수
 
 - **Logical address를 physical address로 변환하기 위한 두 가지 사항**
 
-  - 첫 번째: 세그먼트 번호가 STLR에 저장된 값보다 작은 값인지 확인
+  - 첫 번째: segment number(s)가 STLR에 저장된 값보다 작은 값인지 확인
     - 아니라면 trap 발생시키기
-  - 두 번째: 논리적 주소의 오프셋 값이 세그먼트의 길이보다 작은 값인지 확인
+  - 두 번째: 논리적 주소의 오프셋 값(d)이 세그먼트의 길이보다 작은 값인지 확인
     - 세그먼트 테이블의 한계점과 요청된 논리적 주소의 오프셋값을 비교해 확인한다.
-    - 아니라면 trap 발생시키기
+    - d가 더 크다면 trap 발생시키기
+
+- **균일하지 않은 segment로 인한 paging과의 차이점들**
+
+  - 첫 번째 차이
+    - paging 기법에서는 크기가 균일하기 때문에, offset의 크기가 page 크기에 의해서 결정된다.
+    - segment 기법에서는 offset 크기가 segment 크기를 제한하는 요소다.
+  - 두 번째 차이
+    - paging 기법에서는 크기가 균일하기 때문에, 시작 주소가 frame 번호다.
+    - segment 기법에서는 크기가 다르기 때문에, 이 segment가 어디서 시작되는지 정확한 byte 단위 주소로 알려줘야 한다.
+
+- **장점: paging과 달리 의미 단위로 끊기 때문에 segment의 갯수가 상대적으로 많이 적다.**
+  - 그래서 table로 인한 메모리 낭비를 비교하자면 일반적인 시스템에서는 적다.
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165791144-186c1785-f254-4097-8e25-8ca186fd6a71.PNG"/></p>
 
 <br>
 
 ## 5.2 세그먼테이션에서의 보호비트와 유효비트
 
-- 보호 비트: 각 세그먼트에 대해 읽기/쓰기/실행 등의 권한이 있는지 나타낸다.
-- 유효 비트: 각 세그먼트의 주소 변환 정보가 유효한지, 즉 해당 세그먼트가 현재 물리적 메모리에 적재되어 있는지 나타낸다.
+- 보호 비트(protection bit): 각 세그먼트 별로 가지고 있어서 각각에 대해 읽기/쓰기/실행 등의 권한이 있는지 나타낸다.
+- 유효 비트(valid bit): 각 세그먼트의 주소 변환 정보가 유효한지, 즉 해당 세그먼트가 현재 물리적 메모리에 적재되어 있는지 나타낸다.
+  - valid bit = 0 : illegal segment
 
 <br>
 
@@ -351,19 +373,21 @@
 - **공유 세그먼트(shared segment)**
 
   - 여러 프로세스가 특정 세그먼트를 공유해 사용한다.
-  - 이 세그먼트를 공유하는 모든 프로세스의 주소 공간에서 동일한 논리적 주소에 위치해야 한다.
+  - 이 세그먼트를 공유하는 모든 프로세스의 주소 공간에서 _동일한 논리적 주소에 위치_ 해야 한다.
 
-- **공유 보안 측면에서 세그먼테이션**
+- **장점: 공유(sharing)와 보안(protection) 측면에서 세그먼테이션**
 
-  - 의미 단위로 나눠져 있어서 페이징 기법보다 훨씬 효과적이다.
-  - 왜냐하면 크기 단위로 나누다 보면 공유 코드와 사유 데이터 영역이 동일 페이지에 공존하는 경우가 발생할 수 있기 때문이다.
+  - 의미 단위로 나눠져 있어서 페이징 기법보다 훨씬 효과적이다. -> 5.2 와 연결하기
+  - 왜냐하면 크기 단위로 나누다 보면 공유 코드와 사유 데이터 영역이 동일 페이지에 공존하는 경우가 발생할 수 있기 때문이다. 이러면 어떤 권한을 줘야할지 결정하기가 어렵다.
 
 <br>
 
 ## 5.4 세그먼트 할당 방식
 
 - **세그먼트를 가용 공간에 할당하는 방식**
-  - 세그먼트 크기가 균일하지 않기 때문에, 외부 조각이 발생한다.
+  - 세그먼트 크기가 균일하지 않기 때문에, 외부 조각 같은 문제점이 발생한다.
+    - 내부 조각은 없다는 장점
+    - paging은 fragmentation이 발생하지 않는다.
   - 그래서 동적 메모리 할당 문제가 존재한다.
   - 이 문제에 대해서는 first-fit 방식과 best-fit 방식을 사용한다.
 
@@ -372,6 +396,58 @@
 ---
 
 # 6. 페이지드 세그먼테이션
+
+> 의미 단위로 끊은 segmentation을 기반으로, 각 segmentation을 크기가 동일한 page로 구성
+
+<br>
+
+## 6.1 pure segmentaton과의 차이점
+
+> **_segment-table entry_** 가 segment의 **_base address_** 를 가지고 있는 것이 아닌, segment를 구성하는 **_page table_** 의 **_base address_** 를 가지고 있다.
+
+<br>
+
+## 6.2 Paged segmentation의 logical address
+
+> 두 가지 [s: segment-number, d: offset]로 구성
+
+<br>
+
+## 6.3 Paged segmentation의 특징과 장점
+
+- **물리적 메모리에 적재하는 단위: page**
+
+- **address binding을 위해 외부의 segment table과 내부의 page table을 이용한다.**
+
+- **장점: segmentation에서 발생하는 외부조각 문제와 paging 기법의 접근 권한 보호 문제를 해결**
+
+<br>
+
+## 6.4 address binding 과정 설명
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/165794299-d37ff422-11c8-4111-9667-486737368314.PNG"/></p>
+
+- **첫 번째**
+  : 논리적 주소의 상위 비트인 segment number(s)를 통해 segment table의 해당 항목에 접근
+
+- **두 번째**
+  : 이 segment table entry = segment 길이 + segment의 page table 시작 주소
+
+- **세 번째**
+  : 세그먼트 길이를 넘어서는 메모리 접근 시도인지 여부를 체크하기 위해, segment length와 logical address의 하위 비트 offset(d) 값과 비교.
+  -> If segment lenth < offset: 유효 X -> trap 발생.  
+  -> If segment lenth > offset: offset 값을 다시 상위 하위 비트로 나눔.
+
+      - 나눠진 상위비트(p): 그 segment 내에서 page number를 의미.
+      - 나눠진 하위비트(d'): page 내에서의 변위를 의미.
+
+- **네 번째**
+  : segment table entry에 있는 segment의 page-table base를 기준으로, p만큼 떨어진 page table entry로부터 물리적 메모리의 page frame 위치(f)를 얻음.
+
+- **다섯 번째**
+  : 이 얻어진 위치에서 d'만큼 떨어진 곳 = 물리적 메모리 주소.
+
+- **page table for segment s 의 entry 갯수는 segment table의 segment 길이를 보면 알 수 있다.**
 
 <br>
 

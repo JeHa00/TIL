@@ -4,6 +4,7 @@
 > 2. [Race condition](#2-race-condition)
 > 3. [OS에서의 race condition 3가지](#3-os에서의-race-condition-3가지)
 > 4. [Critical section problem](#4-critical-section-problem)
+> 5. [Semaphores](#5-semaphores)
 
 <br>
 
@@ -38,7 +39,7 @@
 
 ## 2.1 Race condition이란??
 
-> **한 연산자가 stroage에서 가져와 작업 중인데, 작업 중인 data를 다른 연산자가 가져가서 작업하여 동기화되지 않는 현상**
+> **여러 프로세스/스레드가 동시에 shared data를 조작할 때, 한 연산자가 stroage에서 가져와 작업 중인데, 작업 중인 data를 다른 연산자가 가져가서 작업하여 동기화되지 않는 현상**
 
 <br>
 
@@ -227,7 +228,7 @@ do {
 
 - **모든 요구 조건들을 만족하지만, 그래도 문제점이 존재한다.**
   - `busy waiting` (= spin lock): 계속 CPU와 memory의 할당 시간을 쓰면서 기다리는 현상
-    - while 문을 돌면서(spin) 계속 lock을 걸어서 상대방이 못 들어온다.
+    - while 문을 돌면서( **spin** ) 계속 **lock** 을 걸어서 상대방이 못 들어온다.
     - A process가 critical section에 들어가 있는 상태에서 B process가 CPU를 받아서 작동할 때, B process의 CPU 할당 시간 동안 while문이 만족되는지 체크한다.
     - 하지만, A process가 CPU를 잡아서 조건을 바꿔줘야 B process가 들어올 수 있다.
     - 그래서 이를 busy waiting이라 한다.
@@ -243,6 +244,11 @@ do {
     - HW 적으로 lock을 읽고 setting하는 작업을 말한다.
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/166150660-e4eec628-47df-4643-8a27-79146c253c1e.PNG"/></p>
+
+- **_atomic_** instruction이란??
+
+  - 실행 중간에 간섭받거나 중단되지 않는다.
+  - 같은 메모리 영역에 대해 동시에 실행되지 않는다.
 
 - Test_and_set (a)
 
@@ -274,7 +280,208 @@ Process Pi
 
 ---
 
-# 5.
+# 5. Semaphores
+
+<br>
+
+## 5.1 Semaphores 란??
+
+> 공유 자원을 얻고 반납해주는 작업을 위해서 lock & unlock 작업을 도와주는 추상 자료형
+
+- **추상화**
+
+  - 세부 구현으로부터 분리하여 개념을 일반화시키는 것
+  - what은 정의하지만, 언어를 사용하여 어떻게 구현할지 How는 정의하지 않는다.
+
+- **추상 자료형**
+
+  - 추상화를 통해 얻어낸 자료형
+  - 구성: object + operation
+    - operation의 구현은 system 마다 다르다.
+
+- **_atomic_** instruction이란??
+
+  - 실행 중간에 간섭받거나 중단되지 않는다.
+  - 같은 메모리 영역에 대해 동시에 실행되지 않는다.
+
+- **Semaphores S**
+
+  - 위 SW와 HW 알고리즘들 방식을 추상화시켜, 보다 효율적으로 관리한다.
+  - integer variable (=Semaphore variable)
+    - semaphore variable = 자원의 갯수
+      - ex) semaphore variable = 5: 자원의 갯수가 5개라는 의미
+    - 자원을 획득하는 연산을 사용하면 자원의 갯수는 감소
+    - 자원을 반납하는 연산을 사용하면 자원의 갯수는 증가
+  - 정의된 2가지 **_atomic_** operation: P, V
+
+    - Semaphore variable을 가지고 수행하는 연산
+    - P(S) operation: 공유 데이터 자원을 획득하고 lock을 거는 연산
+
+      ```yml
+      // S가 음수라는 건 자원이 없다는 걸 의미한다.
+      // 자원이 없기 때문에, while문에서 계속 반복하며 기다린다.
+      while(S <= 0) do no-op;
+
+      // 자원을 획득하여 P 연산을 시작하므로, S 값을 1 감소시킨다.
+      S--;
+      ```
+
+    - V(S) operation: 공유 데이터 자원을 다 사용하고 나서 반납하고, unlock하는 연산
+
+      ```yml
+      // operation 사용이 끝나면 V 연산을 하여 S 값을 1 증가시킨다.
+
+      S++
+      ```
+
+- **Semaphore의 문제점**
+  - while문에서 계속 기다리기 때문에 `busy & wait` 문제가 존재한다.
+
+<br>
+
+## 5.2 Criticall section of n process
+
+> critical section에 semaphore 사용하기
+
+- **mutex = mutual exclusion**
+
+```yml
+Synchronization variable
+semaphore mutex: # initally 1
+
+Process Pi:
+do {
+
+    # 진입할 때 사용하는 연산. 이 조건에 만족하면 critical section에 진입하고 semaphore 감소, 그렇지 않으면 대기.
+    P(mutex):
+
+    critical section
+
+    V(mutex): # 빠져나올 때 사용하는 연산으로, semaphore 증가
+
+    remainder section
+
+} while(1)
+```
+
+- **busy-wait(spin lock) 방식은** CPU를 할당받았지만, while문에서 대기하는 걸로 할당시간을 낭비하기 때문에 **효율적이지 못하다**.
+- 그래서 **block & wake up (=sleep lock)** 방식으로 구현한다.
+  - shared data를 쓰고 있는 process가 criticial section 실행을 완료할 때까지, 대기 중인 process는 `block` 상태에 있어서 CPU를 얻지 못하고,
+  - 사용 중이던 process가 데이터를 내놓으면 `block` 상태에 있는 process는 `wake up` 하여 ready queue에 들어와서 대기하는 방식
+
+<br>
+
+## 5.3 Block & Wakeup implementation
+
+- **Semaphore 정의**
+
+```yml
+typeef struct
+{ int value; # semaphore를 의미
+  struct process *L;  # queue for process wait
+} semaphore;
+```
+
+- **Block & Wakeup**
+
+  - Block
+    - kernel은 block을 호출한 process를 suspend 시킨다.
+    - 이 process의 PCB를 semaphore에 대한 wait queue에 넣는다.
+  - Wake up
+    - block state인 process P를 wake up
+    - 이 process의 PCB를 ready queue로 옮긴다.
+
+- **정의된 Semaphore 연산**
+
+  - **P(S)**: resource 획득 연산
+    - S: semaphore variable
+
+  ```yml
+  S.value --; # 자원을 획득하기 때문에 감소
+  if (S.value < 0 ) # 음수이면 들어가지 못 한다.
+  {
+      # 음수면 이 프로세스를 queue에서 대기하도록 추가한다. 그 후, block로 둔다.
+      add this process to S.L;
+      block
+  }
+  ```
+
+  - **V(S)**: resource 반납 연산과 이 자원을 기다리면 잠든 프로세스를 깨우는 연산
+    - S: semaphore variable
+
+  ```yml
+  S.value ++;
+
+  # 자원을 내놓았는데도 0이거나 음수라는 건, 어떤 프로세스가 P 연산에 의해  block 상태임을 의미
+  if (S.value <= 0 )
+  {   # queue에서 제거한다.
+      remove this process to S.L;
+      wake(P);
+  }
+  ```
+
+## 5.4 Busy-wait VS Block & wake-up
+
+> critical section의 길이에 따라 달라진다.
+
+- **critical section의 길이가 긴 경우**
+
+  - block / wakeup이 필수
+    - 오랫 동안 풀지 않은 lock을 풀기 위해 CPU를 얻어도 계속 while문에서 대기하는 게 길기 때문이다.
+
+- **critical section의 길이가 짧은 경우**
+
+  - block/wakeup overhead가 busy-wait overhead보다 더 커질 수 있다.
+  - 일반적으로는 block/wakeup 방식이 더 좋다.
+
+<br>
+
+## 5.5 Two types of semaphores
+
+> Counting semaphores and Binary semaphores (=mutext)
+
+| Attribute | Counting semaphore | Binary semaphore      |
+| --------- | ------------------ | --------------------- |
+| resource  | resource >= 0      | resource = 1          |
+| purpose   | resource counting  | mutext(lock / unlock) |
+
+<br>
+
+## 5.5 Semaphore 주의사항: Deadlock and Starvation
+
+<br>
+
+### 5.5.1 Deadlock
+
+> Deadlock: 둘 이상의 process가 서로 상대방에 의해 충족될 수 있는 event를 무한히 기다리는 현상
+
+- 어떤 일을 하기 위해서, S와 Q를 모두 획득해야지만 일할 수 있고, S와 Q를 모두 반환한다.
+- S와 Q: 서로 배타적으로 사용할 수 있는, 1로 초기화된 semaphore
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/166642365-7d72467b-bb72-4202-9deb-ade65d90868f.PNG"/></p>
+
+    - Process 모두 하나씩 차지한 상황
+        - P0가 S를 먼저 작업하다가 CPU를 빼앗겨서 P1이 CPU와 Q semaphore 를 얻어서 작업한다.
+    - 그런데, 상대방의 것을 서로 요구한다. 하지만, 서로 가지고 있기 때문에, 영원히 기다려야 한다.
+    - 왜냐하면 다 사용하고 나서 반환하기 때문이다.
+
+- 이 문제 `Deadlock` 이라 한다.
+
+- **Solution**
+
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/166642369-2ede3e17-6535-4426-b629-e0fb499786ca.PNG"/></p>
+
+- 서로 다른 프로세스여도 같은 순서로 정한다.
+  - Q를 획득하려면 S를 먼저 획득하라는 의미
+
+<br>
+
+### 5.5.2 Starvation
+
+> starvation = infinite blocking: process가 suspend된 이유에 해당하는 semaphore queue에서 빠져나갈 수 없는 현상
+
+- 특정 process자원을 독점하여 나머지 프로세스가 자원을 얻지 못하고 무한히 기다리는 현상
+  - Deadlock과 유사하지만, 다르다.
 
 <br>
 

@@ -17,8 +17,6 @@
 
 # 1. The Deadlock Problem
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167450136-f73b9f27-c423-4563-b50a-2900a52e508f.png"/></p>
-
 ![Deadlock_1.PNG](https://user-images.githubusercontent.com/78094972/167450136-f73b9f27-c423-4563-b50a-2900a52e508f.png)
 
 - **deadlock이 현실 사례 비유**
@@ -95,8 +93,6 @@
 
 ## 3.1 Graph 설명
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167449422-f5cbb6bc-0ccf-4094-b5df-aa427f592ede.PNG"/></p>
-
 ![Resource_allocation_graph.PNG](https://user-images.githubusercontent.com/78094972/167449422-f5cbb6bc-0ccf-4094-b5df-aa427f592ede.PNG)
 
 - **Vertex (= 꼭지점, 정점)**
@@ -125,8 +121,6 @@
 
   - 2-1번 one instance per resource -> **deadlock** O
   - 2-2번 multiple intsnace per resource -> **deadlock** X & 가능성 O
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167449427-18a2166c-537c-405e-afc1-5db0bf276b6c.PNG"/></p>
 
 ![Resource_allocation_graph_1.PNG](https://user-images.githubusercontent.com/78094972/167449427-18a2166c-537c-405e-afc1-5db0bf276b6c.PNG)
 
@@ -173,35 +167,32 @@
 
 - **Mutual Exclusion**
 
-> **_공유해서는 안되는 자원의 경우, 반드시 성립해야 한다._**
-
-    - 따라서, 이 조건의 발생을 막아 deadlock을 해결하는 건 불가능하다.
+  - 공유해서는 안되는 자원의 경우, 반드시 성립해야 한다.
+  - 따라서, 이 조건의 발생을 막아 deadlock을 해결하는 건 불가능하다.
 
 - **Hold and wait 조건에 대한 방법**
 
-> **_프로세스가 자원을 요청할 때, 다른 어떤 자원도 가지고 있지 않기_**
+  - 프로세스가 자원을 요청할 때, 다른 어떤 자원도 가지고 있지 않기
 
-    - 방법 1: 프로세스 시작 시, 모든 필요한 자원을 할당받는 방법
-        - 다 사용하고 나서 자원을 반납한다.
-    - 방법 2: 자원이 필요할 경우, 보유 자원을 모두 놓고 다시 요청
-        - hold한 자원을 다 뱉는다.
-    - 하지만, 한 번에 한 프로세스만 자원을 소유할 수 있어서 효율적이지 않다.
-    - starvation이 발생할 수 있고, throughput이 낮다.
+  - 방법 1: 프로세스 시작 시, 모든 필요한 자원을 할당받는 방법
+    - 다 사용하고 나서 자원을 반납한다.
+  - 방법 2: 자원이 필요할 경우, 보유 자원을 모두 놓고 다시 요청
+    - hold한 자원을 다 뱉는다.
+  - 하지만, 한 번에 한 프로세스만 자원을 소유할 수 있어서 효율적이지 않다.
+  - starvation이 발생할 수 있고, throughput이 낮다.
 
 - **No Preemption 조건에 대한 방법**
 
-> **_Preemption을 허락하기_**
-
-    - Process가 어떤 자원을 기다려야 하는 경우, 이미 보유한 자원이 선점된다.
-    - 모든 필요한 자원을 얻을 수 있을 때, 그 프로세스는 다시 시작된다.
-        - 이 때, starvation이 발생할 수 있다.
-    - state를 쉽게 save하고, restore할 수 있는 자원에서 주로 사용(CPU, memory)
+  - Preemption을 허락하기
+  - Process가 어떤 자원을 기다려야 하는 경우, 이미 보유한 자원이 선점된다.
+  - 모든 필요한 자원을 얻을 수 있을 때, 그 프로세스는 다시 시작된다.
+    - 이 때, starvation이 발생할 수 있다.
+  - state를 쉽게 save하고, restore할 수 있는 자원에서 주로 사용(CPU, memory)
 
 - **Circular wait 막기**
 
-> 모든 자원 유형에 할당 순서를 정하여 정해진 순서대로만 자원을 할당하기
-
-    - 예를 들어 순서가 3인 자원 Ri를 보유 중인 프로세스가 순서가 1인 자원 Rj를 할당받기 위해서는 우선 Rj를 release해야 한다.
+  - 모든 자원 유형에 할당 순서를 정하여 정해진 순서대로만 자원을 할당하기
+  - 예를 들어 순서가 3인 자원 Ri를 보유 중인 프로세스가 순서가 1인 자원 Rj를 할당받기 위해서는 우선 Rj를 release해야 한다.
 
 하지만, 생기지도 않을 수 있는 이런 제약들로 인해서 다음과 같은 문제점을 낳기 때문에, 이 방법은 잘 사용하지 않는다.
 
@@ -255,8 +246,6 @@
 - request edge의 assignment edge 변경 시(점선을 포함하여), cycle이 생기지 않는 경우에만 요청 자원을 할당.
 - Cycle 생성 여부 조사 시, 프로세스의 수가 n일 때 O(n^2)의 Time Complexity 를 가진다.
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167449436-43b0974d-ae85-4c50-b61d-7a5a70412b3e.PNG"/></p>
-
 ![Resource_allocation_graph_algorithum.PNG](https://user-images.githubusercontent.com/78094972/167449436-43b0974d-ae85-4c50-b61d-7a5a70412b3e.PNG)
 
 <br>
@@ -290,8 +279,6 @@
   - Available: 각 자원 별로 현재 남아있는 자원의 양
   - Need: 각 프로세스의 추가로 요청 가능한 자원의 양
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167449405-f2a65211-5ccf-412b-b8da-6ea500ab81d3.PNG"/></p>
-
 ![Banker_algorithum.PNG](https://user-images.githubusercontent.com/78094972/167449405-f2a65211-5ccf-412b-b8da-6ea500ab81d3.PNG)
 
 - **Resource**
@@ -315,6 +302,8 @@
 
 <br>
 
+---
+
 ## 4.3 Deadlock Detection and Recovery
 
 > 알고리즘을 통해 현재 시스템에 deadlock이 있는지 찾고, 알고리즘을 통해 deadlock을 복구하는 것
@@ -324,8 +313,6 @@
 ### 4.3.1 Single instance per resource type
 
 > wait-for graph algorithum을 사용하며, deadlock detection을 하기 위해서는 wait-for graph에서 cycle이 있는지를 판단한다.
-
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167449417-473a5dfa-cfdb-4ec7-9655-6338e5baca3b.PNG"/></p>
 
 ![deadlock_detection_recovery.PNG](https://user-images.githubusercontent.com/78094972/167449417-473a5dfa-cfdb-4ec7-9655-6338e5baca3b.PNG)
 
@@ -354,8 +341,6 @@
 
 > deadlock 찾는 방법은 banker’s algorithum과 유사한 방법 활용
 
-<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/167449419-f0d2688c-c311-47fb-b2a9-afd992598822.PNG"/></p>
-
 ![deadlock_detection_recovery_multiple instance.PNG](https://user-images.githubusercontent.com/78094972/167449419-f0d2688c-c311-47fb-b2a9-afd992598822.PNG)
 
 - Deadlock 존재 유무를 판단하기 위해서는 deadlock avoidance와 반대로 매우 보수적인 판단이 아닌, 긍정적인 판단을 해야 한다.
@@ -364,10 +349,10 @@
 
 - **Deadlock 확인하기**
 
-  - 1. 가용자원(Avaoilable)이 몇 개 있는지 확인한다.
-  - 2. 요청하지 않은 프로세스의 자원도 가용자원으로 합친다.
-  - 3. 합친 가용자원으로 처리 가능한지 확인한다.
-  - 4. 처리 후 처리된 프로세스의 자원도 합쳐서, 모든 프로세스가 끝낼 수 있는지 확인한다.
+  1. 가용자원(Avaoilable)이 몇 개 있는지 확인한다.
+  2. 요청하지 않은 프로세스의 자원도 가용자원으로 합친다.
+  3. 합친 가용자원으로 처리 가능한지 확인한다.
+  4. 처리 후 처리된 프로세스의 자원도 합쳐서, 모든 프로세스가 끝낼 수 있는지 확인한다.
 
 - Deadlock detection과 recovery도 overhead가 크다.
 

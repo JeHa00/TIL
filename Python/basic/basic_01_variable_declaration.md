@@ -142,8 +142,8 @@ Change Value
 
 - 이 규칙들을 가지고 변수를 선언하면 세련되고, 코드를 재활용할 때 가독성이 좋은 소스 코드로 만들 수 있다.
 
-> Camel Case : method를 선언할 때 사용. ex) numberOfCollegeGraduates
-> Pascal Case : 언어 상관 없이 class를 주로 선언할 때 사용. ex) umberOfCollegeGraduates
+> Camel Case : method를 선언할 때 사용. ex) numberOfCollegeGraduates  
+> Pascal Case : 언어 상관 없이 class를 주로 선언할 때 사용. ex)NumberOfCollegeGraduates  
 > snake case: 파이썬에서 변수를 선언 시 사용. ex) number_of_college_graduates
 
 Camel과 Pascal의 차이는 첫 문자가 소문자냐 대문자냐의 차이다.

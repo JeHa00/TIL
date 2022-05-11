@@ -27,7 +27,7 @@
 
 <br>
 
-### [Python](https://github.com/JeHa00/TIL/tree/master/Python) & [Django]
+### [Python](https://github.com/JeHa00/TIL/tree/master/Python) & [Django](https://github.com/JeHa00/TIL/tree/master/Django)
 
 - [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 - [Python advanced](https://github.com/JeHa00/TIL/tree/master/Python/advanced)
@@ -40,24 +40,28 @@
 
 <br>
 
-### Algorithm
-
--
-
-<br>
-
 ### [OS](<https://github.com/JeHa00/TIL/tree/master/OS%20(Operation%20System)>)
 
 - [Chapter 02: 운영체제 개요](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_02_%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C_%EA%B0%9C%EC%9A%94.md>)
-- [Chapter 03: 컴퓨터 시스템 동작원리 上](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_1.md>)
-- [Chapter 03: 컴퓨터 시스템 동작원리 下](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_2.md>)
+- [Chapter 03: 컴퓨터 시스템 동작원리 1](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_1.md>)
+- [Chapter 03: 컴퓨터 시스템 동작원리 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_03_%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC_2.md>)
 - [Chapter 04: 프로그램의 구조와 실행](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_04_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98%EA%B5%AC%EC%A1%B0%EC%99%80%EC%8B%A4%ED%96%89.md>)
 - [Chapter 05: 프로세스 관리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_05_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B4%80%EB%A6%AC.md>)
 - [Chapter 06: CPU 스케쥴링](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_06_CPU_%EC%8A%A4%EC%BC%80%EC%A5%B4%EB%A7%81.md>)
-- [Chapter 07: 메모리 관리]
-- [Chapter 08: 가상 메모리]
-- [Chapter 09: 디스크 관리]
-- [Chapter 10: 웹캐싱 기법]
+- [Chapter 07: 메모리 관리 1](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_07_%EB%A9%94%EB%AA%A8%EB%A6%AC_%EA%B4%80%EB%A6%AC_1.md>)
+- [Chapter 07: 메모리 관리 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_07_%EB%A9%94%EB%AA%A8%EB%A6%AC_%EA%B4%80%EB%A6%AC_2.md>)
+- [Chapter 08: 프로세스 동기화 1](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_08_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EB%8F%99%EA%B8%B0%ED%99%94_1.md>)
+- [Chapter 08: 프로세스 동기화 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_08_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EB%8F%99%EA%B8%B0%ED%99%94_2.md>)
+- [Chapter 09: 교착 상태](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_09_%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C.md>)
+- [Chapter 10: 가상 메모리]
+- [Chapter 11: 디스크 관리]
+- [Chapter 12: 웹캐싱 기법]
+
+<br>
+
+### Algorithm
+
+-
 
 <br>
 

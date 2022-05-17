@@ -11,12 +11,11 @@
 
 > “Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder whether you need them, you don’t (the people who actually need them know with certainty that they need them, and don’t need an explanation about why).”
 >
-> - Tim Peters
+> [Tim Peters]
 
 - **Meta class를 배우는 이유**
 
-  - 바로 필요성을 느끼지 않지만, class의 형성 원리를 이해하고자 학습한다.
-  - Tim Peters가 언급한 것처럼 아직은 필요성을 못 느끼지만, 여러 오픈 소스들에서는 이 meteaclass를 활용하여 작성된 경우가 매우 많으므로, 오픈 소스를 보다 잘 이해하기 위해 학습한다.
+  - Tim Peters가 언급한 것처럼 아직은 필요성을 못 느끼지만, 여러 오픈 소스들에서는 이 meteaclass를 활용하여 작성된 경우가 매우 많으므로,  class의 형성 원리를 이해한 것을 바탕으로 오픈 소스를 보다 잘 이해하기 위해 학습한다.
 
 - **파이썬에서는 클래스도 포함하여 모든 것들이 객체다.**
 
@@ -113,7 +112,8 @@ True
 
 **2. framework 작성 시 필수다.**
 
-    - 1번의 이유처럼 의도하는 방향대로 직접 클래스 생성에 관여할 수 있기 때문에, 범용적인 프레임워크 개발, 패키지 개발에 사용된다.
+    - 1번의 이유처럼 의도하는 방향대로 직접 클래스 생성에 관여할 수 있기 때문에, 
+    - 범용적인 프레임워크 개발, 패키지 개발에 사용된다.
     - Django의 내부를 보면 이 metaclass를 사용하여 구현할 것을 알 수 있다.
     - 많은 세계적인 파이썬 user들은 meta class를 바탕으로 선언한 후, 원하는 대로 구현한다.
 
@@ -154,7 +154,7 @@ True
 
 ## 3.2 동적으로 클래스 만들기
 
-> 동적으로 클래스를 만든다는 건 **type() 에 3가지 인자를 입력**하여 만드는 방식으로, 필요할 때마다 바로 바로 클래스를 만들어낼 수 있다는 걸 의미한다. 그래서 Framework에서 많이 사용한다.
+> 동적으로 클래스를 만든다는 건 **_type() 에 3가지 인자를 입력_** 하여 만드는 방식으로, 필요할 때마다 바로 바로 클래스를 만들어낼 수 있다는 걸 의미한다. 
 
 - **type([name], [bases], [dct])**
 
@@ -293,11 +293,11 @@ TypeError: can't set attributes of built-in/extension type 'type'
 ## 4.2 Ex1 with Type 상속 X
 
 - **그러면 custom metacalss를 생성해보자.**
-  - 다음 것들에 유의해서 보자.
-    - class가 아니어도 self를 사용하는 것
-    - class 내부가 아닌 외부에 function을 정의하여, component 식으로 필요할 때마다 꺼내서 custom metaclass에 사용할 수 있다.
-      - open source에서 이런 방식을 많이 사용한다.
-    - 동적으로 class 만들 때, 상속할 class로 list를 입력함에 따라 어떻게 흘러가는지.
+- 다음 것들에 유의해서 보자.
+  - class가 아니어도 self를 사용하는 것
+  - class 내부가 아닌 외부에 function을 정의하여, component 식으로 필요할 때마다 꺼내서 custom metaclass에 사용할 수 있다.
+    - open source에서 이런 방식을 많이 사용한다.
+  - 동적으로 class 만들 때, 상속할 class로 list를 입력함에 따라 어떻게 흘러가는지.
 
 ```yml
 ## class 외부에 function 만들기

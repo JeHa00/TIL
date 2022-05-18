@@ -17,7 +17,7 @@
 
 # 6. 프로세스 동기화의 첫 번째 문제
 
-> **Bounded-buffer problem (producer-consumber problem)**으로서, **생산자와 소비자가 공유 buffer에 도착했을 경우, 동기화되지 않는 문제**
+> **Bounded-buffer problem (producer-consumber problem)** 으로서, **생산자와 소비자가 공유 buffer에 도착했을 경우, 동기화되지 않는 문제**
 
 - **buffer: 임시로 데이터를 저장하는 공간**
 - **두 종류의 process**

@@ -382,7 +382,7 @@
 
 - Deadlock이 매우 드물게 발생하므로, deadlock에 대한 조치 자체가 더 큰 overhead일 수 있다.
 - 만약 시스템에 deadlock이 발생한 경우, 직접 process를 죽이는 등의 방법으로 대처한다.
-  - 만약 한 번에 deadlock의 원인이 되는 process를 죽이면 효율적이지만, 원인이 되는 process가 죽을 수도 있다.
+  - 만약 한 번에 deadlock의 원인이 되는 process를 죽이면 효율적이지만, 아닌 process가 죽을 수도 있다.
 - UNIX, Windows 등 대부분의 범용 OS가 채택하는 방식이다.
   <br>
 

@@ -15,7 +15,6 @@
 
 - 폴더와 파일명은 영문으로 작성한다.
 - 해당 문서를 다시 봤을 때, 추가적인 검색 비용이 필요하지 않도록, 훗날 동료들과 공유하기 위해 자세히 기록한다.
-<!-- - 더 많은 공유를 원하는 기록은 [블로그](http://ict-nroo.tistory.com/)에 포스팅한다. -->
 - 자세히 적을려고 하되, 완벽히 작성하려고 하지 않는다. 과한 부담은 꾸준함을 막는다.
 - 쉴 땐 확실히 쉰다.
 - contributions를 초록색으로 채우는 것에 집착하지 않는다.
@@ -37,6 +36,7 @@
 ### [Network](https://github.com/JeHa00/TIL/tree/master/Network)
 
 - [HTTP](https://github.com/JeHa00/TIL/tree/master/Network/HTTP)
+- [네트워크 전체 원리]()
 
 <br>
 

@@ -5,7 +5,6 @@
 > 3. [Property()과 descriptor 함께 사용하기](#3-property과-descriptor-함께-사용하기)
 > 4. [Descriptor를 사용하여 File Count하기](#4-descriptor를-사용하여-file-count하기)
 > 5. [Descriptor가 자주 사용되는 용도: logging](#5-descriptor가-자주-사용되는-용도-logging)
-> 6. [Lookup chain](#6-lookup-chain)
 
 <br>
 

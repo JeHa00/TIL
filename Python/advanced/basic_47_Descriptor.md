@@ -48,7 +48,7 @@
 | fdel | 속성의 값을 삭제하는 함수              | \_\_delete\_\_      |
 | doc  | property에 대해 설명하는 문자열 string |                     |
 
--
+
 
 <br>
 

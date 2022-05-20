@@ -396,7 +396,6 @@ Property Method Example
 
 > Ticket1 = Ticket('Jeju')
 
-
 > print('Jeju Price > ', Ticket1.price)
 2022-05-19 18:10:32 Accessing 'price' giving 150000
 Jeju Price >  150000

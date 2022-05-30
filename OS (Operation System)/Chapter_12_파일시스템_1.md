@@ -8,6 +8,11 @@
 
 <br>
 
+- 해당 내용은 [운영체제와 정보기술의 원리 -반효경 지음-](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158903589&orderClick=LAG&Kc=) 와 [kocw 이화여자대학교 운영체제 - 반효경 교수 -](http://www.kocw.net/home/cview.do?lid=3dd1117c48123b8e)를 보고 정리한 내용이다.
+- 정확하지 않은 내용이 있다면 말씀해주시면 감사하겠습니다.
+
+<br>
+
 ---
 
 # 1. File and File System
@@ -150,7 +155,6 @@
 
     - LP 레코드 판과 같이 접근하도록 한다.
     - 파일을 구성하는 레코드를 임의의 순서로 접근할 수 있다.
-
 
 <br>
 

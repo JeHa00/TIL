@@ -30,8 +30,11 @@
 
 - [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 - [Python advanced](https://github.com/JeHa00/TIL/tree/master/Python/advanced)
+- [Django]
 
 <br>
+
+---
 
 ### [Network](https://github.com/JeHa00/TIL/tree/master/Network)
 
@@ -39,6 +42,8 @@
 - [네트워크 전체 원리](https://github.com/JeHa00/TIL/tree/master/Network/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EC%A0%84%EC%B2%B4%20%EC%9B%90%EB%A6%AC)
 
 <br>
+
+---
 
 ### [OS](<https://github.com/JeHa00/TIL/tree/master/OS%20(Operation%20System)>)
 
@@ -54,21 +59,59 @@
 - [Chapter 08: 프로세스 동기화 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_08_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EB%8F%99%EA%B8%B0%ED%99%94_2.md>)
 - [Chapter 09: 교착 상태](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_09_%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C.md>)
 - [Chapter 10: 가상 메모리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_10_%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC.md>)
-- [Chapter 11: 디스크 관리]()
-- [Chapter 12: 웹캐싱 기법]
-- [Chapter 13: 파일 시스템]
+- [Chapter 11: 디스크 관리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_11_%EB%94%94%EC%8A%A4%ED%81%AC%EA%B4%80%EB%A6%AC.md>)
+- [Chapter 12: 파일 시스템 - 1](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_12_%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C_1.md>)
+- [Chapter 12: 파일 시스템 - 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_12_%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B5%AC%ED%98%84.md>)
+- [Chapter 13: 웹캐싱 기법]()
 
 <br>
 
-### Algorithm
+---
 
-- 
-
-<br>
-
-### Datebase
+### [Algorithum](https://github.com/JeHa00/TIL/tree/master/DataStructure_Algorithm)
 
 -
+
+<br>
+
+---
+
+### [Datebase](https://github.com/JeHa00/TIL/tree/master/DB)
+
+- [MySQL]
+
+<br>
+
+---
+
+### Docker
+
+-
+
+<br>
+
+---
+
+### Cloud
+
+-
+
+<br>
+
+---
+
+### Kubernetes
+
+-
+
+<br>
+
+---
+
+### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
+
+- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
+- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md)
 
 <br>
 
@@ -81,30 +124,3 @@
 ### Javascript
 
 -
-
-<br>
-
-### Docker
-
--
-
-<br>
-
-### Kubernetes
-
--
-
-<br>
-
-### Cloud
-
--
-
-<br>
-
-### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
-
-- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
-- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md)
-
-<br>

@@ -252,19 +252,24 @@
 
 ![image](https://user-images.githubusercontent.com/78094972/170955100-774e0fcb-f2ab-416b-aac6-e9af64d6eab3.png)
 
-- **Page cache: cache의 관점**
+- **Page cache: _cache의 관점_**
 
+  - memory 관리 시, page frame에 당장 필요한 부분을 memory에 올려놓고, 필요 없는 부분을 내쫓는 것을 page 관점에서 이야기하는 걸 page cache라 한다.
+    - 프로세스의 주소 공간을 구성하는 페이지가 스왑 영역에 내려가 있는가, 페이지 캐시에 올라와 잇는가
   - 가상 메모리의 paging system에서 사용하는 page frame을 page cache라 부르는 것으로, cache의 관점에서 설명하는 용어
   - Memory-Mapped I/O 를 쓰는 경우, 파일의 I/O에서도 page cache를 사용한다.
   - page cache는 운영체제에게 주어진 정보가 극히 제한적이라, clock 알고리즘을 사용한다.
 
 - **Memory-Mapped I/O**
 
-  - 파일의 일부를 가상 메모리에 매핑한다.
+  - 디스크 파일의 일부를 가상 메모리에 매핑하여 사용한다.
+    - mapping 하고 나서는 read나 write 같은 system call을 하지 않고 메모리에 읽고 쓴다.
   - 매핑한 영역에 대한 메모리 접근 연산은 파일의 입출력을 수행하게 된다.
 
-- **Buffer cache: File system 관점**
+- **Buffer cache: _File system 관점_**
 
+  - 프로그램이 I/O 시, disk의 file system에서 OS가 사용자 대신 읽어와서 자신의 memory 영역에 copy해 놓는 걸 buffer cache
+    - disk에 있느냐 아니면 운영체제 커널의 memory 영역에 copy되어 있느냐
   - 파일 시스템을 통한 I/O 연산은 메모리의 특정 영역인 buffer cache를 사용한다.
   - 파일 사용의 지역성 활용
 
@@ -273,14 +278,41 @@
   - 모든 process가 공용으로 사용
   - 교체 알고리즘 필요 (LRU, LFU 등)
 
-- **통합 buffer cache**
+- **Unified(통합) buffer cache**
 
-  - 최근의 OS에서는 기존의 buffer cache가 page cahce에 통합되었다.
-    - buffer cache도 page 단위로 관리한다는 의미.
+> 별도의 구분 없이 필요할 때만 할당해서 쓰는 방식
 
+- 최근의 OS에서는 기존의 buffer cache가 page cahce에 통합되어 사용되고 있다.
+  - buffer cache도 page 단위로 관리한다는 의미.
+  - 똑같이 page 단위로 운영하면서 필요할 때, I/O가 필요할 때 이 page cache를 할당하여 buffer cache로 사용한다.
+  - 또한, 프로세스의 주소 공간에 페이지가 필요하다면 이 페이지를 프로세스의 주소 공간에 할당하여 프로세스의 해당 페이지를 올려놓는다.
 - **통합 buffer cache를 사용하지 않을 때와 사용할 때의 차이**
 
 ![image](https://user-images.githubusercontent.com/78094972/170958342-0f2c376b-e3f8-4b26-aa71-2596ec1ce965.png)
+
+- Unified Buffer Cache를 이용하지 않는 File I/O 방식
+
+  - Memory-mapped I/O
+    - 처음에는 mmap() 이라는 system call을 요청한다.
+    - 자신의 주소 공간 중 일부를 file에 mapping 한다.
+    - disk에 있는 file을 읽어온 후, buffer cache로 읽어오는 건 동일하다.
+    - 하지만 그 후, page cache에다가 buffer cache에 있는 것을 copy하여 주는 게 다르다.
+      - 그러면 page cache에 있는 내용이 disk의 file과 mapping된 내용이다.
+      - 자신의 주소 공간 중 일부를 file과 mapping한다.
+    - 그러면 system call을 할 필요 없이, 사용자 스스로 자신의 메모리 영역에 read, write I/O 작업을 하는 것이다.
+    - page cache에 올라온 내용은 OS의 도움 없이, 자신의 주소 공간에 매핑되어 있는 것이므로, 자신의 메모리에 접근하는 것이기 때문에 I/O 를 수행한다. 운영체제 호출 X
+  - I/O using read() and write()
+    - file open 후, read write system call을 하는 방식
+    - mapping 방식과의 차이는 data가 buffer cache에 있든 없든 항상 OS에게 요청해서 받아와야 한다.
+
+- Unified Buffer Cache를 이용한 File I/O
+
+  - Memory-mapped I/O
+    - 처음 OS에게 자신의 주소 영역 중 일부를 file에다가 mapping 하는 단계를 거치면, 이 사용자 프로그램의 주소 영역에 이 page cache가 mapping된다. 따로 buffer cache를 copy해서 page cache에 두는 게 아니다. buffer cache가 별도로 없기 때문이다.
+  - I/O using read() and write()
+    - buffer cache에 원하는 data가 있든 없든지 운영체제에게 무조건 요청하는 방식
+      - 운영체제는 이미 memory에 올라와 있는 내용일 경우, 프로그램의 주소 영역에 copy해서 주면 되고,
+      - 없는 내용은 disk로부터 읽어와서 사용자 프로그램에게 copy해서 전달한다.
 
 <br>
 
@@ -292,9 +324,9 @@
 
 - 프로그램이 실행되면 실행 파일이 프로세스가 되며, 프로세스만의 독자적인 주소 공간이 만들어진다.
 
-- 이 공간은 code, data, stack으로 구분되며 당장 사용될 부분은 물리적 메모리에 올라가고, 당장 사용되지 않는 부분은 swap area로 내려간다.
+- 이 공간은 code, data, stack으로 구분되며 Address translation을 통해서 당장 사용될 부분은 물리적 메모리에 올라가고, 당장 사용되지 않는 부분은 swap area로 내려간다.
 
-- 이 때, 코드 부분은 이미 파일 시스템에 있기 때문에 swap area에 내리지 않고, 필요 없으면 물리적 메모리에서 지운다. 나중에 필요하면 file system에서 가져오면 된다.
+- 이 때, 코드 부분은 이미 파일 시스템에 있고, 프로세스의 주소에 이미 mapping된 경우이기 때문에, swap area에 내리지 않고 필요 없으면 물리적 메모리에서 지운다. 나중에 필요하면 file system에서 가져오면 된다. 즉, 이 code 부분은 memory mapping된 대표적인 예다.
 
 <br>
 

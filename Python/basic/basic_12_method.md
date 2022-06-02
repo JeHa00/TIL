@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+# 0. Introduction
 
 > 1. [함수 중요성](#1-함수-중요성)
 > 2. [함수 선언 및 사용](#2-함수-선언-및-사용)
@@ -13,7 +13,7 @@
 
 <br>
 
-## 1. 함수 중요성
+# 1. 함수 중요성
 
 - 첫 번째 , `코드의 흐름`을 원활히 할 수 있다.
   - 요즘은 코드의 복잡도가 커지면서 코드 양이 매우 많아졌다. 그래서 이 코드를 일괄작성하기가 힘들다. 이에 대한 대책으로 단계별로 생각하여 각 단계마다 함수를 사용하여 개발을 원활하게 풀어갈 수 있다.
@@ -26,9 +26,11 @@
 
 <br>
 
-## 2. 함수 선언 및 사용
+# 2. 함수 선언 및 사용
 
-- 함수에서 `return` 사용하지 않으면
+## 2.1 return의 유무
+
+- 함수에서 `return`을 사용하지 않으면
 
   - `print`로 출력할 수 없다.
   - `unpacking`을 사용할 수 없다.
@@ -36,7 +38,6 @@
 - 여러 값을 `return` 으로 반환하는 것을 `다중 반환`이라 한다.
 
 ```yml
-
 ## return 명령어가 없을 경우
 > def func_mul(x):
 >    y1 = x * 10
@@ -78,14 +79,16 @@ TypeError: cannot unpack non-iterable NoneType object
 > x1, x2, x3 = func_mul1(10)
 > print(x1, x2, x3)
 100 200 300
-
 ```
+
+<br>
+
+## 2.2 원하는 data type으로 return하기
 
 - 원하는 `data type`으로 함수값을 출력하려면 어떻게 해야하는지 알아보자.
 - return 할 data의 type이 출력할 data type이 된다.
 
 ```yml
-
 ## tuple return
 > def func_mul1(x):
 >    y1 = x * 10
@@ -126,35 +129,34 @@ dict_values([100, 200, 300])
 <class 'dict'> {'v1': 300, 'v2': 600, 'v3': 900} 600 dict_items([('v1', 300), ('v2', 600), ('v3', 900)]) dict_keys(['v1', 'v2', 'v3'])
 ```
 
+<br>
+
 ---
 
-<br>
-
-## 3. Packing, Unpacking
+# 3. Packing, Unpacking
 
 <br>
 
-### 3.1 Positional argument, Keyword argument
+## 3.1 Positional argument, Keyword argument
 
 - 함수 인자에는 `Positional argument(위치인자)`와 `Keyword argument(키워드 인자)`가 있다.
-  - 인자란 `함수 기능에 필요한 값`을 말한다.
-  - `기본값`이 있다.
-    - `기본값`이란 미리 기본으로 지정된 값을 말한다.
-  - `Positional argument`는 인자값이 `위치`에 의해 결정되는 인자다.
-    - `순서`가 중요하다.
-  - `Keyword argument`는 key value가 `key`에 의해 결정되는 인자다.
-    - `순서 상관 없이` `keyword`가 중요하다.
+  - `인자`란 함수 기능에 필요한 값을 말한다.
+  - `기본값`이란 미리 기본으로 지정된 값을 말한다.
+  - `Positional argument`는 인자값이 **_위치_** 에 의해 결정되는 인자다.
+    - **_순서_** 가 중요하다.
+  - `Keyword argument`는 key value가 **_key_** 에 의해 결정되는 인자다.
+    - **_순서 상관 없이 `keyword`_** 가 중요하다.
 
 <br>
 
 ```yml
-# Positional argument(위치인자)
+## Positional argument(위치인자)
 # real number (실수)는 앞에, imaginary number(허수)는 뒤에 위치해야 된다.
 # 위치 즉, 순서가 중요하다.
 > complex(3, 5)
 (3 + 5j)
 
-# Keyword argument(키워드 인자)
+## Keyword argument(키워드 인자)
 # key = value
 > complex (real = 3, imag = 5)
 (3 + 5j)
@@ -162,7 +164,9 @@ dict_values([100, 200, 300])
 
 <br>
 
-### 3.2 Packing
+## 3.2 Packing의 두 종류
+
+> print함수처럼 **_함수가 받을 인자의 갯수를 유연하게 지정_** 하기 위해 사용하는 것
 
 - `print` 함수는 객체의 갯수에 제한 없이 출력한다.
 
@@ -176,32 +180,28 @@ dict_values([100, 200, 300])
 123 456 789
 ```
 
-- `print` 함수처럼 함수가 받을 인자(argument)의 갯수를 유연하게 지정하기 위해 Python은 `packing`을 지원한다.
 - `packing` 은
   - `arguments`를 `하나의 객체`로 합쳐서 받을 수 있도록 한다.
   - `positional argument` packing 과 `keyword argument` packing이 있다.
-- `positional argument` packing은
-  - `*` 한 개를 매개변수 앞에 붙여서 사용한다.
-  - 이 때는 `tuple` type 으로 `하나의 객체`가 된다.
-- `keyword argument` packing은
-  - `*` 두 개 즉, `**`를 매개변수 앞에 붙여서 사용한다.
-  - `keyword`와 `value`로 구성된 `dictionary` type으로 `하나의 객체`가 된다.
+  - 다음 table과 같은 특징을 가진다.
+    - args: arguments / kwargs: keyword arguments
+    - args와 kwargs는 매개변수 명으로, 자유롭게 명명한다.
+
+| packing    | positional argument packing | keyword argument packing |
+| ---------- | --------------------------- | ------------------------ |
+| expression | \*args                      | \*\*kwargs               |
+| data type  | tuple                       | dictionary               |
 
 <br>
 
-- `positional argument` packing을 사용하는 방법
-- parameter를 입력할 때, 입력되는 수만큼 (x, y, z, a, b)로 입력할 수 있다.
-- 하지만, `*args`를 사용하여 하나의 객체로서 packing 하여 간단히 관리할 수 있다.
-- `args`는 매개변수 명으로, 자유롭게 명명한다.
+### 3.2.1 Positional arguments packing
 
-<br>
-
-- `positional argument`에 대해 알아보기에 앞서, `enumerate ()` method에 대해 알아보겠다.
+- `positional argument`에 대해 앞서서 `enumerate ()` 에 대해 알아보겠다.
+- enumerate는 index 와 value 를 `tuple` 형식으로 하나의 성분으로서 맺어주고, return 해주는 함수다.
 
 ```yml
-# enumerate()
-# enumerate는 index 와 value 를 `tuple` 형식으로 하나의 성분으로서 맺어주고, return 해주는 함수다.
-> seasons = ['Spring', 'Summber', 'Fall', 'Winter']
+## enumerate()
+> seasons = ['Spring', 'Summer', 'Fall', 'Winter']
 
 # enumerate()를 하면 바로 id 값만 출력된다.
 > print(enumerate(seasons))
@@ -240,6 +240,10 @@ Result : 1 Park
 Result : 2 Kim
 ```
 
+<br>
+
+### 3.2.2 Keyword arguments packing
+
 - `keyword argument` packing을 사용하는 방법
 
 ```yml
@@ -268,20 +272,23 @@ name3 Choice
 >    print(args_1, args_2, args, kwargs)
 > example(10, 20, 'Lee', 'Kim', 'Park', 'Cho', age1=20, age2=30, age3=40)
 10 20 ('Lee', 'Kim', 'Park', 'Cho') {'age1': 20, 'age2': 30, 'age3': 40}
-
-# args_1, args_2 로 총 2개이므로, print의 매개변수 앞에서 2개까지가 일반적인 positional argument이다.
-
-# 그 뒤에, *args 는 positional argument packing이므로 제한 없다. tuple 로 출력된 걸 확인할 수 있다.
-
-# 맨 마지막 인자는 ** 이므로, keyword argument packing이다. dictionary로 출력된 걸 확인할 수 있다.
-
 ```
 
-### 3.3 Unpacking
+- args_1, args_2 로 총 2개이므로, print의 매개변수 앞에서 2개까지가 일반적인 positional argument이다.
 
-- `Unpacking`은 `packing`과는 반대로 여러개의 객체를 포함하고 있는 하나의 객체를 풀어준다.
-- **`Unpacking` 시 해체되는 `인자의 수`와 매칭되는 `변수의 수`가 동일해야 가능하다.**
-- `packing` 시에는 `매개변수`에 `*`을 붙였지만, `unpacking` 시에는 `argument` 앞에 `*`를 붙여서 사용합니다.
+- 그 뒤에, \*args 는 positional argument packing이므로 제한 없다. tuple 로 출력된 걸 확인할 수 있다.
+
+- 맨 마지막 인자는 \*\* 이므로, keyword argument packing이다. dictionary로 출력된 걸 확인할 수 있다.
+
+<br>
+
+## 3.3 Unpacking
+
+> 주의사항: **_Unpacking 시 해체되는 `인자의 수`와 매칭되는 `변수의 수`가 동일해야 가능하다._**
+
+- `Unpacking`은 `packing`과는 반대로 여러개의 객체를 포함하고 있는 하나의 객체를 푼다.
+- `packing` 시에는 function (or method) 정의 시, `parameter`에 `*`을 붙였지만,
+- `unpacking` 시에는 function (or method) 사용 시, `argument` 앞에 `*`를 붙여서 사용한다.
 
 ```yml
 > def sum(a, b, c):
@@ -307,14 +314,17 @@ name3 Choice
 
 <br>
 
-## 4. 중첩 함수 (Nested function)
+# 4. 중첩 함수 (Nested function)
 
-- `중첩 함수`는 `함수형 프로그래밍`과 관련 있다.
-- `함수형 프로그래밍`에서 중첩함수로 많이 사용된다.
-- 함수 내부에 정의된 또 다른 함수를 말한다.
-- 호출하는 함수는 `부모 함수` 이다.
-- `부모 함수`의 하위 함수를 호출할 수 없다.
-  - `부모 함수`의 매개변수를 받아서 사용한다.
+> 함수 내부에 정의된 또 다른 함수
+
+- **중첩 함수는 `함수형 프로그래밍`에서 많이 사용된다.**
+
+- **부모 함수(외부 함수)와 하위 함수(내부 함수)**
+
+  - 호출하는 함수는 부모 함수다. 하위 함수는 호출할 수 없다.
+    - 그 이유는 [[TIL] Python basic 32: LEGB rules and Memory structures](https://jeha00.github.io/post/python_basic/python_basic_32_legb_rules/) 을 참고하자.
+  - 하위 함수는 부모 함수의 매개변수를 받아서 사용한다.
 
 ```yml
 # 중첩 함수
@@ -330,49 +340,46 @@ name3 Choice
 # 부모 함수의 하위 함수를 호출하여 사용할 수 없다.
 > func_in_func(100)
 NameError: name 'func_in_func' is not defined
-
 ```
-
----
 
 <br>
 
-## 5. 람다(lambda) 함수 (익명함수)
+---
 
-- 람다식의 장점 from python 공식 사이트
+# 5. 람다(lambda) 함수 (익명함수)
+
+- **람다식의 장점 from python 공식 사이트**
 
   - 메모리 절약
   - 가독성 향상
   - 코드 간결
 
-- 람다식의 단점 (많은 실력자 분들이 람다식을 부정적으로 피력한다.)
+- **람다식의 단점 (많은 실력자 분들이 람다식을 부정적으로 피력한다.)**
 
   - 과한 사용 시, 가독성 감소된다. 왜냐하면 `익명 함수`이기 때문이다.
-  - (빈번히 언급됨)
-  - (일반적인 함수는 함수명을 보고 그 기능을 추측할 수 있다.)
+    - 일반적인 함수는 함수명을 보고 그 기능을 추측할 수 있으나, 익명 함수라 추측할 수 없다.
 
-- 일반적인 함수와 람다식 함수의 차이
-- `일반적인 함수`는 `함수명`이 있기 때문에, `객체 생성` 된다. 그 후, `resource(memory)를 할당`한다.
-- 하지만, `람다식 함수`는
-  - `즉시 실행 함수` 라서,
-  - `Heap` 영역에 저장되고 (Heap 초기화),
-  - 메모리 초기화를 한다.
-  - 초기화로 메모리를 효율적으로 사용할 수 있다.
-  - 함수명이 존재하지 않아, `익명 함수`라 한다. 그래서 별도의 변수에 할당해야 한다.
+- **일반적인 함수와 람다식 함수의 차이**
+  - `일반적인 함수`는 **함수명** 이 있기 때문에, **객체 생성** 된다. 그 후, **resource(memory)를 할당** 한다.
+  - 하지만, `람다식 함수`는
+    - **_즉시 실행 함수_** 라서 일회성이고,
+    - `Heap` 영역에 저장되고 (Heap 초기화),
+    - 파이썬의 garbage collection에 의해 메모리 초기화가 되기 때문에, 메모리를 효율적으로 사용할 수 있다.
+    - 함수명이 존재하지 않아, `익명 함수`라 한다. 그래서 별도의 변수에 할당해야 한다.
 
 ```yml
+## 첫 번째: 이미 변수에 할당해 놓은 일반적인 함수를 넣는 방법
 > def mul_func(x, y):
 >   return x * y
 
 > print(mul_func(10, 50))
 500
 
-# 첫 번째: 이미 변수에 할당해 놓은 일반적인 함수를 넣는 방법
 > mul_func_var = mul_func
 > print(mul_func_var(10, 50))
 500
 
-# 두 번째: 자주 쓰는 람다 함수이기 때문에, 정의를 해서 변수로 넘기는 방식
+## 두 번째: 자주 쓰는 람다 함수이기 때문에, 정의를 해서 변수로 넘기는 방식
 # 일시적으로 그 자리에서 함수가 필요할 때 사용한다.
 # def 와 return이 없어도 가능하다.
 # 람다식을 넣은 함수
@@ -384,15 +391,15 @@ NameError: name 'func_in_func' is not defined
 > def func_final(x, y, func):
 >     print(x * y * func(1,1))
 
-# 첫 번째 방식
+## 첫 번째 방식
 > func_final(10, 50, mul_func_var)
 500
 
-# 두 번째 방식
+## 두 번째 방식
 > func_final(10, 50, lambda_mul_func)
 500
 
-# 세 번째 방식: 바로 그 자리에서 람다식을 써서 넘기는 방법
+## 세 번째 방식: 바로 그 자리에서 람다식을 써서 넘기는 방법
 > func_final(10, 50, lambda x,y : x * y)
 
 ```
@@ -404,13 +411,13 @@ NameError: name 'func_in_func' is not defined
 
 <br>
 
-## 6. 함수 Type Hint
+# 6. 함수 Type Hint: Annotation
 
-- 함수의 `매개변수`와 함수의 `결과값`이 `무슨 데이터 타입인지` 알려주기 위해 `python 3.5` 부터 나온 기능이다.
+> 함수의 매개변수와 함수의 결과값의 각 데이터 타입을 알려주기 위해 `python 3.5` 부터 나온 기능
+
 - `def <function-name>(parameter1: <data type>) -> <함수 결과값의 data type>`
 
 ```yml
-
 # 아래 예시처럼 각 매개변수의 데이터 타입이 무엇인지 알려준다.
 # 그리고, 함수의 결과값의 데이터 타입도 알려준다.
 > def tot_length1(word: str, num: int) -> int:
@@ -433,10 +440,63 @@ hint exam1 : 100
 > print(type(tot_length2("i love you", 10)))
 hint exam2 : 70
 <class 'Nonetype'>
-
 ```
 
-- `tot_length2`의 data type이 `Nonetype`인 이유는 `return 값`이 없기 때문이다.
+> **_'tot_length2'의 data type이 'Nonetype'인 이유는 return 값이 없기 때문이다._**
+
+---
+
+# 7. Method와 function 과의 차이
+
+> **_Method: 객체에 속한 function_**
+
+- 해당 내용은 다음 문서를 참고했다.
+
+  - [Difference between Method and Function in Python](https://www.tutorialspoint.com/difference-between-method-and-function-in-python)
+
+- 기본적인 function의 expression은 다음과 같다.
+
+```yml
+> def functionName(arg1, arg2, ...):
+>  """
+>  # Function _body
+>  """
+
+> def sum(num1, num2):
+>   return num1 + num2
+
+> sum(5,6)
+11
+```
+
+- Method의 expression은 다음과 같다.
+
+```yml
+> class ClassName:
+>    def method_name():
+>       …………..
+>       # Method_body
+>       ………………
+
+> class Pet(object):
+>   def my_method(self):
+>     print("I am a Cat")
+
+> cat = Pet()
+> cat.my_method()
+I am a Cat
+```
+
+- 그러면 위 두 가지 코드를 통해서 function과 method의 차이는 무엇일까??
+
+  - function과 달리 method는 object와 관련하여 호출된다. 위 코드를 보자면 "cat" 객체에 관련된 "my_methd" 를 호출했다. 하지만, function "sum" 은 객체 없이 호출된다.
+  - 또한, method는 객체에 관련하여 호출되기 때문에, 객체 안에 있는 data에 접근할 수 있다. 그래서 객체의 상태를 바꿀 수 있지만, function은 할 수 없다.
+
+- 즉, method는 객체에 속한 function임을 알 수 있다.
+
+- 이를 보다 깊이 들어가자면 [Docs.python - Functions and methods](https://docs.python.org/3/howto/descriptor.html#functions-and-methods) 이 공식 문서를 참고해보자.
+
+  - 클래스의 namespace에 저장된 functions들은 호출될 때, method로 바뀐다고 한다. 단지 method는 "객체 인스턴스"가 다른 인자들보다 앞에 오는 점에서 일반 function들과 다르다고 한다.
 
 ---
 
@@ -444,7 +504,9 @@ hint exam2 : 70
 
 ## Reference
 
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
 - [Positional argument, Keyword argument](https://wikidocs.net/22799)
 - [Packing, Unpacking](https://wikidocs.net/22801)
 - [enumerate](https://docs.python.org/ko/3.6/library/functions.html?highlight=enumerate#enumerate)
 - [lambda function](https://wikidocs.net/22804)
+- [Docs.python - Functions and methods](https://docs.python.org/3/howto/descriptor.html#functions-and-methods)

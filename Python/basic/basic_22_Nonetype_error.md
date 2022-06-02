@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+## 0. Introduction
 
 > 1. [Error 종류와 원인](#1-error-종류와-원인)
 > 2. [Error 해결 과정](#2-error-해결과정)
@@ -98,6 +98,9 @@ random.shuffle(x) 은 list x의 성분들의 순서를 섞지만, 아무것도 �
 
 <br>
 
+---
+
 ## Reference
 
 - [What does it mean if a Python object is "subscriptable" or not?](https://stackoverflow.com/questions/216972/what-does-it-mean-if-a-python-object-is-subscriptable-or-not)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

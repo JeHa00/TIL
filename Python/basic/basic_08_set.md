@@ -2,7 +2,7 @@
 
 <br>
 
-# Intro
+# 0. Introduction
 
 > 1. [Sets 선언](#1-sets-선언)
 > 2. [Sets type conversion](#2-sets-type-converison)
@@ -141,6 +141,32 @@ Set :  {'m', 'a', 'c', 'e', 'n', 'A'}
 
 ## 3. 집합 자료형 함수: Sets 함수
 
+- **교집합**
+
+  - `A & B`
+  - `A.intersection(B)`
+
+- **합집합**
+
+  - `A | B`
+  - `A.union(B)`
+
+- **차집합**
+
+  - `A - B`
+  - `A.difference(B)`
+
+- **교집합 유무 판단**
+
+  - `A.isdisjoint(B)`: A와 B에 교집합이 존재하는가??
+
+- **부분집합 유무 판단**
+
+  - `A.issubset(B)`: A는 B의 부분집합인가??
+
+- **상위집합 유무 판단**
+  - `A.issupset(B)`: A는 B의 상위집합인가??
+
 ```yml
 > s1 = set([1, 2, 3, 4, 5, 6])
 > s2 = set([4, 5, 6, 7, 8, 9])
@@ -217,3 +243,12 @@ False
 set()
 
 ```
+
+<br>
+
+---
+
+# Reference
+
+- [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

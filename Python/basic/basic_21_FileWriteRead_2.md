@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+## 0. Introduction
 
 > 1. [Read csv file (csv 파일 읽기)](#1-read-csv-file-csv-파일-읽기)
 > 2. [Write csv file (csv 파일 쓰기)](#2-write-csv-file-csv-파일-쓰기)
@@ -20,6 +20,8 @@
 - 콤마(,)로 반드시 구분되는 게 아니지만, 정석은 콤마다.
 
 <br>
+
+---
 
 ## 1. Read csv file (csv 파일 읽기)
 
@@ -85,7 +87,7 @@ Andorra|AD
 
 ## __iter__을 확인한다.
 >   print(dir(reader))
-['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__lt__', '__ne__', '__new__', '__next__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'dialect', 'line_num']
+['__class__', '__delattr__', '__dir__', '__doc__', ... '__iter__',...]
 
 ## __iter__이면 for문에도 사용할 수 있다.
 # list 형식으로 가져온다는 걸 확인할 수 있다.
@@ -177,7 +179,7 @@ AndorraAD
 >    print(type(reader))
 <class 'csv.DictReader'>
 >    print(dir(reader))
-['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__next__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_fieldnames', 'dialect', 'fieldnames', 'line_num', 'reader', 'restkey', 'restval']
+['__class__', '__delattr__', '__dict__', '__dir__', ...', '__iter__']
 
 ## __iter__ 확인 완료
 >   for c in reader:
@@ -307,10 +309,11 @@ one,two,three
 19,20,21
 ```
 
----
-
 <br>
+
+---
 
 ## Reference
 
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
 - [CSV란??](<https://ko.wikipedia.org/wiki/CSV_(%ED%8C%8C%EC%9D%BC_%ED%98%95%EC%8B%9D)>)

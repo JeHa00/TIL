@@ -1,4 +1,4 @@
-# Intro
+# 0. Introduction
 
 > 1. [Special Method란??](#special-method란-)
 > 2. [Special method 연산 예제 1](#special-method-연산-예제-1)
@@ -67,15 +67,16 @@
 
 ```
 
-## Python의 핵심: 4가지
+# 1. Python의 핵심: 4가지
 
 - 파이썬의 핵심은 4 가지다.
 
   - **_시퀀스(Sequence), 반복(Iterator), 함수(Functions), 클래스(Class)_**
 
-  - Sequence를 알아야 Iterator를 할 수 있다.
-  - 일급함수 개념을 알아야 Iterator와 함께 Closure와 coroutine을 할 수 있다.
-  - special method를 알아야 클래스를 풍부하게 사용할 수 있다.
+    - Sequence를 알아야 Iterator를 할 수 있다.
+    - 일급함수 개념을 알아야 Iterator와 함께 Closure와 coroutine을 할 수 있다.
+    - special method를 알아야 클래스를 풍부하게 사용할 수 있다.
+
   - 이 4가지는 서로 유기적으로 연결되어 있다.
 
 - 이번 시간에는 이 4가지 중 클래스 안에 정의되는 `special method`에 대해 알아보자.
@@ -86,33 +87,30 @@
 
 ---
 
-# Special method란 ??
+# 2. Special method란 ??
 
-> - class 안에서 정의할 수 있는 특별한 method.  
-> - double under-bar로 시작한다.
+> **_double under-bar로 시작하는 이 method는 class 안에서 정의할 수 있는 특별한 method로, 많은 fuction들이 내부적으로 이 special method에 의해 동작된다._**
 
-- 그렇다면 왜 특별할까??
+- 그렇다면 왜 특별하여, `Magic method`라 불릴까?
 
-> - 내장(Buit-in)되어 있는 method를 사용자가 오버라이딩하여 사용할 수 있기 때문이다. 
-> - 그래서 Special method를 통해서 클래스끼리의 연산도 가능해진다.
-> - 그래서 low level에서 효율적인 코딩을 작성할 수 있다.  
+  - 내장(Built-in)되어 있는 method를 사용자가 오버라이딩하여 사용할 수 있다.
+  - Special method를 통해서 클래스끼리의 연산도 가능해진다.
+  - low level에서 효율적인 코딩을 작성할 수 있다.
 
-- 그래서 `Magic method`라고도 한다.
+- low level에서 효율적인 코딩이 가능한 이유는 function의 내부를 보면 이 special method에 의해서 구동되기 때문이다. 왜냐하면 우리가 사용한 모든 데이터 타입을 넘어서 객체는 다 `클래스` 라서, 많은 연산의 백그라운드에는 special method가 사용되고 있다.
 
-- 우리가 사용한 모든 데이터 타입은 `클래스`다.
-  - 그래서 많은 연산의 백그라운드에는 이 method가 사용하고 있었던 셈이다.  
+- `dir()`은 인자로 들어간 클래스 객체에서 사용할 수 있는 `Special method` 속성을 보여주는데, 이를 통해서 많은 magic method가 class 하에 존재한다는 걸 알 수 있다.
 
-- `dir()`은 인자로 들어간 클래스 객체에서 사용할 수 있는 `Special method`를 보여준다.
+- [[TIL] Python basic 46: Metaclass](https://jeha00.github.io/post/python_basic/python_basic_46_metaclass/)를 참고하여 모든 객체가 클래스임을 확인하자.
 
-> - special method는 클래스 안에 정의된 method다.  
-> - `__add__` 는 `dir()`로 확인할 수 있듯이 <class 'int'> 안에 정의된 method다.  
-> - 많은 magic method들이 이렇게 클래스 하에 존재한다.
+## 2.1 Special method 예시 1
 
 ```yml
 > n = 10
 > print(type(n))
 <class 'int>
 
+# `__add__` 는 `dir()`로 확인할 수 있듯이 <class 'int'> 안에 정의된 method다.
 > print(dir(n))
 ['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', ...]
 
@@ -125,26 +123,32 @@
 110
 ```
 
-- 지난 번에 알아봤던 것처럼 repr() 를 사용하는 건 `__repr__`를 호출하여 이 method에 의한 결과값을 반환하는 것이라 했다.
+- '+' 연산자도 `__add__` magic method를 호출하기 때문에, 위와 같이 결과가 동일하다.
 
-- '+' 연산자도 `__add__` magic method를 호출한다.
-- 그래서 위와 같이 결과가 동일하다.
-- 또 다른 예를 보자.
+<br>
+
+## 2.2 Special method 예시 2
+
+- 또한, 지난 번에 알아봤던 것처럼 repr() 를 사용하는 건 `__repr__`를 호출하여 이 method에 의한 결과값을 반환하는 것이라 했다.
+
+<br>
+
+## 2.3 Special method 예시 3
+
+- boolean 함수도 그렇다.
 
 ```yml
 > print(n.__bool__(), bool(n))
 True True
 ```
 
-- boolean 함수도 그렇다.
 - 파이썬에서는 많은 함수가 magic method를 호출하여 사용된다.
-- 즉, 객체들은 다 클래스다.
 
 <br>
 
 ---
 
-# Special method 연산 예제 1
+# 3. Special method 연산 예제 1
 
 - magic method를 재정의하지 않고, 클래스끼리 덧셈을 해보자.
 
@@ -154,8 +158,7 @@ True True
 TypeError: unsupported operand type(s) for +: 'Airline' and 'Airline'
 ```
 
-- 즉, 피연산자의 type이 지원되지 않는 type이라는 의미다.
-- 이처럼 클래스끼리의 연산은 가능하지 않다.
+- 즉, 피연산자의 type이 지원되지 않는 type이라는 의미다. 이처럼 클래스끼리의 연산은 가능하지 않다.
 - 그러면 이를 magic method를 customizing하여 사용해보자.
 
 ```yml
@@ -166,7 +169,7 @@ TypeError: unsupported operand type(s) for +: 'Airline' and 'Airline'
 >        return (self._details.get('price') + x._details.get('price'))
 ```
 
-- instance 끼리 연산을 한다면 instance의 어느 부분들이 더하는 건지 재정의한다.
+- instance 끼리 연산을 한다면 instance의 어느 부분들이 더하는 건지 **_재정의_** 한다.
 - 그러면 다시 덧셈을 해보자.
 
 ```yml
@@ -188,7 +191,7 @@ Called >> __add__
 - 하지만 이렇게 직접 값에 접근하는 건
   - 위험하다.
   - 코드 양이 많아지고, 가독성이 좋지않다.
-- 이와 같은 이유로 `magic method`를 잘 활용하자.
+- 그래서 `magic method`를 잘 활용해야 한다.
 
 - 다른 magic method도 만들어보자.
 
@@ -245,7 +248,7 @@ Called >> __sub__
 
 ---
 
-# Special method 연산 예제 2
+# 4. Special method 연산 예제 2
 
 - 이번 예제에서는 `packin` 과 `unpacking`을 사용한다.
 - `packin` 과 `unpacking`에 대한 기본 내용은 다음을 참고한다.
@@ -255,8 +258,7 @@ Called >> __sub__
 - 일반적인 덧셈 연산으로는 벡터 연산을 하지 못한다.
 - 그래서 벡터 연산에 맞게 magic method를 구현한다.
 
-> `other`이란??  
-> 정의한 class로 만든 또 다른 instance
+> **_`other`이란?? 정의한 class로 만든 또 다른 instance를 의미한다._**
 
 <br>
 
@@ -285,7 +287,7 @@ Called >> __sub__
 >       return Vector(self._x+ other._x)
 
 >   def __mul__(self, y):
->   ```Returns the vector addition of self and other```
+>   ```Returns the vector multiplication of self and other```
 >       return Vector(self._x * y, self._y * y )
 
 ````
@@ -298,7 +300,7 @@ Called >> __sub__
 - Vector에 대한 comment 대신 Vector.\_\_init\_\_에 대한 comment가 있다.
 - 이런 경우에는 어떻게 볼 수 있을까???
 
-  - `print(Vector.__init__.__doc__`를 사용한다.
+  - `print(Vector.__init__.__doc__)`를 사용한다.
 
 - 위 코드들로 실습을 해보자.
 
@@ -315,8 +317,6 @@ Returns the vector method infomations
 
 > print(Vector.__add__.__doc__)
 Returns the vector addition of self and other
-
-
 
 > print(v1, v2, v3)
 Vector(20, 45) Vector(2.5, 5) Vector(0, 0)

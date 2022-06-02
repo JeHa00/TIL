@@ -1,6 +1,6 @@
 # Python basic 5: python list
 
-# Intro
+# 0. Introduction
 
 > 1. [List 선언](#1-list-선언)
 > 2. [List indexing, slicing](#2-list-indexing-slicing)
@@ -55,7 +55,7 @@
 
 ## 2. List indexing, slicing
 
-> list도 string처럼 sequence 형이기 때문에, len, index, slicing을 사용할 수 있다.
+> **_list도 string처럼 sequence 형이기 때문에, len, index, slicing을 사용할 수 있다._**
 
 - indexing: 원하는 데이터를 꺼내는 과정
 
@@ -186,15 +186,18 @@ a - 2
 
 ```
 
-**결론**
+### 결론
 
 - a.append(): `끝에` 데이터를 삽입한다. `매달은다`
 - a.sort(): 데이터를 `정렬`한다.
 - a.reverse(): 데이터 방향을 `뒤집는다`.
+  - 반환값이 없고, 뒤집어져서 객체에 바로 저장된다. 그러므로, 객체 출력을 따로 해야 한다.
 - a.index(): 괄호 값의 첫 번째 `index`를 알려준다.
 - a.insert(x,y): index x 번째 있는 자리에 y 값을 `삽입`한다.
 - a.count(): 원하는 값의 `갯수를 세는` method
+  - int를 반환한다.
 - a.extend(): 괄호 안의 값을 list에 `연장`한다.
+  - reverse()처럼 반환값이 없고, 객체에 바로 저장된다.
 
 ---
 
@@ -243,24 +246,26 @@ a - 2
 - 삭제하기
 
 ```yml
-
 # 빈 값을 선언하는 것이 삭제하는 걸 의미한다.
 
+# c[1], c[2] 원소가 삭제된다.
 > c = [70, 75, 80 ,85]
 > c[1:3] = []
 > print(c)
 [70, 85]
-# c[1], c[2] 원소가 삭제된다.
 
-
+> c[0] = []
+[[], 85]
 ```
+
+- 즉, slicing으로 수정 및 삭제를 하면 list 중괄호 안의 성분들이 원본 객체 index에 들어간다.
+- 하지만, indexing으로 하면 할당된 괄호 자체도 다 들어간다.
 
 <br>
 
 ### 5.2 함수를 사용하여 삭제하는 방법: remove, pop, del
 
 ```yml
-
 > c = [70, 75, 80 ,85]
 
 # remove(삭제할 데이터값)
@@ -282,18 +287,19 @@ c - 85
 
 ```
 
-- pop( )
+- `pop( )`
 
-  > `stack` 자료 구조에서 마지막에 들어온 애가 가장 먼저 나갑니다: last in, first out로 LIFO라 한다.  
-  > 예1) 음식을 접시에 담을 때, 마지막에 쌓은 접시를 꺼내서 사용한다.
-  > 예2) 웹 브라우저를 뒤로 가기 버튼을 누르면, 마지막 페이지가 먼저 나온다.  
-  > 이런 자료 구조에서 많이 사용되는 method가 `pop` 입니다.
+  - `stack` 자료 구조에서는 마지막에 들어온 애가 가장 먼저 나갑니다
+    - Last In, First Out로 LIFO라 한다.
+    - 예1) 음식을 접시에 담을 때, 마지막에 쌓은 접시를 꺼내서 사용한다.
+    - 예2) 웹 브라우저를 뒤로 가기 버튼을 누르면, 마지막 페이지가 먼저 나온다.
+    - 이런 자료 구조에서 많이 사용되는 method가 `pop` 입니다.
 
-- `Queue` 는 stack과 반대로 가장 처음에 들어온 것을 빼는 구조로, first in, first out로 FIFO라 한다.
+- `Queue` 는 stack과 반대로 가장 처음에 들어온 것을 빼는 구조로, First In, First Out로 FIFO라 한다.
 
 <br>
 
-- 반복문을 활용하여 제거하는 방법도 있다.
+- 반복문과 `pop()` 을 활용하여 제거하는 방법도 있다.
 - 따로 break 를 사용하지 않아도, a가 비워지면 끝난다.
 
 ```yml
@@ -304,3 +310,12 @@ c - 85
 >      print(data)
 
 ```
+
+<br>
+
+---
+
+# Reference
+
+- [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

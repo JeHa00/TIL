@@ -2,14 +2,12 @@
 
 <br>
 
-## Intro
+# 0. Introduction
 
 > 1. [절차지향 프로그래밍 (Procedural Programming)](#1-절차지향-프로그래밍-procedural-programming)
 > 2. [객체지향 프로그래밍 (Object Oriented Programming)](#2-객체지향-프로그래밍-object-oriented-programming)
 
-<br>
-
-- basic 14 class 에서 언급한 `절차지향 프로그래밍`이 구체적으로 무엇인지 간단히 구현한다.
+- [[TIL] Python basic 14: class](https://jeha00.github.io/post/python_basic/python_basic_14_class/) 에서 언급한 `절차지향 프로그래밍`이 구체적으로 무엇인지 간단히 구현한다.
 - 그 다음 클래스를 사용한 `객체지향 프로그래밍`에 대해 알아보겠다.
 
 <br>
@@ -19,7 +17,7 @@
 <br>
 
 - 이에 대한 해결책이 `OOP(Object Oriented Programming)` 으로 `객체지향 프로그래밍`이다.
-- 장점을 다시 한번 언급하자면 클래스 중심으로 사용하기 때문에 객체로 관리한다. 그래서,
+- 클래스 중심으로 사용하기 때문에 객체로 관리하기 때문에, 다음과 같은 특징이 있다.
   - 코드의 재사용성이 낮다.
   - 코드 중복을 방지할 수 있다.
   - 유지보수가 좋다.
@@ -29,7 +27,7 @@
 
 <br>
 
-## 1. 절차지향 프로그래밍 (Procedural Programming)
+# 1. 절차지향 프로그래밍 (Procedural Programming)
 
 - 그럼 예시 코드로 절차지향 프로그래밍을 구현해보자.
 - 절차지향으로 프로그래밍할 경우, 항공사의 종류 갯수대로 직접 다 입력해야 한다.
@@ -89,8 +87,8 @@
 ```
 
 - 이런 방식으로 입력할 경우, 데이터를 삭제하기가 불편하다.
-- index를 사용하여 삭제할 때, 데이터 양이 매우 많으면 index 번호를 알기가 어렵기 때문이다.
-- 그리고, index로 접근 시, 실수할 가능성이 높다.
+- index를 사용하여 삭제할 때, 데이터 양이 많으면 index 번호를 알기가 어렵기 때문이다.
+- 그리고, index로 접근 시 실수할 가능성이 높다.
 
 <br>
 
@@ -126,7 +124,7 @@
 
 ---
 
-## 2. 객체지향 프로그래밍 (Object Oriented Programming)
+# 2. 객체지향 프로그래밍 (OOP)
 
 ```yml
 > class Airline():
@@ -163,10 +161,10 @@
 - 이렇듯 절차지향과 객체지향 다 장단점이 있어 적절한 곳에 사용해야 한다.
 - 하지만, 절차지향의 단점을 해결하는 객체지향을 잘 사용해서 코드의 재사용성과 유지보수까지 고려하자.
 
----
-
 <br>
+
+---
 
 ## Reference
 
-- [인프런 파이썬 중급](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%A4%91%EA%B8%89-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
+- [파이썬 중급](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%A4%91%EA%B8%89-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

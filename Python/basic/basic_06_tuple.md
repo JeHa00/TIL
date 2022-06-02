@@ -2,22 +2,21 @@
 
 <br>
 
-# Intro
+# Introduction
 
 > 1. [tuple 선언](#1-tuple-선언)
 > 2. [tuple indexing, slicing, 연산](#2-tuple-indexing-slicing-연산)
 > 3. [tuple 함수: index, count](#3-tuple-함수-index-count)
 > 4. [tuple의 중요한 특징: packing & unpacking](#4-tuple의-중요한-특징-packing--unpacking)
 
-<br>
-
 - list와 tuple의 차이를 알아야 비교해서 무엇을 쓸 지 결정한다.
-- tuple은 sequence형, immutable이기 때문에
+
+- **tuple은 sequence형, immutable, 중복가능하기 때문에**
   - 순서가 있다.
     - 하지만, list의 순서는 변할 수 있고, tuple의 순서는 불변이다.
     - tuple의 순서는 한 번 생성되면 변경할 수 없다.
-  - 중복이 가능하다. => list와 동일
-  - 수정이 안된다. => del, remove, slicing, insert 로 값 변경이 안된다.
+  - 중복 가능 => list와 동일
+  - 수정 X => del, remove, slicing, insert 로 값 변경 X
   - list 와 마찬가지로 다양한 타입이 함께 포함될 수 있다.
 
 ---
@@ -30,6 +29,7 @@
 - `tuple`은 `소괄호` 또는 `무괄호`다.
 - 소괄호는 괄호만 해도 tuple로 인식된다.
 - 무괄호는 `최소 원소 하나 이상`이어야 하며, `쉼표`가 있어야 한다.
+  - 쉼표가 있어야 하는 이유는 성분 integer일 때, 쉼표가 없으면 tuple이 아닌 numeric data로 인식한다.
 - 소괄호 또한 `최소 원소 하나 이상` 입력할 때, `쉼표`가 있어야 한다.
 
 ```yml
@@ -85,6 +85,8 @@ e - ['B', 'a', 's', 'e']
 
 ```
 
+- tuple의 value 수정은 안되지만, 형 변환은 가능하다.
+
 - `tuple`에 slicing 사용하기
 
 ```yml
@@ -108,9 +110,8 @@ c + d - (11, 12, 13, 14, 100, 1000, 'Ace', 'Base', 'Captine')
 > print('c * 3 - ', c * 3)
 c * 3 -(11, 12, 13, 14, 11, 12, 13, 14, 11, 12, 13, 14)
 
-> print("'Test' + c[0] - ", 'Test' + c[0])
+> print("'Test' + c[0] - ", 'Test' + str(c[0]))
 'Test' + c[0] - Test11
-
 ```
 
 ---
@@ -119,8 +120,8 @@ c * 3 -(11, 12, 13, 14, 11, 12, 13, 14, 11, 12, 13, 14)
 
 ## 3. tuple 함수: index, count
 
-- index(): 함수는 원하는 성분 값의 index를 구하는 함수다.
-- count(): 원하는 성분의 수량을 구하는 함수다.
+- index(): 원하는 성분 값의 index를 구하는 function
+- count(): 원하는 성분의 수량을 구하는 function
 
 ```yml
 > a = (5, 2, 3, 1, 4)
@@ -187,3 +188,12 @@ foo bar baz qux
 > print(x4, x5, x6)
 4 5 6
 ```
+
+<br>
+
+---
+
+# Reference
+
+- [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

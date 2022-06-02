@@ -2,23 +2,38 @@
 
 <br>
 
-# Intro
+# Introduction
 
 > 1. [dictionary 선언](#1-dictionary-선언)
 > 2. [dictionary value 출력과 수정](#2-dictionary-value-출력과-수정)
 > 3. [dictionary 함수](#3-dictionary-함수)
 
-<br>
+- **범용적으로 가장 많이 사용되는 기초 자료형**
 
-- 범용적으로 가장 많이 사용되는 기초 자료형
-- sequence X
-- key: value로 구성된다.
-- key 중복 X <= key 값으로 index 하기 때문에 key 값은 중복되면 안된다.
+- **형식**
+
+  - `key : value`로 구성된다.
+  - A가 key이고, B가 value라고 할 때,
+  - 주로 중괄호 {A : B} 를 사용한다.
+  - 또 다른 선언법으로는 dict([(A, B)]), dict(A = B)을 사용한다.
+
+- **sequence X => key 값으로 index 접근한다. => key 값은 중복되면 안된다.**
+
   - key는 숫자, 문자 다 가능하다.
   - key만 존재하면 value는 어떤 자료 형태든 가능하다.
-- value 중복 O
-- mutable 자료형 => 수정 O, 삭제 O
-- 중괄호 {} 를 사용한다.
+  - key가 중복되지 않기 때문에, value는 중복 가능하다.
+
+- **immutable과 mutable이 공존**
+  - `key` 는 `immutable` 이다.
+    - 그래서 `key` 값으로 `list` data type은 불가능하고, `tuple` data type은 가능하다.
+  - `value`는 `mutable`이다.
+
+> 만약 mutable data type으로 key 값을 만들었을 경우, TypeError가 뜬다.
+
+```yml
+# key 를 list로 만들었을 경우
+TypeError: unhashable type: 'list'
+```
 
 ---
 
@@ -106,10 +121,11 @@ f -  <class 'dict'> {'Name': 'Niceman', 'City': 'Seoul', 'Age': '33', 'Grade': '
 
 <br>
 
-- 첫 번째 방법은 key에 해당하는 value 값이 존재하지 않으면 `error`가 발생한다.
+- 첫 번째 방법은 key에 해당하는 value 값이 존재하지 않으면 `keyError`가 발생한다.
 - 두 번째 방법은 key에 해당하는 value 값이 존재하지 않으면 `none`처리를 한다.
-- `error`가 발생하면 중단되기 때문에, 실무에서는 두 번째 방법을 많이 사용한다.  
-  **결론: Key에 해당하는 값을 사용할 때는 함수 `.get(key)` 를 사용하자.**
+- `error`가 발생하면 중단되기 때문에, 실무에서는 두 번째 방법을 많이 사용한다.
+
+> **_결론: Key에 해당하는 값을 사용할 때는 함수 `.get(key)` 를 사용하자._**
 
 ```yml
 > print('a - ', a.get('name1'))
@@ -173,7 +189,7 @@ Seoul
 - `.keys()`: key 값만 출력
 - `.values()`: value 값만 출력
 - `.items()`: key, value 다 출력
-- `.pop()`: list에서 배운 것과 동일하다.
+- `.pop()`: list에서 배운 것처럼 한 성분을 빼서 제거하여 저장하는 함수이지만, list는 순서가 있기 때문에 항상 맨 마지막 성분이 제거된다. 하지만, dictionary는 순서가 없어서 `key` 값을 인자로 입력해야 한다.
 - `.popitem()`: key와 value 중 아무거나 하나를 임의로 도출하여 없앤다.
 - `.update()`: 다른 리스트를 넣어서, 키가 똑같은 것을 수정할 수 있다.
 - `in` 연산자를 사용해서 해당하는 키 값이 있는지 알 수 있다.
@@ -275,3 +291,10 @@ False
 ```
 
 <br>
+
+---
+
+# Reference
+
+- [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

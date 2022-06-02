@@ -1,8 +1,8 @@
-# Intro
+# 0. Introduction
 
 <br>
 
-- 파이썬에서 `모든 객체는 데이터에 대한 추상화`로 표현될 수 있다.
+- 파이썬에서 모든 객체는 데이터에 대한 추상화로 표현될 수 있다.
 - 파이썬에서는 `namedtuple`외에도 많은 Container datatypes가 있다.
 - 이 종류들은 Collections library에서 찾을 수 있다.
 - 객체를 사용하기보다 튜플 활용을 공식 레퍼런스에서 추천하고 있다.
@@ -13,12 +13,10 @@
 
 # 1. Namedtuple이란??
 
-> namedtuple(typename: str, field_names: str)
+> **_namedtuple(typename: str, field_names: str)_**
 
-- tuple의 기본 성질인 `immutable`
-- 다양한 선언법을 지원한다.
-- Dictionary Key와 같이 사용된다.
-  - key 값을 통해서 access할 수 있다.
+- tuple의 기본 성질인 `immutable`을 가지고 있으며, 다양한 선언법을 지원한다.
+- Dictionary Key와 같이 사용되기 때문에, key 값을 통해서 access할 수 있다.
 - 일반 class 형태보다 적은 메모리를 사용한다.
 
 <br>
@@ -33,13 +31,9 @@
 
 ### 2.1 namedtuple 없이 구하기
 
-- namedtuple 없이 구해보자.
+- namedtuple 없이 거리 구하기
 
 ```yml
-
-# namedtuple 를 import 해서 시작한다.
-> from collections import namedtuple
-
 # 두 점을 정의한다.
 > pt1 = (2.0, 4.0, 5,0)
 > pt2 = (4.0, 10.0, 25.0)
@@ -49,9 +43,6 @@
 
 # index를 통해서 직접 value에 접근해야 한다.
 > leng1 = sqrt((pt2[0] - pt1[0]) ** 2 + (pt2[1] - pt1[1]) ** 2 + (pt2[2] - pt1[2]) ** 2 )
-
-> print(round(leng1))
-21
 ```
 
 <br>
@@ -67,8 +58,8 @@
 > Point = namedtuple('Point', 'x y z')
 
 # 두 점을 정의한다.
-> pt1 = (2.0, 4.0, 5.0)
-> pt2 = (4.0, 10.0, 25.0)
+> pt3 = Point(2.0, 4.0, 5.0)
+> pt4 = Point(4.0, 10.0, 25.0)
 
 # index로도 접근이 가능하지만
 # value에 직접 접근하지 않고, key 값을 통해서 접근한다.
@@ -84,17 +75,17 @@ True
 
 ### 2.3 namedtuple의 다양한 선언법
 
+> **_namedtuple은 2개의 위치인자를 취한다._**
+
 - 다음으로 namedtuple의 다양한 선언법에 대해 알아보자.
 
 ```yml
 # list 안에 string 성분으로 입력하는 방법
 > Point = namedtuple('Point', ['x', 'y', 'z'])
 
-# 하나 하나 string으로 입력하는 방법
-> Point = namedtuple('Point', 'x', 'y', 'z')
-
 # string 묶음으로 입력하는 방법
 > Point = namedtuple('Point', 'x y z')
+> Point = namedtuple('Point', 'x, y, z')
 
 ## field_name으로 예약어를 사용하고 싶을 때
 # 일반적으로 예약어를 name에 사용하면 안된다. 하지만, 사용하고 싶다면??
@@ -120,13 +111,15 @@ True
 # field name 부분 입력
 > p3 = Point(45, y=20)
 
-# 여러 개로도 가능하지만, p4[2] 와 p4[3]에는 지정된 field-name 값이 없으므로 _2 = 30, _3 = 40 으로 저장된다.
+# 여러 개로도 가능하다.
 > p4 = Point(10, 20, 30, 40)
 
 ## unpacking을 통해 만들기
 > temp_dict = {'x':75, 'y':55}
-
 > p5 = Point(**temp_dict)
+
+> temp_dict = (2.0, 4.0, 5.0)
+> p5 = Point(*temp_dict)
 
 ## 출력해보기
 > print(p1, p2, p3, p4, p5)

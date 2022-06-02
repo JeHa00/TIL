@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+# 0. Introducton
 
 > 1. [Read file (파일 읽기)](#1-read-file-파일-읽기)
 > 2. [Write file (파일 쓰기)](#2-write-file-파일-쓰기)
@@ -19,7 +19,7 @@
 
 <br>
 
-## 1. Read file (파일 읽기)
+# 1. Read file (파일 읽기)
 
 - 파일을 읽고 쓰는 작업을 하기 위해 `open` 이란 함수를 사용한다.
 - 이 함수에서 사용하는 몇 가지 용어와 경로의 두 종류에 대해 알아보자.
@@ -90,7 +90,6 @@ your cards right.
 
 - `read()` 함수에 intger type의 인자를 넣으면, 입력한 값만큼의 Byte를 읽는다. 그리고, 또 실행하면 이어서 읽는다. 왜냐하면 cursor가 움직이기 때문이다.
 - `seek()` 함수를 사용하여 이 cursor의 위치를 초기화할 수 있다.
--
 
 ```yml
 > with open('./resource/it_news.txt', 'r', encoding='UTF-8') as f:
@@ -149,7 +148,7 @@ your cards right.
 
 <br>
 
-## 2. Write file (파일 쓰기)
+# 2. Write file (파일 쓰기)
 
 - 없는 파일을 쓰고자 할 때도 연결하기 위해 `open`함수를 사용한다.
 - write이기 때문에 t 말고 w를 입력한다.
@@ -208,6 +207,10 @@ Test Text Write!
 # 위에 file = f 를 없애면 terminal로 출력된다.
 ```
 
+<br>
+
 ---
 
-<br>
+# Reference
+
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

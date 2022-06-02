@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+## Introduction
 
 > 1. [조건문 기본 형식](#1-조건문-기본-형식)
 > 2. [연산자](#2-연산자)
@@ -19,7 +19,7 @@
 - if - elif - else
   > `if 식: 스위트` => if 문으로, 반드시 1개 필요하다.  
   > `elif 식: 스위트` => elif 문으로, 없어도 되며 있으면 n개 가능 (여러개 가능)  
-  > `else 식: 스위트` => else 문으로, 없어도 되며 있으면 1개만 가능
+  > `else 식: 스위트` => else 문으로, 없어도 되며 있으면 별다른 조건문 없이 `else:`로 끝난다. 1개만 가능하다.
 
 <br>
 
@@ -40,14 +40,16 @@ Good
 실행 X
 ```
 
----
+- 그러면 언제 `True`이고, `False`인지 알아보자.
 
 <br>
+
+---
 
 ## 2. 연산자
 
 - 연산자에는 지난 번에 봤던 산술 연산자 그리고, 관계 연산자, 논리 연산자가 있다.
-- 관계 연산자에는 `>`, `>=`, `<`, `<=`, `==`, `!=` 가 있다.
+- **관계 연산자** 에는 `>`, `>=`, `<`, `<=`, `==`, `!=` 가 있다.
 
 ```yml
 > x = 15
@@ -78,7 +80,7 @@ False
 False
 ```
 
-- 논리 연산자에는 `and`, `or`, `not`이 있다.
+- **논리 연산자**에는 `and`, `or`, `not`이 있다.
 
 ```yml
 > a = 75
@@ -126,7 +128,7 @@ e4 :  False
 - 거짓 : "", [], (), {}, 0, None
 
 ```yml
-# city가 공란이르모 False를 의미한다.
+# city가 공란이므로 False를 의미한다.
 # 그래서 else 문을 출력한다.
 > city = ""
 >
@@ -158,7 +160,7 @@ You are in: Seoul
 
 ### 4.1 다중 조건문
 
-- 동일한 syntax의 조건문이 여러 개일 조건문을 `다중 조건문`이라 한다.
+- 동일한 syntax의 조건문이 여러 개인 조건문을 `다중 조건문`이라 한다.
 
 ```yml
 > nume = 90
@@ -210,7 +212,7 @@ Grade : A
 > q = [10, 20, 30]
 
 # sets
-> w = {70, 80, 90, 90}
+> w = {70, 80, 90}
 
 # dictionary
 > e = {"name": 'Lee', "city": "Seoul", "grade": "A"}
@@ -239,6 +241,11 @@ False
 
 ```
 
+<br>
+
 ---
 
-<br>
+# Reference
+
+- [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

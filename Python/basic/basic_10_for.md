@@ -2,7 +2,7 @@
 
 <br>
 
-## Intro
+# 0. Introduction
 
 > 1. [for ~ range pattern: 3가지](#1-for--range-pattern-3가지)
 > 2. [Iterables 자료형 활용과 Iterable 함수](#2-iterator-자료형-활용과-iterable-함수)
@@ -11,28 +11,31 @@
 
 <br>
 
-- 코딩의 핵심
+- for 문은 코딩에서 중요하다.
 - 파이썬의 for 문은 다른 for 문과 달리 독자적인 특징이 있다.
 - if else 처럼 for else도 가능하나, 자주 사용하지 않는다.
-- for 문은 코딩에서 중요하다.
 - 파이썬 공식 사이트에서는 다음과 같은 구조로 설명한다.
-- `<collection>` 이란 반복 가능한 객체, `iterable object (= interator)`를 말한다.
-- 그러면 어떤 게 `iterator` 인가?? `dir()` method를 사용했을 때 `__iter__` 을 확인할 수 있으면 `iterator`다.
-- 예를 들어서 string, list, tuple, dictionary, set을 말한다.
+  - `<collection>` 이란 반복 가능한 객체, `iterable object (= interator)`를 말한다.
+  - 그러면 어떤 게 `iterator` 인가?? `dir()`를 사용했을 때 `__iter__` 을 확인할 수 있으면 `iterator`다.
+  - 예를 들어서 string, list, tuple, dictionary, set을 말한다.
 
 ```yml
 > for i in <collection>:
 >   <loop body>
 ```
 
-## 1. for ~ range pattern: 3가지
+<br>
+
+---
+
+# 1. for ~ range pattern: 3가지
 
 - 첫 번째 패턴
   - `for n in range(j)` : 변수 n이 0부터 j가 아닌 (j-1)까지 반복된다.
 
 ```yml
 > for v in range(10):
->   pritn("v is : ", v)
+>   print("v is : ", v)
 v is :  0
 v is :  1
 v is :  2
@@ -87,12 +90,11 @@ v is : 10
 - 1 ~ 1000까지 합 구하기
 
 ```yml
-
 # 첫 번째 방법
-> sum = 0
+> j = 0
 > for v in range(1, 1001):
->   sum += v
-> print('1 ~ 1000 Sum : ', sum)
+>   j += v
+> print('1 ~ 1000 Sum : ', j)
 1 ~ 1000 sum : 500500
 
 # 두 번째 방법
@@ -107,15 +109,16 @@ v is : 10
 
 ```
 
----
-
 <br>
 
-## 2. Iterator 자료형 활용과 Iterable 함수
+---
+
+# 2. Iterator 자료형 활용과 Iterable 함수
 
 ```yml
 
-# iterable 리턴 함수 : range, reversed, enumerate, filter, map, zip (이런 것들 다 for 문에서 사용할 수 있다.)
+# iterable 리턴 함수 : range, reversed, enumerate, filter, map, zip
+# (이런 것들 다 for 문에서 사용할 수 있다.)
 
 # 예제1
 
@@ -165,6 +168,7 @@ word :  l
 >   "City": "Seoul"
 >   }
 
+# key 값들이 출력된다.
 > for key in my_info:
 >   print("value :", my_info[key])
 value : Lee
@@ -187,7 +191,6 @@ Seoul
 - `<string iterator>.lower` : 문자열을 소문자로 변경하는 함수
 
 ```yml
-
 # Iterator : string
 > name = 'FineApplE'
 
@@ -209,11 +212,11 @@ E
 
 ```
 
----
-
 <br>
 
-## 3. break, continue 문
+---
+
+# 3. break, continue 문
 
 - `break` 문: 가장 가까운 반복문을 강제로 탈출한다.
   - 내가 원하는 특정 조건에서, 멈추기 원할 때 사용된다.
@@ -222,7 +225,6 @@ E
   - 많은 데이터 중에 내가 보기 싫은 또는 불필요하게 출력되거나 계산되지 말아야 하는 것이 list에 있을 때, 스킵할 수 있다.
 
 ```yml
-
 # break
 > numbers = [14, 3, 4, 7, 10, 24, 17, 2, 33, 15, 34, 36, 38]
 > for num in numbers:
@@ -269,7 +271,9 @@ multiply by 2: (8+0j)
 
 <br>
 
-## 5. for ~ else 구문
+---
+
+# 4. for ~ else 구문
 
 - for ~ else 구문: python에만 있는 for-else 구문으로, 자주 사용하지는 않지만, 알고 있자.
 
@@ -283,3 +287,12 @@ multiply by 2: (8+0j)
 >       print("Not Found 45...")
 
 ```
+
+<br>
+
+---
+
+# Reference
+
+- [Python tutorial](https://www.python-course.eu/python3_formatted_output.php)
+- [프로그래밍 시작하기: 파이썬 입문 (Inflearn Original)](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)

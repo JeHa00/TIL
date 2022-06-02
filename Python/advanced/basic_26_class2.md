@@ -1,6 +1,6 @@
 # Python basic 26 : Class advanced
 
-## Intro
+# 0. Introduction
 
 > 1. [Self의 의미](#1-self의-의미)
 > 2. [dir & \_\_dict\_\_ 그리고 \_\_doc\_\_](#2-dir-__dict__-그리고-__doc__)
@@ -10,7 +10,7 @@
 
 - 이번 내용은 [Python basic 14: 파이썬 클래스(class)](https://jeha00.github.io/post/python_basic/python_basic_14/)에 이어 진행한다.
 
-- 예시코드는 Python basic 24에서 작성한 코드를 이어서 사용한다.
+- 예시코드는 [Python basic 24](https://jeha00.github.io/post/python_basic/python_basic_24_oop/)에서 작성한 코드를 이어서 사용한다.
 
 ```yml
 > class Airline():
@@ -83,18 +83,17 @@
 
 ---
 
-## 1. Self의 의미
+# 1. Self의 의미
 
-> - 각 인스턴스의 `고유값`을 저장하기 위한 예약어
+> **_각 인스턴스의 고유값을 인자로 받는 매개변수로, 고유값은 인스턴스뿐만 아니라 클래스도 가진다._**
 
-- 그래서 각 instance 마다 `고유의 ID 값`을 가진다.
 - `self._속성`으로 입력하기 때문에, 각 인스턴스마다 자신의 영역에 저장할 수 있다.
 
 <br>
 
-> `self._속성` 처럼 언더바(\_)를 사용하는 이유??
-> 개발자들은 instance variable를 만들 때 under bar 를 사용한다.  
-> PEP에서 권장한다.
+- `self._속성` 입력 시, 언더바(\_)를 사용하는 이유??
+  - PEP에서 권장하기 때문에 인스턴스 변수를 만들 때 underbar를 사용한다.
+  - 언더바의 의미는 [[TIL] Python basic 43: Underscore](https://jeha00.github.io/post/python_basic/python_basic_43_underscore/)을 참고하라.
 
 ```yml
 ## Instance의 ID 확인
@@ -108,7 +107,7 @@
 
 <br>
 
-- Instance를 만들기 위한 Class도 고유 id 값을 가지고 있다.
+- Instance를 만들기 위한 class도 고유 id 값을 가지고 있다.
 
 ```yml
 
@@ -128,29 +127,37 @@
 
 ---
 
-## 2. dir, `.__dict__` 그리고 `__doc__`
+# 2. dir, \_\_dict\_\_ 그리고 \_\_doc\_\_
 
-> - `dir`은 해당 instance가 가지고 있는 속성을 list로 보여준다. 그러나, 속성의 value들은 보여주지 않는다.
-> - `__dict__`는 각 instance의 namespace를 보고 싶을 때 사용한다. 즉, 속성과 속성의 value들을 보여준다.
+<br>
+
+## 2.1 dir 과 \_\_dict\_\_
+
+> **_dir 과 \_\_dict\_\_의 차이는 [[TIL] Python basic 14: class](https://jeha00.github.io/post/python_basic/python_basic_14_class/#23-namespace-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0)을 참고하라_**
 
 ```yml
-
-# `dir`로 나온 속성들에서 뒷 부분을 보면 class Airline에 작성된 속성들과 method들을 확인할 수 있다.
+# `dir`을 통해서 namespace 안에 class Airline class에 작성된 속성들과 method들을 확인할 수 있다.
 > print(dir(Airline1))
 > print(dir(Airline2))
-['__class__', '__dict__', '__dir__', '__doc__', '__init__', ..... ,'__repr__', '__sizeof__', '__str__','_company', '_details', 'detail_info', 'get_price', 'get_price_culc', 'is_bmw', 'price_per_raise', 'raise_price']
+['__class__', '__dict__', '__dir__', '__doc__', '__init__', ..... ,'__repr__','__str__',
+'_company', '_details', 'detail_info', 'get_price', 'get_price_culc', 'price_per_raise',
+ 'raise_price']
 
-# __init__ 으로 만들어진 instance variable 의 구체적인 값을 확인할 수 있다.
+# __init__ 생성자로 만들어진 instance variable 의 구체적인 값을 확인할 수 있다.
 > print(Airline1.__dict__)
 {'_company': 'Koreanair', '_details': {'uniform_color': 'skyblue', 'kind': 'FSC', 'price': 8000}}
 
 > print(Airline2.__dict__)
 {'_company': 'Asiana', '_details': {'uniform_color': 'gray', 'kind': 'FSC', 'price': 6000}}
-
 ```
 
+<br>
+
+## 2.2 \_\_doc\_\_
+
+> **_multi-line으로 입력된 comment가 출력되는 magic method_**
+
 - 코멘트를 입력할 때는 # 도 되지만, `""" """` 을 통해서 multi-line으로 입력할 수 있다.
-- `__doc__` 를 통해서 """ """ 사이에 있는 comment 부분이 출력된다.
 - 상세한 설명을 적으면 doc 예약어를 호출하여 다른 사람들이 확인할 수 있다.
 - 필수적인 건 아니지만, 이러한 원칙을 정해서 개발하는게 실력 향상에 좋다.
 - 그리고, 이런 게 하나 하나 모여서 실력 있는 개발자가 된다.
@@ -170,37 +177,29 @@
 
 <br>
 
-## 3. Method의 3종류
+# 3. Method의 3종류
 
-> Method의 종류에는 Instance method, class method, static Method 로 세 가지 종류가 있다.
+> **_Method의 세 종류: class method, Instance method, Static Method_**
 
-- 그러면 언제 이 method 들을 사용하는가??
+- **Method를 만들어서 사용하는 이유**
 
-  - _class에 속한 모든 변수들(class variables, instance variables)을 사용하기 위해서 method를 만들어 사용한다._
+  - _class에 속한 모든 변수들(class variables, instance variables)에 직접 접근해서 사용하는 것보다, method를 통해 사용하는 방법이 '캡슐화' 성질을 고려했을 때, 좋은 방법이기 때문이다._
 
-    - 직접 접근할 수 있지만, 좋지 않은 방법이다.
-    - class는 `캡슐화` 되어있기 때문이다.
+- **Static method는 그럼 무엇인가??**
 
-  - `Instance method`는 `Instance variable`을 사용하기 위해서 사용한다.
-    - instance를 첫 번째 인자로 받는다 (self).
-  - `Class method`는 `Class variable`을 사용하기 위해서 사용한다.
-    - class를 첫 번째 인자로 받는다 (cls).
-    - 또한, `@classmethod`라는 decorator를 입력한다.
-
-<br>
-
-- `Static method`는 그럼 무엇인가??
-
-  - python 전문 서적을 보면 static method가 굳이 필요한지 의문성을 보인다.
-  - 즉, 반드시 필요하진 않지만 개념적으로 알고 있자.
-  - 위 method들과는 달리, 아무것도 받지 않는다.
-  - 위 두 가지 변수(클래스 변수, 인스턴스 변수)를 받기에는 조금 적절하지 않을 때 대책으로 사용한다.
+  - python 전문 서적을 보면 static method가 굳이 필요한지 의문성을 보이는 만큼 반드시 필요하진 않지만 개념적으로 알고 있자.
+  - 클래스 변수, 인스턴스 변수를 받기에 조금 적절하지 않을 때 클래스 변수와 인스턴스 변수를 사용하지 않는 대책으로 사용한다. 그래서 위 method들과는 달리, 아무것도 받지 않는다.
   - 또한, `@staticmethod`라는 decorator를 입력한다.
 
--
+  | Method    | Class method                | Instance method               | Static method                     |
+  | --------- | --------------------------- | ----------------------------- | --------------------------------- |
+  | Parameter | cls                         | self                          | X                                 |
+  | Purpose   | 클래스 변수를 사용하기 위해 | 인스턴스 변수를 사용하기 위해 | 옆 두 method에 대한 대책으로 사용 |
+  | Decorator | @classmethod                | x                             | @staticmethod                     |
+
+- [[TIL] Python basic 14: class - class method, instance method](https://jeha00.github.io/post/python_basic/python_basic_14_class/#3-self-%EC%9D%98-%EC%9D%B4%ED%95%B4-class-method-instance-method/) 와 [[TIL] Python basic 14: class - class, instance variable](https://jeha00.github.io/post/python_basic/python_basic_14_class/#4-class-instance-variable) 를 참고하자
 
 ```yml
-
 ### Intro code에서 각 method는 다음과 같다.
 
 ## Instance Method(self):
@@ -284,3 +283,5 @@ OK! This car is Koreanair
 ## Reference
 
 - [인프런 파이썬 중급](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%A4%91%EA%B8%89-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
+- [[TIL] Python basic 14: 파이썬 클래스(class)](https://jeha00.github.io/post/python_basic/python_basic_14/)
+- [[TIL] Python basic 43: Underscore](https://jeha00.github.io/post/python_basic/python_basic_43_underscore/)

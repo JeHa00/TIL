@@ -1,4 +1,4 @@
-# Intro
+# 0. Introduction
 
 > 1. [Sort vs Sorted](#1-sort-vs-sorted)
 > 2. [Array data model](#2-array-data-model)
@@ -9,8 +9,13 @@
 
 # 1. Sort vs Sorted
 
-> - **sort** : 정렬 후, 객체의 원본을 수정한다. 그리고, 반환값이 없다(return none).
-> - **sorted** : 정렬 후, 객체의 원본을 수정하지 않는다. 그리고 새로운 객체를 반환한다.
+> **_- sort: sort the list in ascending order and return None._**  
+> **_- sorted: Return a new list containing all items from the iterable in ascending order._**
+
+| function  | sort() | sorted()        |
+| --------- | ------ | --------------- |
+| 원본 수정 | O      | X               |
+| 반환값    | None   | New list object |
 
 - list data model에서 자주 사용하는 함수인 `sort` 와 `sorted`에 대해 알아보자.
 
@@ -55,7 +60,7 @@ sort - None ['strawberry', 'papaya', 'orange', 'mango', 'lemon', 'coconut', 'app
 > print('sorted - ', sorted(f_list, key = len))
 sorted - ['apple', 'mango', 'lemon', 'orange', 'papaya', 'coconut', 'strawberry']
 
-> print('sort - ', sort(key = len), f_list)
+> print('sort - ', f_list.sort(key = len), f_list)
 sort - None ['apple', 'mango', 'lemon', 'orange', 'papaya', 'coconut', 'strawberry']
 
 # key = lambda x: x[-1]
@@ -63,7 +68,7 @@ sort - None ['apple', 'mango', 'lemon', 'orange', 'papaya', 'coconut', 'strawber
 > print('sorted - ', sorted(f_list, key=lambda x: x[-1]))
 sorted - ['papaya', 'orange', 'apple', 'lemon', 'mango', 'coconut', 'strawberry']
 
-> print('sort - ', sort(f_list, key=lambda x: x[-1]))
+> print('sort - ', sort(f_list, key=lambda x: x[-1]), f_list)
 sort - None ['papaya', 'orange', 'apple', 'lemon', 'mango', 'coconut', 'strawberry']
 
 # key = lambda x: x[-1], reverse = True
@@ -71,7 +76,7 @@ sort - None ['papaya', 'orange', 'apple', 'lemon', 'mango', 'coconut', 'strawber
 > print('sorted - ', sorted(f_list, key=lambda x: x[-1], reverse = True))
 sorted - ['strawberry', 'coconut', 'mango', 'lemon', 'orange', 'apple', 'papaya']
 
-> print('sort - ', sort(f_list, key=lambda x: x[-1], reverse = True))
+> print('sort - ', sort(f_list, key=lambda x: x[-1], reverse = True), f_list)
 sorted - None ['strawberry', 'coconut', 'mango', 'lemon', 'orange', 'apple', 'papaya']
 ```
 
@@ -117,7 +122,7 @@ sorted - None ['strawberry', 'coconut', 'mango', 'lemon', 'orange', 'apple', 'pa
 
 ## List vs Array 적합한 사용법
 
-- List 기반: 다양한 data type을 사용할 수 있기 때문에, 융통성 있게 범용적으로 사용 가능하다.
+- List 기반: 다양한 data type을 사용할 수 있기 때문에, 융통성 있게 범용적으로 사용 가능.
 - Array 기반: 한 가지 data type만 사용할 수 있기 때문에, 숫자 기반에 많이 사용한다.
 
 ---

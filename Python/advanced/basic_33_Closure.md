@@ -1,4 +1,4 @@
-# Intro
+# 0. Introudtion
 
 > 1. [UnboundLocalError](#1-unboundlocalerror)
 > 2. [What is closure??](#2-what-is-closure)
@@ -6,7 +6,7 @@
 
 <br>
 
-- Closure가 필요한 이유 그리고, 잘못된 사용 사례에 대해 알아보자.
+- Closure가 필요한 이유 그리고, 잘못 사용된 사례에 대해 알아보자.
 
 <br>
 
@@ -35,7 +35,8 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
 - Error의 의미:
 
   - `c` 라는 변수에 값이 할당되지 않았는데, print(c)로 참조되었다.
-  - 함수 블럭에서 할당하는 건 `지역 변수`이기 때문에, name이 같아도 함수 밖에서 할당했기 때문에 `전역 변수`로 인식하여 다르다.
+  - 함수 블럭에서 할당하는 건 `지역 변수`다.
+  - 하지만, name이 같아도 함수 밖에서 할당했기 때문에 `전역 변수`로 인식하여 다르다.
 
 - 해결책
 
@@ -63,7 +64,6 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
 # 함수 실행 후에는 40이 출력된다.
 > print('>>>',c)
 40
-
 ```
 
 - 해결책의 문제점
@@ -85,10 +85,9 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
 
 ## 2.1 What is closure ??
 
-> [Reference에 따른 closure 정의]  
-> 외부에서 호출된 함수의 변수값, 상태(레퍼런스)를 복사 후 저장. 그 후에 접근(액세스)이 가능하도록 하는 도구
+> **_Reference에 따른 closure 정의: 외부에서 호출된 함수의 변수값, 상태(레퍼런스)를 복사 후 저장한다. 그 후에 접근(액세스)이 가능하도록 하는 도구_**
 
-- scope을 기준으로 설명하자면
+- **scope을 기준으로 설명하자면**
 
   - **Closure란 enclosing scope에 있는 자유변수(free variable)를 이 scope의 실행이 종료되도 보유하고 있는 내부 함수 또는 중첩함수를 말한다.**
 
@@ -96,44 +95,41 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
     - 정의되지 않은 code block에 사용되는 변수
     - 여러 번 호출이 일어나도 상태 정보를 보유하기 위해 closure가 사용하는 원리
 
-- closure는 outer function을 호출해서 innter function을 return 했지만, outer function의 **_enclosing scope_**에 있던 **_자유변수(free variable)를 계속해서 기억한다._**
+- closure는 outer function을 호출해서 innter function을 return 했지만, outer function의 **_enclosing scope_** 에 있던 **_자유변수(free variable)를 계속해서 기억한다._**
 
-- 그래서 함수실행이 끝나도 그 시점의 변수를 이어서 작업할 수 있다.
+- 그래서, 함수실행이 끝나도 그 시점의 변수를 이어서 작업할 수 있다.
 
 <br>
 
 ## 2.2 Why does we need closure ??
 
-- 함수 안에 선언된 것들이 함수의 실행이 끝나서 소멸되면 변수 값도 사라지지만, closure를 사용하면 기억한다.
+> **_함수 안에 선언된 것들이 함수의 실행이 끝나서 소멸되면 변수 값도 사라지지만, closure를 사용하면 기억되기 때문에, single thread여도 동시성 제어가 가능하다._**
 
 - 서버 프로그래밍의 관점에서 closure를 바라보면
 
-  - 서버 프로그래밍에서 어려운 것이 한정된 메모리 공간에서 여러 자원이 접근하면 `교착상태(Dead lock)`에 부딪힌다.
+  - 서버 프로그래밍에서 어려운 것이 `동시성(Concurrency) 제어`다.
+  - 한정된 메모리 공간에서 여러 자원이 접근하면 `교착상태(Dead lock)`에 부딪힌다.
   - 이를 해결하는 게 `동시성(Concurrency) 제어`다.
-  - closure는 불변자료(immutable, Read Only) 구조 및 atom, STM 이므로 multi-thread 프로그래밍에 강점을 가진다.
-  - multi-thread가 아닌 `단일 thread`인데도 동시성을 갖도록 하는 기반이 되는 게 바로 이 closure다.
+  - closure는 불변자료 (immutable, Read Only) 구조 및 atom, STM 이므로 multi-thread 프로그래밍에 강점을 가진다.
+  - multi-thread가 아닌 **_단일 thread_** 인데도 동시성을 갖도록 하는 기반이 되는 게 바로 이 closure다.
 
-- 또한 이 클로저는 함수형 프로그래밍에도 연결된다.
-
-- 위 관점에 대해서는 그렇구나 정도만 알고 넘어가자. 나중에 차차 알아보자.
+- 또한, 이 클로저는 함수형 프로그래밍에도 연결된다.
 
 - 그러면 class를 사용하여 closure가 무엇인지 구현해보자.
 
 ```yml
 # global scope
 > class Avenager():
-
 # enclosing scope
-
 >   def __init__(self):
 >       self._series = []
 # local scope
-
 # special method __call__은 class를 function처럼 호출해서 사용하도록 한다.
 >   def __call__(self, v):
 >       self._series.append(v)
->       print('inner >>> {} / {}'.format(self._series, len(self, series)))
+>       print('inner >>> {} / {}'.format(self._series, len(self_.series)))
 >       return sum(self._series) / len(self._series)
+
 # local scope
 
 # 인스턴스 생성
@@ -142,6 +138,7 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
 # 누적
 # instance를 생성했는데, function처럼 사용하고 있다.
 # Avenger()를 사용하면 __call_ method의 return 값이 출력된다.
+
 > print(averager_cls(15))
 > print(averager_cls(35))
 > print(averager_cls(40))
@@ -153,9 +150,7 @@ inner >>> [15, 35, 40] / 3
 30.0
 ```
 
-- 위의 예시처럼 class 실행이 끝났는데도 불구하고, 변수가 소멸되야 하는데 유지되고 있다.
-- 상태를 기억하고 있기 때문에 계속해서 누적된다.
-- 그래서 중간부터 해도 이어서 할 수 있다.
+- 위의 예시처럼 class 실행이 끝나서, 변수가 소멸되야하는데 유지되고 있다. 상태를 기억하고 있기 때문에 계속해서 누적된다. 그래서 중간부터 해도 이어서 할 수 있다.
 
 <br>
 
@@ -174,7 +169,6 @@ inner >>> [15, 35, 40] / 3
 # 이 영역에 정의된 변수: series
 >   series = []
 
-
 >   def averager(v):
 # averager의 local scope
 >      series.append(v)
@@ -185,11 +179,13 @@ inner >>> [15, 35, 40] / 3
 >   return averager
 
 # make a instance
+# 반환값인 averager가 avg_closure1에 할당된다.
 > avg_closure1 = closure_ex1()
 
 > print(avg_closure1)
 <function closure_ex1.<locals>.averager at 0x000001B59D11FC10>
 
+# 인자로 입력된 15는 averager function의 인자 v이다.
 > print(avg_closure1(15))
 inner >>> [15] / 1
 15.0
@@ -202,7 +198,7 @@ inner >>> [15, 35, 40] / 3
 ```
 
 - series가 local scope에 있었다면 위 경우처럼 출력할 때 이전 값이 보존되지 않는다.
-- 왜냐하면 averager가 실행이 끝나면 그 안에 local scope에 있던 변수는 소멸되기 때문이다.
+- 왜냐하면 averager가 실행이 끝나면 그 안에 local scope에 있던 변수는 소멸된다.
 - 하지만, enclosing scope에 변수를 정의했기 때문에, 함수를 실행할 때마다 자유변수에 접근해서 값이 보존된다.
 - 그래서 새로 추가해도 실행이 가능하다.
 
@@ -234,7 +230,7 @@ inner >>> [15, 35, 40] / 3
 
 ---
 
-# 4. Incorrect use of closures: nonlocal, global
+# 4. Incorrect use of closures
 
 - closure의 잘못된 사용법을 예제로 알아보자.
 
@@ -265,15 +261,9 @@ inner >>> [15, 35, 40] / 3
 ```
 
 - 바로 위의 예시처럼 `nonlocal`을 사용하는 방법 그리고, UnboundLocalError를 설명할 때 언급한 `global` 을 사용하는 법이 잘못된 closure 사용법이다.
-
-  - `nonlocal`은 local variable 하위에 또 local scope이 있을 때, 상위 local variable을 수정할 때 사용한다.
-  - `global`은 local scope에서 global variable에 접근하고자 할 때 사용한다.
-
-- UnboundLocalError 를 설명했을 때와는 달리 변수를 전역으로 한게 아닌 자유 변수로 만들었다.
-
-- 그래서 closure지만, 좋은 방법이 아니다.
-
-- 왜냐하면 함수 내에 전역 변수와 연결되는 게 있다면 _디버깅_ 할 때 쉽지 않다.
+- UnboundLocalError 를 설명한 경우와 달리, 변수를 전역이 아닌 자유 변수로 만들었다.
+- 그래서, closure지만 좋은 방법이 아니다.
+- 왜냐하면 함수 내에 지역 변수 외의 것과 연결되는 게 있다면 _디버깅_ 할 때 쉽지 않다.
 
 ---
 

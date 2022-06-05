@@ -1,4 +1,4 @@
-# Intro
+# 0. Introduction
 
 > 1. [일급 함수(first-class)란?](#1-일급-함수first-class란)
 > 2. [익명 함수(lambda)](#2-익명-함수lambda)
@@ -16,46 +16,46 @@
 
 # 1. 일급 함수(first-class)란??
 
-> - 일급 함수(일급 객체, first-clss)란??
->   - 객체 취급되는 함수
-> - 다음 4가지 특징을 가지는 함수를 말한다.
->   1. 런타임 초기화: 실행 시점에서 초기화한다.
->   2. 함수를 변수에 할당 가능하다.
->   3. 함수를 인수로 전달 가능하다. (Higher - order function의 첫 번째 특징)
->   4. 함수를 결과값으로서 반환 가능하다. (Higher - order function의 첫 번째 특징)
+> - **_일급 함수(일급 객체, first-class)란??_**
+>   - **_객체 취급되는 함수_**
+> - **_다음 4가지 특징을 가지는 함수를 말한다._**
+>   - **_1. 런타임 초기화: 실행 시점에서 초기화한다._**
+>   - **_2. 함수를 변수에 할당 가능하다._**
+>   - **_3. 함수를 인수로 전달 가능하다. (Higher - order function의 첫 번째 특징)_**
+>   - **_4. 함수를 결과값으로서 반환 가능하다. (Higher - order function의 첫 번째 특징)_**
 
 - 위 일급 함수의 특징들은 `파이썬 함수의 특징`이라고 할 수 있다.
-- 그러면 first-class는 왜 중요한가??
+- 그러면 일급함수는 왜 중요한가??
 
-  - 일급함수를 알아야 **_`함수형 프로그래밍`_** 을 할 수 있기 때문이다.
-  - `함수형 프로그래밍`이란?? side effect를 허용하지 않는 순수 함수(pure function)을 지향하여 동시에 여러 thread에서 문제 없이 동작하는 프로그램을 쉽게 작성할 수 있다.
+  - 일급함수를 알아야 **_'함수형 프로그래밍'_** 을 할 수 있기 때문이다.
+  - **'함수형 프로그래밍'** 이란??
+    - side effect를 허용하지 않는 순수 함수(pure function)를 지향하여 동시에 여러 thread에서 문제 없이 동작하는 프로그램을 쉽게 작성하는 방식
 
 - 이러한 이유로 `일급 함수`에 대해 알아보자.
 - 일급 함수가 가지는 특징을 모두 예제로 구현해볼 것이다.
 
 <br>
 
-# 1.1 객체 취급되는 함수
+## 1.1 객체 취급되는 함수
 
-- 객체란 무엇인가???
+- **객체**란 무엇인가???
 
-  - [[TIL] Python basic 14: class](https://jeha00.github.io/post/python_basic/python_basic_14/)에 따르면 소프트웨어로 구현할 대상이라 했다.
+  - [[TIL] Python basic 14: class](https://jeha00.github.io/post/python_basic/python_basic_14_class/)에 따르면 소프트웨어로 구현할 대상이라 했다.
 
 - 하지만 파이썬 내부에서의 객체의 정의와 특징은 무엇일까???
 
-  - 파이썬이 data를 추상화(abstraction)한 것을 말하며 id(identity), type(형) 그리고, value(값)을 가지는 걸 말 한다.
+  - 파이썬이 data를 추상화(abstraction)한 것을 말하며,
+    - 추상화:
+  - id(identity), type(형) 그리고, value(값)을 가dd지는 걸 말 한다.
   - 파이썬의 모든 데이터는 객체나 객체 간의 관계로 표현된다.
-  - 객체의 id는 메모리 상에서 객체의 주소를 말한다.
-  - 또한, id는 한 번 만들어진 후에는 변경되지 않는다.
+  - 객체 id는 메모리 상에서 객체의 주소이며, id는 만들어진 후에는 변경되지 않는다.
 
     - from [데이터 모델: 객체](https://docs.python.org/ko/3/reference/datamodel.html#objects-values-and-types)
 
-  - attribute란 객체와 결합한 값(value)를 말한다.
+  - attribute란 점표현식을 사용하는 이름으로 참조되는 객체와 결합한 값(value)
     - [용어집 - python 3.10.4](https://docs.python.org/ko/3/glossary.html?highlight=%EC%86%8D%EC%84%B1)
 
-- 함수 객체란??? 함수처럼 행동하는 객체
-
-  - from [함수 객체의 장점](https://namoeye.tistory.com/entry/%ED%95%A8%EC%88%98%EA%B0%9D%EC%B2%B4%EB%9E%80)
+- **함수 객체** : 함수처럼 행동하는 객체 from [함수 객체의 장점](https://namoeye.tistory.com/entry/%ED%95%A8%EC%88%98%EA%B0%9D%EC%B2%B4%EB%9E%80)
 
 - 그럼 코드 상에서 확인해보자.
 
@@ -77,9 +77,11 @@
 > print(factorial.__doc__)
 Factorial Function -> n : int
 
+# 함수를 인자로서 넘겼다.
 > print(type(factorial), type(A))
 <class 'fuction'>, <class 'type'>
 
+# 함수 또한 객체임을 확인했다.
 > print(id(factorial))
 id -  2416266045904
 
@@ -104,7 +106,7 @@ factorial
 
 <br>
 
-# 1.2 변수로 할당되는 함수
+## 1.2 변수로 할당되는 함수
 
 - 함수 또한 객체로 취급되는 걸 확인했다.
 - 다음으로 이 함수가 변수에 할당되는지 확인해보자.
@@ -126,11 +128,11 @@ factorial
 
 <br>
 
-# 1.3 고위 함수의 두 가지 특징을 가지는 함수
+## 1.3 고위 함수의 두 가지 특징
 
-> Higher - order function (고위함수)의 특징
-> 1. 함수를 인수로 전달 가능하다.
-> 2. 함수를 결과값으로서 반환 가능하다.
+> **_Higher - order function (고위함수)의 특징_**  
+> **_- 1. 함수를 인수로 전달 가능하다._**  
+> **_- 2. 함수를 결과값으로서 반환 가능하다._**
 
 - 고위 함수의 대표적인 예로는 `map`, `filter`, `reduce`, `lambda` 등이 있다.
 
@@ -151,16 +153,13 @@ factorial
 > print(list(map(var_func, filter(lambda x: x % 2, range(1,6)))))
 [1, 6, 120]
 
+## list comprehension을 사용하기
 # 위와 동일한 출력값을 갖는다. 하지만, 가독성이 더 좋다.
 > print([var_func(i) for i in range(1, 6) if i % 2])
 [1, 6, 120]
 ```
 
-<br>
-
 - `reduce` : 여러 원소를 하나의 원소로 줄이기 위해, 왼쪽에서부터 오른쪽 방향으로 축적하며 함수를 적용해간다.
-
-<br>
 
 ```yml
 ## reduce
@@ -182,12 +181,12 @@ factorial
 
 ---
 
-# 2. 익명 함수(lambda)
+# 2. High - order functions
 
-> 이름 없는 함수로, 익명 함수다.  
-> 그래서 익명 함수가 복잡할 때, 주석을 사용해야 한다.  
-> 하지만, 되도록 함수를 만들어서 사용하자.  
-> 일반 함수 형태로 `refactoring`을 권장한다.  
+## 2.1 익명 함수(lambda)
+
+> **_이름 없는 함수로, 익명 함수다. 그래서 익명 함수가 복잡할 때, 주석을 사용해야 한다._**  
+> **_하지만, 되도록 함수를 만들어서 사용하자. 일반 함수 형태로 `refactoring`을 권장한다._**
 
 ```yml
 > print(reduce(lambda x, t : x + t, range(1,11)))
@@ -196,14 +195,10 @@ factorial
 
 <br>
 
----
+## 2.2 Callable
 
-# 3. Callable 설명
-
-> callable이란??  
-> - 호출 연산자로, 인자가 호출 가능한지 확인하는 함수  
-
-<br>
+> **_호출 연산자로 함수, 클래스 인스턴스, 메서드 등이 호출 가능한지 확인하는 함수다. 이를 구체적으로 확인하는 방법은 specail method인 `__call__` method의 존재 유무를 확인하는데, 이 method가 있으면 True다._**  
+> from [What is a 'callable'](https://stackoverflow.com/questions/111234/what-is-a-callable)
 
 - 호출한다는 건 무슨 의미일까???
 
@@ -217,11 +212,7 @@ factorial
 > 3.14(334)
 ```
 
-<br>
-
 - 이를 `callable`로 확인해보자.
-
-<br>
 
 ```yml
 > print(callable(str), callable(list), callable(var_func), callable(3.14))
@@ -234,16 +225,11 @@ True True True False
 
 ---
 
-# 4. Partial 사용법
+## 2.3 Partial
 
-> - 인수를 고정할 때 사용하는 함수로, 콜백 함수에 사용한다.  
-> - 매우 중요하다.  
-
-<br>
+> **_인수를 고정할 때 사용하는 함수로, 콜백 함수에 사용하기 때문에 매우 중요하다._**
 
 - 코드로 알아보자.
-
-<br>
 
 ```yml
 > from operator import mul
@@ -267,22 +253,19 @@ True True True False
 
 <br>
 
----
+## 2.4 Signature
 
-# 5. Signature
-
-> signature(callable, \*, follow_wrapped=True)  
-> 인자로 callable을 취하고, annotation을 반환한다.  
+> **_signature(callable, \*, follow_wrapped=True) 형식으로 인자로 callable을 취하고, annotation을 반환한다._**
 
 - `signature` 함수는 `inspect` module에서 import한다.
-- `inspect` module은 모듈은 모듈, 클래스, 메서드, 함수, 트레이스백, 프레임 객체 및 코드 객체와 같은 라이브 객체에 대한 정보를 얻는 데 도움이 되는 몇 가지 유용한 함수를 제공한다.
+- `inspect` module은
+  - 모듈은 모듈, 클래스, 메서드, 함수, 트레이스백, 프레임 객체 및 코드 객체와 같은 라이브 객체에 대한 정보를 얻는 데 도움이 되는 몇 가지 유용한 함수를 제공한다.
 - 예를 들어
   - 클래스의 내용을 검사하거나,
   - 메서드의 소스 코드를 꺼내오거나,
   - 함수의 인자 리스트를 추출하고 포맷하거나,
   - 자세한 트레이스백을 표시하는 데 필요한 모든 정보를 얻는 데 도움이 될 수 있다.
-
-<br>
+  - from [Inspect: 라이브 객체 검사](https://docs.python.org/ko/3/library/inspect.html)
 
 ```yml
 > from inspect import signature
@@ -318,3 +301,4 @@ OrderedDict([('n', <Parameter "n">)])
 - [데이터 모델: 객체](https://docs.python.org/ko/3/reference/datamodel.html#objects-values-and-types)
 - [Inspect: 라이브 객체 검사](https://docs.python.org/ko/3/library/inspect.html)
 - [용어집 - python 3.10.4](https://docs.python.org/ko/3/glossary.html?highlight=%EC%86%8D%EC%84%B1)
+- [What is a 'callable'](https://stackoverflow.com/questions/111234/what-is-a-callable)

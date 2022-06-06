@@ -1,4 +1,4 @@
-# Intro
+# 0. Introduction
 
 > 1. [병행성과 병렬성이란??](#1-병행성과-병렬성이란)
 > 2. [Generator란?](#2-generator란)
@@ -16,11 +16,8 @@
 
 # 1. 병행성과 병렬성이란??
 
-> - 병행성(Concurrency):
->   - 한 컴퓨터가 여러 일을 동시에 수행하는 것
->   - -> 단일 프로그램 안에서 여러 일을 쉽게 해결 목적
-> - 병렬성(parallelism):
->   - 여러 컴퓨터가 여러 작업을 동시에 수행하는 것 -> 속도 향상 목적
+> **_병행성(Concurrency): 한 컴퓨터가 여러 일을 동시에 수행하여, 단일 프로그램 안에서 여러 일을 쉽게 해결 목적_**  
+> **_병렬성(parallelism): 여러 컴퓨터가 여러 작업을 동시에 수행하여, 속도 향상 목적_**
 
 - **_병행성_** : thread는 하나지만, 마치 동시에 일을 하고 있는 것처럼 수행한다.
   - 예) 공부 중에 강의 멈춰놓고, 밥 먹고 와서 강의를 중단한 부분부터 다시 시작하는 것
@@ -33,9 +30,9 @@
 
 # 2 Generator란?
 
-> - 모든 값을 메모리에 올려두고 이용하는 게 아닌,
-> - 필요할 때마다 한 번에 한 개의 항목을 생성해서 메모리에 올려두고 반환하는 객체.
-> - 그래서 메모리를 유지하지 않기 때문에, 효율적으로 사용할 수 있다.
+> - **_모든 값을 메모리에 올려두고 이용하는 게 아닌,_**
+> - **_필요할 때마다 한 번에 한 개의 항목을 생성해서 메모리에 올려두고 반환하는 객체._**
+> - **_그래서 메모리를 유지하지 않기 때문에, 효율적으로 사용할 수 있다._**
 
 - Generator는 iterator의 한 종류로, 위와 같은 이유로 매우 강력한 iterator다.
 - 연산을 필요한 순간까지 미루는 걸 `Lazy evaluation`이라 한다.
@@ -52,7 +49,8 @@
 - **차이점**:
 
   - `return`을 사용할 경우 지역 변수가 사라지지만,
-  - `yield`는 local을 나가도 사라지지 않는다.
+  - `yield`는 local을 나가도 사라지지 않는다. 위치 인자를 계속해서 유지한다.
+    - **_next처럼 '위치 인자'를 계속해서 유지하는 게 '병행성'의 핵심_**
   - 그리고, `yield`는 제네레이터를 반환한다.
 
 - **Generator의 장점**
@@ -107,7 +105,7 @@ StopIteration
 ```
 
 - `yield` 까지 출력한 후, 다음 출력은 다음 `yield`까지 한다.
-- 이처럼 위의 next처럼 `위치 인자`를 계속해서 유지하는 게 `병행성`의 핵심이다.
+- 이처럼 위의 **_next처럼 '위치 인자'를 계속해서 유지하는 게 '병행성'의 핵심_** 이다.
 - `위치 인자`를 계속해서 기억하는 것 즉, 다음 할 일을 계속해서 기억하는 걸 의미한다.
 
 <br>
@@ -140,8 +138,11 @@ temp2 -  ['A Point.A Point.A Point.', 'B Point.B Point.B Point.']
 # 아래와 같이 출력되기 때문에, for문에서 출력하자.
 > print('temp3 - ',temp3)
 temp3 -  <generator object <genexpr> at 0x000002895A5AE9E0>
+```
 
+```yml
 # list comprehension
+# yield로 반환된 것들만 출력된다.
 > for i in temp2:
 >   print(i)
 A Point.A Point.A Point.
@@ -164,7 +165,7 @@ End
 ```yml
 > import time
 
-> l = [1, 2, 3, 4]
+> l = [1, 2, 3]
 
 > def print_iter(iter):
 >     for element in iter:
@@ -176,12 +177,18 @@ End
 >     return num
 
 > print('comprehension_list = ')
-> comprehension_list = [lazy_return(i) for i in L]
-> print_iter(comprehension_list)
+comprehension_list =
 
-> print('generator_exp = ')
-> generator_exp = [lazy_return(i) for i in L]
-> print_iter(generator_exp)
+> comprehension_list = [lazy_return(i) for i in I] # 대괄호
+
+> print(comprehension_list)
+sleep 1s
+sleep 1s
+sleep 1s
+[1,2,3]
+
+
+> print_iter(comprehension_list)
 sleep 1s
 sleep 1s
 sleep 1s
@@ -189,7 +196,14 @@ sleep 1s
 2
 3
 
-generator_exp=
+> print('generator_exp = ')
+generator_exp =
+
+> generator_exp = (lazy_return(i) for i in I) # 소괄호
+> print(generator_exp)
+<generator object <genexpr> at 0x000001ABB5E49510>
+
+> print_iter(generator_exp)
 sleep 1s
 1
 sleep 1s
@@ -211,17 +225,19 @@ sleep 1s
 > def print_iter(iter):
 >    for element in iter:
 
-# element가 1일 떄 코드 실행은 중단된다.
+# element가 1일 때 코드 실행은 중단된다.
 >         if element == 1:
 >             break
 >         print(element)
 
->  print_iter(comprehension_list)
+> print('comprehension_list = ')
+> print_iter(comprehension_list)
 comprehension_list=
 sleep 1s
 sleep 1s
 sleep 1s
 
+> print('generator_exp = ')
 > print_iter(generator_exp)
 generator_exp=
 sleep 1s
@@ -238,7 +254,7 @@ sleep 1s
 
 ```yml
 > start_time = time.time()
-> comprehension_list=[lazy_return(i) for i in L]
+> comprehension_list=[lazy_return(i) for i in I]
 > print_iter(comprehension_list)
 > print(time.time()-start_time)
 
@@ -248,7 +264,7 @@ sleep 1s
 3.0265092849731445
 
 > start_time = time.time()
-> generator_exp = (lazy_return(i) for i in L)
+> generator_exp = (lazy_return(i) for i in I)
 > print_iter(generator_exp)
 > print(time.time()-start_time)
 
@@ -293,7 +309,7 @@ sleep 1s
 ## 4.1 itertools.count(시작값, 증가값)
 
 - 첫 번째는 `itertools.count(시작값, 증가값)` 이다.
-- 시작값에서 증가하여, 증가값만큼 커져서 무한히 출력된다.
+  - 시작값에서 증가하여, 증가값만큼 커져서 무한히 출력된다.
 
 ```yml
 
@@ -320,14 +336,14 @@ sleep 1s
 ## 4.2 itertools.takewhile(predicate, iter)
 
 - 두 번째는 `itertools.takewhile(predicate, iter)` 다.
-- iter의 원소들 중 predicate의 조건에 참인 값들을 반환한다.
+  - iter의 원소들 중 predicate의 조건에 참인 값들을 반환한다.
 - predicate는 영어 단어 자체의 의미로는 영어 문법의 서술부를 의미한다.
 
 ```yml
 
 # gen1 에 람다함수로 조건을 추가한다.
 # 아래 조건은 range(1,1000, 2.5) 와 동일하다.
-> gen2 = itertools.takewhile(lambda n : n < 1000, itertools.count(1, 2.5))
+> gen2 = itertools.takewhile(lambda n : n < 20, itertools.count(1, 2.5))
 
 
 # 이렇게 for문과 같이 쓰인다.
@@ -336,7 +352,7 @@ sleep 1s
 1
 3.5
 ...
-998.5
+18.5
 ```
 
 <br>
@@ -344,8 +360,8 @@ sleep 1s
 ## 4.3 itertools.filterfalse(predicate, iter)
 
 - 세 번째는 `itertools.filterfalse(predicate, iter)` 이다.
-- 두 번째인 `itertools.takewhile`과 반대 의미를 가진 함수다.
-- iter 원소들 중에서 predicate의 조건에 부정인 값들을 반환한다.
+  - 두 번째인 `itertools.takewhile`과 반대 의미를 가진 함수다.
+  - iter 원소들 중에서 predicate의 조건에 부정인 값들을 반환한다.
 
 ```yml
 # 필터 반대

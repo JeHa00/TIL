@@ -1,4 +1,4 @@
-# Intro
+# 0. Introduction
 
 > 1. [Thread, Multi-thread 란???](#1-thread-multi---thread란)
 > 2. [코루틴(Coroutine)이란??](#2-코루틴coroutine이란)
@@ -9,38 +9,45 @@
 
 <br>
 
----
+- Thread, Multi-thread 그리고 Coroutine이 무엇인지를 통해 코루틴의 중요성을 이해한다.
+- Coroutine을 구현해보면서 Generator와의 차이를 통해 Coroutine을 이해한다.
 
-# 1. Thread, Multi - thread란??
-
-- 코루틴이 왜 필요한지 이해하기 위해서,
-- 먼저 `Thread`, `Multi-thread` 가 무엇인지 이해해야 한다.
+- 코루틴이 왜 필요한지 이해하기 위해서 먼저 `Thread`, `Multi-thread` 를 이해해보자.
 - 그리고, 이들을 이해하기 위해서는 `process`가 뭔지 알아야 한다.
 - 그러면 이 개념들에 대해 알아보자.
 
 <br>
 
-- `process`는 코드로 구현된 파일인 `program`이 실행된 것을 의미한다.
-- `Thread(쓰레드)`는 '한' process 내에서 나뉘어진 하나 이상의 실행 단위를 말한다.
-- 만일 이 thread가 프로세스 내에 하나만 존재하면 `단일 스레드` 상태로, 이 때 **실행 단위는 프로세스 자체가 된다.**
+---
+
+# 1. Thread, Multi - thread란??
+
+### Process 와 Thread란??
+
+- [프로세스의 개념](https://jeha00.github.io/post/os/os_chapter_05_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B4%80%EB%A6%AC/#1-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%9D%98-%EA%B0%9C%EB%85%90)
+
+- [쓰레드의 개념](https://jeha00.github.io/post/os/os_chapter_05_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B4%80%EB%A6%AC/#9-thread)
+
+### Single thread(단일 스레드) 와 Multi-thread란??
+
+- thread가 프로세스 내에 하나만 존재하면 `단일 스레드` 상태로 **_실행 단위는 프로세스 자체가 된다._**
 - 하지만, 한 프로세스 내에서 분리하여 여러 thread로 나뉘어 실행 단위가 나눠지고 많아지면 이를 `Multi-thread`라 한다.
+- 한 process 내부의 각 thread가 한 applicaiton이 여러 가지 일을 처리해야하는 상황에서 각 작업들을 담당하는 거다.
 
-  - 한 process 내부의 각 thread가 한 applicaiton이 여러 가지 일을 처리해야하는 상황에서 각 작업들을 담당하는 거다.
+### multi-thread 장점
 
-  - multi-thread 장점
+- 한 process 내에 thread끼리는 긴밀히 연결되어 있다.
+- 한 process 내에 있으므로, 공유된 자원으로 통신 비용을 절감할 수 있다.
+- 공유된 자원으로 메모리가 효율적이다.
+- **multi-process보다 _Context switching_ 비용이 적다.**
 
-    - 한 process 내에 thread끼리는 긴밀히 연결되어 있다.
-    - 한 process 내에 있으므로, 공유된 자원으로 통신 비용을 절감할 수 있다.
-    - 공유된 자원으로 메모리가 효율적이다.
-    - **multi-process보다 _Context switching_ 비용이 적다.**
+### multi-thread 단점
 
-  - multi-thread 단점
-    - 하나의 thread에 문제가 생기면 다른 여러 thread에도 영향을 준다.
+- 하나의 thread에 문제가 생기면 다른 여러 thread에도 영향을 준다.
 
-- `Single thread`(단일 thread)를 하다가 속도를 높이기 위해 `multi-thread`를 사용하기 시작하면,
-  - thread 끼리 공유되는 자원 때문에 교착 상태(Dead Lock)가 발생할 수 있다.
-  - 또한, **_single thread에 비해 `context switching` cost가 크다._**
-  - 또한, 자원 소비 가능성이 증가한다.
+- `Single thread`(단일 thread)를 하다가 속도를 높이기 위해 `multi-thread`를 사용하기 시작하면, thread 끼리 공유되는 자원 때문에 교착 상태(Dead Lock)가 발생할 수 있다.
+- **_single thread에 비해 'context switching' cost가 크다._**
+- 자원 소비 가능성이 증가한다.
 - 이런 이유로 Single thread가 더 빠른 이유가 switching cost 때문이다.
 
 <br>
@@ -49,19 +56,18 @@
 
 # 2. 코루틴(Coroutine)이란??
 
-> - Cooperative routine의 약어로, 서로 협력하는 routine을 의미한다.
-> - Generator의 특별한 형태로, yield와 send를 통해서 main routine과 sub routine의 데이터 상호 교환 방식을 말한다.
+> **_Cooperative routine의 약어로, 서로 협력하는 routine을 의미한다. Generator의 특별한 형태로, yield와 send를 통해서 main routine과 sub routine의 데이터 상호 교환 방식이다._**
 
-- 코루틴은 위의 의미를 가지고 있지만, `thread`의 관점에서 보자면 `single thread` 환경에서 `yield` keyword를 통해서 stack을 기반으로 동작하는 비동기 작업이다.
+- 코루틴은 위의 의미를 가지고 있지만, `thread`의 관점에서 보자면
 
-- 함수에서 `single thread`에서도 동시성이 가능하도록 프로그래밍 언어가 발전하고 있는데,
+  - **_single thread_** 환경에서 `yield` keyword를 통해 stack 기반으로 동작하는 비동기 작업
 
-- 바로 코루틴이 이런 발전의 한 예이다.
+- 싱글 쓰레드에서도 함수에서 동시성이 가능하도록 언어가 발전하고 있는데, 바로 코루틴이 이런 발전의 한 예이다.
 
-- coroutine은 routine 실행 중 중지 후, 다시 이어서 실행 가능한 `동시성` 프로그래밍 방법이다.
+  - coroutine은 routine 실행 중지 후, 다시 이어서 실행 가능한 `동시성` 프로그래밍 방법이다.
 
   - 그래서 coroutine은 thread에 비해서 overhead가 감소된다.
-  - overhead: 어떤 처리를 하기 위해 들어가는 간접적인 처리 시간 · 메모리
+    - overhead: 어떤 처리를 하기 위해 들어가는 간접적인 처리 시간 · 메모리
 
 - 흐름 제어: 메인 루틴에서 서브 루틴을 호출하면 서브루틴에서 수행한다.
 
@@ -140,32 +146,30 @@
 
 <br>
 
-- `send`와 `next` 비교
+- **send와 next 비교**
   - 위 code를 통해서 `send`도 `next` 기능이 포함된 걸 알 수 있다.
-  - 하지만, `next`는 값을 sub routine에 보낼 수 없고, `send`만 보낼 수 있다는 차이가 있다.
-- send() 에 100을 입력하니, 'coroutine received: 100'이 출력되었다.
+  - 하지만, `next`는 값을 sub routine에 보낼 수 없고, `send`만 보낼 수 있다.
+  - send() 에 100을 입력하니, 'coroutine received: 100'이 출력되었다.
 - main routine에서 보낸 100이 sub routine인 `coroutine1`의 `yield`가 받았고, 이를 i에 할당한 걸 알 수 있다.
 
 <br>
 
 - 그러면 `send`를 잘못 사용한 경우를 알아보자.
 
-```yml
-> cr1 = coroutine1()
+  ```yml
+  > cr1 = coroutine1()
 
-# next(cr1)을 생략하고, 바로 send한다.
+  # next(cr1)을 생략하고, 바로 send한다.
 
-# 시작되지 않고 보내는 상황이다.
+  # 시작되지 않고 보내는 상황이다.
 
-## 값 전송
-> cr1.send(100)
-TypeError: can't send non-None value to a just-started generator
-```
+  ## 값 전송
+  > cr1.send(100)
+  TypeError: can't send non-None value to a just-started generator
+  ```
 
-<br>
-
-- Error를 통해 알 수 있는 건 sub-routine의 yield 지점에서 context가 멈춰야, send로 보냈을 때 받을 수 있다는 걸 알 수 있다.
-- 즉, `next`를 먼저 실행하여, `coroutine`을 실행한 후 `yield` keyword를 실행해야 한다.
+  - Error를 통해 알 수 있는 건 sub-routine의 yield 지점에서 context가 멈춰야, send로 보냈을 때 받을 수 있다는 걸 알 수 있다.
+  - `next`를 먼저 실행하여, `coroutine`을 실행한 후 `yield` keyword를 실행해야 한다.
 
 <br>
 
@@ -173,10 +177,15 @@ TypeError: can't send non-None value to a just-started generator
 
 # 4. 코루틴 기본예제 2: 상태값 확인하기
 
-> GEN_CREATED: 처음 대기 상태를 뜻한다.
-> GEN_RUNNING: 실행 상태를 뜻한다.
-> **GEN_SUSPENDED: yield 대기 상태**를 뜻한다.
-> GEN_CLOSED: 실행 완료 상태를 뜻한다.
+> - GEN_CREATED: 처음 대기 상태를 의미
+> - GEN_RUNNING: 실행 상태를 의미
+> - **GEN_SUSPENDED: yield 대기 상태**를 의미
+> - GEN_CLOSED: 실행 완료 상태를 의미
+
+- main과 sub routine의 양방향 통신 -> 동시성 개발
+  - 좌변 = 우변
+  - 좌변은 main routine에서 sub routine으로 보낸 값을 받는 것
+  - 우변은 sub routine에서 terminal로 출력
 
 <br>
 
@@ -185,10 +194,6 @@ TypeError: can't send non-None value to a just-started generator
 > def coroutine2(x):
 >   print('coroutine started : {}'.format(x))
 
-## main과 sub routine의 양방향 통신 -> 동시성 개발
-# 좌변 = 우변
-# 좌변은 main routine에서 sub routine으로 입력을 받는 것
-# 우변은 sub routine에서 나한테 준 것
 >   y = yield x
 >   print('coroutine y received : {}'.format(y))
 >   z = yield x + y

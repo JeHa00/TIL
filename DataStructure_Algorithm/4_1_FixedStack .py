@@ -2,7 +2,6 @@
 고정 길이 stack을 FixedStack class로 구현해보기 
 """
 
-from inspect import stack
 from typing import Any
 
 class FixedStack: 

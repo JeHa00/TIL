@@ -11,14 +11,17 @@ def insertion_sort(a: MutableSequence) -> None:
     """
     n = len(a)
 
-    for i in range(1, n + 1):
+    for i in range(1, n):
         j = i
         tmp = a[i]
+        print('j: {}, tmp = {}'.format(j, tmp))
         while j > 0 and a[j - 1] > tmp:
+            print('교환 전, j : {}, a[j - 1] : {}'.format(j, a[j - 1]))
             a[j] = a[j - 1]
+            print('교환 후, a[j] = {}, a= {}'.format(a[j], a))
             j -= 1 
         a[j] = tmp
-
+        print(a)
     
 
 if __name__ == '__main__':

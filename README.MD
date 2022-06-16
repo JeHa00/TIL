@@ -37,7 +37,7 @@
 ### [Network](https://github.com/JeHa00/TIL/tree/master/Network)
 
 - [HTTP](https://github.com/JeHa00/TIL/tree/master/Network/HTTP)
-- [네트워크 전체 원리](https://github.com/JeHa00/TIL/tree/master/Network/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EC%A0%84%EC%B2%B4%20%EC%9B%90%EB%A6%AC)
+- [네트워크 전체 원리]
 
 <br>
 
@@ -58,19 +58,30 @@
 - [Chapter 11: 디스크 관리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_11_%EB%94%94%EC%8A%A4%ED%81%AC%EA%B4%80%EB%A6%AC.md>)
 - [Chapter 12: 파일 시스템 - 1](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_12_%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C_1.md>)
 - [Chapter 12: 파일 시스템 - 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_12_%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B5%AC%ED%98%84.md>)
-- [Chapter 13: 웹캐싱 기법]()
+- [Chapter 13: 웹캐싱 기법](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_13_%EC%9B%B9%EC%BA%90%EC%8B%B1%EA%B8%B0%EB%B2%95.md)
 
 <br>
 
 ### [Algorithum](https://github.com/JeHa00/TIL/tree/master/DataStructure_Algorithm)
 
--
+- [Search Algorithum](https://github.com/JeHa00/TIL/blob/master/DataStructure_Algorithm/3_%EA%B2%80%EC%83%89%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
+- [Stack and Queue](https://github.com/JeHa00/TIL/blob/master/DataStructure_Algorithm/4_%EC%8A%A4%ED%83%9D%EA%B3%BC%ED%81%90.md)
+- [Recursive Algorithum](https://github.com/JeHa00/TIL/blob/master/DataStructure_Algorithm/5_%EC%9E%AC%EA%B7%80%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
+- [Sorting Algorithum](https://github.com/JeHa00/TIL/blob/master/DataStructure_Algorithm/6_%EC%A0%95%EB%A0%AC%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
 
 <br>
 
 ### [Datebase](https://github.com/JeHa00/TIL/tree/master/DB)
 
+- [DB, DBMS란?](https://github.com/JeHa00/TIL/blob/master/DB(DataBase)/MySQL_Introduction.md)
 - [MySQL]
+
+<br>
+
+### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
+
+- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
+- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md)
 
 <br>
 
@@ -92,12 +103,6 @@
 
 <br>
 
-### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
-
-- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
-- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md)
-
-<br>
 
 ### Html CSS
 

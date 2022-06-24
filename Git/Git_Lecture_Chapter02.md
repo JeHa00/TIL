@@ -258,7 +258,7 @@ Replace Cheetas with Panthers, Add team cheetas, Add Georage to Tigers는 그대
 
 다시 원래 폴더에 `.git` 을 복사 붙여넣기하면 위 에러들은 다 사라진다.
 
-위 이미지들에서 commit message를 순서대로 확인할 수 있듯이, `git log`를 통해서도 순서대로 볼 수 있다.
+위 이미지들에서 commit message를 순서대로 확인할 수 있듯이, `git log`를 통해서도 순서대로 볼 수 있다. `git log`에서 나가기 위해서는 `:q`를 입력한다.
 
 그러면 `Add team Cheetas` message를 남긴 시점의 과거로 돌아가보자.
 
@@ -275,9 +275,149 @@ Author: Jeha00 <rudtls0611@naver.com>
 Date:   Wed Jun 22 18:30:06 2022 +0900
 
     replace cheetas with Panthers
+
+commit f86046e7549dde524f3be3729bd9d43281d2a486
+Author: Jeha00 <rudtls0611@naver.com>
+Date:   Wed Jun 22 18:29:13 2022 +0900
+
+    Add team Cheetas
 ```
 
-위 log에서 commit 옆에 있는 알파벳과 숫자가 섞인 것을 의미한다.
+hash 번호란 위 log에서 commit 옆에 있는 알파벳과 숫자가 섞인 것을 의미한다.
+
+<br>
+
+## 4.1 reset
+
+### 4.1.1 reset으로 돌아가기
+
+> **_git reset --hard (돌아갈 커밋 해시)_**
+
+```yml
+$ git reset --hard f86046e7549dde524f3be3729bd9d43281d2a486
+
+$ git log
+commit f86046e7549dde524f3be3729bd9d43281d2a486 (HEAD -> master)
+Author: Jeha00 <rudtls0611@naver.com>
+Date:   Wed Jun 22 18:29:13 2022 +0900
+
+    Add team Cheetas
+
+commit 679d1f1788575666f8b368c67dfbb14f69c6a637
+Author: Jeha00 <rudtls0611@naver.com>
+Date:   Wed Jun 22 18:28:44 2022 +0900
+
+    add George to tigers
+```
+
+`git log`를 통해 원하는 시점으로 돌아간 것을 알 수 있다.
+
+이번에는 '첫 커밋 시점' 으로 돌아가보자.
+
+```yml
+$ git reset --hard ed807a60e49db810008b8fcb5fd4deddf4f200ec
+
+$ git log
+commit ed807a60e49db810008b8fcb5fd4deddf4f200ec (HEAD -> master)
+Author: Jeha00 <rudtls0611@naver.com>
+Date:   Wed Jun 22 18:22:01 2022 +0900
+
+    first commit
+```
+
+위에서 `git log`로 확인했듯이 첫 커밋 시점으로 돌아간 걸 알 수 있다.
+
+소스트리에서도 `first commit` message만 남겨진 걸 확인할 수 있다.
+
+<br>
+
+### 4.1.2 reset 전 시점으로 복원하기
+
+실무해서 하는 방식은 아니지만, `.git` 을 이해해보자는 차원으로 공부한다. 실무에서는 `.git` 폴더를 직접 건드리는 일은 없다.
+
+1. 백업해둔 `.git` 폴더를 복원
+2. `git log`와 `git status`로 상태 확인
+
+   - `.git`을 복원하면서 현재 git은 맨 처음 상태에서 파일에 새롭게 변화가 된 것이라고 인식한다.
+   - 그래서 아래 명령어로 초기화하자.
+
+3. `git reset --hard`로 현 커밋 상태로 초기화
+
+   - 커밋 해시가 없으면 마지막 커밋을 가리킨다.
+
+4. `lions.yaml` 삭제
+   - 3번 명령을 실행한 후, `git status`로 확인해보면 달라진 것을 알 수 있다.
+   - `lions.yaml`은 추가된 것이므로, 삭제해보자.
+
+<br>
+
+## 4.2 revert로 돌아가기
+
+### 4.2.1 add George to tigers 시점으로 돌아가기
+
+source tree로는 해당 커밋 메세지를 클릭하면 바로 commit hash를 구할 수 있지만, `git log`를 입력하여 찾아보자.
+
+```yml
+git revert 679d1f1788575666f8b368c67dfbb14f69c6a637
+# :wq로 저장
+```
+
+### 4.2.2 Replace Lions with Leopards의 커밋으로 되돌려보기
+
+이번에는 `Replace Lions with Leopards` 시점으로 돌아가려고 했으나, 다음과 같이 Error가 발생했다.
+
+또한, 이 다음 명령 창에는 `(master|REVERTING)` 로, revert가 진행 중임을 알 수 있다.
+
+```yml
+> rudtl@DESKTOP-R1USJ9D MINGW64 ~/Desktop/Dev/GitHub/Git-practice (master)
+$ git revert  3183106276f5315380d6722971159db9d72e7fd1
+CONFLICT (modify/delete): leopards.yaml deleted in parent of 3183106 (Replace Lions with Leopards) and modified in HEAD.  Version HEAD of leopards.yaml left in tree.
+error: could not revert 3183106... Replace Lions with Leopards
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git revert --continue".
+hint: You can instead skip this commit with "git revert --skip".
+hint: To abort and get back to the state before "git revert",
+hint: run "git revert --abort".
+
+> rudtl@DESKTOP-R1USJ9D MINGW64 ~/Desktop/Dev/GitHub/Git-practice (master|REVERTING)
+```
+
+이처럼 에러가 뜨는 것은 컴퓨터가 결정할 수 없기 때문에, 내가 결정을 하라고 알려준 것이다. 그래서 어떻게 해결하면 되는지 hint를 알려주고, 그 후에 `git revert --continue` 를 하라고 안내해준다.
+
+`git rm <pathspec>` 이란 <pathspec>에 있는 파일을 삭제하라는 명령어다.
+
+```yml
+$ git rm leopards.yaml
+rm 'leopards.yaml'
+
+$ git revert --continue
+
+:wq
+
+$ git log
+commit e27e462a65904a4f3ea890c6389c988423b40990 (HEAD -> master)
+Author: Jeha00 <rudtls0611@naver.com>
+Date:   Thu Jun 23 11:22:12 2022 +0900
+
+    Revert "Replace Lions with Leopards"
+
+    This reverts commit 3183106276f5315380d6722971159db9d72e7fd1.
+```
+
+<br>
+
+### commit을 동반하지 않은 revert
+
+revert는 기본적으로 commit을 동반한다. commit 없이 하고 싶다면 아래와 같이 명령어를 입력한다.
+
+```yml
+git revert --no-commit (되돌릴  커밋 해시)
+```
+
+그래서 원하는 다른 작업을 추가한 후, 커밋을 별도로 해야 한다.
+
+마무리로 reset을 사용해서 revert 전으로 되돌아가보자.
 
 <br>
 

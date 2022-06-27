@@ -135,13 +135,14 @@ VCS들과 Git의 가장 큰 차이점은 데이터를 다루는 방식에 있다
   - 그래서 Git은 파일이 달라지지 않으면 성능을 위해 새로 저장하지 않는다.
 
 <p align="center"><image src ="https://user-images.githubusercontent.com/78094972/155179219-cf4c2d80-642e-484a-9d85-29c3854f64bc.png" width = '400' height ='200'/></p>
- <p align="center">[VCS: Storing data as changes to a base version of each file]</p>
+ <p align="center">[VCS: 델타방식 - Storing data as changes to a base version of each file]</p>
 
 
 <br>
 
 <p align="center"><image src ="https://git-scm.com/book/en/v2/images/snapshots.png" width = '400' height ='200'/></p>
-<p align="center">[Git: Storing data as snapshots of the project over time]</p>
+<p align="center">[Git: 스냅샷 방식 - Storing data as snapshots of the project over time]</p>
+
 
 <br>
 

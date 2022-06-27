@@ -274,6 +274,7 @@ Window menu bar에 이를 검색하면 바로 뜰 것이다.
    - `git switch -t origin/from-remote`
 
    - 소스트리에서 `origin/branch 명` 인 걸 확인할 수 있다. 이는 원격에 있는 branch를 의미한다.
+   - `-t`는 `push`의 `-u`와 같은 것이다.
 
 4. Local에서 jaguars의 `manager`를 `cheolsu`로 바꾼다.
    - commit message: `Edit Jaguars Manager`
@@ -326,9 +327,9 @@ To https://github.com/JeHa00/git-practice.git
 
 8. 원격에도 `from-local` branch가 생긴 걸 확인할 수 있다.
 
-9. 이번에는 원격에서 branch `from-remote` 를 만든 후, 소스트리에서 fetch(패치)를 실행하면 소스트리의 origin에 추가된 걸 확인할 수 있다.  
+9. 이번에는 원격에서 branch `from-remote` 를 만든 후, 소스트리에서 fetch(패치)를 실행하면 소스트리의 origin에 추가된 걸 확인할 수 있다.
 
-10. 추가된 `from-remote`를 사용하는 브랜치에 추가하고 싶으면, `원격` > `origin` > `from-remote` 에서 오른쪽 클릭하여 체크아웃을 클릭한다.  
+10. 추가된 `from-remote`를 사용하는 브랜치에 추가하고 싶으면, `원격` > `origin` > `from-remote` 에서 오른쪽 클릭하여 체크아웃을 클릭한다.
 
 <br>
 

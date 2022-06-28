@@ -80,8 +80,8 @@
 
 ### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
 
-- [Pro git 2E](https://github.com/JeHa00/TIL/blob/master/Git/Pro_git_2E)
-- [Git 강좌](https://github.com/JeHa00/TIL/blob/master/Git/Git_Lecture)
+- [Pro git 2E](https://github.com/JeHa00/TIL/blob/main/Git/Pro_git_2E)
+- [Git Lecture](https://github.com/JeHa00/TIL/tree/main/Git/Git_Lecture)
 
 <br>
 

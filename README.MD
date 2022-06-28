@@ -58,7 +58,7 @@
 - [Chapter 11: 디스크 관리](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_11_%EB%94%94%EC%8A%A4%ED%81%AC%EA%B4%80%EB%A6%AC.md>)
 - [Chapter 12: 파일 시스템 - 1](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_12_%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C_1.md>)
 - [Chapter 12: 파일 시스템 - 2](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_12_%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B5%AC%ED%98%84.md>)
-- [Chapter 13: 웹캐싱 기법](https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_13_%EC%9B%B9%EC%BA%90%EC%8B%B1%EA%B8%B0%EB%B2%95.md)
+- [Chapter 13: 웹캐싱 기법](<https://github.com/JeHa00/TIL/blob/master/OS%20(Operation%20System)/Chapter_13_%EC%9B%B9%EC%BA%90%EC%8B%B1%EA%B8%B0%EB%B2%95.md>)
 
 <br>
 
@@ -73,15 +73,15 @@
 
 ### [Datebase](https://github.com/JeHa00/TIL/tree/master/DB)
 
-- [DB, DBMS란?](https://github.com/JeHa00/TIL/blob/master/DB(DataBase)/MySQL_Introduction.md)
+- [DB, DBMS란?](<https://github.com/JeHa00/TIL/blob/main/DB(DataBase)/DB_Introduction.md>)
 - [MySQL]
 
 <br>
 
 ### [Git](https://github.com/JeHa00/TIL/tree/master/Git)
 
-- [What is git ??](https://github.com/JeHa00/TIL/blob/master/Git/1_WhatIsGit.md)
-- [Git basics](https://github.com/JeHa00/TIL/blob/master/Git/2_GitBasics_1.md)
+- [Pro git 2E](https://github.com/JeHa00/TIL/blob/master/Git/Pro_git_2E)
+- [Git 강좌](https://github.com/JeHa00/TIL/blob/master/Git/Git_Lecture)
 
 <br>
 
@@ -102,7 +102,6 @@
 -
 
 <br>
-
 
 ### Html CSS
 

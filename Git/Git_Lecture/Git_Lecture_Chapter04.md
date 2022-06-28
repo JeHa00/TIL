@@ -256,6 +256,10 @@ Window menu bar에 이를 검색하면 바로 뜰 것이다.
      remotes/origin/main
      ```
 
+❗ 원격 저장소의 default branch를 바꾸고 싶으면 아래 링크를 참조한다.
+
+- [원격 저장소 Default Branch 변경하기](https://aroundlena.tistory.com/51)
+
 <br>
 
 ## 6.2 원격의 브랜치 로컬에 받아오기

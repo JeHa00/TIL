@@ -68,7 +68,7 @@
 
 - **줄바꿈 호환 문제 해결**
 
-  - `git config --global core.autocrlf`
+  - `git config --global core.autocrlf (윈도우: true / 맥: input)`
 
 - **pull 기본 설정을 `merge` 또는 `rebase`로 설정**
 

@@ -30,7 +30,7 @@
 
 - [Python basic](https://github.com/JeHa00/TIL/tree/master/Python/basic)
 - [Python advanced](https://github.com/JeHa00/TIL/tree/master/Python/advanced)
-- [Django]
+- [Django](https://github.com/JeHa00/TIL/tree/main/Django)
 
 <br>
 

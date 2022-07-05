@@ -14,7 +14,7 @@
     - 사람들이 설문조사를 보고 투표할 수 있는 'public site'
     - 설문조사를 더하고, 수정하고, 삭제하는 'admin site'
 
-- 이번 tutorial에서는 database를 설치하고, 첫 번째 model을 만들고, 장고가 자동적으로 생성되는 'admin site'에 대해 quick introduction을 얻는다.
+- 이번 tutorial에서는 database를 설치하고, 첫 번째 model을 만들고, 장고가 자동적으로 생성되는 'admin site'에 대해 quick introduction을 얻는다. 
 
 <br>
 

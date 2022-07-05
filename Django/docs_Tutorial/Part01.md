@@ -167,6 +167,8 @@ __init__.py
 polls directory에 `URLconf`를 만들기 위해서 polls에 `urls.py`를 생성한 후, 밑에 코드를 입력하자.
 
 ```yml
+# 경로: polls/urls.py
+
 > from django.urls import path
 
 > from . import views
@@ -184,6 +186,8 @@ polls directory에 `URLconf`를 만들기 위해서 polls에 `urls.py`를 생성
 mysite/urls.py 에 추가하기 위해서, `django.urls.include` 를 import하고 `urlpatterns`에 `include()`를 삽입한다.
 
 ```yml
+# 경로:  mysite/urls.py
+
 > from django.contrib import admin
 > from django.urls import include, path
 

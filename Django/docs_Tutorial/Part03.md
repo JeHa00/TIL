@@ -237,6 +237,3 @@ def index(request):
 
 - [Django at a glance](https://docs.djangoproject.com/en/4.0/intro/overview/)
 
-```
-
-```

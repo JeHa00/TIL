@@ -14,7 +14,7 @@
     - 사람들이 설문조사를 보고 투표할 수 있는 'public site'
     - 설문조사를 더하고, 수정하고, 삭제하는 'admin site'
 
-- 이번 tutorial에서는 database를 설치하고, 첫 번째 model을 만들고, 장고가 자동적으로 생성되는 'admin site'에 대해 quick introduction을 얻는다. 
+- 이번 tutorial에서는 database를 설치하고, 첫 번째 model을 만들고, 장고가 자동적으로 생성되는 'admin site'에 대해 quick introduction을 얻는다.
 
 <br>
 
@@ -163,7 +163,7 @@ $ python manage.py migrate
 - 그러면 migrations을 실행하여 생성되는 table에 대해 알아보자.
 
   - table name은 `polls`와 model name의 소문자 이름 `question`, `choice`를 조합하여 자동적으로 생성된다.
-  - Primary kiey는 자동적으로 더해진다.
+  - Primary key는 자동적으로 더해진다.
   - foreign key field name에는 `_id`가 더해진다.
 
 - `sqlmigrate` 명령어는 실제로 migrate를 하는 게 아닌, 단지 django가 생각하기에 요구되는 SQL 문이 무엇인지 볼 수 있도록 화면에 출력하는 용도다. 그래서 django가 무엇을 할 것인지 확인하고 싶으면 이 명령어를 사용한다.
@@ -217,8 +217,7 @@ $ python manage.py migrate
 <QuerySet [<Question: Question object (1)>]>
 ```
 
-- 그런데 `<QuerySet [<Question: Question object (1)>]>`은 이 객체를 드러내는데 도움이 되지 않기 때문에, 보다 효과적으로 수정해보자.
-  - magic method `__str__`를 model class에 추가하자.
+- 그런데 `<QuerySet [<Question: Question object (1)>]>`은 객체의 정보가 잘 드러나지 않는다. 그래서 magic method `__str__`를 model class에 추가하자.
 
 ```yml
 # polls/models.py

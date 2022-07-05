@@ -119,6 +119,7 @@ app을 만들기 위해서 `manage.py`가 존재하는 directory 경로로 이�
 ```yml
 # 경로: /mysite
 
+# project 생성은 python manage.py startproject <project 명>
 $ python manage.py startapp polls
 
 $ cd polls

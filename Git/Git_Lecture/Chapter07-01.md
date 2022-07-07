@@ -103,4 +103,3 @@ Commit message에 이모지를 넣어서 입력하는 방식도 있다.
 # Reference
 
 - [제대로 파는 Git & GitHub - by 얄코](https://www.inflearn.com/course/%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%8C%8C%EB%8A%94-%EA%B9%83/dashboard)
-- [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291)

@@ -25,6 +25,7 @@
 - `git clean -x`의 경우, `git clean`은 기본적으로 `.gitignore`에 등록된 파일은 삭제하지 않기 때문에 존재하는 명령어다.
 
 - interactive mode는 관리하지 않은 파일들에 대해 하나하나 체크하고 싶을 때 사용하는 모드다.
+- `git clean -x`는 함부로 사용하지 않는다.
 
 <br>
 
@@ -81,14 +82,13 @@ Removing dir/
 # 결국 'dir/' 만 삭제된 걸 알 수 있다.
 ```
 
-
-- 그런데, 각 파일이 어떻든 상관 없이 폴더까지 포함하여 삭제하고 싶다면 아래 명령어를 사용한다. 
-    ```yml
-    $ git clean -fd
-    Removing toClean1.txt
-    Removing toClean2.txt   
-    Removing /dir   
-    ```
+- 그런데, 각 파일이 어떻든 상관 없이 폴더까지 포함하여 삭제하고 싶다면 아래 명령어를 사용한다.
+  ```yml
+  $ git clean -fd
+  Removing toClean1.txt
+  Removing toClean2.txt
+  Removing /dir
+  ```
 
 <br>
 

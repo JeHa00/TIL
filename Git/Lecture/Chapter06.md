@@ -94,6 +94,9 @@
 
 하지만, 이 방식은 나중에 사용하는 게 낫다고 판단된다. 전반적인 명령어를 안보고 사용할 수 있는 수준에 이르면 사용하자.
 
+
+❗ 단축키 설정을 했지만, `Expansion of alias failed; not a git command` 이와 같은 에러가 발생했다면 `git update-git-for-windows`를 사용하여 업데이트 후, 다시 해보자. 
+
 <br>
 
 ---

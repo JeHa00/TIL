@@ -67,6 +67,8 @@
     - 태그를 찾는 방법: 'html tag mdn'을 구글링하여 [mozilla](https://developer.mozilla.org/ko/docs/Web/HTML/Element) 에서 알아본다.   
 
 
+- 또한, 원하는 사이트의 html code 구성을 보고 싶다면 마우스 오른쪽 클릭을 하여 `검사` 또는 `inspection`을 클릭하면 확인할 수 있다. 
+
 <br>
 
 ### HTML tag의 기본 구성
@@ -82,7 +84,8 @@
         - `<body>` : 브라우저 화면 상에 보여질 내용들인, 사용자가 볼 수 있는 content를 보여준다.  
 
     - `<html lang = "ko">`: 웹 사이트에서 사용되는 언어를 이 웹 사이트의 검색 엔진에게 알려주는 속성  
-
+    - `<meta charset = "UTF-8">`은 문자 인코딩 방식을 브라우저에게 알려준다.  
+    - `<title>`은 브라우저의 탭에 뜨는 문구를 브라우저에게 알려준다.  
 
 ```yml
 <!DOCTYPE html>
@@ -110,7 +113,7 @@
     - 기능은 가지고 있지만, 의미론적으로는 아무런 값이 없는 box다.  
 
 - `semantic tag`의 예로는 `<header> </header>`가 있다.  `<head>` 와는 다른 것이며 `<body> </body>`에 포함된다. 이 예시를 읽었을 때 그 의미를 짐작할 수 있기 때문에 `semantic tag`로 분류된다.  
-    - 코드를 짤 때는 최대한 `semantic tag`로만 코드를 짜는 거를 추천하는 이유가 코드만 보고도 무엇인지 빠르게 파악이 가능하기 때문이다.  
+    - 코드를 짤 때는 최대한 `semantic tag`로만 코드를 짜는 거를 추천하는 이유가 코드만 보고도 무엇인지 빠르게 파악 가능하다.  
 
 <br>
 
@@ -122,10 +125,85 @@
     - 자주 사용되는 tag는 암기하는 것을 추천한다.  
     - tag에 사용되는 attribute 중 `id`는 어느 태그에서든 사용할 수 있다.  
 
-<br>
 
 ---
 
-# Reference
+# 3. HTML tag의 다양한 예  
 
-- []()
+### h1 ~ h6
+
+- `<body>`의 `<h1>` 부터 `<h6>` 로 갈수록 title의 글자 크기가 작아진다. `<h7>` 부터는 title로 인식하지 않는다.   
+
+```html
+<body>
+    <h1>website!</h1>
+    <h2>website!</h1>
+    <h3>website!</h3>
+    <h4>website!</h4>
+    <h5>website!</h5>
+    <h6>website!</h6>
+<body/>
+```
+
+<br>
+
+### 'id' 속성 
+
+- 'id' 속성은 body 태그 안에 어떤 태그에든지 넣을 수 있는 속성이다.  
+- 이 속성은 고유 식별자(unique identifier) 역할을 하기 때문에, **element 당 하나의 id만 가지는 것** 이 id의 필수적인 규칙이다.  
+    - 하나의 태그는 하나의 id만 가지면, 다른 태그의 id 값과 동일한 값을 가지면 안된다.  
+- 또한, CSS가 이 id 속성을 통해 디자인을 브라우저에게 지시할 수 있다.   
+
+```html
+<body>
+    <div>
+        <label for = "FullName"> site </label>
+        <input id = "FullName" requried placeholder= "Full name"/>
+    </div>
+    <div>
+        <label for = "first-name"> First Name </label>
+        <input id = "first-name" required placeholder = "first name" type = "text"/> 
+    </div>
+    <div>
+        <label for = "password"> Password </label>
+        <input id = "password" required placeholder = "Password" type = "password"  minlength = "10"/> 
+    </div>
+<body>
+```
+
+- `for`의 값과 `id`의 값을 동일하게 입력하여 연결시킨다.  
+- `required placeholder`: input 할 칸에 뜨는 설명 문자를 받는 속성 
+- `text`: 입력받을 데이터의 type을 브라우저에게 알려줘서, type에 맞는 input 창을 생성한다. 
+    - `password` type의 경우,  `text` type과 달리 입력한 값이 드러나지 않고 숨겨진다.    
+
+<br>
+
+### a href 
+    
+- 링크 첨부하는 태그와 속성  
+
+```html
+<body>
+    <a href = "www.google.com">Go to google.com</a>
+    <a href = "www.google.com" target = "_self">Go to google.com </a>
+    <a href = "www.google.com" target = "_blank">Go to google.com </a>
+</body>
+```
+- `target` 속성은 새로운 tab에서 첨부한 링크를 열지, 아니면 tab을 새로 열지 않고 첨부한 링크로 이동할지를 결정하는 속성
+    - `_self`는 후자이고, `_blank`는 전자다.     
+    - target 속성을 사용하지 않으면 기본적으로 `_self`를 default로 인식한다.  
+
+<br>
+
+### img src 
+
+- 이미지를 첨부하는 태그와 속성  
+    - `img` 라는 태그에 속성 `src = `를 입력하여 이미지 주소를 입력한다.  
+
+```html
+<body>
+    <img src = "img/id_img.jpg"
+</body>
+```
+
+---

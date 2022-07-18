@@ -11,7 +11,7 @@
 
 <br>
 
-## 작성 규칙
+# 작성 규칙
 
 - 폴더와 파일명은 영문으로 작성한다.
 - 해당 문서를 다시 봤을 때, 추가적인 검색이 필요하지 않도록, 훗날 동료들과 공유하기 위해 자세히 기록한다.
@@ -22,7 +22,7 @@
 
 <br>
 
-## 분류
+# 분류
 
 <br>
 
@@ -101,10 +101,9 @@
 
 <br>
 
-### [Html & CSS](https://github.com/JeHa00/TIL/tree/main/HTML_CSS)
+### Html & CSS & Javascript
 
-<br>
-
-### Javascript
+- [HTML & CSS](https://github.com/JeHa00/TIL/tree/main/HTML_CSS)
+- Javascript
 
 -

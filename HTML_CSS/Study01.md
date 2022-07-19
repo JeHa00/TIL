@@ -87,7 +87,7 @@
     - `<meta charset = "UTF-8">`은 문자 인코딩 방식을 브라우저에게 알려준다.  
     - `<title>`은 브라우저의 탭에 뜨는 문구를 브라우저에게 알려준다.  
 
-```yml
+```html
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -207,3 +207,6 @@
 ```
 
 ---
+# Reference
+
+- [노마드코더 - 코코아톡 클론 코딩](https://nomadcoders.co/kokoa-clone) 

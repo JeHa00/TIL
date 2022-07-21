@@ -320,19 +320,34 @@ html은 box들로 디자인된다고 생각해도 무방하다. 큰 box들이 �
 
 - block: 옆에 다른 요소가 못 오는 속성  
     - 옆에 다른 요소가 못 오도록 **block** 한다고 생각하자.
+    - **높이와 너비를 가지고 있다.**  
+
 - inline: 옆에 다른 요소가 올 수 있는 속성
     - **line** 한 줄에 다 올라온다고 생각하자. 
+    - **높이와 너비를 가지고 있지 않다.**  
+
 - 또한, css의 `display`라는 property를 활용하여 block을 inline으로, inline을 block으로 바꿀 수 있다. 
 
 <br>
 
 ### Block의 속성
 
+- 이 tag를 block으로 인지하는지를 알기 위해서는 검사에 들어가서 확인하면 된다. 
+
+- 높이와 너비를 가지고 있다. 
+- box이기 때문에 **3가지 속성(margin, padding, border)** 을 가진다.    
+- 
 
 
 <br>
 
 ### Inline의 속성
+
+- inline은 높이와 너비를 가질 수 없지만, 폭과 너비를 가지게 하고 싶으면 CSS 속성인 `display`를 사용한다. 
+    - `display: 'inline - block;`을 입력한다.  
+    -  하지만, inline - block에는 많은 문제점이 있는데, 
+        - 첫 번째, 기본적으로 element 사이에 빈 공간이 기본적으로 생긴다.  
+        - 두 번째, 정해진 형식이 없다.  
 
 
 <br>
@@ -351,7 +366,7 @@ html은 box들로 디자인된다고 생각해도 무방하다. 큰 box들이 �
 <!-- 브라우저가 이 tag를 block으로 인지하는지 아닌지를 알기 위해서는 검사에 들어가서 확인하면 된다.  -->
 <!-- 높이와 너비를 가지고 있다.-->
 <!-- block은 box이므로, box는 3가지 속성(margin, padding, border)이 있다. -->
-<!-- 브라우저에  inspection에 들어가면 styles 항목에 body 부문을 보면 'user agent stylesheet'가 있다.-->
+<!-- 브라우저에 inspection에 들어가면 styles 항목에 body 부문을 보면 'user agent stylesheet'가 있다.-->
 <!-- 이게 브라우저가 기본적으로 style 속성을 줬단 의미다. 
   그 아래 설명을 보면 margin이 있는데, 이것이 div와 배경 사이에 여백이 있는 이유다. 
 또한, 그 밑에 그림에서 margin에 cursor를 대면 어디가 margin인지 알 수 있다.-->

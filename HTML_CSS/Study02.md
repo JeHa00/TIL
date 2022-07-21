@@ -8,8 +8,6 @@
 
 - 지난 'Study01.md'에서 이 3가지 중 HTML과 CSS가 무엇인지에 알아보았고, 더 나아가 HTML tag에 대해 알아보았다.  이번에는 CSS에 대해 더 알아보자.    
 
-
-
 <br>
 
 ---
@@ -35,6 +33,8 @@ CSS란 'Cascading Style Sheets' 의 약어로, 여기서 Cascading이란 'one af
 
 <br>
 
+---
+
 # 2. CSS를 추가하는 방식: 두 가지 
 
 > CSS를 추가하는 방식에는 inline 방식와 External 방식이 있다.
@@ -49,7 +49,7 @@ CSS를 추가하는 방식인 inline 방식와 external 방식에 대해 알아�
 - 첫 번째, 별도의 파일로 만들기 때문에 다른 더 많은 html page에서 사용할 수 있다.  
 - 두 번째, 분리된 파일을 가지고 있는 방식이 보기 깔끔하다.  
 
-## Inline 방식
+## 2.1 Inline 방식
 
 그러면 코드 라인 내부에 CSS를 입력한다면 html tag의 어디에 입력할까?  
 
@@ -78,7 +78,7 @@ html tag의 기본 템플렛이 다음과 같을 때, `<head> </head>` tag 안�
 
 <br>
 
-## External 방식 
+## 2.2 External 방식 
 
 외부에서 CSS 파일을 가져오는 방식은 `<style>` tag 사이에 입력하는 게 아닌 `<head> </head>` tag 사이에 `<link href ='css file 이름.css' rel = "stylesheet" >`를 입력한다.  
 
@@ -104,10 +104,12 @@ html tag의 기본 템플렛이 다음과 같을 때, `<head> </head>` tag 안�
 
 <br>
 
+---
+
 # 3. CSS를 입력하는 방식
 
 
-### css의 일반적인 입력 방식과 사용하면 안되는 문자
+### 3.1 css의 일반적인 입력 방식과 사용하면 안되는 문자
 
 꾸미고자하는 HTML tag를 'selector'라고 한다.
 
@@ -133,7 +135,7 @@ html tag의 기본 템플렛이 다음과 같을 때, `<head> </head>` tag 안�
 <br>
 
 
-### tag의 id 이용하여 css 입력하기
+### 3.2 tag의 id 이용하여 css 입력하기
 
 > id라는 tag attribute를 사용하여 동일한 종류의 태그들이어도, 각각 지정하여 css를 적용할 수 있다.  
 
@@ -230,7 +232,7 @@ html tag의 기본 템플렛이 다음과 같을 때, `<head> </head>` tag 안�
 
 <br>
 
-### tag의 class를 이용하여 css 입력하기
+### 3.3 tag의 class를 이용하여 css 입력하기
 
 > tag의 속성 class는 속성 id처럼 각 tag element들을 구별해서 가리킬 수도 있고, id와는 다르게 겹쳐서 가리킬 수 있는 attribute다.  
 
@@ -296,7 +298,7 @@ html tag의 기본 템플렛이 다음과 같을 때, `<head> </head>` tag 안�
 
 <br>
 
-### block과 inline이란?? 
+### 4.1 block과 inline이란?? 
 
 > 옆에 다른 요소(element)가 못 오는 속성을 'block', 옆에 다른 요소가 올 수 있는 속성을 'inline (in the same line)'이라 한다.      
 
@@ -330,68 +332,69 @@ html은 box들로 디자인된다고 생각해도 무방하다. 큰 box들이 �
 
 <br>
 
-### Block의 속성
+---
+### 4.2 Block과 Inline의 속성
 
-- 이 tag를 block으로 인지하는지를 알기 위해서는 검사에 들어가서 확인하면 된다. 
 
-- 높이와 너비를 가지고 있다. 
-- box이기 때문에 **3가지 속성(margin, padding, border)** 을 가진다.    
-- 
+- **Block의 속성**
+    - 이 tag를 block으로 인지하는지를 알기 위해서는 검사에 들어가서 확인하면 된다. 
+
+    - 높이와 너비를 가지고 있다. 
+    - box이기 때문에 **3가지 속성(margin, padding, border)** 을 가진다.    
+    - 원래 block인 것을 inline으로 바꾸면 높이와 너비 요소들은 사라진다.
+
+- **Inline의 속성**
+    - inline은 높이와 너비를 가질 수 없지만, 폭과 너비를 가지게 하고 싶으면 CSS 속성인 `display`를 사용한다. 
+        - `display: 'inline - block;`을 입력한다.  
+        -  하지만, inline - block에는 많은 문제점이 있는데, 
+            - 첫 번째, 기본적으로 element 사이에 빈 공간이 기본적으로 생긴다.  
+            - 두 번째, 정해진 형식이 없다.  
 
 
 <br>
 
-### Inline의 속성
+---
+### 4.3 Box의 속성: border, margin, padding
 
-- inline은 높이와 너비를 가질 수 없지만, 폭과 너비를 가지게 하고 싶으면 CSS 속성인 `display`를 사용한다. 
-    - `display: 'inline - block;`을 입력한다.  
-    -  하지만, inline - block에는 많은 문제점이 있는데, 
-        - 첫 번째, 기본적으로 element 사이에 빈 공간이 기본적으로 생긴다.  
-        - 두 번째, 정해진 형식이 없다.  
+- **Box는 3가지 속성: border, margin, padding을 가진다.** 
+    - 즉, block도 이 3가지 속성을 가진다는 것이다.  
 
 
-<br>
+- **border**
+    - 단어 명칭 그대로 **_a border of the box_**: box의 경계선을 의미한다.  
+    - 많은 property를 가지고 있지만, 이쁘지 않아서 사용되지 않는다.  
+    - 'border style mdn'을 구글링하면 나온다.
+    - inline과 block에 다 적용된다. 
 
-<!-- inline은 높이와 너비를 가질 수 없기 때문에, 원래 block인 것을 inline으로 바꾸면 높이 너비 요소들이 사라진다. -->
-<!-- inline은 높이과 너비를 가질 수 없기 때문에, inline tag에 입력된 text 값에 따라 변한다. -->
-<!-- 이와 반대로 block은 높이와 너비가 있다. -->
-<!-- inline인데 폭과 너비를 나타내고 싶으면 display:'inline - block'; 을 입력한다. -->
-<!-- 하지만 inline-block에는 많은 문제점이 있다. -->
-<!-- inline-block으로 했을 때 첫 번째, 기본적으로 element 사이에 빈 공간이 default로 생긴다. -->
-<!-- inline-block은 정해진 형식이 없다. -->
 
-<!-- box의 모든 것: maring, padding, border -->
+    🔅 브라우저에서 box 속성 확인하기 🔅  
+        - 마우스 우클릭하여 검사 (or inspection)에 들어가면 `Styles` 항목에 'user agent stylesheet' 가 있다.    
+        - 이 'user agent stylesheet'를 보면 border, margin, padding의 크기를 확인할 수 있다.  
+        - 또한, border, margin 그리고 padding에 마우스 커서를 대면 브라우저 상에서 어디인지 확인할 수 있다.   
 
-<!-- Block만 가지고 있는 특징 -->
-<!-- 브라우저가 이 tag를 block으로 인지하는지 아닌지를 알기 위해서는 검사에 들어가서 확인하면 된다.  -->
-<!-- 높이와 너비를 가지고 있다.-->
-<!-- block은 box이므로, box는 3가지 속성(margin, padding, border)이 있다. -->
-<!-- 브라우저에 inspection에 들어가면 styles 항목에 body 부문을 보면 'user agent stylesheet'가 있다.-->
-<!-- 이게 브라우저가 기본적으로 style 속성을 줬단 의미다. 
-  그 아래 설명을 보면 margin이 있는데, 이것이 div와 배경 사이에 여백이 있는 이유다. 
-또한, 그 밑에 그림에서 margin에 cursor를 대면 어디가 margin인지 알 수 있다.-->
-<!-- margin은 box의 border의 바깥에 있는 공간이다. 
-  margin is space from the border of the box to the outside-->
-<!-- 그래서 box의 크기에 따라 margin의 크기도 달라진다. -->
-<!-- 하지만, 이 margin을 없앨 수도 있다. css 코드에 margin: 0; 이라 입력한다. 
-그러면 inspection의 style tab에 margin 치수도 변경된다. -->
-<!-- margin에 방향을 줄 수도 있다. -->
-<!-- collapsing margins 현상: 2개의 box가 있을 때, 경계선이 같은 부분이 있다면 
-     이 두 margin은 하나로 취급된다. 위, 아래쪽만 일어난다. 경계가 닿아서 margin이 같아졌다.-->
 
-<!-- padding -->
-<!-- padding은 margin의 반대개념이다. -->
-<!-- padding is a spce from the border of the box to the inside-->
+- **margin**
+    - 'padding'의 반대 개념으로, 정의는 다음과 같다. 
+    - **_space from the border of the box to the outside_** : box의 border 바깥에 있는 공간  
+    - box의 크기에 따라 margin의 크기도 달라진다. 
 
-<!-- Border -->
-<!-- Border is basically a border of the box -->
-<!-- border은 많은 property를 가지고 있지만, 한 가지 property만 쓴다. 왜냐하면 이쁘지 않기 때문이다. -->
-<!-- border style mdn을 구글링하면 나온다. (정말 이쁘지 않을 걸 알 수 있다...) -->
-<!-- inline 과 block에 다 적용된다. -->
 
-<!-- padding과 maring은 inline에 적용되는가?? -->
-<!-- pading은 사방으로 가능하다. 하지만, maring은 좌우로만 가질 수 있다.-->
-<!-- 위 아래로도 적용하고 싶으면 inline을 block으로 바꿔야 한다. -->
+    🔅 Collapsing margins 현상 🔅    
+
+        - 2개의 box가 있을 때, 경계선이 같은 부분에 있다면 이 두 margin은 하나로 취급된다. 
+        - 위, 아래쪽만 일어난다. 경계가 닿아서 margin이 같아졌다.  
+
+
+- **padding**
+    - 'margin'의 반대 개념으로, 정의는 다음과 같다.  
+    - **_a spce from the border of the box to the inside_**: box의 border 안쪽에 있는 공간  
+
+
+
+
+- **Inline에서의 padding과 margin**
+    - padding은 사방으로 가능하나, margin은 좌우로만 가능하다.  
+    - margin을 위아래로도 적용하고 싶다면, inline을 block으로 바꿔야 한다.  
 
 
 <br>

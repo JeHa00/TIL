@@ -1,8 +1,12 @@
 # 0. Introduction
 
+> 1. [What is HTML and CSS ?](#1-what-is-html-and-css)
+> 2. [HTML](#2-html)
+> 3. [HTML tag의 다양한 예](#3-html-tag의-다양한-예)
+
+
 
 - HTML과 CSS에 대한 기본적인 내용을 정리해보는 글이다.  
-
 
 - 크롬, 익스플로어, 파이어폭스 같은 브라우저들은 서버에서 보내는 HTML, CSS 그리고 javascript 파일을 분석하여 구현한 후, 클라이언트들에게 보여준다.
 

@@ -192,8 +192,9 @@ branch:  Information Technology
 
 ## 2.3 Private: Naming Mangling
 
-> - 정의한 해당 class에서만 접근이 가능하다.
-> - 두 개의 underscore를 name 앞에 붙여서 사용하여 지정한다.
+> - 정의한 해당 class에서만 직접 접근이 가능하다.   
+> - 만약 상속받은 클래스에서 접근하고자 한다면 상위 클래스에서의 private 변수에 접근할 수 있는 method를 만들어야 가능하다.    
+> - 두 개의 underscore를 name 앞에 붙여서 사용하여 지정한다.    
 
 - OOP의 캡슐화를 의미한다.
 - python에서는 double underscore를 name 앞에 붙이면 해당 이름으로 접근이 허용되지 않는다.
@@ -288,6 +289,8 @@ branch:  Information Technology
 
 
 > inst = Geek("Wang",130205, "Information Technology")
+
+# super class의 private 변수에 직접 접근을 불허한다. 
 > inst.displayDetails()
 
 AttributeError: 'Geek' object has no attribute '_Geek__name'
@@ -295,6 +298,13 @@ AttributeError: 'Geek' object has no attribute '_Geek__name'
 
 - 위의 경우처럼 Error가 뜬다.
 - private data는 상속된 class에서 출력할 수 없다는 걸 확인했다.
+
+
+<br>
+
+
+### Naming Mangling 확인하기
+
 - 그러면 Naming Mangling을 확인해보자.
 - 위의 `AttributeError` 에서도 확인할 수 있듯이 `_Geek__name`으로 private data인 `__name`이 변경된 걸 확인했다.
 
@@ -309,10 +319,13 @@ AttributeError: 'Geek' object has no attribute '_Geek__name'
 - 맨 처음 private data를 선언된 class의 이름이 붙여져서 `_Student__name`으로 naming Mangling 된 걸 확인했다.
 - mangling의 의미처럼 기존의 설정한 name은 훼손되어 사용할 수 없다.
 
-> 다른 언어와의 차이점
+<br>
 
-    - 타 클래스의 private attribute, method에 접근하지 않는 것이 원칙이지만, 파이썬은 사실 접근이 가능하다.
-    - 하지만, 원칙에 맞게 Python 오픈 소스 프로젝트들은 이를 준수하고 있다.
+### 다른 언어와의 차이점
+
+- 타 클래스의 private attribute, method에 접근하지 않는 것이 원칙이지만, 파이썬은 사실 접근이 가능하다.
+
+- 하지만, 원칙에 맞게 Python 오픈 소스 프로젝트들은 이를 준수하고 있다.
 
 <br>
 

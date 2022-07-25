@@ -8,7 +8,7 @@
 
 <br>
 
-- Chapter 13에서는 GitHub 여러 기능 중 pull request와 issue에 대해 학습한다. 
+- Chapter 13에서는 GitHub 여러 기능 중 pull request와 issue를 학습하고, 오픈소스 기여 체험을 해본다. 
 
 <br>
 

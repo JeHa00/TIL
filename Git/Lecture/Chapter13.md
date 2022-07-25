@@ -1,7 +1,8 @@
 # 0. Introduction
 
 > 1. [Pull request](#1-pull-request)
-> 2.[Issure](#2-issue)
+> 2. [Issure](#2-issue)
+> 3. [오픈소스 프로젝트에 기여하기](#3-오픈소스-프로젝트에-기여하기)
 
 - 해당 내용은 [제대로 파는 Git & GitHub - by 얄코 ](https://www.inflearn.com/course/%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%8C%8C%EB%8A%94-%EA%B9%83/dashboard)을 통해서 공부한 내용입니다.
 
@@ -95,6 +96,34 @@
     - 해결 뒤: `Close issue`
     - `Close issue`를 클릭 후, `Issues` tab에서 바로 확인할 수 없다. 하지만, `Open`이 아니라, `Closed`를 클릭하면 해결된 이슈들만 볼 수 있다.  
     - [Chapter 07-01](https://github.com/JeHa00/TIL/blob/main/Git/Lecture/Chapter07-01.md) 에서 `Closes #125`가 이슈 125번을 닫는다는 의미다 .
+
+<br>
+
+---
+# 3. 오픈소스 프로젝트에 기여하기
+
+
+프로젝트별 참여 가이드가 존재하므로 반드시 확인한다.  
+    - 예시: [React GitHub page](https://github.com/facebook/react#contributing)
+
+
+### 첫 번째, 프로젝트 fork 해보기
+
+
+- 나 자신의 프로젝트가 아니기 때문에, 수정하기 위해서는 fork를 해서 가져와야 한다.
+- 원하는 유명 프로젝트 내 레포지토리로 포크해보기  
+- 실습을 위해 아래 링크 프로젝트 포크하기  
+    - [예제용 오픈소스 프로젝트](https://github.com/yalcodic/yalco-open-source)
+
+### 두 번째, 코드 기여하기
+
+- working directory에 `git clone` 명령어를 가져오기
+- PR용 branch로 전환하기  
+- 코드 수정 후 push -> code 주인에게 pull request
+
+### 세 번째, 오픈소스 주인 관점
+
+- pull request 코멘트/반려/수락  
 
 <br>
 

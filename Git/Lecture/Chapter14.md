@@ -87,11 +87,17 @@
 ---
 # 2. GPG로 커밋에 사인하기
 
+> **_GPG 키를 통한 검증_**
+
+
 ### GitHub 커밋 내역 살펴보기 
 
 - 로컬에서 푸시한 커밋과 GitHub에서 작성한 커밋 비교  
+    - GitHub repository에 들어가서 `code` tab에서 들어갈 수 있는 커밋 내역에 들어가면 `Verified`를 확인할 수 있다.  
+
 
 - `Verified`: 신뢰할만한 출처에서 커밋되었다는 인증
+    - local이 아닌 GitHub에서 수정한 커밋을 의미하는 것으로, 즉 GitHub이 인증해주는 것이다.  
 
 
 <br>
@@ -100,15 +106,25 @@
 
 ### 1) GPG tool 설치
 
+> GPG를 사용하기에 앞서 GPG tool을 먼저 설치해야 한다.   
+
+
 - 윈도우: [다운로드 사이트](https://www.gnupg.org/download/)
 - 맥: `brew install gnupg`
 - `gpg --version`으로 확인
+
 
 <br>
 
 ### 2) GPG 키 생성
 
+
+- GPG가 존재하는지 판단하기
+    - 참고문서: [Existing GPG keys](https://docs.github.com/en/authentication/managing-commit-signature-verification/checking-for-existing-gpg-keys)
+    - `Git bash`에 `gpg --list-secret-keys --keyid-format=long` 입력  
+
 - [이 링크의 가이드](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)에 따라 진행
+
 
 <br>
 
@@ -116,7 +132,23 @@
 
 
 - [이 링크의 가이드](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)에 따라 진행
-- 맥의 경우, 추가 절차(환경 변수) 있음  
+    - 위 링크에 따라 진행하다가 `Enter your user ID information`에서 ID를 입력할 때는, GitHub에서 오른쪽 위 메뉴를 클릭할 때 뜨는 ID를 입력한다. 
+    - 이메일도 GitHub 이메일과 동일한 것을 입력한다. 
+    - `comment:` 시에는 그냥 엔터를 눌러도 된다.  
+
+    - 끝나면 `gpg --list-secret-keys --keyid-format=long`을 입력한 후, 위 메뉴얼에 따라 GPG key ID 부분을 복사해서 따로 기록해둔다. 
+        - `6D040741D60FEB1E`
+
+
+    - `gpg --armor --export <GPG key ID>`를 입력한다.
+        - `----BEGIN PGP PUBLIC KEY BLOCK-----` 부터 `-----END PGP PUBLIC KEY BLOCK-----` 까지 복사한다. 
+
+    - 이제 GPG key를 GitHub 계정에 추가한다. 
+
+
+❗ 맥의 경우, 추가 절차(환경 변수) 있음  
+
+- 그 다음으로, [Telling Git about your GPG key](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key) 을 따라 진행한다.
 
 
 <br>

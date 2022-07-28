@@ -8,6 +8,8 @@
 <br>
 
 - Chapter 14에서는 아래의 것들을 학습한다.  
+    - GitHub Action을 체험해본다. 
+    - 이외에 GitHub CLI를 통해서 GitHub 작업을 하는 것을 학습해본다.  
 
 <br>
 

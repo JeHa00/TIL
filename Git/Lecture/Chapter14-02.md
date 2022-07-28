@@ -65,8 +65,13 @@
 
 [GitHub CLI 명령어 매뉴얼](https://cli.github.com/manual/)
 
+❗ 아래 명령어로 오류가 뜬다면, 해당 명령어 앞에 `winpty`를 붙인다.
+
+
 - 로그인/로그아웃
     - `gh auth (login/logout)`
+
+
 
 - 레포지토리들 보기  
     - `gh repo list`

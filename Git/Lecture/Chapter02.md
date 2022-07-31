@@ -104,7 +104,7 @@ git commit -m 'FIRST COMMIT'
 
 아래 명령어와 소스트리로 확인한다.
 
-    - 종료는 `:q`를 사용한다.
+  - 종료는 `:q`를 사용한다.
 
 ```YML
 git log
@@ -174,10 +174,8 @@ git commit -am "(메세지)"
 - add 및 commit
 
 ```yml
-git add .
-
 # commit message를 구분한다.
-git commit -m 'add George to tigers'
+git commit -am 'add George to tigers'
 ```
 
 <br>
@@ -216,7 +214,7 @@ git commit -m 'Replace Cheetas with Panthers'
 
 # 3. 과거로 돌아가는 두 가지 방법
 
-커밋을 묻어놓은 타임캡슐을 버전이라고 생각하면 다음과 같은 순서로 버전들이 만들어졌다.
+커밋을 묻어놓은 타임캡슐을 버전이라고 생각하면 다음과 같은 순서로 버전들이 만들어진다.
 
 그리고, 안에 무엇이 있는지를 알기 위해서 캡슐마다 작업한 것을 적어서 꼬리표를 달아놓은 것이다.
 
@@ -230,7 +228,7 @@ Git에서 과거로 돌아가는 방법은 2가지 방법이 있다.
 
 **_revert_** 에 대해 더 설명하자면
 
-Revert: 해당 과거 이후의 행적을 삭제하는 것이 아니라, 이 행적을 거꾸로 수행하는 commit을 하나 넣음으로서, 결과적으로 reset과 동일한 결과를 갖는 것이다. 하나 하나를 기록으로 남길 때 사용한다.
+해당 과거 이후의 행적을 삭제하는 것이 아니라, 이 행적을 거꾸로 수행하는 commit을 하나 넣음으로서, 결과적으로 reset과 동일한 결과를 갖는 것이다. 하나 하나를 기록으로 남길 때 사용한다.
 
 우리가 한 남긴 commit message를 기준으로 `Add team Cheetas`로 돌아간다고 하자.
 
@@ -329,16 +327,6 @@ Date:   Wed Jun 22 18:22:01 2022 +0900
 
 소스트리에서도 `first commit` message만 남겨진 걸 확인할 수 있다.
 
-❗ `reset --hard` Error
-`git reset --hard (commit의 해시태그)`를 입력했지만, 소스트리로 확인하면 계속해서 남아있다.
-
-왜 이런 것일까???
-
-local 상에는 원하는 커밋 시점으로 돌아갔지만, 원격 저장소 상에서는 그대로 남아있기 때문이다.
-즉, **_원격보다 local이 뒤쳐진 상황_** 이다.  
-원하는 커밋 시점으로 돌아가서 `git push --force` 로 로컬의 내역을 강제로 push 하면 덮어씌워지면서 해결된다.  
-하지만, 조심해서 쓰도록 하자.
-
 <br>
 
 ### 4.1.2 reset 전 시점으로 복원하기
@@ -395,7 +383,7 @@ hint: run "git revert --abort".
 
 이처럼 에러가 뜨는 것은 컴퓨터가 결정할 수 없기 때문에, 내가 결정을 하라고 알려준 것이다. 그래서 어떻게 해결하면 되는지 hint를 알려주고, 그 후에 `git revert --continue` 를 하라고 안내해준다.
 
-`git rm <pathspec>` 이란 <pathspec>에 있는 파일을 삭제하라는 명령어다.
+`git rm <pathspec>` 란 `<pathspec>`에 있는 파일을 삭제하라는 명령어다.
 
 ```yml
 $ git rm leopards.yaml
@@ -415,9 +403,18 @@ Date:   Thu Jun 23 11:22:12 2022 +0900
     This reverts commit 3183106276f5315380d6722971159db9d72e7fd1.
 ```
 
+❗ 만약 `git revert --continue` 명령어를 수행했늗네, 다음과 같은 Error가 뜬다면 `git add/rm <pathspec>` 명령어를 수행해야한다.
+
+```yml
+$ git revert --continue
+error: Committing is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+```
+
 <br>
 
-### commit을 동반하지 않은 revert
+### 4.2.3 commit을 동반하지 않은 revert
 
 revert는 기본적으로 commit을 동반한다. commit 없이 하고 싶다면 아래와 같이 명령어를 입력한다.
 

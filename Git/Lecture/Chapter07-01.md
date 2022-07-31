@@ -6,35 +6,37 @@
 
 ---
 
-# 7-1. Commit message 작성 시, 유의사항
+
+# 7-1. Commit message 작성 유의사항
 
 <br>
 
-## 7-1.1 작업 커밋할 때 권장사항
+### Commit message 작성 시 유의사항
 
-**Commit message 작성 시 유의사항**
+1. **_어떤 작업이 이뤄졌는지 다른 누가 보더라도 알아볼 수 있는 내용_** 이 담겨져야 한다.
 
-1. **어떤 작업이 이뤄졌는지 다른 누가 보더라도 알아볼 수 있는 내용이 담겨져야 한다.**
+    - 왜냐하면 혼자서만 프로젝트를 진행하는 게 아니기 때문이다.
 
-   - 왜냐하면 혼자서만 프로젝트를 진행하는 게 아니기 때문이다.
 
-2. **하나의 커밋에는 한 단위의 작업을 넣는다.**
+2. **_하나의 커밋_** 에는 **_한 단위의 작업_** 을 넣는다.
 
    - 한 작업을 여러 버전에 걸쳐 커밋하지 않는다.
 
    - 여러 작업을 한 버전에 커밋하지 않는다.
 
-3. **합의된 방식을 잘 준수하여 '일관된 형태의 커밋'을 작성해야 한다.**
+
+
+3. 합의된 방식을 잘 준수하여 **_'일관된 형태의 커밋'_** 을 작성해야 한다.
 
 <br>
 
-## 7-1.2 Commit message convention
+### Commit message convention
 
-> **_'Commit message convention'이란 commit message를 작성하는 방식인데 전세계 개발자들 사이에 많이 공유되고 권장되는 방식을 알아보겠다._**
+> **_'Commit message convention'이란 commit message를 작성하는 방식으로, 전세계 개발자들 사이에 많이 공유되고 권장되는 방식을 알아보겠다._**
 
 - Convention: 팀원들끼리 어떤 것의 작성하는 방식을 합의를 해 놓은 것을 말한다.
 
-  - 정해진 답이 아닌, 각 팀과 그 업무에 가장 적합한 걸 택한 것
+  - 정해진 답이 아닌 각 팀과 그 업무에 가장 적합한 걸 택한 것
 
 - **_Commit message 방식_**
 
@@ -91,10 +93,10 @@
 
 <br>
 
-## 7-1.3 Gitmoji
+### Gitmoji
 
-Commit message에 이모지를 넣어서 입력하는 방식도 있다.
-이는 Chapter 12에서 학습한다.
+Commit message에 이모지를 넣어서 입력하는 방식도 있다.  
+이는 Chapter 12에서 학습할 예정이다.
 
 <br>
 
@@ -103,3 +105,4 @@ Commit message에 이모지를 넣어서 입력하는 방식도 있다.
 # Reference
 
 - [제대로 파는 Git & GitHub - by 얄코](https://www.inflearn.com/course/%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%8C%8C%EB%8A%94-%EA%B9%83/dashboard)
+- [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291)

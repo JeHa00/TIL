@@ -1,6 +1,4 @@
-# Chapter 1: What is Git??
-
-# Intro
+# 0. Introduction
 
 > 1. [What is Version Control System ???](https://github.com/JeHa00/TIL/edit/master/Git/Chapter%201:%20What%20is%20Git%3F%20.md#1-what-is-version-control-system-)
 > 2. [Histroy summaries of Git](https://github.com/JeHa00/TIL/edit/master/Git/Chapter%201:%20What%20is%20Git%3F%20.md#2-histroy-summaries-of-git)
@@ -10,12 +8,14 @@
 
 <br>
 
-- [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291) 자체 스터디 내용
+- [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291) 자체 스터디 내용이다.
 - 이번 장은 Git을 처음 접하는 분들에게 필요한 내용이다.
 - 이 챕터를 통해서 Git 탄생 배경, 사용 이유를 알 수 있다.
 - 지속적인 복습을 위해 만든다.
 
 <br>
+
+---
 
 # 1. What is Version Control System ???
 
@@ -40,17 +40,17 @@ VCS를 통해서 큰 노력 없이
 
 ## 1.1 Local Version Control System (LVCS, 로컬 버전 관리)
 
-<p align="center"><image src ="https://git-scm.com/book/en/v2/images/local.png" width = '400' height ='400'/></p>
+![image](https://git-scm.com/book/en/v2/images/local.png)
 
-[LVCS 탄생 계기]
+### LVCS 탄생 계기
 
 - 많은 사람은 버전을 관리하기 위해 directory로 파일을 복사하는 방법을 사용한다.
-- 하지만 이러한 방식은 잘못되기 쉽기 때문에, **Local Version Control System**을 만들었다.
+- 하지만 이러한 방식은 잘못되기 쉬어서 **Local Version Control System**을 만들었다.
 - 간단한 DB를 사용해서 파일의 변경 정보를 관리했다.
 
 <br>
 
-[LVCS의 한 예: RCV]
+### LVCS의 한 예: RCV
 
 - 많이 사용하는 VCS 중 RCS (Revision Control System)가 오늘날까지도 많은 회사에서 사용하고 있다.
 - RCS는 Mac OS에서도 개발 도구를 설치하면 함께 설치되며, 기본적으로 Patch Set(: 파일에서 변경되는 부분)을 관리한다.
@@ -60,16 +60,16 @@ VCS를 통해서 큰 노력 없이
 
 ## 1.2 Central Version Control System (CVCS, 중앙 집중식 버전 관리)
 
-<p align="center"><image src ="https://git-scm.com/book/en/v2/images/centralized.png" width = '400' height ='400'/></p>
+![image](https://git-scm.com/book/en/v2/images/centralized.png)
 
-[CVCS 탄생 계기]
+### CVCS 탄생 계기
 
 - 위의 LVCS의 장점에도 불구하고, LVCS는 다른 개발자와 협업 시에 사용할 때에는 적절한 tool이 아니었다.
 - 그래서 중앙 집중식 버전 관리 (CVCS, Central Version Control System) 를(을) 개발했다.
 
 <br>
 
-[CVCS 특징과 장점]
+### CVCS 특징과 장점
 
 - CVCS는 LVCS에 비해 장점이 많다.
 - 파일을 관리하는 서버가 별도로 있고, 클라이언트가 이 중앙 서버에 파일을 받아서 사용(checkout)하기 때문에,
@@ -79,24 +79,23 @@ VCS를 통해서 큰 노력 없이
 
 <br>
 
-[CVCS 단점]
+### CVCS 단점
 
 - 파일을 관리하는 중앙 서버가 별도로 있고, client가 checkout 방식으로 사용하고, 저장소를 전부 복제하는 게 아니기 떄문에,
   - 서버가 다운되는 동안, 다른 사람과 협업할 수 없고, 백업할 방법도 없다.
   - 중앙 DB가 있는 하드디스크에 문제가 생기면 project의 모든 history를 잃는다. (client가 가진 snapshot 제외)
 
-> - **checkout: git checkout으로 사용되는 것처럼 사용할 branch를 지정하여 연결하는 걸 의미한다.**
-> - **snapshot: 특정 시점에서 파일, 폴더 또는 워크스페이스의 상태**
+🔅 **snapshot: 특정 시점에서 파일, 폴더 또는 워크스페이스의 상태**
 
 <br>
 
 ## 1.3 Distributed Version Control System (DVCS, 분산 버전 관리 시스템)
 
-<p align="center"><image src ="https://git-scm.com/book/en/v2/images/distributed.png" width = '400' height ='400'/></p>
+![image](https://git-scm.com/book/en/v2/images/distributed.png)
 
-[DVCS 장점]
+### DVCS 장점
 
-- 첫 번째, Git과 같은 **DVCS는 단순히 파일의 마지막 스냅샷을 checkout하지 않고, 저장소를 전부 복제한다.**
+- 첫 번째, Git과 같은 **DVCS는 저장소를 전부 복제한다.**
   - 그래서 서버에 문제가 생기면 작업을 할 수 없었던 CVCS와는 달리, 이 복제물로 다시 작업을 시작할 수 있다.
   - Client 중에서 아무거나 골라도 서버를 복원할 수 있다.
   - 모든 checkout이 모든 데이터를 가진 백업이라는 의미다.
@@ -105,6 +104,8 @@ VCS를 통해서 큰 노력 없이
   - 계층 모델 같은 CVCS으로는 할 수 없는 workflow를 다양하게 사용할 수 있다.
 
 <br>
+
+---
 
 # 2. Histroy summaries of Git
 
@@ -134,21 +135,25 @@ VCS들과 Git의 가장 큰 차이점은 데이터를 다루는 방식에 있다
   - 그래서 Git은 프로젝트의 상태를 저장할 때마다, 파일이 존재하는 그 순간을 중요하게 여긴다.
   - 그래서 Git은 파일이 달라지지 않으면 성능을 위해 새로 저장하지 않는다.
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/155179219-cf4c2d80-642e-484a-9d85-29c3854f64bc.png" width = '400' height ='200'/></p>
- <p align="center">[VCS: 델타방식 - Storing data as changes to a base version of each file]</p>
+
+### VCS와 Git 차이점
+
+- [VCS: Storing data as changes to a base version of each file]
 
 
-<br>
+  ![image](https://user-images.githubusercontent.com/78094972/155179219-cf4c2d80-642e-484a-9d85-29c3854f64bc.png)
 
-<p align="center"><image src ="https://git-scm.com/book/en/v2/images/snapshots.png" width = '400' height ='200'/></p>
-<p align="center">[Git: 스냅샷 방식 - Storing data as snapshots of the project over time]</p>
+
+- [Git: Storing data as snapshots of the project over time]
+
+  ![image](https://git-scm.com/book/en/v2/images/snapshots.png)
 
 
 <br>
 
 ## 3.2 거의 모든 명령을 로컬에서 실행
 
-Git은 거의 모든 명령이 저장소 전체를 복사해서 `로컬 파일과 데이터만` 사용하는 방식이기 때문에,
+Git은 거의 모든 명령이 저장소 전체를 복사해서 `로컬 파일과 데이터만` 사용하는 방식이므로,
 
 - 네트워크의 속도에 영향을 받는 다른 CVCS보다 매우 빠른 속도를 가진다.
 - project의 history를 조회할 때, 서버 없이 local DB에서 조회하기 때문에 매우 빠르다.
@@ -165,7 +170,7 @@ Git은 거의 모든 명령이 저장소 전체를 복사해서 `로컬 파일�
 - Git에서 사용하는 가장 기본적인(atomic) 데이터 단위이다.
 - Git의 기본 철학이다.
 
-> \*\*SHA-1: 24b9da6552252987aa493b52f8696cd6d3b00373 같은 40자 길이의 16진수 문자열이다.
+> **_SHA-1: 24b9da6552252987aa493b52f8696cd6d3b00373 같은 40자 길이의 16진수 문자열이다._**
 
 그래서 Git은 checksum을 사용하여 (중심으로)
 
@@ -178,76 +183,88 @@ Git은 거의 모든 명령이 저장소 전체를 복사해서 `로컬 파일�
 
 ## 3.4 Git은 데이터를 추가할 뿐
 
-Git은 무엇을 하든 Git database에 데이터를 추가한다.  
- - 그래서 데이터를 되돌리거나 삭제할 방법이 없다.  
- - 또한, 다른 VCS처럼 commit하지 않으면 변경사항을 잃어버릴 수 있다.  
- - 하지만, commit 하면 데이터를 잃기 어렵다.
+Git은 무엇을 하든 Git database에 데이터를 추가한다.
+
+- 그래서 데이터를 되돌리거나 삭제할 방법이 없다.
+- 또한, 다른 VCS처럼 commit하지 않으면 변경사항을 잃어버릴 수 있다.
+- 하지만, commit 하면 데이터를 잃기 어렵다.
 
 <br>
 
-## 3.5 Git의 3가지 상태(: Commited, Modified, Staged) 와 3가지 단계(: Working directory, Staging Area, .git Directory(Repository)
+## 3.5 Git의 3가지 상태와 3가지 단계
 
-> 이 부분에 대한 자세한 내용은 Chapter 2를 참고한다.
+> **_이 부분에 대한 자세한 내용은 Chapter 2를 참고한다._**
 
 - Git 파일은 **3가지 상태(: Commited, Modified, Staged)** 로 관리한다.
+
   - Commited: 데이터가 local database에 안전하게 저장된 상태
   - Modified: 수정한 파일을 아직 local database에 커밋하지 않은 상태
   - Staged: 현재 수정한 파일을 곧 커밋할 것이라고 표시한 상태
 
-<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/155178102-6a7f4148-1f83-4f05-9b40-2410bcf080e2.png" width = '500' height ='400'/></p>
-    
-    
+![image](https://user-images.githubusercontent.com/78094972/155178102-6a7f4148-1f83-4f05-9b40-2410bcf080e2.png)
+
 **- 이 3가지 상태는 Git project의 3가지 단계(: Working directory, Staging Area, .git Directory(Repository)와 연결된다.**
 
-- Git directory는
+### Git directory
 
-  - Git의 핵심이다.
-  - Git이 project의 meta data와 객체 datebase를 저장하는 곳이다.
-  - 다른 컴퓨터에 있는 저장소를 clone할 때 만들어지는 곳이다.
-  - 파일들이 commited된 상태다.
+- `repository` 라고도 불린다.
+- 커밋된 상태
+- Git이 project의 meta data와 객체 datebase를 저장하는 곳이다.
+- 다른 컴퓨터에 있는 저장소를 clone할 때 만들어지는 곳이다.
 
-- Working directory는
+### Working directory
 
-  - project의 특정 버전을 checkout한 것이다.
-  - Git directory 안에 압축된 database에서 파일을 가져와서 만든 것이다.
-  - 파일을 수정하는 공간이므로, checkout하고 나서 수정했지만, 아직 staging area에 추가하지 않은 상태다.
+- project의 특정 버전을 checkout한 것이다.
+- Git directory 안에 압축된 database에서 파일을 가져와서 만든 것이다.
+- 파일을 수정하는 공간이므로, checkout하고 나서 수정했지만, 아직 staging area에 추가하지 않은 상태다.
 
-- Staging Area는
+### Staging Area
 
-  - Git directroy에 있다.
-  - 단순한 파일이고 곧 커밋할 파일에 대한 정보를 저장한다.
-  - 파일들이 Staged 상태다.
+- 커밋을 위한 준비 단계  
+- 단순한 파일이고 곧 커밋할 파일에 대한 정보를 저장한다.
+- 파일들이 Staged 상태
 
-- 위 개념들을 토대로 Git으로 하는 기본적인 일은 아래와 같다.
-  - working directory에서 파일을 수정한다.
-  - Staging area에 파일을 stag해서 커밋할 snapshot을 만든다.
-  - Staging Area에 있는 파일들을 커밋해서 Git directroy에 영구적인 snapshot으로 저장한다.
+
+### Summary
+
+
+- working directory에서 파일을 수정한다.
+- Staging area로 파일을 스테이지해서 커밋할 snapshot을 만든다.
+- Staging area에 있는 파일들을 커밋해서 Git directroy에 영구적인 snapshot으로 저장.
 
 <br>
+
+---
 
 # 4. CLI
 
 - Git은 CLI (Command Line Interface)와 GUI (Grapic User Interface)로 사용할 수 있다.
-- 하지만, **Git의 모든 기능을 지원하는 것은 CLI 뿐이다.**
+- 하지만, **_Git의 모든 기능을 지원하는 것은 CLI 뿐이다._**
 - CLI를 사용할 줄 알면 GUI를 사용할 수 있지만, 반대는 성립되지 않는다.
 
 <br>
 
+---
+
 # 5. Git initail setup
 
-- `사용자 정보 등록`은 다음 명령어로 한다.
+## 5.1 사용자 정보 등록 명령어
 
-  - `--global` 은 `전역 설정`하는 명령어로, 딱 한 번만 하면 된다.
-    `git config --global user.name "user-name"`
-    `git config --global user.email <user-email>`
-  - 만약, 프로젝트마다 다른 이름과 이메일 주소를 사용하고 싶으면 `--global`전역 명령어를 빼고 입력한다.
+- `--global` 은 `전역 설정`하는 명령어로, 딱 한 번만 하면 된다.
+  - `git config --global user.name "user-name"`
+  - `git config --global user.email <user-email>`
+- 만약, 프로젝트마다 다른 이름과 이메일 주소를 사용하고 싶으면 `--global`전역 명령어를 빼고 입력한다.
 
-- `설정 확인` 방법은 `git config --list` 명령을 실행한다.
+## 5.2 설정 확인 명령어
 
-  - Git은 같은 키를 여러 파일에서 읽기 때문에 같은 키가 여러 개 있을 수 있다.
-  - 그러면 Git은 나중값을 사용한다.
-  - `git config <key>` 명령으로 특정 Key에 대해 어떤 값을 사용하는지 확인할 수 있다.
-  - `git config user.name`
+`설정 확인` 방법은 `git config --list` 명령을 실행한다.
+
+- Git은 같은 키를 여러 파일에서 읽기 때문에 같은 키가 여러 개 있을 수 있다.
+- 그러면 Git은 나중값을 사용한다.
+- `git config <key>` 명령으로 특정 Key에 대해 어떤 값을 사용하는지 확인할 수 있다.
+- `git config user.name`
+
+## 5.3 명령어 도움말
 
 - `명령어 도움말` 이 필요할 때는 방법은 3가지다.
   - `git help <verb>`

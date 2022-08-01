@@ -76,7 +76,8 @@ $ git commit -m 'Edit Leopards and Tigers'
 
 - 마지막으로 `git diff --staged`와 비교해보자.
 
-  - 이 명령어는 이번 commit에서 변경된 사항을 확인하는 명령어다.
+  - 이 명령어는 `git add` 후 staging area에 올라간 snapshot을 기준으로 변경사항을 알려준다.  
+  - `git commit -v` 와의 차이점은 커밋 유무도 있지만, `git commit -v`는 Vim 모드로 이동한다.
 
 - 이 `git commit -v`는 커밋과 이 `git diff --staged`를 같이하는 명령어라고 생각하면 된다.
 

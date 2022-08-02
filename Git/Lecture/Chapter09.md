@@ -27,7 +27,7 @@
 
 ## 9.1 tag 규칙
 
-> **_tags를 입력할 때는 이 문서의 규칙 [Semantic Versioning 정보](https://semver.org/lang/ko/)을 따른다._**
+> **_tags를 입력할 때는 이 문서의 규칙 [Semantic Versioning 정보](https://semver.org/lang/ko/)를 따른다._**
 
 - 요약하자면 다음과 같다.
   - 주.부.수 숫자로 버전을 명시한다.
@@ -139,7 +139,8 @@ $ git push --delete origin v1.0.5
 
 > **_git push --tags_**
 
-- tag의 갯수가 다시 늘어난 걸 알 수 있다. tag 버전명을 따로 적지 않으면 모든 tag에 원격에 올라간다.
+- tag의 갯수가 다시 늘어난 걸 알 수 있다. 
+- tag 버전명을 따로 적지 않으면 모든 tag가 원격에 올라간다.
 
 <br>
 
@@ -155,7 +156,7 @@ $ git push --delete origin v1.0.5
 
 - 그러면 배포하기 원하는 title과 그 내용을 markdown 명령어로 입력한다.
 
-- `Pubishing`을 클릭하여 배포한다.
+- `Publish release`를 클릭하여 배포한다.
 
 <br>
 

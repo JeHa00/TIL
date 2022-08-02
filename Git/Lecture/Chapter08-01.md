@@ -10,7 +10,13 @@
 
 ---
 
-# git clean option
+# git clean
+
+- working directory에 존재하면 `Untraced` 상태인 파일들과 폴더가 `git clean`의 대상이다.  
+
+- git clean으로 삭제되면 `Utracked` 상태에서도 사라진다.  
+
+## git clean option
 
 - 아래 옵션들을 조합하여 사용하자.
 
@@ -29,7 +35,7 @@
 
 <br>
 
-# 실습 상황 구현해보기
+## 실습 상황 구현해보기
 
 - 아래 3개의 파일을 생성하자.
   - `toClean1.txt`

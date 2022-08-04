@@ -20,7 +20,7 @@
 
   - `git restore (파일명)`
 
-    - working directory의 특정 파일을 복구한다.
+    - working directory의 특정 파일의 변화를 staging area에서 working directory로 내린다.
     - 또는 파일명 자리에 `.`을 입력하면 모든 파일이 복구된다.
 
     ```yml
@@ -88,7 +88,7 @@
             modified:   leopards.yaml
     ```
 
-- **파일을 특정 커밋의 상태로 되돌리기**
+- **특정 파일을 특정 커밋의 상태로 되돌리기**
 
   - `git restore --source=(head 또는 commit hash) 파일명`
 

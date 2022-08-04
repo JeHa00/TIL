@@ -76,6 +76,10 @@
 
 ### 3. pip 설치 (윈도우는 python을 다운받아 설치할 때 이미 설치되어 있습니다.)
 
+❗❗ `pip` 명령 대신에 `python -m pip` 명령을 사용하면, 가상 환경을 쓸 때 엉뚱한 인터프리터/가상환경에 패키지가 설치되는 이슈를 없앨 수 있다고 한다.   정보 출처: [Why you should use 'python -m pip'](https://snarky.ca/why-you-should-use-python-m-pip/)
+
+
+
 1. `$ sudo easy_install pip` : pip을 설치한다.
 2. `$ pip --version` : 설치된 pip 버전을 확인할 수 있다.
 

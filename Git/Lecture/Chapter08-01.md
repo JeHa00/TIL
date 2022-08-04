@@ -4,7 +4,7 @@
 
 <br>
 
-- 이번 단원에서는 git에 추적되지 않는 파일들 즉, 관리되지 않는 파일들을 삭제하는 `git clean`에 대해 알아본다.
+- 이번 단원에서는 git에 추적되지 않는 파일( **_Untracked file_** )들 즉, 관리되지 않는 파일들을 삭제하는 `git clean`에 대해 알아본다.
 
 <br>
 
@@ -15,6 +15,9 @@
 - working directory에 존재하면 `Untraced` 상태인 파일들과 폴더가 `git clean`의 대상이다.  
 
 - git clean으로 삭제되면 `Utracked` 상태에서도 사라진다.  
+
+- 삭제하기 위해서는 아래 옵션들을 사용해야 한다. 
+  - `-i` 또는 `-f`
 
 ## git clean option
 
@@ -42,51 +45,51 @@
   - `toClean2.txt`
   - `dir/toClean3.txt`
 
-```yml
-> $ git clean -n
-Would remove toClean1.txt
-Would remove toClean2.txt
+  ```yml
+  > $ git clean -n
+  Would remove toClean1.txt
+  Would remove toClean2.txt
 
 
-> $ git clean -dn
-> $ git clean -nd
-Would remove dir/
-Would remove toClean1.txt
-Would remove toClean2.txt
+  > $ git clean -dn
+  > $ git clean -nd
+  Would remove dir/
+  Would remove toClean1.txt
+  Would remove toClean2.txt
 
-# 폴더를 포함시켜서 interactive mode를 시작한다.
-> $ git clean -id
-> $ git clean -di
-Would remove the following items:
-  dir/          toClean1.txt  toClean2.txt
-*** Commands ***
-    1: clean                2: filter by pattern    3: select by numbers
-    4: ask each             5: quit                 6: help
-# select by numbers mode를 선택한다.
-What now> 3
+  # 폴더를 포함시켜서 interactive mode를 시작한다.
+  > $ git clean -id
+  > $ git clean -di
+  Would remove the following items:
+    dir/          toClean1.txt  toClean2.txt
+  *** Commands ***
+      1: clean                2: filter by pattern    3: select by numbers
+      4: ask each             5: quit                 6: help
+  # select by numbers mode를 선택한다.
+  What now> 3
 
-# 어떤 것을 선택할지 선택하세요.
-    1: dir/            2: toClean1.txt    3: toClean2.txt
-Select items to delete>> 1, 3
+  # 어떤 것을 선택할지 선택하세요.
+      1: dir/            2: toClean1.txt    3: toClean2.txt
+  Select items to delete>> 1, 3
 
-# * 으로 선택된 파일들을 확인할 수 있다.
-* 1: dir/            2: toClean1.txt  * 3: toClean2.txt
-Select items to delete>>
-Would remove the following items:
-  dir/          toClean2.txt
+  # * 으로 선택된 파일들을 확인할 수 있다.
+  * 1: dir/            2: toClean1.txt  * 3: toClean2.txt
+  Select items to delete>>
+  Would remove the following items:
+    dir/          toClean2.txt
 
-*** Commands ***
-    1: clean                2: filter by pattern    3: select by numbers
-    4: ask each             5: quit                 6: help
+  *** Commands ***
+      1: clean                2: filter by pattern    3: select by numbers
+      4: ask each             5: quit                 6: help
 
-# 삭제될 것으로 선택된 파일들에 대해 각각 물어봐달라
-What now> 4
-Remove dir/ [y/N]? y
-Remove toClean2.txt [y/N]? N
-Removing dir/
+  # 삭제될 것으로 선택된 파일들에 대해 각각 물어봐달라
+  What now> 4
+  Remove dir/ [y/N]? y
+  Remove toClean2.txt [y/N]? N
+  Removing dir/
 
-# 결국 'dir/' 만 삭제된 걸 알 수 있다.
-```
+  # 결국 'dir/' 만 삭제된 걸 알 수 있다.
+  ```
 
 - 그런데, 각 파일이 어떻든 상관 없이 폴더까지 포함하여 삭제하고 싶다면 아래 명령어를 사용한다.
 

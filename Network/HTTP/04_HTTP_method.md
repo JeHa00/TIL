@@ -272,7 +272,7 @@ Content-Type: application/json
 { "username": "hello", "age": 20 }
 ```
 
-- 하지만 아래 내용으로 리소스를 보낸다면 아래 내용으로 완전히 대체된다.
+- 아래 내용으로 리소스를 보낸다면 아래 내용으로 완전히 대체된다.
 - username 필드가 삭제된다.
 
 ```yml
@@ -286,7 +286,7 @@ Content-Type: application/json
 ## 3.2 HTTP method - PATCH
 
 ```yml
-PUT /members/100 HTTP/1.1
+PATCH /members/100 HTTP/1.1
 Content-Type: application/json
 {
 "age": 50

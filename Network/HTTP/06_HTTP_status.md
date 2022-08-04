@@ -57,7 +57,7 @@
 
   - 200 OK
   - 201 Created
-  - 202 Accepted
+  - 202 Accepted, but not completed
   - 204 No Content
 
 ### 200 OK
@@ -66,7 +66,7 @@
 
 <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/158292322-01527b4e-2ca0-4e5e-933d-17a6e1b4e50a.PNG"/></p>
 
-- 200번대 모든 코드들을 사용하지 않고, 200과 201만 사용하는 경우가 많다.
+- 200번대 모든 코드들을 사용안하고, 200과 201만 사용하는 경우가 많다.
 - 그래서, 팀 내에서 코드를 어디까지 사용할지 결정한다.
 
 <br>

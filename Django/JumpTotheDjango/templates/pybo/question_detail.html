@@ -4,6 +4,16 @@
 <div>
     {{ question.content }}
 </div>
+<h5>답변 {{ question.answer_set.count }}개</h5>
+<div>
+    <ul>
+        {% for answer in question.answer_set.all %}
+            <li>{{ answer.content }}</li>
+        {% endfor %}
+    </ul>
+
+
+</div>
 <form action="{% url 'pybo:answer_create' question.id %}" method="post">
     {% csrf_token %}
     <textarea name="content" id="content" rows="15"></textarea>

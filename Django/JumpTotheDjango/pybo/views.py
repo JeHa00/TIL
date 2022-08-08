@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
 from .models import Question
@@ -11,7 +11,7 @@ def index(request):
 
 
 def detail(request, question_id):
-    question = get_list_or_404(Question, pk=question_id)
+    question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
     return render(request, 'pybo/question_detail.html', context)
 

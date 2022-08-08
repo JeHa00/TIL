@@ -1,5 +1,27 @@
 {% load static %}
 <link rel = "stylesheet" type = "text/css" href = {% static 'bootstrap.min.css' %}
+<div class = "container my-3">
+    <table class = "table">
+        <thead>
+        <tr class = "table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>    
+        </thead>    
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+
+</div>
 {% if question_list %}
     <ul>
     {% for question in question_list %}

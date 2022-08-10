@@ -26,24 +26,21 @@ from typing import List
 
 
 def notSelfNumber() -> List:
-    a = []
+    answer = set([])
     for i in range(1, 10001):
-        d = i
-        i = str(i)
-        for j in range(len(i)):
-            d += int(i[j])
-        # print(f"i: {i} / d: {d}")
-        a.append(d)
-    a = list(filter(lambda x: x <= 10000, a))
-    return a
+        for j in str(i):
+            i += int(j)
+        answer.add(i)
+    # answer = set(filter(lambda x: x <= 10000, answer))
+    # 변수 b가 10000까지이고, difference는 b 안에서 제거되는 것이기 때문에, filter 는 필요없다.
+    return answer
 
 
 def selfNumber():
-    b_list = [i for i in range(1, 10001)]
+    b = set(range(1, 10001))
     not_self_number = notSelfNumber()
-    a_set, b_set = set(not_self_number), set(b_list)
-    b_list = sorted(list(b_set.difference(a_set)))
-    for i in b_list:
+    b = sorted(list(b.difference(not_self_number)))
+    for i in b:
         print(i)
 
 

@@ -44,32 +44,39 @@
 
 <br>
 
-- **iteration** 이란??
+### iteration이란?
 
-  - The process of looping through the objects or items in a collection
+- The process of looping through the objects or items in a collection
 
-    - 그러면 파이썬에서 **iteration** 상황은 무엇이 있을까??
+  - 그러면 파이썬에서 **iteration** 상황은 무엇이 있을까??
 
-    - **Definite** iteration 상황: 미리 반복 횟수를 명백하게 정한 상황. ex) for 문
-    - **Indefinite** iteration 상황: 몇 가지 조건이 만족될 때까지 code block을 실행하는 상황. ex) while 문
+  - **Definite** iteration 상황: 미리 반복 횟수를 명백하게 정한 상황. ex) for 문
+  - **Indefinite** iteration 상황: 몇 가지 조건이 만족될 때까지 code block을 실행하는 상황. ex) while 문
 
-- **iterable**의 의미는 2가지로 사용된다.
+<br>
 
-  - An object(or the adjective used to describe an object) that can be iterated over
-  - `__iter__`을 가지고 있는 객체
 
-- 이 iterable한 객체 또는 iterable을 `iter()`에 인자로서 전달하여 반환되는 것을 `interator`라 불린다.
+### iterable
 
-- 그리고, `iter()`는 `__iter__` method의 return 값(iterator)을 반환하는 함수다.
+- An object(or the adjective used to describe an object) that can be iterated over
+- `dir()`로 확인했을 때, `__iter__`을 가지고 있는 객체
 
-  - The built-in function used to obtain an iterator from an iterable
+<br>
+
+### iterator: Type의 한 종류
+
+- `iter()`:  
+  - `__iter__` method를 호출하여 이 method의 값을 반환하는 함수 
+  - The built-in function used to obtain **an iterator** from **an iterable**
 
 - 즉, **iterator**의 의미는
 
   - The object that produces successive items or values from its associated iterable
     - iterable object로부터 연속적인 값을 낳는(yield) 값 생성기
-  - `iter()`로 만들어지는 객체
+  - `iter()`이 반환하는 **객체의 type**  
   - `next()` function의 기준으로 보자면, `__next__`을 가지고 있는 객체
+
+|  
 
 <br>
 
@@ -78,55 +85,55 @@
 - iterator를 반환하는 data type들:
   - for, collections, string, list, dict, set, tuple, unpacking, \*args
 
-```yml
-# string
-> iter('foobar')
-<str_iterator object at 0x036E2750>
+  ```yml
+  # string
+  > iter('foobar')
+  <str_iterator object at 0x036E2750>
 
-# list
-> iter(['foo', 'bar', 'baz'])
-<list_iterator object at 0x036E27D0>
+  # list
+  > iter(['foo', 'bar', 'baz'])
+  <list_iterator object at 0x036E27D0>
 
-# tuple
-> iter(('foo', 'bar', 'baz'))
-<tuple_iterator object at 0x036E27F0>
+  # tuple
+  > iter(('foo', 'bar', 'baz'))
+  <tuple_iterator object at 0x036E27F0>
 
-# set
-> iter({'foo', 'bar', 'baz'})
-<set_iterator object at 0x036DEA08>
+  # set
+  > iter({'foo', 'bar', 'baz'})
+  <set_iterator object at 0x036DEA08>
 
-# dict
-> iter({'foo': 1, 'bar': 2, 'baz': 3})
-<dict_keyiterator object at 0x036DD990>
-```
+  # dict
+  > iter({'foo': 1, 'bar': 2, 'baz': 3})
+  <dict_keyiterator object at 0x036DD990>
+  ```
 
 <br>
 
 - iterator를 반환하지 않는 data type들
   - Integer, foat, built-in functions
 
-```yml
-# Integer
->> iter(42)
-Traceback (most recent call last):
-  File "<pyshell#26>", line 1, in <module>
-    iter(42)
-TypeError: 'int' object is not iterable
+  ```yml
+  # Integer
+  >> iter(42)
+  Traceback (most recent call last):
+    File "<pyshell#26>", line 1, in <module>
+      iter(42)
+  TypeError: 'int' object is not iterable
 
-# Float
->>> iter(3.1)
-Traceback (most recent call last):
-  File "<pyshell#27>", line 1, in <module>
-    iter(3.1)
-TypeError: 'float' object is not iterable
+  # Float
+  >>> iter(3.1)
+  Traceback (most recent call last):
+    File "<pyshell#27>", line 1, in <module>
+      iter(3.1)
+  TypeError: 'float' object is not iterable
 
-# Built-in functions
->>> iter(len)
-Traceback (most recent call last):
-  File "<pyshell#28>", line 1, in <module>
-    iter(len)
-TypeError: 'builtin_function_or_method' object is not iterable
-```
+  # Built-in functions
+  >>> iter(len)
+  Traceback (most recent call last):
+    File "<pyshell#28>", line 1, in <module>
+      iter(len)
+  TypeError: 'builtin_function_or_method' object is not iterable
+  ```
 
 <br>
 
@@ -134,42 +141,42 @@ TypeError: 'builtin_function_or_method' object is not iterable
 
 - 내장함수 `next()`는 값 생성기 iterator으로부터 다음 값을 얻기 위해 사용된다.
 
-```yml
-# a는 iterable list다.
-> a = ['foo', 'bar', 'baz']
+  ```yml
+  # a는 iterable list다.
+  > a = ['foo', 'bar', 'baz']
 
-# iter을 통해서 a의 iterator를 만든다.
-> itr = iter(a)
-> itr
-<list_iterator object at 0x031EFD10>
+  # iter을 통해서 a의 iterator를 만든다.
+  > itr = iter(a)
+  > itr
+  <list_iterator object at 0x031EFD10>
 
-# nest()를 통해서 itr 안의 다음 값을 얻는다.
-> next(itr)
-'foo'
-> next(itr)
-'bar'
-> next(itr)
-'baz'
+  # nest()를 통해서 itr 안의 다음 값을 얻는다.
+  > next(itr)
+  'foo'
+  > next(itr)
+  'bar'
+  > next(itr)
+  'baz'
 
-# 값이 다 소진되면 다음과 같은 Error를 띄운다.
-> next(itr)
-StopIteration
-```
+  # 값이 다 소진되면 다음과 같은 Error를 띄운다.
+  > next(itr)
+  StopIteration
+  ```
 
 - 만약 iterator로 전환하지 않고, 그냥 사용한다면???
 - iterator가 아니므로 `next()`를 사용할 수 없다.
 - 즉 `__iter__`을 호출하여 전환해야 사용이 가능하다.
 
-```yml
-> w = [1,2,3,4,5]
+  ```yml
+  > w = [1,2,3,4,5]
 
-# iter()로 iterator로 전환하지 않았기 때문에 __next__가 없다.
-> print(dir(w))
-['__add__', '__class__',  '__iter__', ..... 'sort']
+  # iter()로 iterator로 전환하지 않았기 때문에 __next__가 없다.
+  > print(dir(w))
+  ['__add__', '__class__',  '__iter__', ..... 'sort']
 
-> print(next(w))
-TypeError: 'list' object is not an iterator
-```
+  > print(next(w))
+  TypeError: 'list' object is not an iterator
+  ```
 
 <br>
 
@@ -177,25 +184,25 @@ TypeError: 'list' object is not an iterator
 
 - 그러면 `__iter__` 과 `__next__`를 토대로 for 문을 이해해보자.
 
-```yml
-> t = 'ABCDEF'
-> for c in t:
->   print(c)
-A
-B
-C
-D
-E
-F
-```
+  ```yml
+  > t = 'ABCDEF'
+  > for c in t:
+  >   print(c)
+  A
+  B
+  C
+  D
+  E
+  F
+  ```
 
 - 어떻게 해서 하나씩 출력되는 것일까???
 - for문의 구조를 다시 확인해보자
 
-```yml
-> for <var> in <iterable>:
->     <statement(s)>
-```
+  ```yml
+  > for <var> in <iterable>:
+  >     <statement(s)>
+  ```
 
 - in 다음에는 iterable이 온다. 그러면 어떻게 하나씩 반환될까??
 

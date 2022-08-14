@@ -37,7 +37,7 @@ def findRoute(N: int) -> int:
             beehive[i][j] = k
 
         if N in beehive[i]:
-            print(i)
+            print(i + 1)
             break
         else:
             i += 1

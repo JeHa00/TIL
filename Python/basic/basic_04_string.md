@@ -1,6 +1,4 @@
-# Python basic 4: 문자형 사용
-
-## Intro
+# 0. Introduction
 
 > 1. [문자열 생성, 출력 그리고, 길이](#-1-문자열-생성,-출력-그리고,-길이)
 > 2. [Escape, raw string and multi line](#-2-Escape-raw-string-and-multi-line)
@@ -10,11 +8,11 @@
 
 <br>
 
-## 1. 문자열 생성, 출력 그리고, 길이
+# 1. 문자열 생성, 출력 그리고, 길이
 
 - 문자열 생성하기(선언하기) 및 출력하기
 
-```yml
+```python
 # 문자열 생성
 > str1 = "I am Python"
 > str2 = 'Python'
@@ -35,12 +33,11 @@ Pyton <class 'str'>
 
 > print(str_t2, type(str_t2))
   <class 'str'>
-
 ```
 
 - 문자열 길이 측정: `len()` 을 많이 사용한다. 길이에는 공백을 포함한다.
 
-```yml
+```python
 > print(len(str1))
 11
 
@@ -60,11 +57,11 @@ Pyton <class 'str'>
 
 <br>
 
-## 2. Escape, raw string and multi line
+# 2. Escape, raw string and multi line
 
-### 2.1 Escape code
+## 2.1 Escape code
 
-```yml
+```yaml
 \n: 개행(줄바꿈)
 \t: 탭키를 누른 만큼 벌어짐
 \\: 문자 삽입
@@ -74,7 +71,7 @@ Pyton <class 'str'>
 
 - 위에 escape code 예시를 작성해보자.
 
-```yml
+```python
 ## 문자 삽입 escape code
 
 > escape_str1 = "do you have a \"retro games\"?"
@@ -103,13 +100,13 @@ Check!
 
 ```
 
-### 2.2 Raw String
+## 2.2 Raw String
 
 - 소문자 r을 붙이면 Escape 표현을 무시하고 그대로 다 출력한다.
 - Escape 표현을 사용하지 않기 위해 선언!
 - 이런 게 있다는 정도만 알고 있기
 
-```yml
+```python
 # raw string 미포함
 > raw_s1 = "\\x\y\z\q"
 > print(raw_s1)
@@ -122,13 +119,13 @@ Check!
 
 ```
 
-### 2.3 Multi Line
+## 2.3 Multi Line
 
 - 여러 줄 출력하는 방법으로 `\(역슬러쉬)` 를 사용한다.
 - 역슬러쉬를 사용하여 파이썬에게 어떤 변수를 binding 한다는 걸 의미한다. 그래서 다음 줄에 변수를 선언한다는 걸 의미한다.
 - 콤마는 ```,""" 처럼 3개 이상을 사용한다.
 
-```yml
+```python
 
 
 >  multi_str1 =  \
@@ -156,11 +153,11 @@ Check!
 
 <br>
 
-## 3. 문자형 연산
+# 3. 문자형 연산
 
-- 문자형 연산으로는 문자형 끼리 덧셈, 문자형을 반복해서 출력하기 위한 곱셈이 가능하다.
+- 문자형 연산으로는 **_문자형끼리_** 덧셈, 문자형을 반복해서 출력하기 위한 곱셈이 가능하다.
 
-```yml
+```python
 > str_o1 = "python"
 > str_o2 = "Apple"
 > str_o3 = "How are you doing"
@@ -175,7 +172,7 @@ pythonApple
 
 - `in` 예약어를 사용하여 문자열 안에 원하는 문자가 있는지도 확인할 수 있다.
 
-```yml
+```python
 > print('y' in str_o1)
 True
 
@@ -190,15 +187,15 @@ False
 
 ---
 
-## 4. 문자형 형 변환(Type conversion), 문자형 함수
+# 4. 문자형 형 변환(Type conversion), 문자형 함수
 
 <br>
 
-### 4.1 Type Conversion
+## 4.1 Type Conversion
 
 - 파이썬에서 type conversion은 자유롭게 가능하다고 생각하자.
 
-```yml
+```python
 # 정수 -> 문자열
 > print(str(66))
 
@@ -217,7 +214,7 @@ True <class 'str'>
 
 <br>
 
-### 4.2 문자열 함수
+## 4.2 문자열 함수
 
 > `print(dir())` 함수에 변수를 입력하면 그 변수의 속성들을 보여준다.
 
@@ -225,61 +222,101 @@ True <class 'str'>
 - string type의 data를 넣으면 string이 사용할 수 있는 함수를 보여준다.
 - list면 list가 사용할 수 있는 함수를 보여준다.
 
-```yml
-> im_str = "Good Boy"
-> print(dir(im_str))
-['capitalize', 'encode', .....]
-```
+  ```python
+  > im_str = "Good Boy"
+  > print(dir(im_str))
+  ['capitalize', 'encode', .....]
+  ```
 
 - 위 함수들에서 일부만 출력해보겠다.
 
-```yml
-> str_o1 = "python"
-> str_o2 = "Apple"
-> str_o3 = "How are you doing"
-> str_o4 = "Korea Japan America"
+  ```python
+  > str_o1 = "python"
+  > str_o2 = "Apple"
+  > str_o3 = "How are you doing"
+  > str_o4 = "Korea Japan America"
+  ```
 
-# 첫 글자를 대문자로 바꿔주는 함수
-> print("Capitalize : ", str_o1.capitalize())
-Capitalize : Python
+### Capitalize
 
-# 모든 문자를 대문자로 바꿔주는 함수
-> print("upper : ", str_o1.upper())
-upper : PYTHON
+- `Capitalize`: 첫 글자를 대문자로 바꿔주는 함수
 
-# 모든 문자를 소문자로 바꿔주는 함수
-> print("lower : ", str_o2.lower())
-lower : apple
+  ```python
+  > print("Capitalize : ", str_o1.capitalize())
+  Capitalize : Python
+  ```
 
-# 마지막 글자가 s로 끝나는가?
-> print("endswith? : ", str_o1.endswith('s'))
-endswith : False
+### upper, lower, endswith
 
-# 해당 문자열 앞 뒤로 join하는 함수
-> print("join str : ", str_o1.join(["I'm", "!"]))
-join str : I'm python!
+- `upper`: 모든 문자를 대문자로 바꿔주는 함수  
+- `lower`: 모든 문자를 소문자로 바꿔주는 함수  
+- `endswith`: 마지막 글자가 무슨 문자로 끝나는지 확인하는 함수
 
-# 해당 문자열을 입력한 다른 문자열로 바꿔주는 함수
-> print("replace : ", str_o1.replace('thon', 'Good'))
-replace :  pyGood
+  ```python
+  # 모든 문자를 대문자로 바꿔주는 함수
+  > print("upper : ", str_o1.upper())
+  upper : PYTHON
 
-# 해당 문자열을 입력한 문자열을 기준으로 쪼개어 list로 만드는 함수
-> print("split : ", str_o4.split(' '))
-split : Korea Japan America
+  # 모든 문자를 소문자로 바꿔주는 함수
+  > print("lower : ", str_o2.lower())
+  lower : apple
 
-# 최소 단위까지 쪼개어 알파벳 순으로 list로 만드는 함수
-> print('sorted : ', sorted(str_o3))
-sorted :  [' ', ' ', ' ', '?', 'H', 'a', 'd', 'e', 'g', 'i', 'n', 'o', 'o', 'o', 'r', 'u', 'w', 'y']
+  # 마지막 글자가 s로 끝나는가?
+  > print("endswith? : ", str_o1.endswith('s'))
+  endswith : False
+  ```
 
-> print('reversed1: ', reversed(str_o2))
-reversed1:  <reversed object at 0x000001ECEA15CFD0>
+### split
 
-# reversed는 return 값이 존재하기에 list로 출력이 가능하다.
-> print('reversed2: ', list(reversed(str_o2))
-reversed2:  ['e', 'l', 'p', 'p', 'A']
-```
+- `split()`: 인자로 입력한 값을 기준으로 문자열을 분리하는 함수 
 
-### 4.3 reverse 와 reversed 의 차이
+  ```python
+  # 해당 문자열을 입력한 문자열을 기준으로 쪼개어 list로 만드는 함수
+  > print("split : ", str_o4.split(' '))
+  > print("split : ", str_o4.split())
+  split : Korea Japan America
+
+  > text = 'a A/B A.B.C'
+  > a, b, c = text.split('.')
+  > print(a)
+  > print(b)
+  > print(c)
+  a A/B A
+  B
+  C
+  ```
+
+### join
+
+- `join()`: 해당 문자열 앞뒤로 join하는 함수  
+  - list에 있는 것을 합쳐서 문자열을 만들 때 주로 사용한다. 
+
+  ```python
+  > print("join str : ", str_o1.join(["I'm", "!"]))
+  join str : I'm python!
+  ```
+
+### replace
+
+- `replace(A,B)`: 해당 문자열 안의 A 문자열을 B 문자열로 바꿔주는 함수
+
+  ```python
+  > print("replace : ", str_o1.replace('thon', 'Good'))
+  replace :  pyGood
+  ```
+
+
+### sorted
+
+- `sorted()`: 최소 단위까지 쪼개어 알파벳 순으로 list로 만드는 함수
+
+  ```python
+  > print('sorted : ', sorted(str_o3))
+  sorted :  [' ', ' ', ' ', '?', 'H', 'a', 'd', 'e', 'g', 'i', 'n', 'o', 'o', 'o', 'r', 'u', 'w', 'y']
+  ```
+
+
+## 4.3 reverse 와 reversed 의 차이
 
 - reverse
   - string이 아닌 list를 **단순히 뒤집어서 저장해주는 역할**
@@ -289,16 +326,25 @@ reversed2:  ['e', 'l', 'p', 'p', 'A']
   - 출력을 원하면 reverse 값을 원하면 형 변환을 해야 한다.
   - **_기존 리스트의 값을 변경하지 않으면서 return 값만을 원할 때 reversed 함수를 사용한다._**
 
+  ```python
+  > print('reversed1: ', reversed(str_o2))
+  reversed1:  <reversed object at 0x000001ECEA15CFD0>
+
+  # reversed는 return 값이 존재하기에 list로 출력이 가능하다.
+  > print('reversed2: ', list(reversed(str_o2))
+  reversed2:  ['e', 'l', 'p', 'p', 'A']
+  ```
+
+
 <br>
 
 ---
 
-## 5. Slicing
+# 5. Slicing
 
 > 문자열의 일부분을 원하는 대로 잘라오는 것을 말한다.
 
-```yml
-
+```python
 # index[0] 부터 [3]까지가 아닌, [2]까지이기 때문이다.
 > sl = 'Nice Python'
 > print(sl[0:3])

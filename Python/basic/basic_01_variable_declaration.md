@@ -165,26 +165,28 @@ Change Value
 
 ## 3.1 Naming 규칙
 
-- Camel Case : method를 선언할 때 사용.
+- camelCase : method를 선언할 때 사용.
 
   - ex) numberOfCollegeGraduates
 
-- Pascal Case : 언어 상관 없이 class를 주로 선언할 때 사용.
+- PascalCase : 언어 상관 없이 class를 주로 선언할 때 사용.
 
   - ex) NumberOfCollegeGraduates
 
-- snake case: 파이썬에서 변수를 선언 시 사용.
+- snake_case: 파이썬에서 변수를 선언 시 사용.
 
   - ex) number_of_college_graduates
 
 - Camel과 Pascal의 차이는 첫 문자가 소문자냐 대문자냐의 차이다.
 
 - 이외에 허용하는 변수 선언법은 다음과 같다.
-  - 숫자로 시작하지 않는다.
+  - 숫자로 시작하지 않는다. 
   - 변수는 되도록 snake case로 선언한다.
   - 예약어 같이 문법에 사용되는 단어는 변수명으로 불가능하다.
 
 ```yml
+#알파벳, 언더바로 시작
+
 > age = 1
 > Age = 2
 > aGe = 3

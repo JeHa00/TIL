@@ -23,7 +23,7 @@
 
 # 1. Map
 
-> - map(func, iterable)
+> map(func, iterable)  
 > - iterable에 있는 모든 요소에 지정한 function을 적용하여 그 결과를 iterator로 반환한다.
 > - return 된 객체는 map oject 다.
 
@@ -32,40 +32,55 @@
   - def (Ex1-2)
   - closure (Ex1-3)
 
-```yml
-> digist1 = [x * 10 for x in range(1, 6)]
-> print('Ex1 > ', digist1)
-Ex1 >  [10, 20, 30, 40, 50]
+  ```python
+  > digist1 = [x * 10 for x in range(1, 6)]
+  > print('Ex1 > ', digist1)
+  Ex1 >  [10, 20, 30, 40, 50]
 
-> result = map(lambda x: x ** 2, digist1)
-> print('Ex1-1 lambda > 'result)
-Ex1-1 lambda >  <map object at 0x000002786FE62D90>
+  > result = map(lambda x: x ** 2, digist1)
+  > print('Ex1-1 lambda > ', result)
+  Ex1-1 lambda >  <map object at 0x000002786FE62D90>
 
-# map object로 뜨기 때문에 type conversion을 한 후, result에 할당한다.
-# lambda를 사용했기 때문에, 메모리에 저장되지 않고 garbage collector에 의해서 제거된다.
+  # map object로 뜨기 때문에 type conversion을 한 후, result에 할당한다.
+  # lambda를 사용했기 때문에, 메모리에 저장되지 않고 garbage collector에 의해서 제거된다.
 
-> result = list(map(lambda x: x ** 2, digist1))
-> print('Ex1-1 lambda > 'result)
-Ex1-1 lambda >  [100, 400, 900, 1600, 2500]
+  > result = list(map(lambda x: x ** 2, digist1))
+  > print('Ex1-1 lambda > ', result)
+  Ex1-1 lambda >  [100, 400, 900, 1600, 2500]
 
-# lambda로 구현한 함수를 선언형으로 해보자.
+  # lambda로 구현한 함수를 선언형으로 해보자.
 
-> def ex2_func(x):
->   return x ** 2
+  > def ex2_func(x):
+  >   return x ** 2
 
-> result = list(map(ex2_func, digist1))
-> print('Ex1-2 function > ', result)
-Ex1-2 function >  [100, 400, 900, 1600, 2500]
+  > result = list(map(ex2_func, digist1))
+  > print('Ex1-2 function > ', result)
+  Ex1-2 function >  [100, 400, 900, 1600, 2500]
 
-# closure를 통해서 선언해보자.
-> def also_square(nums):
->   def double(x):
->       return x * 2
->   return map(double, nums)
+  # closure를 통해서 선언해보자.
+  > def also_square(nums):
+  >   def double(x):
+  >       return x * 2
+  >   return map(double, nums)
 
-> print('Ex1-3 Closure', list(also_square(digist1)))
-Ex1-3 Closure >   [20, 40, 60, 80, 100]
-```
+  > print('Ex1-3 Closure', list(also_square(digist1)))
+  Ex1-3 Closure >   [20, 40, 60, 80, 100]
+  ```
+
+- 위 경우에서는 map object를 형 변환했지만, 형 변환 없이 unpacking을 사용하여 변수에 할당할 수 있다.  
+
+  ```python
+  > a, b, c = map(int, ['1', '2', '3'])
+  > print(a, b, c, a + b + c)
+  1 2 3 6
+
+  > a, b, c = map(int, input().split())
+  1 2 3
+  > print(a, b, c, a + b + c)
+  1 2 3 6
+  ```
+
+
 
 <br>
 
@@ -73,7 +88,7 @@ Ex1-3 Closure >   [20, 40, 60, 80, 100]
 
 # 2. Filter
 
-> - filter(func, iterable)
+> filter(func, iterable)
 > - iterable 중에서 function 조건에 True인 요소들만 뽑아서 새로운 sequence 형으로 만드는 함수
 > - return된 객체는 filter object 다.
 
@@ -81,27 +96,27 @@ Ex1-3 Closure >   [20, 40, 60, 80, 100]
   - lambda (Ex1-1)
   - closure (Ex1-3)
 
-```yml
+  ```python
 
-# list comprehension으로 iterator를 만든다.
-> digist2 = [x for x in range(1, 6)]
+  # list comprehension으로 iterator를 만든다.
+  > digist2 = [x for x in range(1, 6)]
 
-# 홀수만 출력한다.
+  # 홀수만 출력한다.
 
-# lambda 사용
-> result = list(filter(lambda x: x % 2, digist2))
-> print('Ex2-1 lambda > ', result)
-Ex2-1 lambda >  [1, 3, 5]
+  # lambda 사용
+  > result = list(filter(lambda x: x % 2, digist2))
+  > print('Ex2-1 lambda > ', result)
+  Ex2-1 lambda >  [1, 3, 5]
 
-# closure 사용
-> def odd(nums):
->   def is_oven(x):
->       return x % 2
->   return filter(is_oven, nums)
+  # closure 사용
+  > def odd(nums):
+  >   def is_oven(x):
+  >       return x % 2
+  >   return filter(is_oven, nums)
 
-> print('Ex2-2 closure', odd(digist2))
-Ex2-2 closure >  [1, 3, 5]
-```
+  > print('Ex2-2 closure', odd(digist2))
+  Ex2-2 closure >  [1, 3, 5]
+  ```
 
 <br>
 
@@ -109,7 +124,7 @@ Ex2-2 closure >  [1, 3, 5]
 
 # 3. Reduce
 
-> - reduce(func, iterable)
+> reduce(func, iterable)
 > - iterable의 각 요소를 왼쪽부터 오른쪽 방향으로 function을 적용하여 하나의 값으로 합친다.
 
 - reduce는 built-in fuction이 아니기 때문에, 별도로 import를 해야 한다.
@@ -119,25 +134,25 @@ Ex2-2 closure >  [1, 3, 5]
   - lambda (Ex1-1)
   - closure (Ex1-3)
 
-```yml
-> from functools import reduce
+  ```python
+  > from functools import reduce
 
-> digit3 = [x for x in range(1, 101)]
+  > digit3 = [x for x in range(1, 101)]
 
-# lambda 사용
-> reduce = reduce(lambda x,y: x + y, digit3)
-> print('Ex3 lambda > ', reduce)
-5050
+  # lambda 사용
+  > reduce = reduce(lambda x,y: x + y, digit3)
+  > print('Ex3 lambda > ', reduce)
+  5050
 
-# closure 사용
-> def also_add(nums):
->   def add_plus(x,y):
->       return x + y
->   return reduce(add_plus, nums)
+  # closure 사용
+  > def also_add(nums):
+  >   def add_plus(x,y):
+  >       return x + y
+  >   return reduce(add_plus, nums)
 
-> print('Ex3 Closure > ', also_add(digit3))
-5050
-```
+  > print('Ex3 Closure > ', also_add(digit3))
+  5050
+  ```
 
 <br>
 

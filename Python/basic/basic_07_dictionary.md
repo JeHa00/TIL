@@ -287,7 +287,31 @@ True
 
 > print('addr' in a)
 False
+```
 
+
+❗ 다른 data type을 dictionary로 만들 때 유의사항
+
+- 갯수가 맞아야 한다.
+
+```python
+> a = ['ab', 'cd', 'ef']
+> print(dict(a))
+{'a': 'b', 'c': 'd', 'e': 'f'}
+
+# 하지만 갯수가 안맞으면??
+# 길이가 맞지 않아 Error가 발생
+> a = ['ab', 'cd', 'eff']
+> print(dict(a))
+ValueError: dictionary update sequence element; 
+
+> a = [['a', 1], ['b', 2], ['c', 3]]
+> print(a)
+{'a': 1, 'b': 2, 'c': 3}
+
+> a = [['a', 1], ['b', 2], ['c', 3, 4]]
+> print(a)
+# 위와 똑같은 Error가 발생된다.
 ```
 
 <br>

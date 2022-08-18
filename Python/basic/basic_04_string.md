@@ -237,6 +237,8 @@ True <class 'str'>
   > str_o4 = "Korea Japan America"
   ```
 
+<br>
+
 ### Capitalize
 
 - `Capitalize`: 첫 글자를 대문자로 바꿔주는 함수
@@ -245,6 +247,8 @@ True <class 'str'>
   > print("Capitalize : ", str_o1.capitalize())
   Capitalize : Python
   ```
+
+<br>
 
 ### upper, lower, endswith
 
@@ -266,6 +270,9 @@ True <class 'str'>
   endswith : False
   ```
 
+<br>
+
+
 ### split
 
 - `split()`: 인자로 입력한 값을 기준으로 문자열을 분리하는 함수 
@@ -286,6 +293,9 @@ True <class 'str'>
   C
   ```
 
+<br>
+
+
 ### join
 
 - `join()`: 해당 문자열 앞뒤로 join하는 함수  
@@ -296,6 +306,9 @@ True <class 'str'>
   join str : I'm python!
   ```
 
+<br>
+
+
 ### replace
 
 - `replace(A,B)`: 해당 문자열 안의 A 문자열을 B 문자열로 바꿔주는 함수
@@ -304,6 +317,9 @@ True <class 'str'>
   > print("replace : ", str_o1.replace('thon', 'Good'))
   replace :  pyGood
   ```
+
+<br>
+
 
 
 ### sorted
@@ -315,6 +331,81 @@ True <class 'str'>
   sorted :  [' ', ' ', ' ', '?', 'H', 'a', 'd', 'e', 'g', 'i', 'n', 'o', 'o', 'o', 'r', 'u', 'w', 'y']
   ```
 
+<br>
+
+
+###  strip
+
+- `strip()`: 앞뒤의 특정 문자열을 제거하는 함수 
+  - `lstrip()`: 앞의 특정 문자열을 제거하는 함수
+  - `rstrip()`: 뒤의 특정 문자열을 제거하는 함수
+
+  ```python
+  > text = '****abcde****'
+  > print(text.strip('*'))
+  abcde
+  
+  > print(text.lstrip('*'))
+  abcde****
+
+  > print(text.rlstrip())
+  ****abcde
+  ```
+
+<br>
+
+### find와 index
+
+- `find()`와 `index()` 모두 인자로 입력한 문자열의 첫 번째 index를 반환한다. 
+  - 차이점은 find는 못 찾으면 `-1`을 반환하고, `index`는 `ValueError`를 일으킨다.  
+
+- `rfind()`와 `rindex()`는 제일 마지막 index를 반환한다. 
+
+  ```python
+  > text = 'ABC ABC'
+  > print(text.find('D'))
+  -1
+  
+  > print(text.index('D'))
+  ValueError: substring not found
+
+  > print(text.find('A'))
+  > print(text.index('A'))
+  0
+  
+  > print(text.rfind('A'))
+  > print(text.rindex('A'))
+  4
+  ```
+
+<br>
+
+
+### isalpha, isupper, islower
+
+- `is`가 붙은 것은 반환값이 True 또는 False라고 이해해보자. 
+- `isalpha`는 문자열에 알파벳이 있는지, `isupper`는 다 대문자인지, `islower`는 다 소문자인지 알려준다. 
+
+  ```python
+  > text = 'ABCdef'
+  > print(text.isalpha())
+  True 
+  
+  > print(text.isupper())
+  False
+  
+  > print(text.islower())
+  False
+  
+  > print(text.upper().isupper())
+  True
+  
+  > print(text.lower().islower())
+  True
+  ```
+
+
+<br>
 
 ## 4.3 reverse 와 reversed 의 차이
 

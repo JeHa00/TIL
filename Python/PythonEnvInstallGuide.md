@@ -1,8 +1,8 @@
 # 개발 환경 설정
 
 > 1. [Python 설치](#1-python-설치)
->   1-1. [Python project set up in VSCode](#11-python-project-set-up-in-vscode)
->   1-2. [Python project set up in Pycharm](#12-python-project-set-up-in-pycharm)
+> 1-1. [Python project set up in VSCode](#11-python-project-set-up-in-vscode)
+> 1-2. [Python project set up in Pycharm](#12-python-project-set-up-in-pycharm)
 > 2. [conda 가상환경 설치하기](#2-conda-가상환경-설치하기)
 > 3. [conda 명령어 정리](#3-conda-명령어-정리)
 
@@ -83,7 +83,7 @@
 1. `$ sudo easy_install pip` : pip을 설치한다.
 2. `$ pip --version` : 설치된 pip 버전을 확인할 수 있다.
 
-**pip 명령어 정리**
+- **pip 명령어 정리**. 
     - `$ pip install pip --upgrade` : pip 업그레이드
     - `$ pip install "패키지~=3.0.0"` : 3.0.0 버전의 패키지를 설치한다.
     - `$ pip install 패키지` : 패키지를 설치한다.

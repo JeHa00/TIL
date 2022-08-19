@@ -433,6 +433,11 @@ $ conda info --envs
 $ conda update -n base conda
 ```
 
+```yml
+# conda에서 설치 가능한 python version 조회
+$ conda search python
+```
+
 <br>
 
 ### 2. 가상환경 생성

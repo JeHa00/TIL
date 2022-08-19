@@ -1,11 +1,11 @@
 # 개발 환경 설정
 
-> 1. [Python 설치](#1-python-설치)
-> 1-1. [Python project set up in VSCode](#11-python-project-set-up-in-vscode)
-> 1-2. [Python project set up in Pycharm](#12-python-project-set-up-in-pycharm)
-> 2. [conda 가상환경 설치하기](#2-conda-가상환경-설치하기)
-> 3. [conda 명령어 정리](#3-conda-명령어-정리)
-
+> 1. [Python 설치](#1-python-설치).   
+> 1-1. [Python project set up in VSCode](#11-python-project-set-up-in-vscode).   
+> 1-2. [Python project set up in Pycharm](#12-python-project-set-up-in-pycharm).   
+> 2. [conda 가상환경 설치하기](#2-conda-가상환경-설치하기).   
+> 3. [conda 명령어 정리](#3-conda-명령어-정리).   
+  
 
 <br>
 

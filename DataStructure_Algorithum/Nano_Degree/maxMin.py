@@ -5,7 +5,7 @@ from typing import List
 
 def findMinValue(value: List) -> int:
 
-    min_value = value[0]
+    min_value = value[0] # 맨 앞의 원소가 제일 작은 것이라 가정
     for i in value:
         if i < min_value:
             min_value = i

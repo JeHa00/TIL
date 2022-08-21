@@ -11,7 +11,7 @@ def Straight_Selection(a) -> None:
         for j in range(i + 1, n):
             if a[j] < a[min]:
                 min = j # 더 작은 원소가 나타나면 이를 min 변수에 저장
-            a[min], a[i] = a[i], a[min]
+        a[min], a[i] = a[i], a[min]
     
 
 if __name__ == '__main__':

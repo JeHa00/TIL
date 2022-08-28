@@ -1,6 +1,12 @@
 """
 [problem: 2839]
 
+- 문제
+    - 최대 5kg을 들 수 있는 봉지와 최대 3kg을 들 수 있는 봉지를 사용하여, 입력값으로 주어진 설탕의 무게를 만족하는 최소 봉지 수 구하기 
+
+- 입력값: 무게
+
+- 출력값: 이 무게를 이룰 수 있는 최소 봉지 수  
 
 """
 def minPlasticBag(kg: int) -> int:
@@ -10,7 +16,6 @@ def minPlasticBag(kg: int) -> int:
     
     five_kilo_bags = divmod(kg, 5)
     three_kilo_bags = divmod(kg, 3)
-
 
     # 5로만 나누어 떨어지는 경우 (3으로 나누어떨어지든, 아니든)
     if five_kilo_bags[1] == 0 and three_kilo_bags[1] != 0:

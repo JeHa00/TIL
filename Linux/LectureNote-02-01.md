@@ -309,10 +309,12 @@ adjtime
 [root@ip-172-31-8-107 test]# cp -r ../adjtime . 
 [root@ip-172-31-8-107 test]# cd ../../../
 
-# 다음과 같은 error가 뜬다. 
+# 다음과 같은 안내문이 뜬다.  
+# 이는 해당 디렉토리는 복사되지 않았다는 걸 의미한다. 
 [root@ip-172-31-8-107 /]# cp /home/ec2-user/test/ ./
 cp: omitting directory '/home/ec2-user/test/'
 
+# 옵션 -r을 사용하면 
 [root@ip-172-31-8-107 /]# cp -r /home/ec2-user/test/ ./
 [root@ip-172-31-8-107 /]# ls 
 ... test ...

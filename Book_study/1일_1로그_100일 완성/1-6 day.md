@@ -10,7 +10,7 @@
 - IT 분야의 문해력을 기르기 위해서 꾸준히 매일 작은 지식들을 학습하고자 [1일 1로그 100일 완성 IT지식](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788966263301&orderClick=LEa&Kc=)을 시작한다. 
 
 
-- 5일에 한 번씩 기술 블로그에 TIL로 올린다. 
+- 소챕터의 요약 부분까지 읽으면 정리하여 올린다.
 
 <br>
 

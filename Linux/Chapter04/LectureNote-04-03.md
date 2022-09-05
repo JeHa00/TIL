@@ -1,10 +1,10 @@
 # 0. Introduction
 
-> 1. [그룹관리](#1-그룹관리)
-> 2. [groupadd](#2-groupadd)
-> 3. [groupmod](#3-groupmod)
-> 4. [groupdel](#4-groupdel)
-> [practice](#practice)
+> 1. [그룹관리](#1-그룹관리)  
+> 2. [groupadd](#2-groupadd)  
+> 3. [groupmod](#3-groupmod)  
+> 4. [groupdel](#4-groupdel)  
+> [practice](#practice)  
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 Jason.Kim 강사님의 Linux 강의로부터 학습한 자료입니다.
 

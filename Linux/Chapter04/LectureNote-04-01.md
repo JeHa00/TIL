@@ -1,12 +1,12 @@
 # 0. Introduction
 
-> 1. [사용자 계정관리](#1-사용자-계정관리)
-> 2. [/etc/passwd](#2-etcpasswd)
-> 3. [/etc/shadow](#3-etcshadow)
-> 4. [/etc/group](#4-etcgroup)
-> 5. [사용자 계정 생성](#5-사용자-계정-생성)
-> 6. [useradd](#6-useradd)
-> [practice](#practice)
+> 1. [사용자 계정관리](#1-사용자-계정관리)  
+> 2. [/etc/passwd](#2-etcpasswd)  
+> 3. [/etc/shadow](#3-etcshadow)  
+> 4. [/etc/group](#4-etcgroup)  
+> 5. [사용자 계정 생성](#5-사용자-계정-생성)  
+> 6. [useradd](#6-useradd)  
+> [practice](#practice)  
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 Jason.Kim 강사님의 Linux 강의로부터 학습한 자료입니다.
 

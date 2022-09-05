@@ -15,6 +15,7 @@ def main(values: str) -> str:
     else: 
         print('NO')
 
+# %%
 if __name__ == "__main__":
     T = int(input())
     while T >= 0 :

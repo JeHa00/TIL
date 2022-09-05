@@ -1,7 +1,7 @@
 # 0. Introduction
 
-> 1. [허가권(Permission)](#1-허가권permission)
-> 2. [소유권(Ownership)](#2-소유권ownership)
+> 1. [허가권(Permission)](#1-허가권permission)  
+> 2. [소유권(Ownership)](#2-소유권ownership)  
 
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 Jason.Kim 강사님의 Linux 강의로부터 학습한 자료입니다.
@@ -18,6 +18,44 @@
 
 ---
 # 1. 허가권(Permission)
+
+리눅스에서 허가권은 매우 중요한 역할을 하는데, `ls -l`을 해서 파일과 디렉토리 맨 앞에 오는 것이 **_허가권_** 을 의미한다.
+
+```yml
+[root@ip-172-31-8-107 /]# ls -l
+total 20
+lrwxrwxrwx   1 root root    7 Aug 16 05:20 bin -> usr/bin
+dr-xr-xr-x   4 root root 4096 Aug 16 05:23 boot
+drwxr-xr-x  15 root root 2900 Aug 30 13:09 dev
+...
+```
+
+- 위 내용에서 `lrwxrwxrwx `, `dr-xr-xr-x `, `drwxr-xr-x` .. 가 허가권이다.
+
+그러면 허가권에 대해서 보다 자세히 알아보자. 
+
+- **허가권은 총 10자리다.** 
+- **ex) drwxr-xr-x**
+    - **맨 첫 글자: type of file**
+        - 'd': directory
+        - '-': file
+        - 'l': link  
+    - **맨 첫 글자 이외에는 다 rwx로 표시하는데 rwx 표시가 없으면 '할 수 없음'을 의미한다.** 
+        - '-': can't
+        - r or w or x: can read or write or execute  
+    - **그 다음 세글자: User/Owner(_u_ )의 허가권**
+        - 'r': can read    
+        - 'w': can write    
+        - 'x': can execute    
+    - **그 다음 세글자: Group(_g_ )의 허가권**
+        - 'r': can read
+        - '-': can't write
+        - 'x': can execute  
+    - 그 다음 세글자: Other(**o** )의 허가권
+        - 'r': can read
+        - '-': can't write
+        - 'x': can execute  
+
 
 <br>
 

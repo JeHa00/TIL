@@ -37,7 +37,7 @@
 ### [Network](https://github.com/JeHa00/TIL/tree/main/Network)
 
 - [HTTP](https://github.com/JeHa00/TIL/tree/main/Network/HTTP)
-- [WebApplicationBasic]((https://github.com/JeHa00/TIL/tree/main/Network/WebApplicationBasic))
+- [WebApplicationBasic](https://github.com/JeHa00/TIL/tree/main/Network/WebApplicationBasic)
 
 
 <br>
@@ -92,7 +92,7 @@
 
 <br>
 
-### Linux
+### [Linux](https://github.com/JeHa00/TIL/blob/main/Linux)
 
 - [AWS .ssh/config 생성하기](https://github.com/JeHa00/TIL/blob/main/Linux/LectureNote-01.md)
 - [Linux 기본 명령어](https://github.com/JeHa00/TIL/blob/main/Linux/Chapter02)

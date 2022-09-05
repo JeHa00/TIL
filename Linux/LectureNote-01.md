@@ -1,25 +1,10 @@
 # 0. Introduction
 
-> []()
-> []()
-> [리눅스 구조 실습](#리눅스-구조-실습)
-
-
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 Jason.Kim 강사님의 Linux 강의로부터 학습한 자료입니다.
 
 <br>
 
 ---
-
-# 14
-
-os를 발견할 수 없는 이유는 설치할 때 세 번째 방법을 선택한 경우, 
-
-이와 같이 인식할 수 없다. 
-
-# 15
-
-이를 별도로 추가해보자.
 
 # 리눅스 구조 실습
 
@@ -87,6 +72,8 @@ cp dalkom.pem ~/.ssh 으로 복사
 ### 접속 확인
 
 - `ssh <host name>`
+
+<br>
 
 ---
 

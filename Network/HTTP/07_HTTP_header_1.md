@@ -28,7 +28,7 @@
 
 - HTTP header 종류에 대해 알아보기 전, 과거 'RFC2616' 일 때 헤더 분류를 살펴보자.
 
-<p align="center"> <image src ="https://mdn.mozillademos.org/files/13821/HTTP_Request_Headers2.png"/></p>
+<p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/189069500-dc5a1764-0597-4b27-8445-2b1ea6220c9b.png"/></p>
 
 - General 헤더: 메시지 전체에 적용되는 정보, 예) Connection: close
 - Request 헤더: 요청 정보, 예) User-Agent: Mozilla/5.0 (Macintosh; ..)

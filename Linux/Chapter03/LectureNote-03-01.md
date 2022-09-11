@@ -1,6 +1,7 @@
 # 0. Introduction
 
 > 1. [vi editor 개요](#1-vi-editor-개요)  
+> 2. [실행 모드 실습](#2-실행-모드-실습)  
 > [vim 들어가기](#vim-들어가기)  
 > [set nu, set nonu](#set-nu-set-nonu)  
 > [h, j, k, l 로 상하 좌우 움직이기](#h-j-k-l-로-상하-좌우-움직이기)  

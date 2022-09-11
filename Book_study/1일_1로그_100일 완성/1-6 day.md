@@ -1,10 +1,10 @@
 # 0. Introduction
 
-> 1.[1 day](#1-day)
-> 2.[2 day](#2-day)
-> 3.[3 day](#3-day)
-> 4.[4 day](#4-day)
-> 5.[5 day](#5-day)
+> [1 day](#1-day)  
+> [2 day](#2-day)  
+> [3 day](#3-day) 
+> [4 day](#4-day)  
+> [5 day](#5-day)  `
 
 
 - IT 분야의 문해력을 기르기 위해서 꾸준히 매일 작은 지식들을 학습하고자 [1일 1로그 100일 완성 IT지식](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788966263301&orderClick=LEa&Kc=)을 시작한다. 

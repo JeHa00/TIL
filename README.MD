@@ -94,10 +94,15 @@
 
 ### [Linux](https://github.com/JeHa00/TIL/blob/main/Linux)
 
-- [AWS .ssh/config 생성하기](https://github.com/JeHa00/TIL/blob/main/Linux/LectureNote-01.md)
+- [Linux의 구조와 AWS linux 실습 setting](https://github.com/JeHa00/TIL/blob/main/Linux/LectureNote-01.md)
 - [Linux 기본 명령어](https://github.com/JeHa00/TIL/blob/main/Linux/Chapter02)
 - [Vi editor 사용법](https://github.com/JeHa00/TIL/blob/main/Linux/Chapter03)
 - [사용자 계정 관리](https://github.com/JeHa00/TIL/blob/main/Linux/Chapter04)
+- [권한](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter05)
+- [특수 권한](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter06)
+- [프로세스 관리](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter07)
+- [데이터 저장과 패키지](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter08)
+- [HDD와 파티션](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter09)
 
 
 <br>

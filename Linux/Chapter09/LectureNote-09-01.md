@@ -81,7 +81,7 @@
 - sdb2는 하드 디스크에 해당된다.  
     - 숫자가 붙은 것은 파티션을 의미한다.  
 
-- `mkfs`: make file system의 약어로, 포맷을 한다는 의미다.  
+- `mkfs`: make file system의 약어로, 포맷을 한다는 의미
 
 ```yml
 mke2fs -j/dev/sdb2

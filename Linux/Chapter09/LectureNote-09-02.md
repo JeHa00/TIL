@@ -3,7 +3,7 @@
 > 1. [Mount](#1-mount)  
 > 2. [Unmount](#2-unmount)  
 > 3. [NFS(Network File System)](#3-nfsnetwork-file-system)    
-> 4. [자동 Mount](#4-자동-mount)
+> 4. [자동 Mount](#4-자동-mount)  
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 Jason.Kim 강사님의 Linux 강의로부터 학습한 자료입니다.
 

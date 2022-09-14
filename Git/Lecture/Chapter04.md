@@ -136,6 +136,14 @@ Window menu bar에 이를 검색하면 바로 뜰 것이다.
 
 3. local에서 file과 log 살펴보기
 
+
+❗️ pull 시도 시, Error: `fatal: refusing to merge unrelated histories` 가 발생하면??
+pull은 기본적으로 git fetch + merge를 합친 명령어다.  git pull이 성사될려면 관련 있는 history를 가져야한다. 즉, 서로 일치하는 commit hash 번호를 가지고 있어야 한다. 
+하지만, 초기 원격을 연결할 때는 서로 공통된 history가 없기 때문에, 이런 문제가 발생되면 해결책은 2가지다.   
+`git clone`으로 새롭게 가져오던가, 아니면 강제로 pull 하는 방법: `git pull origin (branchname) --allow-unrelated-histories` 을 사용한다. 
+참고: https://jobc.tistory.com/177
+
+
 <br>
 
 ## 5.2 pull할 것이 있는데, push를 하면??
@@ -349,3 +357,4 @@ To https://github.com/JeHa00/git-practice.git
 
 - [제대로 파는 Git & GitHub - by 얄코](https://www.inflearn.com/course/%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%8C%8C%EB%8A%94-%EA%B9%83/dashboard)
 - [Pro git : Second editions](https://book.naver.com/bookdb/book_detail.nhn?bid=7187291)
+- [https://jobc.tistory.com/177](https://jobc.tistory.com/177)

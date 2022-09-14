@@ -134,7 +134,7 @@ $ git reset --hard HEAD~2
 # 6. fetch와 pull의 차이
 
 > _- fetch: 원격 저장소의 최신 커밋을 로컬로 가져와서 **내용만 보고 싶을 때** 사용한다._   
-> _- pull: 원격 저장소의 최신 커밋을 로컬로 가져와  **merge 또는 rebase를 실행하는 것으로서 fetch 과정을 포함** 한다._  
+> _- pull: 원격 저장소의 최신 커밋을 로컬로 가져와  **fetch + merge 또는 rebase를 실행하는 것** 이다._  
 
 - `fetch`한 내역 적용 전 살펴보기
 

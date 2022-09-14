@@ -100,7 +100,7 @@
 - [사용자 계정 관리](https://github.com/JeHa00/TIL/blob/main/Linux/Chapter04)
 - [권한](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter05)
 - [특수 권한](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter06)
-- [프로세스 관리](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter07)
+- [프로세스 관리](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter07.md)
 - [데이터 저장과 패키지](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter08)
 - [HDD와 파티션](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter09)
 

@@ -66,7 +66,7 @@ Nested data의 종류에는 YAML, JSON, XML 등이 있다. 이 type들 모두 `i
 ---
 
 
-# 2. json.loads 와 json.dump
+# 2. json.loads 와 json.dumps
 
 
 JSON이란 무엇인지 학습한 후, `json.loads()`와 `json.dump()`에 대해 알아본다. 
@@ -131,6 +131,39 @@ print(type(dump))
 <br>
 
 ---
+# 3. json.load 와 json.dump
+
+python 공식 문서를 보면 load, loads, dump, dumps 의 인자에 대해 다음과 같이 설명한다.
+
+### json.load(fp), json.loads(fp) -> Python object
+
+- json.load(fp)에서의 fp
+    - a .read()-supporting **text file or binary file** containing a JSON document
+
+
+- json.loads(fp)에서의 fp
+    - a **str, bytes or bytearray instance** containing a JSON document
+
+
+![image](https://s1.md5.ltd/image/364d7e35ffaa0788c6f057031198bba7.png)
+
+
+<br>
+
+
+### json.dump(obj), json.dumps(obj) -> fp
+
+- json.dump(obj)
+    - obj as a JSON formatted stream to fp (a .write()-supporting file-like object)
+
+- json.dumps(obj)
+    - Serialize obj to a JSON formatted str 
+
+
+<br>
+
+---
+
 
 # Reference
 

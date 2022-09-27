@@ -139,11 +139,11 @@ python 공식 문서를 보면 load, loads, dump, dumps 의 인자에 대해 다
 
 - json.load(fp)에서의 fp
     - a .read()-supporting **text file or binary file** containing a JSON document
-
+    - json 파일을 의미
 
 - json.loads(fp)에서의 fp
     - a **str, bytes or bytearray instance** containing a JSON document
-
+    - json 형식의 문자열을 의미 
 
 ![image](https://s1.md5.ltd/image/364d7e35ffaa0788c6f057031198bba7.png)
 
@@ -155,9 +155,11 @@ python 공식 문서를 보면 load, loads, dump, dumps 의 인자에 대해 다
 
 - json.dump(obj)
     - obj as a JSON formatted stream to fp (a .write()-supporting file-like object)
+    - json 파일로 변환
 
 - json.dumps(obj)
     - Serialize obj to a JSON formatted str 
+    - json 형식의 문자열로 변환
 
 
 <br>

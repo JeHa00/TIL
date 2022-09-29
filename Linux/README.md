@@ -3,7 +3,7 @@
 
 
 - 각 챕터의 핵심 주제는 다음과 같다.
-    - [Chapter 1: Linux의 구조와 실습 환경 setting](https://github.com/JeHa00/TIL/blob/main/Linux/LectureNote-01.md)
+    - [Chapter 1: Linux의 구조와 실습 환경 setting](https://github.com/JeHa00/TIL/blob/main/Linux/LectureNote01.md)
     - [Chapter 2: 기본적인 명령어 학습](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter02)
     - [Chapter 3: 문서편집기 -vi editor 학습](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter03)
     - [Chapter 4: 사용자 계정관리 학습](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter04)

@@ -53,7 +53,7 @@
 
 ---
 
-# 3. GIL(Global Interface Lock)
+# 3. GIL(Global Interpreter Lock)
 
 - GIL은 Python에만 존재하는 것으로, Global Interface Lock in CPython을 의미한다.
 - GIL은 두 개 이상의 thread가 동시에 실행될 때(context switching 상황) 하나의 자원에 액세스하는 경우, 문제점을 방지하기 위해 GIL을 실행하여 resource 전체에 lock을 건다.

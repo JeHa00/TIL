@@ -76,6 +76,8 @@ virtualenv env-before --python=3.8.9
 6. 프로젝트 생성: `django-admin startproject config .`
     - 현재 경로에 프로젝트명으로 config를 생성하여 그 안에 프로젝트 파일들을 담는다. 
 
+7. 설치된 모듈 문서화: `pip freeze > requirements.txt`
+
 이런 방식으로 만들면 위에 프로젝트 경로로 들어오면 바로 가상환경이 실행된다! 
 
 ```yml

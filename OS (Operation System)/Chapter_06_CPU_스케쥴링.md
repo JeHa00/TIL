@@ -102,12 +102,12 @@
 
     <p align="center"> <image src ="https://user-images.githubusercontent.com/78094972/164412061-026db4a6-462c-40f8-8ae9-128ab40b7170.PNG"/></p>
 
-- **특히, 이 CPU는 한 시스템 내에 하나 밖에 없으므로, 시분할 시스템에서 매우 효율적으로 관리해야 한다.**
+- **특히, CPU는 한 시스템 내에 하나 밖에 없으므로, 시분할 시스템에서 매우 효율적으로 관리해야 한다.**
 
 - **대부분의 짧은 CPU burst + 극히 일부분의 긴 CPU burst**
 
   = 대부분 CPU를 오래 사용하기보다는 잠깐 사용하고, I/O 작업을 수행하는 process들이 많다.  
-   = CPU busrt가 짧은 process는 대부분 대화형 작업이다.
+   = CPU burst가 짧은 process는 대부분 대화형 작업이다.
   = CPU 스케쥴링을 할 때, CPU burst가 짧은 process에게 우선적으로 CPU를 사용할 수 있도록 하는 스케쥴링이 필요
 
 - **그래서, I/O bound process의 우선순위를 높이는 것이 바람직한다.**
@@ -119,21 +119,25 @@
 
 ## 2. CPU 스케쥴러
 
-- CPU 스케쥴러란?? **ready state에 있는 procese 중에서 이번에 CPU를 줄 프로세스를 결정하는 OS의 code**
+### CPU 스케쥴러란?? 
 
-  - HW가 아닌, os의 code 중 이 기능을 하는 부분을 CPU 스케쥴러라 부르는 것이다.
+- **ready state에 있는 procese 중에서 이번에 CPU를 줄 프로세스를 결정하는 OS의 code**
 
-- **CPU 스케쥴링이 필요한 경우**
+- HW가 아닌, os의 code 중 이 기능을 하는 부분을 CPU 스케쥴러라 부르는 것이다.
 
-  1. I/O 요청 system call에 의해 running에서 blocked로 바뀐 경우
-  2. Timer interrupt에 의해 running에서 ready로 바뀐 경우
-  3. I/O 작업 요청으로 blocked 상태였던 process가 I/O 작업 완료에 의해 devce controller가 interrupt 발생하여 ready 상태로 바뀐 경우
-  4. running 상태에 있는 프로세스가 종료(terminate)되는 경우
+### CPU 스케쥴링이 필요한 경우
 
-- **CPU 스케쥴링 방식 2가지: 비선점형(non-preemptive) 과 선점형(preemptive)**
-  - 비선점형(preemptive): process가 작업완료 후, 자발적으로 CPU를 반납하는 방식 -> 1번과 4번
-  - 선점형(preemptive): CPU를 계속 사용하기 원해도, 강제로 빼앗는 방법 -> 2번과 3번
-    - ex) timer interrupt
+1. I/O 요청 system call에 의해 running에서 blocked로 바뀐 경우
+2. Timer interrupt에 의해 running에서 ready로 바뀐 경우
+3. I/O 작업 요청으로 blocked 상태였던 process가 I/O 작업 완료에 의해 device controller가 interrupt 발생하여 ready 상태로 바뀐 경우
+4. running 상태에 있는 프로세스가 종료(terminate)되는 경우
+
+### CPU 스케쥴링 방식 2가지: 비선점형(non-preemptive) 과 선점형(preemptive)
+
+- 비선점형(preemptive): process가 작업완료 후, 자발적으로 CPU를 반납하는 방식 -> 1번과 4번
+
+- 선점형(preemptive): CPU를 계속 사용하기 원해도, 강제로 빼앗는 방법 -> 2번과 3번
+  - ex) timer interrupt
 
 <br>
 
@@ -174,7 +178,7 @@
 
      - 휴면 상태(idle)에 머무르는 시간을 최대한 줄이는 것이 CPU 스케쥴링의 중요한 목표
 
-  2. 처리량(throughput): 주어진 시간 동안 ready queue에서 CPU burst를 완료한 프로세스의 개수
+  2. 처리량(throughput): 주어진 시간 동안 ready queue에서 CPU burst를 완료한 프로세스의 수
 
      - CPU burst가 짧은 process에게 할당할수록 증가한다.
 

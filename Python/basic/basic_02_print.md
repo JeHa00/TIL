@@ -103,9 +103,9 @@ I love u
 
 <br>
 
-## 2. String 문자열 출력 (s)
+# 2. String 문자열 출력 (s)
 
-> **_formatting을 하면 특정 케이스에 원하는 형식대로 출력할 수 있고, 가독성이 높아진다._**
+> **_formatting으로 특정 케이스에 원하는 형식대로 출력할 수 있고, 가독성이 높아진다._**
 
 - d는 정수, s는 string, f는 실수를 의미한다.
 - `' % ' % ()` 로 formatting 하는 방법과 `' {} '.format()` 을 사용해서 formatting하는 방법이 있다.
@@ -131,12 +131,12 @@ two one
 # 문자열 총 자리 수는 10자리를 의미한다.
 # 오른쪽 정렬
 # 즉, blank 시작은 왼쪽부터다.
-> print('%10s' % (likelike))
+> print('%10s' % ('likelike'))
 # 왼쪽 blank는 2칸이다.
   likelike
 
 # 방향을 반대로 하기 위해서는 (-)를 붙힌다: 왼쪽정렬
-> print('%-10s' % (likelike))
+> print('%-10s' % ('likelike'))
 likelike
 ```
 
@@ -271,7 +271,7 @@ _24_
 
 <br>
 
-# 4. Float 실수형 출력 (f)
+## 4. Float 실수형 출력 (f)
 
 ```yml
 

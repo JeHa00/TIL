@@ -6,8 +6,9 @@
 > 4. [pem key에 권한 부여하기](#4-pem-key에-권한-부여하기)    
 > 5. [Install package & File structure](#5-install-package--file-structure)    
 > 6. [EC2 public IPv4와 django server 연결](#6-ec2-public-ipv4와-django-server-연결)    
-> 7. [uWSGI 설치 및 적용하기](#7-uwsgi-설치-및-적용하기)  
-> 8. [nginx 설치 및 적용하기](#8-nginx-설치-및-적용하기)
+> 7. [uWSGI 설치 및 적용하기](#7-uwsgi-설치-및-적용하기)    
+> 8. [nginx 설치 및 적용하기](#8-nginx-설치-및-적용하기)  
+> Error: [502 Bad Gateway error 해결](#❗️-502-bad-gateway-error-해결)
 
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 김형종 강사님의 django 강의를 학습한 내용입니다.
@@ -167,14 +168,17 @@ $ubuntu@ip-172-31-3-151:~$ sudo apt-get update
 ...
 
 $ubuntu@ip-172-31-3-151:~$ sudo apt-get install build-essential
+
+# 파이썬 규격을 맞추기 위한 명령어 실행
+$ubuntu@ip-172-31-3-151:~$ sudo apt-get install python3.9 python3.9-dev
+c
+# 가상환경 모듈 설치
+$ubuntu@ip-172-31-3-151:~$ sudo apt-get install virtualenv
 ```
 
 - 위 명령어를 다 실행했으면 파이썬 규격을 맞추기 위해서 아래 명령어를 입력하여 파이썬을 설치한다.
-    - 아래 명령어가 없으면 **uWSGI** 를 실행할 수 없다. 
+    - 위 작업을 놓치면 **UWSGI** 를 설치할 수 없다.
     - `sudo apt-get install python3.9 python3.9-dev`
-
-- 마지막으로 가상환경 모듈을 설치한다.
-    - `sudo apt-get install virtualenv`
 
 <br>
 
@@ -207,7 +211,7 @@ $ubuntu@ip-172-31-3-151:~$ sudo apt-get install build-essential
     - ex) 가상환경 이름: venv
     
     ```yml
-    ubuntu@ip-172-31-3-151:~/www/ls-django$ virtualenv venv --python=3.9
+    ubuntu@ip-172-31-3-151:~/www/ls-django$ v 
 
     ubuntu@ip-172-31-3-151:~/www/ls-django$ source ./venv/bin/activate
 
@@ -476,7 +480,7 @@ Oct 14 05:21:09 ip-172-31-3-151 systemd[1]: Reloaded A high performance web ser>
 lines 1-16/16 (END)
 ```
 
-위에 `sudo service nginx reload` 를 실행한 결과, `:8000`을 입력하지 않고 public IPv4 만 입력해도 애플리케이션을 불러올 수 있다.  
+위에 `sudo service nginx reload` 를 실행한 결과, `:8000`을 입력하지 않고, `python manage.py runserver`를 하지 않고 public IPv4 만 입력해도 애플리케이션을 불러올 수 있다.  
 
 하지만, css가 전혀 적용되지 않는다. 
 
@@ -484,7 +488,9 @@ lines 1-16/16 (END)
 
 <br>
 
-# ❗️ 502 Bad Gateway Error
+---
+
+# ❗️ 502 Bad Gateway Error 해결
 
 위 작업을 다 완료했음에도 불구하고도, `sudo service nginx reload` 후, 502 Bad Gateway Error가 뜬다면 무엇이 원인일까?
 
@@ -525,28 +531,27 @@ nginx와 uwsgi 사이일까?
     - python application을 발견할 수 없다고 뜬다. 
 
 
+/var/log/nginx/error.log;
+
 그러면 uwsgi 를 설치하는 것에 문제가 생긴 것으로 판단된다. 직접 확인해보자.
 
 - `ls -al ./venv/lib/python3.9/site-packages` 를 입력하여, `uWSGI-2.0.20.dist-info` 를 확인해보자. 그러면 존재하지 않는다는 걸 알 수 있다.
 
-- 원인을 분석해보면 위에 pip install uwsgi 명령어를 입력하여 오류가 떠서, 구글링을 통해 `sudo apt install uwsgi`이 이를 대체할 수 있다고 판단하여 설치했으나 이걸로 오류가 계속 발생한 것이다.
+- 원인을 분석해보면 위에 pip install uwsgi 명령어를 입력하여 오류가 떠서, 구글링을 통해 `sudo apt install uwsgi`가 이를 대체할 수 있다고 판단하여 설치했으나 정확하게 설치되지 않은 걸로 판단된다.
+
+<br>
+
+뜬 Error를 면밀히 살펴보면 `Exception: you need a C compiler to build uWSGI` 내용을 확인할 수 있다. 
+
+- 위 Error가 떴다면 [Install package](#51-install-package) 과정의 명령어들을 다 실행하지 않은 것이니, 다시 실행해보자. 
 
 
+- 그럼에도 안된다면 아래 명령어를 다시 실행해하여 `Public IPv4/`를 입력하자. 
 
-
-
-🔆 위 접근 방식에 대해서 아래 블로그에서도 언급하고 있다. 
-- [Set up Nginx and uWSGI](https://monicalent.com/blog/2013/12/06/set-up-nginx-and-uwsgi/)에서 맨 마지막 부분에 언급된다. 
-
-
-
-
-
-
-
-
-
-
+```yml
+# 경로: www/ls-django/.conf
+$ uwsgi --ini uwsgi.ini
+```
 
 <br>
 

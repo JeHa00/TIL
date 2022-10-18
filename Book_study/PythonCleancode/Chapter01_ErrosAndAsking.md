@@ -1,18 +1,16 @@
 # 0. Introduction
 
-> 1. [파이썬 에러 메세지를 이해하는 방법](#1-파이썬-에러-메세지를-이해하는-방법)
-> 2. [질문하는 방법](#질문하는-방법)
+> 1. [파이썬 에러 메세지를 이해하는 방법](#1-파이썬-에러-메세지를-이해하는-방법)  
+> 2. [질문하는 방법](#질문하는-방법)  
 
 
-- 아래 book study는 알 스웨이가트가 지었고, 박재호님이 번역하신 [클린 코드, 이제는 파이썬이다.](https://book.interpark.com/product/BookDisplay.do?_method=detail&sc.prdNo=355096830&gclid=Cj0KCQjw166aBhDEARIsAMEyZh4ltxiM-nlGaj3yjPIW82A6l-hPlXjmjBCqtmw6xzqRX8dc8Rk6PFMaAjm9EALw_wcB) 를 읽고 진행한 book study 입니다.
-
-- 영문 원본으로 온라인 공개된 자료가 있어서 영문으로  학습합니다.
-
-- 각 chapter를 읽고 내용 정리하는 식으로 진행했습니다.
-
-- 이번 book study를 진행하면서 code에 대한 철학이 생기고, code를 바라보는 눈이 깊어지고, 넓어지기를 바라며 시작합니다.
+- 아래 book study는 알 스웨이가트가 지었고, 박재호님이 번역하신 [클린 코드, 이제는 파이썬이다.](https://book.interpark.com/product/BookDisplay.do?_method=detail&sc.prdNo=355096830&gclid=Cj0KCQjw166aBhDEARIsAMEyZh4ltxiM-nlGaj3yjPIW82A6l-hPlXjmjBCqtmw6xzqRX8dc8Rk6PFMaAjm9EALw_wcB) 를 읽고 진행한 book study 입니다. 영문 원본으로 온라인 공개된 자료가 있어서 영문으로 학습합니다.
 
 - 기존에 읽었던 Clean Code는 자바 코드로 되어 있어서, 먼저 파이썬 클린 코드를 학습 후 시작할려고 합니다.
+
+- 이번 book study를 진행하면서 code에 대한 철학이 생기고, code를 바라보는 눈이 깊어지고, 넓어지기를 바랍니다.
+
+- 각 chapter를 읽고 내용 정리하는 식으로 진행합니다.
 
 - 이번에 학습하는 chapter의 주제는 **'Chapter 01: DEALING WITH ERRORS AND ASKING FOR HELP'** 입니다.
 
@@ -184,21 +182,23 @@ SyntaxError: invalid syntax
 - 이 에러를 해결하기 위해 무슨 시도를 했는지 알리기  
 - 컴퓨터 및 환경 설정 사항을 공유하기 ex) version
 
-```markdown
-<aside>
-# Selenium 웹드라이버 : 어떻게 해야 엘리먼트의 '모든' 속성을 찾을 수 있을까요?
 
-파이썬 **Selenium 모듈**에서 **WebElement** 객체에 대한 속성들을 다음과 같이 **get_attribute()** 함수로 가져오려고 했습니다.
+<br>
 
-그런데, **href**로 이름 붙은 속성이 존재하지 않아 **None**이 반환됐습니다.
+### 좋은 질문 예시
+
+```markdonw
+[Title] Selenium 웹드라이버 : 어떻게 해야 엘리먼트의 '모든' 속성을 찾을 수 있을까요?
+
+파이썬 'Selenium 모듈' 에서 'WebElement' 객체에 대한 속성들을 다음과 같이 'get_attribute()' 함수로 가져오려고 했습니다.
+
+그런데, 'href' 로 이름 붙은 속성이 존재하지 않아 'None' 이 반환됐습니다.
 
 엘리먼트가 가진 모든 속성을 어떻게 가져오는지가 궁금합니다.
 
-**get_attributes( )**나 **get_attribute_name( )** 같은 메소드를 찾지 못했습니다.
+'get_attributes( )' 나 'get_attribute_name( )' 같은 메소드를 찾지 못했습니다.
 
 저는 파이썬에서 2.44.0 버전 Selenium 모듈을 사용하고 있습니다.
-
-</aside>
 ```
 
 - 질문 제목에 내용 요약

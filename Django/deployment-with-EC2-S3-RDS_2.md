@@ -2,6 +2,7 @@
 
 > 1. [Static file Serving](#static-file-serving)  
 > 2. [RDS 연결하기](#rds-연결하기)
+> 3. [개발자 DB와 운영 DB로 나누기](#개발자-db-와-운영-db로-나누기)
 
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 김형종 강사님의 django 강의를 학습한 내용입니다.
@@ -211,8 +212,277 @@ css 파일의 Request URL을 보면 다음과 같이 aws에서 오는 걸 확인
 ---
 # RDS 연결하기
 
+RDS를 연결한 후, super user 계정을 생성하여 admin page에 들어가보자. 
+
+admin page에 들어가려는 이유는 이것으로 DB 연결 유무를 확인할 수 있다. 
+
+❗️ 아래 연결 설정들은 단지 **RDS를 연결해보자는 취지** 에 맞게만 설정한 것이므로, 실제 프로젝트 시작 시에는 다를 수 있다. 
+
+## RDS DB 생성하기
 
 
+1. AWS RDS 들어가기 -> '데이터 베이스 생성하기' 클릭
+
+2. 데이터베이스 생성 방식 선택: '표준 생성' 클릭
+
+3. 엔진 옵션: PostegreSQL 클릭
+
+4. 템플릿: 개발/테스트 클릭
+
+5. 설정
+    - 'DB instance 식별자' 에 이름 입력
+        - ex) learningspoons
+    - '마스터 사용자 이름'에 이름 입력
+        - ex) learningspoons 
+
+6. 인스턴스 구성
+    - '버스터블 클래스' 선택 -> 'db.t3.micro' 클릭
+
+7. 스토리지: 스토리지 자동 조정 체크 해제
+    - 왜냐하면 지금 바로 필요하지 않기 때문
+
+8. 가용성 및 내구성: 기본값을 유지
+
+9. 연결: 
+    - '퍼블릭 액세스'에서 '예' 선택
+    - 'VPC 보안 그룹(방화벽)' 에서 '기존 항목 선택' 클릭
+
+10. 데이터베이스 인증:
+    - '암호 인증' 선택
+
+11. 모니터링: '성능 개선 도우미'에서 '성능 인사이트 켜기' 체크 해제
+
+
+12. 추가 구성:
+    - '초기 데이터베이스 이름' 작성하기
+        - ex) postgres
+
+<br>
+
+## 인바운드 규칙 편집
+
+1. AWS EC2에 들어가서 해당 인스턴스 선택
+
+2. 왼쪽 '네트워크 및 보안' 에 '보안 그룹' 클릭
+
+3. 1번 인스턴스의 보안그룹 선택 후, '인바운드 규칙 편집' 클릭
+
+4. '규칙 추가' 클릭 -> 유형: 'postgresql' 선택 -> 소스: 'Anywhere-IPv4` 선택
+
+
+## ❗️인바운드 규칙 미추가로 인한 Error
+
+4번을 추가하지 않으면 나중에 `python manage.py runserver`를 실행할 때, 다음과 같은 안내문이 뜨면서 진행되지 않는다. 위 보안사항을 추가하면 자연스럽게 서버가 돌아간다.
+
+
+```yml
+# ls-django.cvhmktue5rnw.ap-northeast-2.rds.amazonaws.com 는 생성한 RDS DB의 엔드포인트를 의미
+Is the server running on host "ls-django.cvhmktue5rnw.ap-northeast-2.rds.amazonaws.com" 
+(172.31.28.221) and accepting TCP/IP connections on port 5432?
+```
+
+<br>
+
+## local django settings.py에 RDS정보 입력
+
+> **_기존에 있던 DATEBASES 내용을 다음과 같이 수정한다._**  
+
+해당 강의를 진행할 때는 local에서만 진행했지만, 나는 EC2 우분투 서버에서도 해본 결과 동일하게 진행하면 된다. 
+
+```python
+# config/settings.py
+DATABASES = { 
+"default": {
+       "ENGINE": "django.db.backends.postgresql_psycopg2",     
+
+        # 아래는 예시일 뿐, 리스트말고 문자열로 입력한다.
+        “HOST": [RDS 엔드포인트],
+        "NAME": [DB 이름], 
+        "PORT": "5432",
+        "USER": [마스터 사용자 이름],
+        "PASSWORD": [비밀번호], 
+      }
+}
+```
+
+- 생성한 DB 인스턴스를 들어가서 클릭하여 ‘연결 & 보안’ 탭에 들어가면 HOST가 존재한다.
+- NAME, USER 는 “구성” 탭에 존재한다.
+
+
+
+위 내용을 입력하고 `runserver`를 하면 `ENGINE`에서 `psycopg2`가 설치되지 않아 ModuleError가 발생된다. 
+
+이를 해결하고자 psycopg2를 설치해보자.
+
+<br>
+
+## psycopg2 설치하기
+
+postgresql을 사용하기 위해서 psycopg2 를 설치해야 한다. 
+
+psycopg2는 컴퓨터 OS마다, 버전마다 설치방법이 달라서 다양하게 시도해보았다.
+
+stackoverflow도 보고, github issue도 뒤져본 결과 맥북 에어 M1을 사용한다는 전제하에 다음 명령어를 입력하니 한 번에 해결되었다.
+
+- `pip install psycopg2-binary==2.9.2` 
+
+내가 시도해본 순서를 정리하여 아래에 기록한다.
+
+```yml
+pip install psycopg2-binary wheel
+pip install psycopg2 
+```
+
+위에 두 명령어 실행 후, python manage.py runserver를 돌릴 때 안되면 아래 명령어 실행하기
+
+```yml
+# 아래 brew 명령어를 실행하기 위해서는 brew를 먼저 설치해야 한다. 
+# 아래 두 명령어 실행 후, reinstall 명령어 안내가 뜨면 각각 다 실행하기
+brew install libpq --build-from-source
+brew install postgresql openssl
+
+export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
+
+pip install psycopg2-binary --force-reinstall --no-cache-dir
+pip install psycopg2 --force-reinstall --no-cache-dir
+pip install --upgrade numpy
+```
+
+위 명령어들을 다 실행하고 `runserver`를 실행했을 때 psycopg2 module이 인식되지 않으면 `pip install psycopg2-binary==2.9.2` 을 실행해보자.
+
+
+<br>
+
+## admin 들어가기
+
+`python manage.py createsuperuser`를 실행 후, 어드민 로그인을 한다.
+
+로그인이 된다면 DB 연결이 잘 된 것이다. 
+
+
+<br>
+
+---
+
+# 개발자 DB 와 운영 DB로 나누기 
+
+### 첫 번째: config/settings 생성하기
+
+- `config/settings` directory 생성 후, 그 안에 다음과 같이 생성하기
+    - `__init__.py`
+    - base.py
+    - develop.py
+    - production.py
+
+### 두 번째: 기존 내용 base.py에 담기
+
+기존 settings.py의 내용은 base.py에 담는다. 그리고, 기존 settings.py는 삭제한다.
+
+
+### 세 번째: ALLOWED_HOSTS 내용 옮기기
+
+기존에 있던 ALLOWED_HOSTS는 develop.py 와 production.py 에 옮긴다. 
+
+- `config/settings/develop.py` 
+
+    ```python
+    from .base import * 
+
+    DEBUG = TRUE
+
+    ALLOWED_HOSTS = ["*"]
+    ```
+
+- `config/settings/production.py`
+
+    ```python
+    # config/settings/production.py
+    from .base import *
+
+    DEBUT = False
+
+    ALLOWED_HOSTS = ["127,0,0,1"]
+    ```
+
+### settings option을 사용하여 runserver 실행 
+
+그러면 settings를 나눴기 때문에, 옵션을 사용하여 적절한 설정을 택하여 서버를 실행시켜보자.
+
+```yml
+# terminal
+$ python manage.py runserver --settings=config.settings.develop
+```
+
+하지만 `FileNotFoundError`가 발생된다. 그 이유는 `settings` directory가 생기면서 기존 설정 파일의 디렉토리 레벨이 한 단계 깊어져서, `BASE_DIR`의 값이 달라졌기 때문이다. 
+
+<br>
+
+### BASE_DIR 수정하기
+
+처음에는 `BASE_DIR = Path(__file__).resolve().parent.parent` 이랬지만,
+
+
+이처럼 `BASE_DIR = Path(__file__).resolve().parent.parent.parent` 수정하자.
+
+그 후, 다시 아래 명령어를 실행하여 결과를 확인해보자. 
+
+```yml
+python manage.py runserver 0:8000 --settings=config.settings.production
+```
+
+그 결과, 화면에 `Disallowed Error`가 발생하는데, 정상적으로 잘 되었다는 걸 의미한다.  
+
+<br>
+
+### 🔆 DB를 production과 develop를 나눈 이유
+
+> **_develop 단계에 사용한 DB는 테스트를 위한 DB이기 때문에, production 단계에서의 DB와 다를 수 밖에 없다._**
+
+- RDS를 연결하면 그 때 DB는 production 단계에서 사용한다.  
+
+- 코드로 확인해보자.
+    - production.py 에는 RDS DATABASES를 적용한다.   
+    - develop.py 에는 기존 장고 프로젝트 생성 시, DB 내용을 적용한다고 하자.  
+
+<br>
+
+- develop.py
+
+```python
+from .base import *
+
+ALLOWED_HOSTS = ["*"]
+
+DATABASES = { 
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",     
+        "NAME": BASE_DIR / "db.sqlite3"
+        }
+}
+```
+
+<br>
+
+
+- production.py
+
+```python
+from .base import *
+
+ALLOWED_HOSTS = ["127.0.0.1"]
+
+DATABASES = { 
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",     
+        "HOST": "ls-django.cvhmktue5rnw.ap-northeast-2.rds.amazonaws.com",
+        "NAME": "postgres", 
+        "PORT": "5432",
+        "USER": "learningspoons",
+        "PASSWORD": [비밀번호], 
+    }
+}
+```
 
 <br>
 

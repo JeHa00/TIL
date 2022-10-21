@@ -410,8 +410,13 @@ pip install --upgrade numpy
 그러면 settings를 나눴기 때문에, 옵션을 사용하여 적절한 설정을 택하여 서버를 실행시켜보자.
 
 ```yml
-# terminal
+## terminal에 입력하기 
+
+# develop setting 적용하기
 $ python manage.py runserver --settings=config.settings.develop
+
+# production setting 적용하기
+$ python manage.py runserver --settings=config.settings.production
 ```
 
 하지만 `FileNotFoundError`가 발생된다. 그 이유는 `settings` directory가 생기면서 기존 설정 파일의 디렉토리 레벨이 한 단계 깊어져서, `BASE_DIR`의 값이 달라졌기 때문이다. 
@@ -482,6 +487,18 @@ DATABASES = {
         "PASSWORD": [비밀번호], 
     }
 }
+```
+
+## manage.py 실행 시 --settings option
+
+settings.py 를 분기시켰으므로 manage.py 명령어를 실행할 때, `--settings=config.settings.<분기된 파일명>` 을 추가해야한다. 
+
+아래 예시를 보자.
+
+```yaml
+$ python manage.py runserver --settings=config.settings.develop
+
+$ python manage.py migrate --settings=config.settings.develop
 ```
 
 <br>

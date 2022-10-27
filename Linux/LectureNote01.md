@@ -180,6 +180,15 @@ Config 내에 `IdentityFile` 의 경로가 잘못 입력된 것이었다.
 
 이제 `ssh root` 와 `ssh user`를 사용하면 손쉽게 AWS를 통해서 Linux를 학습할 수 있게 되었다.  
 
+<br>
+
+## 세 번째 Error
+
+아마존 리눅스가 아닌 우분투로 로그인할 경우, 위에서 만든 `.ssh/config` 로 만든 것으로 로그인할 수 없다. 
+
+만약 시도할 경우 Permission denied (public key) 가 뜬다.
+
+그러면 `ssh -i dalkom.pem ubuntu@<IPv4>` 를 입력하여 로그인할 수 있다. 
 
 <br>
 

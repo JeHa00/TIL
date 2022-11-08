@@ -1,8 +1,8 @@
-
 # 0. Introduction 
 
 > 1. [DRF(Django RestFramework)란?](#1-drfdjango-restframework란)    
 > 2. [직렬화와 역직렬화](#2-직렬화와-역직렬화)  
+> 3. [직렬화 코드 작성하기](#3-직렬화-코드-작성하기) 
 
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 김형종 강사님의 django 강의를 학습한 내용입니다.
@@ -12,14 +12,7 @@
 
 - 이번에는 django의 외부 라이브러리인 DRF(Django Rest-Framework)에 대해 학습한 걸 정리했습니다. 
 	- DRF와 DRF의 핵심인 직렬화가 무엇인지
-	- 어떤 흐름으로 설계를 진행하는지
-	- ModelViewSet, @api_view, ViewSet 각각으로 view를 만드는 방법
 	- Serializer 설계  
-
-
-
-1. DRF 설치 및 api_url / view_url 분기
-2. DRF의 serializer 등록 후, ModelSerializer 바라보기
 
 
 <br>
@@ -77,18 +70,18 @@ courses/finance/lessons/
 
 - 설치 명령어
 
-	```python
-	pip install djangorestframework
-	```
+```python
+pip install djangorestframework
+```
 
 - 그리고, `settings/base.py` 의 `INSTALLED_APPS`에 추가한다.  
 
-	```python
-	INSTALLED_APPS = [
-		...
-		"rest_framework",
-	]
-	```
+```python
+INSTALLED_APPS = [
+	...
+	"rest_framework",
+]
+```
 
 <br>
 
@@ -141,46 +134,46 @@ api를 통해서 전달받은 데이터를 원하는 객체 타입으로 전환�
 
 - instance 생성하기
 
-	```python
-	from snippets.models import Snippet
-	from snippets.serializers import SnippetSerializer
-	from rest_framework.renderers import JSONRenderer
-	from rest_framework.parsers import JSONParser
+```python
+from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 
-	## instance 생성 
-	>>> snippet = Snippet(code='foo = "bar"\n')
-	>>> snippet.save()
+## instance 생성 
+>>> snippet = Snippet(code='foo = "bar"\n')
+>>> snippet.save()
 
-	>>> snippet = Snippet(code='print("hello, world")\n')
-	>>> snippet.save()
-	```
+>>> snippet = Snippet(code='print("hello, world")\n')
+>>> snippet.save()
+```
 
 - instance를 dictionary json으로 전환: Serializer
 
-	```python
-	>>> serializer = SnippetSerializer(snippet)
-	>>> print(type(serializer))
-	<class '<app 이름>.serializer.SnippetSerializer'>
+```python
+>>> serializer = SnippetSerializer(snippet)
+>>> print(type(serializer))
+<class '<app 이름>.serializer.SnippetSerializer'>
 
-	>>> serializer.data
-	{'id': 2, 'title': '', 'code': 'print("hello, world")\n', 'linenos': False, 'language': 'python', 'style': 'friendly'}
+>>> serializer.data
+{'id': 2, 'title': '', 'code': 'print("hello, world")\n', 'linenos': False, 'language': 'python', 'style': 'friendly'}
 
-	>>> print(type(serializer.data))
-	<class 'rest_framework.utils.serializer_helpers.ReturnDict'>
-	```
+>>> print(type(serializer.data))
+<class 'rest_framework.utils.serializer_helpers.ReturnDict'>
+```
 
 - dictionary json을 bystring으로 전환: JSONRender
 	- 네크워크를 통해서 전달될 때는 JSON 형태로 전달되므로 JSONRenderer를 사용한다. 
 
-	```python
-	>>> content = JSONRenderer().render(serializer.data)
+```python
+>>> content = JSONRenderer().render(serializer.data)
 
-	>>> print(type(content))
-	<class 'bytes'>
+>>> print(type(content))
+<class 'bytes'>
 
-	>>> print(content)
-	b'{"id":null,"title":"","code":"foo=\\"bar\\"\\n","linenos":false,"language":"python","style":"friendly"}'
-	```
+>>> print(content)
+b'{"id":null,"title":"","code":"foo=\\"bar\\"\\n","linenos":false,"language":"python","style":"friendly"}'
+```
 
 <br>
 
@@ -188,36 +181,36 @@ api를 통해서 전달받은 데이터를 원하는 객체 타입으로 전환�
 
 - bystring을 dictionary json으로 전환: JSONParser
 
-	```python
-	>>> import io
-	>>> stream = io.BytesIO(content)
-	>>> stream
-	<_io.BytesIO object at 0x7fcc89a27f40>
+```python
+>>> import io
+>>> stream = io.BytesIO(content)
+>>> stream
+<_io.BytesIO object at 0x7fcc89a27f40>
 
-	>>> data = JSONParser().parse(stream)
-	>>> data
-	{'id': None, 'title': '', 'code': 'foo="bar"\n', 'linenos': False, 'language': 'python', 'style': 'friendly'}
+>>> data = JSONParser().parse(stream)
+>>> data
+{'id': None, 'title': '', 'code': 'foo="bar"\n', 'linenos': False, 'language': 'python', 'style': 'friendly'}
 
-	>>> print(type(data))
-	<class 'dict'>
-	```
+>>> print(type(data))
+<class 'dict'>
+```
 
 - dictionary json을 다시 instance로 전환: Serializer
 
-	```python
-	>>> serializer = SnippetSerializer(data=data)
-	>>> print(type(serializer))
-	<class 'quickstart.serializer.SnippetSerializer'>
+```python
+>>> serializer = SnippetSerializer(data=data)
+>>> print(type(serializer))
+<class 'quickstart.serializer.SnippetSerializer'>
 
-	>>> serializer.is_valid()
-	True
-	
-	>>> serializer.validated_data
-	OrderedDict([('title', ''), ('code', 'foo="bar"'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])
+>>> serializer.is_valid()
+True
 
-	>>> print(type(serializer.validated_data))
-	<class 'collections.OrderedDict'>
-	```
+>>> serializer.validated_data
+OrderedDict([('title', ''), ('code', 'foo="bar"'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])
+
+>>> print(type(serializer.validated_data))
+<class 'collections.OrderedDict'>
+```
 
 - formView에서 항상 valid 체크를 했었다. 이것이 통과되면 값을 뽑아낸다.
 - 딕셔너리로 받은 것을 유효성 체크 후, 모델로 받은 것이다.
@@ -232,6 +225,50 @@ api를 통해서 전달받은 데이터를 원하는 객체 타입으로 전환�
 >>> serializer.data
 
 ```
+
+<br>
+
+---
+# 3. 직렬화 코드 작성하기 
+
+- Serializer는 FormView와 유사하다.
+
+- Serializer의 class name은 `<Model명>Serializer` 로 작성한다.
+
+- fields의 역할은 가져오는 정보 종류를 의미한다. 
+	- `"__all__"` 이면 모든 정보를 다 가져온다. 
+	- 하지만 `"code"` 를 하면 code만 가져온다. 
+
+- drf의 view인 `APIView` 라는 걸 이용해서 하나 하나 api를 구현할 수 있지만, drf는 설정한대로 하면 금방한다. 
+
+
+```python
+# course/serialization.py
+
+from rest_framework import serializers 
+from course.models import Course, Group, Registration
+
+class CourseSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Course
+		fields = "__all__"
+		# fields = ["code"] 
+		# 만약 이렇게 하면 code만 가져온다. 
+			
+class GroupSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Group
+		fields = "__all__"
+
+class RegistrationSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Registration
+		fields = "__all__"
+```
+
+<br>
+
+---
 
 <br>
 

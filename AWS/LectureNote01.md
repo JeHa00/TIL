@@ -189,7 +189,7 @@ DevOps를 직군으로 많이 설명하지만, 사실상 '문화'다.
     - 자연재해 등으로 안전하게 격리하기 위해서 모든 AZ는 서로 멀리 떨어져 있다.
 
 
-    ![image](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html)
+    ![image](https://docs.aws.amazon.com/images/AmazonRDS/latest/UserGuide/images/Con-AZ-Local.png)
 
 - Serverless
     - SaaS(Software-as-a-Service)형 서비스  
@@ -287,7 +287,6 @@ python manage.py runserver 0:8000
 
 <br>
 
----
 
 ---
 # Reference 

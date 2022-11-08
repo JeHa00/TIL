@@ -1,12 +1,12 @@
 
 # 0. Introduction 
 
-> 4. [DRF의 이점](#3-drf로-도움받을-것들)  
-> 5. [DRF에 사용할 models.py](#4-drf에-사용할-modelspy)  
-> 6. [view 설계: APIView](#5-view-설계-apiview)
-> 7. [view 설계: @api_view](#6-view-설계-api_view)   
-> 8. [view 설계: ModelViewSet](#7-view-설계-viewset)    
-> 9. [자주 사용되는 view 설계](#9-자주-사용되는-view-설계)
+> 1. [DRF의 이점](#1-drf로-도움받을-것들)  
+> 2. [DRF에 사용할 models.py](#2-drf에-사용할-modelspy)  
+> 3. [view 설계: APIView](#3-view-설계-apiview)
+> 4. [view 설계: @api_view](#4-view-설계-api_view)   
+> 5. [view 설계: ModelViewSet](#5-view-설계-viewset)    
+> 6. [자주 사용되는 view 설계](#6-자주-사용되는-view-설계)
 
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 김형종 강사님의 django 강의를 학습한 내용입니다.
@@ -26,11 +26,11 @@
 
 ---
 
-# 4. DRF의 이점
+# 1. DRF의 이점
 
 모든 것을 DRF로 구현하는 게 아닌, DRF 기능 중 선별적으로 필요한 것만 골라서 사용한다.
 
-최종적으로는 API를 만드는 것이지만, 구체적으로는 다음과 같다. 
+최종적으로는 API를 만드는 것이지만, 구체적으로는 다음과 같다. 하지만, 아래 언급한 기능 외에도 매우 많은 기능들이 있으므로, 아래 기능들을 기본으로 살을 붙여나가자.  
 
 - 첫 번째, Serializer
 - 두 번째, Response
@@ -114,7 +114,7 @@ DRF에서 제공하는 유용한 기능 'Policy'
 
 ---
 
-# 5. DRF에 사용할 models.py
+# 2. DRF에 사용할 models.py
 
 ```python
 from django.db import models
@@ -157,19 +157,19 @@ class Employee(models.Model):
 
 ---
 
-# 6. View 설계: APIView
+# 3. View 설계: APIView
 
 APIView를 사용하여 View를 설계해보고, django에서 제공하는 JsonResponse와 DRF에서 제공하는 Response를 비교해본다.
 
-- 6.1: `from django.http import JsonResponse`  
-- 6.2: `from rest_framework.response import Response`    
-- 6.3: 직렬화 추가  
+- 3.1: `from django.http import JsonResponse`  
+- 3.2: `from rest_framework.response import Response`    
+- 3.3: 직렬화 추가  
 
 
 🔆 url에 매핑하는 방식은 기존 CBV 방식과 동일하다.
 
 
-## 6.1 JsonResponse
+## 3.1 JsonResponse
 ### TypeError: Object of type Queryset is not JSON serializable
 
 - 위 모델들이 바로 직렬화가 안되면 이 모델들을 dictionary 형태로 바꾸고 나서 직렬화를 진행하면 가능하다. 이를 아래 view 코드를 통해서 확인해보자. 
@@ -218,7 +218,7 @@ class EmployeeListAPIView(APIView):
 
 <br>
 
-## 6.2 Response
+## 3.2 Response
 
 - 아래 코드를 기반으로 화면을 보면 위에 JsonResponse와 달리 Http message 형태로 볼 수 있다. 
 
@@ -238,7 +238,7 @@ class EmployeeListAPIView(APIView):
 
 <br>
 
-## 6.3 Serializers 추가하기
+## 3.3 Serializers 추가하기
 
 먼저 `./serializers.py`에서 `EmployeeSerializer` 를 만든다. 
 
@@ -266,10 +266,10 @@ class EmployeeListAPIView(APIView):
         
 		serializer = EmployeeSerializer(employee_qs, many=True)
 		
-		return Response(serializer)
+		return Response(serializer.data)
 ```
 
-결과는 [5.2 Response](#52-response) 방식과 동일하다. 
+결과는 [2.2 Response](#52-response) 방식과 동일하다. 
 
 하지만, 코드는 보다 간결해진 걸 알 수 있다. 
 
@@ -279,11 +279,11 @@ class EmployeeListAPIView(APIView):
 - `fields = '__all__'`이 아닌 `fields = ['name']`으로 입력하면 name 필드 관련된 것만 가져온다.
 
 
-<br>
+<br>ds
 
 ---
 
-# 7. View 설계: @api_view([''])
+# 4. View 설계: @api_view([''])
 
 `@api_view([''])`를 사용하여 위에 CBV로 만든 것과 내용을 동일하게 하면서 FBV로 만들어보겠다.
 
@@ -310,7 +310,7 @@ def employee_list(request):
 ---
 
 
-# 8. View 설계: ViewSet
+# 5. View 설계: ViewSet
 
 CBV 방식으로서, naming은 `class <Model name>ViewSet(ModelViewSet):`로 한다.
 
@@ -367,93 +367,18 @@ urlpatterns = [
 ---
 
 
-# 9. 자주 사용되는 view 설계
+# 6. 자주 사용되는 view 설계
 
 > **_ViewSet보다 APIView를 훨씬 많이 사용한다._**
 
 - FormView를 잘 사용하지 않는 이유
 	- 요구사항이 바껴서 적용하기 힘들 때, form에 post를 전달하는 것 대신에 Ajax로 API를 체크한다. 
 
-- ModelViewSet을 잘 사용하지 않는 이유 
+- ModelViewSet을 잘 사용하지 않는 이유: 최적화의 어려움  
 	- ModelViewSet으로는 API를 자세하게 다룰 수 없어서, APIView를 주로 사용한다. 
-
+	- 왜냐하면 ModelViewSet에는 CRUD가 다 존재하기 때문이다.  
 
 <br>
-
----
-
-
-
-
-우리가 반드시 알아야하는 개념: MRO 
-
-- 상속과 관련된 계층도를 의미
-
-Registration → ModelViewSet
-
-ListAPIVIEW: 여러 개만 읽어온다. 
-
-RetrieveAPIVIEW: 한 개만 읽어온다.
-
-Mixin은 파이썬 개념이므로, 나중에 찾아보기
-
-CRUD를 제공하는게 ModelViewSet 
-
-ModelViewSet에는 CRUD가 다 있다. 
-
-GenericAPIView는 APIView를 상속받아 사용한다. 
-
-그런데, 현업에서는 APIView만을 상속받아 별도로 만든다. 
-- Lesson Model에 관한거라면 LessonAPIView로 만든다.
-- 하지만 이런 경우, 내부는 비어있기 때문에 직접 작성해야 한다. 
-- GenericAPIView 내부를 보면 queryset 과 serailizer_class 가 존재한다.  이에 대한 값을 새로 할당하기 위해서 ModelViewSet에 작성한다.
-
-
-API 문서에는 규격이 정해져있다. 이를 간편하게 하기 위해서 안쓴다. 
-
-DRF의 경우, 화면에 CRUD가 다 있다. 
-
-GenericView를 그대로 쓸 것이냐 아니면 APIView를 쓸 것인지 택 1하는데, 더 자유롭기 때문에, 후자를 택한다.  
-
-JsonResponse → Serializer → bytestring
-
-
-class ListModelMixin 내부를 보면 다음과 같은 코드를 볼 수 있다. 
-
-get_serializer(page, many=True)를 보면 many가 ListModelMixin에는 들어가지만,
-
-	```python
-	class ListModelMixin:
-		"""
-		List a queryset.
-		"""
-		def list(self, request, *args, **kwargs):
-			queryset = self.filter_queryset(self.get_queryset())
-
-			page = self.paginate_queryset(queryset)
-			if page is not None:
-				serializer = self.get_serializer(page, many=True)
-				return self.get_paginated_response(serializer.data)
-
-			serializer = self.get_serializer(queryset, many=True)
-			return Response(serializer.data)
-	```
-
-RetrieveAPIView를 보면 many가 들어가지 않고, instance만 입력한다.
-
-	```python
-	class RetrieveModelMixin:
-    """
-    Retrieve a model instance.
-    """
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-	```
-
-
-다시 ListAPIView를 보면 단지 get method만 있지만, 이는 ListModelMixin을 상속받기 때문에, get을 받을 때 동작이 바로 위에 ListModelMixin에서 일어나는 것이다.
 
 ---
 

@@ -4,8 +4,7 @@
 > 2. [왜 배우는지](#12-왜-배우는지)
 > 3. [DevOps & AWS/Cloud 소개](#13-devops--awscloud-소개)
 > 4. [AWS 주요 개념과 서비스 소개](#14-aws-주요-개념과-서비스-소개)
-> 5.[Old vs New (with Server vs serverless)](#15-old-vs-new-with-server-vs-serverless)
-> 6. [EC2와 LoadBalancer 실습](#16-ec2와-loadbalancer-실습)
+> 5. [Old vs New (with Server vs serverless)](#15-old-vs-new-with-server-vs-serverless)
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 lukas 강사님의 AWS 강의를 정리한 내용입니다.
 

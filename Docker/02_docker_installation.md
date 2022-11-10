@@ -35,10 +35,12 @@
 ---
 # 2. Docker image 실행
 
+### docker image 설치 및 실행 
+
 -  `docker run hello-world`를 실행하여 docker image를 확인해본다. 
     
     ```yml
-    Unable to find image 'hello-world:latest' localy
+    Unable to find image 'hello-world:latest' locally
     latest: Pulling from library/hello-world
     ...
     ```
@@ -46,6 +48,13 @@
     - 처음이라면 `unable to find image 'hello-world:latest' locally` 가 뜰 것이다. 이 의미는 로컬에 hello-world docker image가 없다는 걸 말한다.
     
     - 그래서 그 다음 줄에 로컬에 없으니 pull한다는 의미.
+
+<br>
+
+### docker image 목록 확인
+
+- `docker image ls`
+
 
 <br>
 

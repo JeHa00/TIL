@@ -1,5 +1,11 @@
 # 0. Introduction
 
+> 1. [서버에 PostgreSQL 설치하기]() .     
+> 2. [docker로 django 배포하기](#1-docker로-django-배포하기)   
+> 3  [docker로 nginx 배포하기](#)   
+> 4. [docker compose로 django와 Nginx 함께 배포하기]()     
+ 
+
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 장철원 강사님의 docker 강의를 학습한 내용입니다.
 
 

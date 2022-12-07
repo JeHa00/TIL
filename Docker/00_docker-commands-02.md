@@ -43,7 +43,7 @@ docker host에서 만든 container 내부에서 bash shell을 실행한다는 �
 
 - 터미널 1은 `docker run -it <image name>`으로 컨테이너 실행 중인 상황  
 
-- 터미널 2에서 터미널 1에 실행 중인 컨테이너 접속하기: `docker exec -it <container id> bash`
+- 터미널 2에서 터미널 1에 실행 중인 컨테이너에 접속하기: `docker exec -it <container id> bash`
     - 여기서 `container id`란 터미널 1에서 실행 중인 컨테이너다.
     - 터미널 2에서 `docker container ls` 명령어로 실행 중인 컨테이너 id를 확인 후, 이를 입력하여 접속한다.  
     - 두 터미널을 비교해보면 동일한 container id를 나타내는 걸 알 수 있다.

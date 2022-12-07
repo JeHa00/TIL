@@ -1,10 +1,9 @@
 # 0. Introduction
 
 > 1. [Docker Installation](#1-docker-installation)  
-> 2. [Docker image 설치 및 실행](#2-docker-image-실행)  
-> 3. [Docker container 목록 확인](#3-docker-container-목록-확인)
+> 2. [Docker image 관련 명령어](#2-docker-image-관련-명령어)  
+> 3. [Docker container 관련 명령어](#3-docker-container-관련-명령어)
 > 4. [Docker pull](#4-docker-pull)    
-
 
 - 해당 강의는 [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 장철원 강사님의 docker 강의를 학습한 내용입니다.
 
@@ -41,7 +40,9 @@
 <br>
 
 ---
-# 2. Docker image 설치 및 실행
+# 2. Docker image 관련 명령어
+
+## Docker image 설치 및 실행
 
 -  `docker run hello-world`를 실행하여 docker image를 확인해본다. 
     
@@ -67,16 +68,27 @@
 
 - `docker image ls`
 
+
+## docker image 삭제 
+
+- `docker image rm <image id>`
+
+- 강제 삭제: `docker image rm -f <image id>`
+
+❗️`docker rmi`는 옛날 명령어다.
+
 <br>
 
 ---
-# 3. docker container 목록 확인
+# 3. docker container 관련 명령어
+
+## docker container 목록 확인
 
 - 작동 중인 컨테이너 확인: `docker container ls` 
 
 - 모든 컨테이너 확인: `docker container ls -a` 
 
-- `status`에서 Extied는 종료되었다는 의미
+- `status`에서 Exited는 종료되었다는 의미
 
 - 직접 경로 이동하여 확인하기
     - 도커 실행 후, `cd /run/docker` 로 이동
@@ -84,6 +96,33 @@
 
 
 🔆 참고: runtime-runc directory에 'moby'는 도커의 옛날 프로젝트 명이다.
+
+<br>
+
+## docker container 중지 및 재가동
+
+- 정지: `docker container stop <container ID>`
+
+- 재가동
+    - `docker container ls -a`로 정지했었던 container id를 확인
+    - 멈춰있는 도커를 재시작한다는 의미이므로, `docker start <container id>`를 입력
+
+<br>
+
+## docker container 삭제
+
+- 컨테이너 ID 값으로 삭제
+    - `docker rm <container id>`
+
+- 컨테이너 이름으로 삭제
+    - `docker rm <container name>`
+
+
+<br>
+
+## docker container에 접속하기
+
+- `docker exec -it <container id> /bin/bash`
 
 <br>
 

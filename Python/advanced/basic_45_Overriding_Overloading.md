@@ -250,8 +250,8 @@ Hi Guys
 
 - 이렇게 단일 method 내에서 조건 분기화를 통해서 구현했지만, 이는 method overriding이 아니다.
 
-- **파이썬은 클래스 내에서 method overriding을 지원하지 않는다.**
-  - 그래서 multipledispatch를 사용하여 method overriding을 구현한다.
+- **파이썬은 클래스 내에서 method overloading을 지원하지 않는다.**
+  - 그래서 multipledispatch를 사용하여 method overloading을 구현한다.
 
 <br>
 

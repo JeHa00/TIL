@@ -7,7 +7,7 @@
 
 - 발전은 모방으로부터 시작한다.
 
-인프런에서 [Integerous](https://github.com/namjunemy)님이 만드신 강의를 통해서 [namjunemy](https://github.com/namjunemy)님의 Github TIL 을 보고 많은 걸 느껴 시작한다.
+인프런에서 [Integerous](https://github.com/namjunemy)님이 만드신 강의를 통해서 [namjunemy](https://github.com/namjunemy)님의 Github TIL을 보고 시작한다.
 
 <br>
 
@@ -109,8 +109,18 @@
 
 ### [Docker](https://github.com/JeHa00/TIL/tree/main/Docker)
 
-- [Docker를 위한 운영체제 지식](https://github.com/JeHa00/TIL/blob/main/Docker/os-for-docker.md)
-- Docker 설치하기
+- [Docker를 위한 운영체제 지식](https://github.com/JeHa00/TIL/blob/main/Docker/os-for-docker.md)  
+- [Docker란?](https://github.com/JeHa00/TIL/blob/main/Docker/02_what-is-docker.md)  
+- [Docker commands list 01](https://github.com/JeHa00/TIL/blob/main/Docker/00_docker-commands-01.md)
+    - docker installation 관련 명령어
+    - docker image 관련 명령어  
+    - docker container 관련 명령어  
+    - docker pull
+
+- [Docker commands list 02](https://github.com/JeHa00/TIL/blob/main/Docker/00_docker-commands-02.md)
+    - 서로 다른 터미널에 접속 및 종료 시키기  
+    - 컨테이너와 docker host 간 파일 전송
+
 
 <br>
 
@@ -119,3 +129,10 @@
 - [DevOps와 AWS 그리고, DevOps와 MSA](https://github.com/JeHa00/TIL/tree/main/AWS/LectureNote01.md)
 
 <br>
+
+### [Book Study](https://github.com/JeHa00/TIL/tree/main/Book_study)
+
+- [함께 자라기: 애자일로 가는 길](https://github.com/JeHa00/TIL/tree/main/Book_study/Agile)  
+- [1일 1로그 100일](https://github.com/JeHa00/TIL/tree/main/Book_study/1day-1log-100days-completion)  
+- [Clean Code](https://github.com/JeHa00/TIL/tree/main/Book_study/CleanCode)  
+- [클린 코드: 이제는 파이썬이다.](https://github.com/JeHa00/TIL/tree/main/Book_study/PythonCleancode)

@@ -52,4 +52,4 @@ def combination_dynamic(n: int, r: int) -> int:
     return result[n][r]
 
 
-combination_dynamic(4, 2)
+print(combination_dynamic(4, 2))

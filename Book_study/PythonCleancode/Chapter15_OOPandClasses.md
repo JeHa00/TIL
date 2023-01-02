@@ -6,7 +6,6 @@
 > 4. [Type() and __qualname__](#4-type-and-qualname)    
 > 5. [OOP vs Non-OOP program comparision: Titackto game](#5-oop-vs-non-oop-program-comparision-titackto-game)   
 > 6. [실세계를 위한 클래스 설계는 어렵다.](#6-실세계를-위한-클래스-설계는-어렵다)    
-> 7. [Summary](#7-summary)    
 
 - 아래 book study는 알 스웨이가트가 지었고, 박재호님이 번역하신 [클린 코드, 이제는 파이썬이다.](https://book.interpark.com/product/BookDisplay.do?_method=detail&sc.prdNo=355096830&gclid=Cj0KCQjw166aBhDEARIsAMEyZh4ltxiM-nlGaj3yjPIW82A6l-hPlXjmjBCqtmw6xzqRX8dc8Rk6PFMaAjm9EALw_wcB) 를 읽고 진행한 book study 입니다. 영문 원본으로 온라인 공개된 자료가 있어서 영문으로 학습합니다.
 
@@ -206,21 +205,34 @@ type(42).__qualname__ # 'int'
 
 # 5. OOP vs Non-OOP program comparision: Titackto game
 
+https://autbor.com/compareoop/ 이 링크로 들어가 비교해보라. 
+
+class로 작성하는 게 보다 깔끔하고, 직관적이라는 걸 알 수 있다. 
+
+매개변수를 넘길 필요 없이 다른 메소드를 호출하여 사용하면 된다. 이때 `self.` 를 부여준다. 
+
 <br>
 
 ---
 
 # 6. 실세계를 위한 클래스 설계는 어렵다.
 
+### 실제 객체를 단순화하기
+서류 양식인 클래스 설계는 매우 간단해 보인다. 양식과 클래스는 본질적으로 표현할 실제 객체를 단순화한다.
+
+### 어떻게 단순화하지?
+그런데, 이 객체들을 단순화하는 방법이 문제다. 
+
+예를 들어 Customer 클래스를 만드는 경우, 고객의 이름과 성을 속성으로 부여해야 한다. 그런데 서부권이냐 동양권이냐에 따라서 성이 먼저 올지, 이름이 먼저 올지가 다르며, 일부 문화권에서는 성을 사용하지도 않는다. 또한, 나이의 경우에도 계산하는 방식이 다르기 때문에 birthday를 사용하여 나이를 계산하는 방식이 좋다. 
+
+이처럼 현실 세계는 복잡하기 때문에, 이 복잡성이 잘 녹아진 클래스로 설계하는게 어렵다.
+
+나라면 이런 경우, 나라별 사이트를 다르게 하여 문화에 따른 복잡성을 해소할 것 같다.
+
 <br>
 
 ---
 
-# 7. Summary
-
-<br>
-
----
 
 # Reference
 

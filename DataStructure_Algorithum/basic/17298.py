@@ -9,7 +9,6 @@
 import sys
 
 def main():
-
     total_counts = int(sys.stdin.readline())
     elements = list(map(int, sys.stdin.readline().split()))
     answer = [-1] * total_counts

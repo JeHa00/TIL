@@ -7,7 +7,7 @@
 """
 from typing import List
 
-def insertionSort(array: List) -> List:
+def insertionSort(array: List):
     for i in range(1, len(array)):
         for j in range(i, 0, -1): 
             if array[j-1] > array[j]:

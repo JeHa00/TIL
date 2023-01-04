@@ -11,9 +11,8 @@ import sys
 
 def first_solution(counts_of_number: int) -> list:
     """
-    백준에 입력하면 메모리 초과가 뜬 방식
+    파이썬 기본 sort method를 사용한 방식
     """
-
     answer = []
 
     # counts_of_number 만큼 정수 입력받아 저장하기
@@ -22,23 +21,27 @@ def first_solution(counts_of_number: int) -> list:
         answer.append(number)
         counts_of_number -= 1
 
-    # 정렬하기
     answer.sort()
     return answer
 
 
-def second_solution(counts_of_number: int) -> list:
+def second_solution(counts_of_number: int):
+    """
+    counting 정렬을 사용하여 정렬한 방법
+    """
+    count_array = [0] * (counts_of_number + 1)
 
-    answer = []
+    for _ in range(counts_of_number):
+        number = int(sys.stdin.readline())
+        count_array[number] += 1
 
-
-    return answer
+    for index, count in enumerate(count_array): 
+        for _ in range(count):
+            print(index)
 
 
 if __name__ == '__main__':
-    counts_of_number = int(sys.stdin.readline().strip())
-    first_result = first_solution(counts_of_number)
-    second_result = second_solution(counts_of_number)
-    for number in first_result:
-    # for number in second_result:
-        print(number)
+    counts_of_number = int(sys.stdin.readline())
+    # first_result = first_solution(counts_of_number)
+    # for number in first_result:
+    second_solution(counts_of_number)

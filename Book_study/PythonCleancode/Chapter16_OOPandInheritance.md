@@ -95,9 +95,14 @@ child.grandChildMethod() # AttributeError: 'ChildClass' object has no attribute 
 
 ## method override
 
+
+
 <br>
 
 ## super() function
+
+
+
 
 <br>
 
@@ -108,6 +113,10 @@ child.grandChildMethod() # AttributeError: 'ChildClass' object has no attribute 
 
 ## 상속의 단점
 
+상속의 주된 단점은 미래에 부모 클래스에서 무엇을 변경하든 필연적으로 모든 자식 클래스가 그 변경을 상속받는다. 대부분 이런 결합을 원하지만, 특정 코드 요구사항에 쉽게 맞아 떨어지지 않는 경우가 있다.
+
+
+때로는 상속보다는 합성을 사용하는 편이 바람직하다.
 
 <br>
 

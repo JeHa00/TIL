@@ -26,23 +26,25 @@ def insertionSort(array: List):
 - 왜냐하면 중첩을 안쓰기 때문이다. 
 - 문제로 내지는 않는데, 문제에 녹아든 경우가 많다. 
 """
-def countingSort(array: List) -> List: 
-    count_array = [0] * (len(array)+1)
-
-    for i in range(len(array)):
-        count_array[array[i]] += 1 
-        print(f"count array: {count_array}")
+def countingSort(array):
     
-    array.clear()
-
-    for i in range(len(count_array)):
-        for _ in range(count_array[i]):
-            array.append(i)
-        print(f"array: {array}")
-
+    # array의 원소 값으르 인덱스로 사용
+    # 해당 인덱스에 위치한 원소값을 1 증가
+    count_array = [0] * (len(array) + 1)
+    
+    for element in array:
+        count_array[element] += 1
+    # [0 1 1 1 1 1 1 1 1 1 1]
+    
+    array.clear() 
+    
+    for index, count in enumerate(count_array):
+        for _ in range(count):
+            array.append(index)
+    
     return array
 
-
+    
 if __name__ == "__main__":
     input_list = [3, 1, 5, 9, 8, 6, 7, 4, 10, 2]
     

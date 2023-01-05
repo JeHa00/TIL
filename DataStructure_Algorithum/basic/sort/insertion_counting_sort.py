@@ -19,12 +19,13 @@ def insertionSort(array: List):
 
 
 """
-[Counting sort]
+[Counting sort]: O(n)
 - 숫자의 개수를 카운팅하는 정렬(카운팅 정렬)
 - 데이터의 범위가 모두 포함되는 새로운 리스트를 만들고, 모든 값을 0으로 채운 뒤 데이터 값을 인덱스로 변환하여 1씩 증가
 - 데이터의 범위가 제한되어 있을 때에, 한해서 가장 빠른 속도로 정렬이 가능 (퀵 정렬보다 빠르다.)
 - 왜냐하면 중첩을 안쓰기 때문이다. 
 - 문제로 내지는 않는데, 문제에 녹아든 경우가 많다. 
+- 중복이 있을 때 사용하면 빠르다.
 """
 def countingSort(array):
     
@@ -34,7 +35,6 @@ def countingSort(array):
     
     for element in array:
         count_array[element] += 1
-    # [0 1 1 1 1 1 1 1 1 1 1]
     
     array.clear() 
     

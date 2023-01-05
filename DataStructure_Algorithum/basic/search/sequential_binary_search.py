@@ -8,6 +8,19 @@ def sequentialSearch(array, target):
             return i 
     return False 
 
+    """
+    # while 문으로 작성하기
+    i = 0
+    while True: 
+        if i == len(a):
+            return False
+
+        if array[i] == target:
+            return i 
+        
+        i += 1
+    """
+
 
 li = [3, 1, 5, 9, 8, 6, 7, 4, 10, 2]
 

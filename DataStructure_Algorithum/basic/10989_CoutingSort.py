@@ -11,7 +11,7 @@ import sys
 
 def first_solution(counts_of_number: int) -> list:
     """
-    파이썬 기본 sort method를 사용한 방식
+    파이썬 기본 sort method를 사용한 방식: 시간 초과
     """
     answer = []
 
@@ -27,18 +27,29 @@ def first_solution(counts_of_number: int) -> list:
 
 def second_solution(counts_of_number: int):
     """
-    counting 정렬을 사용하여 정렬한 방법
+    - counting 정렬을 사용하여 정렬한 방법: 시간 초과 문제 해결 
+    - 수가 10000 이하이므로 미리 생성하면 메모리 초과문제가 해결된다.
     """
-    count_array = [0] * (counts_of_number + 1)
+    
+    """
+    count_array = [0] * (counts_of_number + 1) 
+    위 코드는 counting 정렬을 제대로 이해하지 못해 작성된 코드다. 
+    계수 정렬은 인덱스 값이 정답의 element가 되는 방식이다.
+    만약 (counts_of_number + 1)로 하면 문제에서는 수의 범위가 100,000 이하라고 했지만, 1 ≤ N ≤ 10,000,000 범위처럼 
+    10,000,000 까지 [0]이 생성되므로 당연히 메모리 초과가 발생될 수 밖에 없다. 
+    그래서 다음과 같이 10001을 곱해야 한다. 
+    """
+
+    count_array = [0] * 10001
 
     for _ in range(counts_of_number):
         number = int(sys.stdin.readline())
         count_array[number] += 1
 
     for index, count in enumerate(count_array): 
-        for _ in range(count):
-            print(index)
-
+        if count_array[index] != 0:
+            for _ in range(count):
+                print(index)
 
 if __name__ == '__main__':
     counts_of_number = int(sys.stdin.readline())

@@ -95,7 +95,28 @@ child.grandChildMethod() # AttributeError: 'ChildClass' object has no attribute 
 
 ## method override
 
+```python
+class MinBoard(TTTBoard):
+    def getBoardStr(self):
+        """말판을 텍스트로 표현하는 문자열을 반환한다."""
+        # 공백 한 칸을 '.'으로 치환한다. 
+        for space in ALL_SPACES:
+            if self._space[space] == BLANK:
+                self._spaces[space] = '.'
+        
+        boardStr = f'''
+        {self._spaces['1']}|{self._spaces['2']}|{self._spaces['3']} 1 2 3 
+        -+-+-
+        {self._spaces['4']}|{self._spaces['5']}|{self._spaces['6']} 4 5 6  
+        -+-+-
+        {self._spaces['7']}|{self._spaces['8']}|{self._spaces['9']} 7 8 9''' 
 
+        # 공백 한 칸을 '.'으로 치환한다. 
+        for space in ALL_SPACES:
+            if self._space[space] == '.':
+                self._spaces[space] = BLANK
+        return boardStr
+```
 
 <br>
 

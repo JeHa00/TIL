@@ -62,32 +62,41 @@ def second_solution(K:int, N:int) -> int:
 
 def third_solution(K:int, N:int):
     """
-    # 12s
-    이분 탐색을 사용하여 N개 이상의 갯수를 만족하는 최대 길이를 구하는 방식
+    이분 탐색을 사용하여 N개 이상 만들 수 있는, 최대 길이를 구하는 방식
+    - second_solution은 10의 자리수 길이를 구하는데 ZeroDivisionError가 발생된다.
+    - 시간 초과 발생
+    - second_solution에서 이분 탐색을 적용하라고 했지만, 완벽히 이해하지 못하고 적용했음을 알았다.
     """
+
     lines = [int(sys.stdin.readline()) for _ in range(K)]
-    start = 100 
-    end = (max(lines)//100) * 100
+    start = 1
+    end = max(lines)
 
     while start <= end:
-        mid = (start+end) // 2
-        answer = 0 
+        answer = 0
+        mid = (start+end) // 2 
         for length_of_line in lines:
             answer += length_of_line // mid 
-        if answer >= N:
+        
+        """
+        N에 answer를 조절하기 위해서는 mid를 조절해야 한다. 그런데, 여기서 포인트는 answer와 mid는 반비례한다.
+        mid가 커지면 answer는 작아진다. mid가 작아지면 answer는 커진다.
+        mid가 커지기 위해서는 start = mid + 1을 한다. end = mid + 1도 있지만 이는 증가시키는 게 아닌 감소시키는 것이다.
+        mid가 작아지기 위해서는 end = mid - 1을 한다. start = mid - 1도 있지만 이는 감소시키는 게 아닌 증가시키는 것이다.
+        """
+        if answer >= N: # answer가 작아져야 하므로, mid는 커져야 한다.
             start = mid + 1 
-        else:
+        else:  # answer가 커져야 하므로, mid는 작아져야 한다.
             end = mid - 1
     print(end)
     
 
 if __name__ == "__main__":
     K, N = map(int, sys.stdin.readline().split())
-    # answer = first_solution(N, K)
     start = time.time()
+    # answer = first_solution(N, K)
     # answer = second_solution(K, N)
-    answer = third_solution(K, N)
-    print(answer)
+    third_solution(K, N)
     end = time.time() 
     print(end-start)
 

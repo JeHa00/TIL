@@ -29,10 +29,14 @@ print(sequentialSearch(li, 6)) # 5
 print(sequentialSearch(li, 2))# 9
 print(sequentialSearch(li, 11)) # False
 
-# 이진 탐색
 
-# 탐색 범위를 반으로 줄여 나간다.  
-# 이진 탐색은 정렬이 되어 있을 때, 효과적이다. 
+"""
+[이진 탐색]
+- 이진 탐색은 기본적으로 정렬이 되어 있어야 한다.
+- 포인트 2가지 
+    - 탐색 범위를 반으로 줄여 나간다.
+    - 범위를 좁히는 변수 조절을 mid를 기준으로 하는 것
+"""
 li = [1, 3, 5, 6, 7, 8, 9, 13, 15, 17, 19]
 
 def binarySearch(array, target):

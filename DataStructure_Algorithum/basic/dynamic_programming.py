@@ -48,7 +48,7 @@ def combination_dynamic(n: int, r: int) -> int:
                     result[total_item - 1][pickup_item - 1]
                     + result[total_item - 1][pickup_item]
                 )
-
+    print(result)
     return result[n][r]
 
 

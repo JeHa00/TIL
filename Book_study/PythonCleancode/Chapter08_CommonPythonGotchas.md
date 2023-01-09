@@ -26,6 +26,8 @@
 
 # 1. 루프문 진행 중에는 리스트에서 아이템을 추가/삭제하지 말자
 
+> **_루프문 진행 중에는 리스트에서 아이템을 추가/삭제하지 말고, 새로운 리스트를 생성해서 하자._**
+
 list에 'sock'이라는 문자열이 발견될 때마다 이와 일치하는 'sock'을 삽입하여 해당 'sock'의 갯수를 짝수로 만드는 코드다. 
 
 ### 아이템 추가
@@ -107,7 +109,7 @@ greetings = newGreetings
 print(greetings) # ['hello', 'hello', 'hello']
 ```
 
-다음으로 이를 list comprehension으로 작성해보자. 훨씬 더ㅓ 간결하고, 리스트를 변경할 때 발생하는 함정을 피할 수 있다.
+다음으로 이를 list comprehension으로 작성해보자. 훨씬 더 간결하고, 리스트를 변경할 때 발생하는 함정을 피할 수 있다.
 
 ```python
 greetings = ['hello', 'hello', 'mello', 'yello', 'hello']
@@ -147,11 +149,136 @@ list에 담겨진 문자열을 크기와 상관없이 64바이트를 차지한�
 ### 아이템 변경은 가능하다.
 루프문에서 리스트를 실행할 때, 아이템을 추가하거나 제거하지 않아야 하지만 리스트의 내용은 수정해도 좋다.
 
+```python
+>> numbers = ['1', '2', '3', '4', '5']
+>> for i, number in enumerate(numbers):
+>>    numbers[i] = int(number)
+
+>> numbers 
+[1, 2, 3, 4, 5]
+```
+
+### 안전하게 아이템을 삭제, 추가하는 또 다른 방법: 거꾸로 반복하기
+
+아이템을 삭제하거나 추가하기 위한 또 다른 방법은 **_리스트를 끝에서부터 앞으로 거꾸로 반복하는 것_** 이다.
+
+예를 들어 다음 코드를 보자. 리스트에서 루프 반복문이 실행되는 동안 삭제되므로 IndexError가 발생된다
+
+```python
+someInts = [1, 7, 4, 5]
+
+for i in range(len(someInts)):
+    if someInts[i] % 2 == 0:
+        del someInts[i] # IndexError: list index out of range
+```
+
+하지만, 이번에는 거꾸로 반복해보자.
+
+```python
+someInts = [1, 7, 4, 5]
+for i in range(len(someInts)-1, -1, -1):
+    if someInts[i] % 2 == 0:
+        del someInts[i]
+
+someInts # [1, 7, 5]
+```
+
+위 코드가 잘 동작하는 이유는 for 루프 내에서 반복될 아이템은 인덱스가 바뀌는 것이 하나도 없기 때문이다.
+
+삭제뿐만 아니라, 추가도 잘 동작이 되지만, 살짝만 바꿔도 버그가 등장하므로 제대로 하기 까다롭다. 
+
+그렇기 때문에 ❗️ **_원본 리스트 수정보다는 신규 리스트 생성이 훨씬 더 간단하다._**
+
+🔆 그래서 파이썬의 핵심 개발자 레이먼드 헤팅어는 이렇게 말한다.
+
+> Question: 루프문을 돌면서 리스트를 수정하는 가장 좋은 방법은?  
+> Answer: 없다. 생각도 하지 마라.
+
+
 <br>
 
 ---
 
 # 2. copy.copy()나 copy.deepcopy() 없이 가변 값을 복사하지 말자
+
+변수는 객체를 포함하는 상자라기보다는 **_객체를 참조하는 레이블 또는 이름 태그_** 로 생각하자. 
+
+### 변수 할당 시
+
+파이썬에서 할당문은 절대로 객체를 복사하는 게 아닌, 객체에 대한 참조를 복사할 뿐이다.
+
+```python
+spam = ['cat', 'dog', 'eel']
+cheese = spam 
+spam # ['cat', 'dog', 'eel']
+cheese # ['cat', 'dog', 'eel']
+spam[2] = 'MOOSE'
+spam # ['cat', 'dog', 'MOOSE']
+cheese # ['cat', 'dog', 'MOOSE']
+id(cheese), id(spam)# 235696337288
+```
+
+분명히 spam만 수정했지만, cheese까지 수정된 걸 확인할 수 있다. 
+
+이렇게 된 이유는 **_할당문은 객체를 복사하지 않고, 객체에 대한 참조만 복사하기 때문이다._**
+
+리스트 객체를 중복으로 만들지 않는다.
+
+### 인자로 전달 시
+
+이는 할당뿐만 아니라, 함수 호출에 인자로 전달된 객체에도 동일한 원리가 전달된다.
+
+```python
+def printIdOfParam(theList):
+    print(id(theList))
+
+eggs = ['cat', 'dog', 'eel']
+print(id(eggs)) # 2356893256136
+printIdOfParam(eggs) # 2356893256136
+```
+
+
+❗️ 만약 파이썬이 참조가 아닌 전체 리스트를 복사했다고 생각해보자. 
+
+eggs에는 단 3개가 아닌 10억 개의 아이템이 들어있는 상황에서 인자로 넘기면 이거에 대한 리스트를 전부 복사해야 한다.
+
+따라서 간단한 함수를 호출하는데 메모리는 매우 많이 잡아먹는다. 그래서 파이썬 할당이 참조만 복사하고 객체는 절대 복사하지 않는 이유다.
+
+### 해결책 
+
+이런 함정에서 벗어나는 방법은 `copy.copy()` 메소드로 단순히 참조가 아닌 복사본을 만드는 것이다.
+
+```python
+import copy
+bacon = [2, 4 ,8, 16]
+ham = copy.copy(bacon)
+id(bacon) == id(ham) # False
+```
+
+그러나 변수가 객체를 포함하는 상자가 아닌 객체에 대한 레이블이나 이름표와 같듯이, 중첩 리스트의 경우에는 리스트 안에 객체를 참조하는 레이블이나 이름표가 포함된다. 그래서 중첩 리스트의 경우에는 copy.copy()를 할지라도 내부 리스트에 대해서는 참조만 복사한다.
+
+```python
+import copy
+bacon = [[1, 2], [3, 4]]
+ham = copy.copy(bacon)
+bacon.append('APPENDED')
+bacon # [[1, 2], [3, 4], 'APPENDED']
+ham # [[1, 2], [3, 4]]
+bacon[0][0] = 'CHANGED'
+bacon # [['CHANGED', 2], [3, 4], 'APPENDED']
+ham # [['CHANGED', 2], [3, 4]]
+id(bacon[0]) == id(ham[0]) # False
+```
+
+위 코드의 결과 copy.copy()를 사용했음에도 불구하고 두 변수에 모두 반영되었다.  
+
+이런 경우, **_copy.deepcopy()_** 를 사용하면 리스트 객체 내의 모든 리스트 객체를 복사할 수 있다.
+
+
+## copy.deepcopy를 권장
+
+객체를 복사할 때 2가지 방법이 있음을 알았다. 이 중에서 copy.deepcopy()를 권장한다. 왜냐하면 미묘한 버그까지 예방할 수 있기 때문이다. copy.copy()에 비해서 약간 느리지만 눈치채기 어려운 정도라고 한다.
+
 
 <br>
 

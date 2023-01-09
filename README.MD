@@ -1,6 +1,6 @@
 ﻿# Today I Learned
 
-[![Version](https://img.shields.io/badge/version-2022.02.17-red.svg)](./CHANGELOG) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
+[![Version](https://img.shields.io/badge/version-2023.01.09-red.svg)](./CHANGELOG) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
 
 - 좋은 개발자가 되기 위해 꾸준한 학습이 필요하다. 이를 위해 매일 하루동안 개발과 관련된 내용이나 경험을 기록으로 남긴다.
 - Today I Learned인데 날짜를 표시하지 않는 이유는 날짜 표기로 나 자신을 조급하게 만들지 않기 위해서다.

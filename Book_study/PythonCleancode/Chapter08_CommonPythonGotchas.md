@@ -287,6 +287,61 @@ id(bacon[0]) == id(ham[0]) # False
 
 # 3. 기본 인수에 가변 객체는 사용하지 말자
 
+파이썬에선 정의된 함수에서 파라미터에 대한 기본 인수(default argument)를 설정할 수 있다. 개발자가 파라미터를 명시적으로 사용하지 않으면 기본 인수를 사용해서 함수가 실행된다. 예를 들어서 `'cat dog'.split()`는 `'cat dog'.split(None)`를 호출하는 경우와 동일하다.
+
+그러면 다음으로 기본 인수로 가변 객체를 사용한 경우를 보자.
+
+```python
+
+def addIngredient(ingredient, sandwich=['bread', 'bread']):
+    sandwich.insert(1, ingredient)
+    return sandwich
+
+mySandwich = addIngredient('avocado')
+mySandwich # ['bread', 'avocado', 'bread']
+```
+
+위와 같이 작성할 수 있다. 하지만, 기본 인자로 가변 객체를 사용할 경우 다음 코드와 같은 문제점이 발생할 수 있다. 위 코드에 이어서 작성 후 실행했다.
+
+```python
+anotherSandwich = addIngredient('lettuce')
+anotherSandwich # ['bread', 'lettuce', 'avocado', 'bread']
+```
+
+anotherSandwich를 선언한 건 처음인데, 어째서 avocado가 있는 것일까?
+
+addIngredient()가 호출될 때마다 이 기본 인자 리스트를 재사용하기 때문에 이처럼 예상치 못한 동작으로 이어진다.
+
+함수 def문은 매번 함수를 호출할 때마다 실행되는 게 아니라 한 번만 실행되기 때문에, 오직 `['bread', 'bread']` 하나만 생성된다. 
+
+```python
+mySandwich = ['bread', 'cheese', 'bread']
+mySandwich = addIngredient('butter', mySandwich)
+mySandwich # ['bread', 'butter', 'cheese', 'bread']
+```
+
+### 해결책
+
+그래서 리스트 또는 딕셔너리 같은 가변 객체를 기본 인수로 사용해야하는 경우, 파이썬다운 해법은 기본 인수를 None으로 설정하는 것이다. 그리고, 이를 확인하고 함수가 호출될 때마다 새로운 리스트나 딕셔너리를 제공하는 코드를 작성한다. 
+
+```python
+def addIngredient(ingredient, sandwich=None):
+    if sandwich is None:
+        sandwich = ['bread', 'bread']
+    sandwich.insert(1, ingredient)
+    return sandwich
+
+firstSandwich = addIngredient('cranberries')
+firstSandwich # ['bread', 'cranberries', 'bread']
+
+secondSandwich = addIngredient('lettuce')
+secondSandwich # ['bread', 'lettuce', 'bread']
+
+id(firstSandwich) == id(secondSandwich) # False
+```
+
+🔆 가변 데이터 타입에는 리스트, 딕셔너리, 집합, 클래스 문으로 만들어진 객체가 포함된다. 이러한 유형의 객체를 def 문에 기본 인수로 넣어서는 안된다.
+
 <br>
 
 ---

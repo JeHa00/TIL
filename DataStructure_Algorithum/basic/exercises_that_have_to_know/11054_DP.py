@@ -24,9 +24,7 @@ import copy
 
 def main(number_of_counts: int) -> int: 
     """
-    점차 증가 (맨 뒤에 원소가 제일 큰 값) -> max(A) == A[-1] 부터 시작
-    점차 감소 (맨 뒤에 원소가 제일 작은 값) -> min(A) == A[-1] 부터 시작
-    증가하다가 감소:  max(A) > A[-1]  -> 점차 증가 + 점차 감소
+    증가하다가 감소: 점차 증가 + 점차 감소
     """
 
     A = list(map(int, sys.stdin.readline().split()))
@@ -56,3 +54,6 @@ def main(number_of_counts: int) -> int:
 if __name__ == "__main__":
     N = int(sys.stdin.readline())
     print(main(N))
+
+        
+

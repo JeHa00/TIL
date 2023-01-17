@@ -13,6 +13,7 @@
 2 4
 4 7
 
+
 출력창
 - 첫째 줄부터 (N-1)개의 줄에 각 노드의 부모 노드 번호를 2번 노드부터 순서대로 출력
 4
@@ -27,7 +28,7 @@ import sys
 from collections import deque
 
 
-def findParentNode(counts_of_nodes: int):
+def firstSolution(counts_of_nodes: int):
     """
     bfs를 사용하여 푸는 문제
     - 시간 초과 발생
@@ -61,7 +62,7 @@ def findParentNode(counts_of_nodes: int):
 
 
 
-def findParentNode(counts_of_nodes: int):
+def secondSolution(counts_of_nodes: int):
     """
     bfs를 사용하여 푸는 문제
     - 불필요한 코드 실행을 삭제
@@ -96,6 +97,7 @@ def findParentNode(counts_of_nodes: int):
 
 if __name__ == "__main__":
     N = int(sys.stdin.readline())
-    parent = findParentNode(N)
+    parent = firstSolution(N)
+    parent = secondSolution(N)
     for parent_node in parent[2:]: 
         print(parent_node)

@@ -50,6 +50,8 @@ def firstSolution(length_of_horizontal: int, length_of_vertical: int, number_of_
     Returns:
         _type_: _description_
 
+    이 솔루션의 문제점은 배추가 대각선 방향으로 한 칸 인접하여 존재할 경우, visitied로 상하좌우 방향에 1 표시를 할 때 겹쳐지기 때문에, 배추의 위치로는
+    인접해있는 게 아니지만, visited에 의해서는 인접해진 것으로 판단되어 건너띄어진다.
     """
 
     answer = 0 # 흰지렁이의 수
@@ -97,6 +99,25 @@ def firstSolution(length_of_horizontal: int, length_of_vertical: int, number_of_
                 continue
     return answer
 
+####################################
+# Second Solution: closure 사용하기
+
+sys.setrecursionlimit(100000)
+
+def checkFarm(farm: list):
+
+    def search(x, y, length_of_horizontal, length_of_vertical):
+        
+        if x>=length_of_horizontal or x<0 or y>=length_of_vertical or y<0 or farm[x][y] != 1:
+            return farm
+
+        farm[x][y] = 0
+        search(x-1, y, length_of_horizontal, length_of_vertical)
+        search(x+1, y, length_of_horizontal, length_of_vertical)
+        search(x, y-1, length_of_horizontal, length_of_vertical)
+        search(x, y+1, length_of_horizontal, length_of_vertical)
+
+    return search
 
 def secondSolution(length_of_horizontal: int, length_of_vertical: int, number_of_position: int):
     """최소의 배추흰지렁이 마리 수
@@ -110,26 +131,37 @@ def secondSolution(length_of_horizontal: int, length_of_vertical: int, number_of
         _type_: _description_
 
     첫 번째 방식의 문제점을 해결해보자.
+    recursionError가 발생되기 때문에, sys.setrecursionlimit(100000)을 정하자.
     """
 
     answer = 0 # 흰지렁이의 수
-    farm = [[0 for _ in range(length_of_vertical)] for _ in range(length_of_horizontal)] # 배추밭의 크기
-    # 첫 번째 솔루션과 length_of_vertical과 length_of_horizontal을 바꾼 이유는 이렇게 해야 입력되는 좌표가 보다 직관적이고, [x][y]로 생각할 수 있다.
-    visited = copy.deepcopy(farm)
+
+    # 농장 만들기
+    farm = [[0 for _ in range(length_of_vertical)] for _ in range(length_of_horizontal)]
+    
+    ## 첫 번째 솔루션과 length_of_vertical과 length_of_horizontal을 바꾼 이유
+    #  이렇게 해야 입력되는 좌표가 보다 직관적이고, [x][y]로 생각할 수 있다.
 
     for _ in range(number_of_position):
         x, y = list(map(int, sys.stdin.readline().split()))
-        farm[y][x] = 1
+        farm[x][y] = 1
 
 
+    for x in range(length_of_horizontal): # 0 1 2 3 4 5 6 7 8 9
+        for y in range(length_of_vertical): # 0 1 2 3 4 5 6 7
+            if farm[x][y] == 1:
+                answer += 1 
+                search = checkFarm(farm)
+                search(x, y, length_of_horizontal, length_of_vertical)
 
+    return answer
 
 if __name__ == "__main__":
     T = int(sys.stdin.readline()) # 테스트 케이스의 수
     while T > 0 :
         M, N, K = list(map(int, sys.stdin.readline().split())) # 가로 길이, 세로길이, 배추가 심어진 갯수
-        print(f"배추흰지렁이 마리 수: {firstSolution(M, N, K)}")
-        # print(f"배추흰지렁이 마리 수: {secondSolution(M, N, K)}")
+        # print(f"배추흰지렁이 마리 수: {firstSolution(M, N, K)}")
+        print(f"배추흰지렁이 마리 수: {secondSolution(M, N, K)}")
         T -= 1
 
 

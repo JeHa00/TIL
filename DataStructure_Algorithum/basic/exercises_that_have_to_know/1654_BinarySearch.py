@@ -69,6 +69,7 @@ def third_solution(K:int, N:int):
     """
 
     lines = [int(sys.stdin.readline()) for _ in range(K)]
+    lines_satisfied_condition = []
     start = 1
     end = max(lines)
 
@@ -84,20 +85,31 @@ def third_solution(K:int, N:int):
         mid가 커지기 위해서는 start = mid + 1을 한다. end = mid + 1도 있지만 이는 증가시키는 게 아닌 감소시키는 것이다.
         mid가 작아지기 위해서는 end = mid - 1을 한다. start = mid - 1도 있지만 이는 감소시키는 게 아닌 증가시키는 것이다.
         """
+    
         if answer >= N: # answer가 작아져야 하므로, mid는 커져야 한다.
+            """
+            여기서 하나 의문점이 든다. N개보다 많이 만드는 것도 N개를 만드는 것에 포함되기 때문에
+            answer >= N 이다. 
+            그러면 N개보다 커지면 바로 끝나는 건가? 그렇지 않다.
+            만들 수 있는 최대 랜선의 길이를 구하는 프로그램이기 때문에, N개보다 커지면 길이가 최대 길이가 안된다. 
+            그래서 사실상 N개보다 많이 생성하면 안된다.
+            """
+
             start = mid + 1 
+            lines_satisfied_condition.append(mid)
         else:  # answer가 커져야 하므로, mid는 작아져야 한다.
             end = mid - 1
-    print(end)
+            
+    return max(lines_satisfied_condition)
     
 
 if __name__ == "__main__":
-    K, N = map(int, sys.stdin.readline().split())
+    K, N = map(int, sys.stdin.readline().split()) # 가지고 있는 랜선의 수, 필요한 랜선의 수
     start = time.time()
     # answer = first_solution(N, K)
     # answer = second_solution(K, N)
-    third_solution(K, N)
+    print(third_solution(K, N))
     end = time.time() 
-    print(end-start)
+    print(f"time: {end-start}")
 
 

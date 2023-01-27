@@ -18,7 +18,7 @@ def main(kinds_of_coin:int, total_cost:int):
     예제는 맞았지만 틀렸다면 내부 부등호를 판단해보자. 과연 그 부등호가 맞는 것인지?
     """
     coins = []
-    counts = 0
+    total_count = 0
     
     for _ in range(kinds_of_coin):
         coin = int(input('coin price: '))
@@ -29,10 +29,10 @@ def main(kinds_of_coin:int, total_cost:int):
     for coin in coins:
         # if coin < total_cost:  -> coin과 total_cost가 동일한 경우에 답이 틀릴 수 있다. 
         if coin <= total_cost:
-            counts += total_cost // coin
-            total_cost %= coin
+            count, total_cost = divmod(total_cost, coin)
+            total_cost += count
             if total_cost == 0:
-                return counts
+                return total_count
 
 
 if __name__ == "__main__":

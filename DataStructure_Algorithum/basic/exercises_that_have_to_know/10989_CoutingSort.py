@@ -46,10 +46,19 @@ def second_solution(counts_of_number: int):
         number = int(sys.stdin.readline())
         count_array[number] += 1
 
+    """
     for index, count in enumerate(count_array): 
         if count_array[index] != 0:
             for _ in range(count):
                 print(index)
+    """
+
+    # 계수정렬의 의미를 살려 naming을 작성하는 게 가독성에 더 좋다. 
+
+    for number, total_counts in enumerate(count_array): 
+        if count_array[number] != 0:
+            for _ in range(total_counts):
+                print(number)
 
 if __name__ == '__main__':
     counts_of_number = int(sys.stdin.readline())

@@ -94,7 +94,6 @@ def third_solution(K:int, N:int):
             만들 수 있는 최대 랜선의 길이를 구하는 프로그램이기 때문에, N개보다 커지면 길이가 최대 길이가 안된다. 
             그래서 사실상 N개보다 많이 생성하면 안된다.
             """
-
             start = mid + 1 
             lines_satisfied_condition.append(mid)
         else:  # answer가 커져야 하므로, mid는 작아져야 한다.

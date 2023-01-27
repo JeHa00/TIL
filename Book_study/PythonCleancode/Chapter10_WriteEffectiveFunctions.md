@@ -60,10 +60,119 @@
     - 함수 개수가 늘어나면서 정확한 이름을 작성하기 어렵다.  
     - 함수를 많이 사용할수록 작성할 문서도 많아진다.  
 
+그러면 실제로 긴 함수로 작성했을 때, 짧은 함수들로 작성했을 때를 비교해보자.  
+
+### 한 개의 큰 함수
+
+```python
+def getPlayerMove(towers):
+    """플레이어에게 이동 명령을 요청한다. (fromtower, toTower)를 반환한다."""
+
+    while True: # 플레이어가 유효한 이동 명령을 입력할 때까지 계속 요청한다. 
+        print('탑의 "시작"과 "끝"의 글자 또는 QUIT를 입력하세요.')
+        print("(예: 탑 A에서 탑 B로 원판을 이동하려면 AB를 입력합니다.)")
+        print()
+        response = input("> ").upper().strip()
+
+        if response == "QUIT":
+            print("즐겁게 퍼즐을 풀어줘서 감사합니다.")
+            sys.exit() 
+        
+        if response not in ("AB", "AC", "BA", "BC", "CA", "CB"):
+            print("AB, AC, BA, BC, CA, CB 중 하나를 입력하십시오.")
+            continue 
+    
+        fromTower, toTower = response[0], response[1]
+
+        if len(towers[fromTower]) == 0:
+            print("원판이 없는 탑을 선택했습니다.") # from 탑은 비어 있을 수 없다. 
+            continue 
+        elif len(towers[toTower]) == 0: 
+            return fromTower, toTower
+        elif towers[toTower][-1] < towers[fromTower][-1]:
+            print("더 작은 원판에 더 큰 원판을 올릴 수 없습니다.")
+            continue
+    else:
+        return fromTower, toTower  
+```
+
+### 짧은 여러 개의 함수  
+
+```python 
+def getPlayerMove(towers):
+    """플레이어에게 이동 명령을 요청한다. (fromtower, toTower)를 반환한다."""
+
+    while True: # 플레이어가 올바른 이동 명령을 입력할 때까지 계속 물어본다. 
+        response = askForPlayerMove() 
+        terminateIfResponseIsQuit(response)
+        if not isvalidTowerLetters(response):
+            continue 
+
+        fromTower, toTower = response[0], response[1]
+
+        if towerWithNoDiskSelected(towers, fromTower):
+            continue 
+        elif len(towers[toTower]) == 0: 
+            return fromTower, toTower
+        elif largerDiskIsOnSmallerDisk(towers, fromTower, toTower):
+            continue 
+        else:
+            return fromTower, toTower 
+
+def askForPlayerMove():
+    """플레이어에게 질문 내용을 출력하고, 선택한 타워를 반환한다."""
+    print('탑의 "시작"과 "끝"의 글자 또는 QUIT를 입력하십시오.')
+    print('(예: 탑 A에서 탑 B로 원판을 이동하려면 AB를 입력합니다)')
+    print()
+    return input('> ').upper().strip() 
+
+def terminateIfResponseIsQuit(response):
+    """응답이 'QUIT'인 경우, 프로그램을 종료한다."""
+    if response == 'QUIT':
+        print('즐겁게 퍼즐을 풀어주셔서 감사합니다.')
+        sys.exit()
+
+def isValidTowerLetters(towerLetters):
+    """towerLetters가 유효하면 true를 반환한다."""
+    if towerLetters not in ("AB", "AC", "BA", "BC", "CA", "CB"):
+        print("AB, AC, BA, BC, CA, CB 중 하나를 입력하십시오.")
+        return False
+    return True
+
+def towerWithNoDiskSelected(towers, selectedTower):
+    """selectedTower에 원판이 없으면 True를 반환한다."""
+    if len(towers[selectedTower]) == 0:
+        print("원판이 없는 탑을 선택했습니다.")
+        return True
+    return False
+
+def largerDiskIsOnSmallerDisk(towers, fromTower, toTower):
+    """더 큰 원판이 더 작은 원판으로 이동할 경우, True를 반환한다"""
+    if towers[toTower][-1] < towers[fromTower][-1]
+        print('더 작은 원판에 더 큰 원판을 올릴 수 없습니다.')
+        return True 
+    return False 
+```
+
+### 비교
+
+위 두 가지를 비교해보자. 
+
+원래 getPlayerMove() 함수보다 이해하기 쉽지만, 이 함수들의 집합은 복잡도를 증가시킨다. 그래서 이 코드를 읽는 사람들은 함수들이 어떻게 서로 맞아 떨어지는지 이해하는 데 어려움을 가진다.  또한, 각각의 새로운 함수에 대해 새로운 이름과 독스트링을 제안해야 한다.  
+
+즉, 이 경우는 함수 자체는 단순해졌을 수도 있지만, 프로그램의 전반적인 복잡도가 대폭 상승했다. 
+
+이 저자에 의하면 **_이상적인 함수는 30행 이하여야 하며, 결코 200행을 넘어서면 안된다_** 고 한다. 
+
+함수는 최대한 짧게 만들되, 여기서 제시한 기준 이하로 줄이지는 말자.  
+
+
 <br>
 
 ---
 # 3. 함수 파라미터와 인수  
+
+
 
 <br>
 

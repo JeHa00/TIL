@@ -70,3 +70,4 @@ if __name__ == "__main__":
     N = int(sys.stdin.readline())
     print(main())
     main2(N)
+

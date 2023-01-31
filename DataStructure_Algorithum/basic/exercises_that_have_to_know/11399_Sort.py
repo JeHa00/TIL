@@ -13,19 +13,18 @@ ATM 앞에 N명의 사람이 있고, 각 N명이 인출하는데 걸리는 시�
 
 import sys
 
-def main() -> int:
+def main(number_of_people: int) -> int:
 
     result = []
-    times_to_extract = list(map(int, sys.stdin.readline().split()))
-    times_to_extract.sort()
+    times_to_extract_per_one = list(map(int, sys.stdin.readline().split()))
+    times_to_extract_per_one.sort()
 
-    for i in range(len(times_to_extract)):
-        total_time_spent_per_person = sum(times_to_extract[:i+1])
-        result.append(total_time_spent_per_person)
+    for n_th in range(number_of_people):
+        result[n_th] = sum(times_to_extract_per_one[:n_th+1])
 
-    answer = sum(result)
-    return answer
+    return sum(result)
 
 if __name__ == "__main__":
     number_of_people = int(sys.stdin.readline())
-    print(main())
+    print(main(number_of_people))
+

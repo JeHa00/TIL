@@ -7,17 +7,21 @@
 """
 
 import sys
+from collections import deque
 
-def main():
+def version_stack():
+    """
+    오큰수 문제를 stack을 사용하여 푼 문제
+    """
     total_counts = int(sys.stdin.readline())
     elements = list(map(int, sys.stdin.readline().split()))
     answer = [-1] * total_counts
     candidates = []
 
-    for i, element in enumerate(elements): 
+    for i, standard in enumerate(elements): 
         for j in range(total_counts-1, i, -1):
             candidate = elements[j]
-            if element < candidate:
+            if standard < candidate:
                 candidates.append(candidate)
         if len(candidates) != 0:
             answer[i] = candidates.pop() # candidates stack에서 제일 마지막에 있는 값이 element와 가장 가깝게 있으면서 큰 값.
@@ -26,5 +30,27 @@ def main():
     print(*answer)
 
 
+def version_queue():
+    """
+    오큰수 문제를 큐를 사용하여 푼 문제
+    """
+    total_counts = int(sys.stdin.readline())
+    elements = list(map(int, sys.stdin.readline().split()))
+    results = [-1] * total_counts
+    candidates = deque([])
+
+    for i, standard in enumerate(elements):
+        for j in range(i+1, total_counts):
+            candidate = elements[j]
+            if standard < candidate: 
+                candidates.append(candidate)
+        if len(candidates) != 0: 
+            results[i] = candidates.popleft()
+    
+    print(*results)
+
 if __name__ == '__main__':
-    main()
+    version_stack()
+    version_queue()
+
+

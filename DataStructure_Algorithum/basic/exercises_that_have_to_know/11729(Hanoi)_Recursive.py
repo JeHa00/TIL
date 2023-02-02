@@ -50,3 +50,4 @@ if __name__ == "__main__":
     move_counts = 2**(N) - 1 
     print(move_counts)
     hanoi_recursive(N, 1, 3)
+

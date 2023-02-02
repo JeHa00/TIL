@@ -24,5 +24,5 @@ if __name__ == '__main__':
     n, k = map(int, sys.stdin.readline().split())
     answer = main(n, k)
     print('<', end='')
-    print(','.join(map(str, answer)), end='')
+    print(', '.join(map(str, answer)), end='')
     print('>')

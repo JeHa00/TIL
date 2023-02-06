@@ -49,14 +49,13 @@ def solution(orders: list, course: list) -> list:
 
     # 2) set_menu = Counter(all_menu)로 all_menu의 조합 중복 횟수 구하기
         set_menus = Counter(all_menus)
-
     # key = 세트 메뉴, value = 중복 수
     # 3) for 문을 사용하여 enumerate(set_menu) 반복하여 max(set_menu.value()) 값을 찾아 해당 key를 answer에 추가
-        if set_menus:
-            if max(set_menus.values()) >= 2: 
-                for _, key in enumerate(set_menus):
-                    if set_menus[key] == max(set_menus.values()):
-                        answer.append(''.join(key))
+        if set_menus and max(set_menus.values()) >= 2: 
+            for key in set_menus:
+                if set_menus[key] == max(set_menus.values()):
+                    answer.append(''.join(key))
+    
     result = sorted(answer)
     
     return result
@@ -66,4 +65,4 @@ if __name__ == "__main__":
     total_orders = [["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], ["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"], ["XYZ", "XWY", "WXA"]]
     total_course = [[2,3,4], [2,3,5], [2,3,4]]
     for orders, course in zip(total_orders, total_course):
-        print(solution(orders, course))
+        print(solution(orders, course)) 

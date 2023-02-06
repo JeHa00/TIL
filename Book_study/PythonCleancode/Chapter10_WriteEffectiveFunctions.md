@@ -175,6 +175,8 @@ def largerDiskIsOnSmallerDisk(towers, fromTower, toTower):
 
 ### parameter와 argument 의 차이   
 
+> **_함수를 선언할 때 입력하는 변수 이름이 '매개변수', 함수를 호출할 때 입력하는 변수 이름이 '인수'_**  
+
 parameter(매개변수)는 def 문의 괄호 사이에 있는 변수 이름인 반면 argument(인수)는 함수를 호출할 때 괄호 사이에 들어가는 값이다.
 
 함수의 매개변수가 많아질수록 함수의 코드는 더 자유로운 구성과 일반화가 가능하지만, 복잡도가 커진다는 의미이기도 하다.  
@@ -184,8 +186,58 @@ parameter(매개변수)는 def 문의 괄호 사이에 있는 변수 이름인 �
 
 ## 기본 인수
 
+함수 파라미터의 복잡도를 줄이는 한 가지 방법은 파라미터에 대한 기본 인수를 제공하는 것이다.  
+
+'기본 인수(Default argument)'는 함수를 호출할 때 변수를 지정하지 않는 경우, 인수로 사용되는 값이다. 기본 인수를 사용하면 반복적으로 인수를 입력할 필요 없이 해당 값을 기본 인수로 만들 수 있다.  
+
+이 때 주의할 점으로 기본 인수가 있는 파라미터는 항상 기본 인수가 없는 파라미터 뒤에 위치해야 한다.  
+
+```python
+def introduction(name, greeting='Hello'):
+    print(greeting + ', ' + name)
+
+introduction('Alice') # Hello, Alice
+```
+
+이 기본 인수를 입력할 때 또 다른 유의할 점은 8장에서 알아봤다시피, 빈 리스트 또는 빈 딕셔너리 같은 Mutable object를 사용하는 걸 피해야한다.  
+
 
 ## * 와 **를 사용해 함수에 인수 전달하기
+
+인수 그룹을 따로 따로 함수로 넘기기 위해 * 와 ** 구문을 사용할 수 있다.  
+
+- * 구문을 사용하면 리스트나 튜플 같은 반복가능(iterable) 객체의 아이템을 전달할 수 있다.  
+
+- ** 구문을 사용하면 딕셔너리 같은 매핑 객체의 키-값 쌍을 개별 인수들로 전달할 수 있다.  
+
+예시 코드들을 보자.
+
+```python
+print('cat', 'dog', 'moose') # cat dog moose
+args = ['cat', 'dog', 'moose'] 
+print(args) # ['cat', 'dog', 'moose']
+
+# 코드 가독성이 떨어지는 예제
+args = ['cat', 'dog', 'moose'] 
+print(args[0], args[1], args[2]) # cat dog moose
+
+# 더 좋은 방법
+print(*args) # cat dog moose
+```
+
+* 구문을 사용하면 리스트에 아이템이 여러 개 있더라도 이 아이템들을 함수에 개별적으로 전달할 수 있다.  
+
+
+다음으로 ** 구문을 사용한 코드를 보자.  
+
+** 구문을 사용하면 매핑 데이터 타입을 개별 키워드 인수로 전달할 수 있다.  
+
+```python
+kwargsForPrint = {'sep' : '-'}
+print('cat', 'dog', 'moose', **kwargsForPrint) # cat-dog-moose
+```
+
+위와 같이 사용할 수 있다. 이 방식은 키워드 인수를 받아들이는 함수와 메소드에 특히 유용하다.  
 
 ## *를 사용해 가변인수 함수 만들기
 

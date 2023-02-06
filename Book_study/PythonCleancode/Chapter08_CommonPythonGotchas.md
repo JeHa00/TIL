@@ -93,7 +93,6 @@ print(greetings) # ['hello', 'hello', 'yello', 'hello']
 
 ![image](https://user-images.githubusercontent.com/78094972/210934440-b99e6c0d-abb4-4f97-896c-88eaba35cd9e.png)
 
-
 그렇다면 어떻게 코드를 작성하는게 좋을까?
 
 삭제할 아이템을 제외한 모든 아이템을 복사하는 새 리스트를 만든 다음, 원래 리스트를 교체하자. 
@@ -237,7 +236,6 @@ print(id(eggs)) # 2356893256136
 printIdOfParam(eggs) # 2356893256136
 ```
 
-
 ❗️ 만약 파이썬이 참조가 아닌 전체 리스트를 복사했다고 생각해보자. 
 
 eggs에는 단 3개가 아닌 10억 개의 아이템이 들어있는 상황에서 인자로 넘기면 이거에 대한 리스트를 전부 복사해야 한다.
@@ -294,7 +292,6 @@ id(bacon[0]) == id(ham[0]) # False
 그러면 다음으로 기본 인수로 가변 객체를 사용한 경우를 보자.
 
 ```python
-
 def addIngredient(ingredient, sandwich=['bread', 'bread']):
     sandwich.insert(1, ingredient)
     return sandwich
@@ -423,8 +420,8 @@ letters # ['A', 'a', 'z', 'Z']
 
 # 6. 부동소수가 완벽히 정확할 거라고 가정하지 말자
 
-
 ## 문제점
+
 컴퓨터는 0과 1만 저장할 수 있다. 이는 소수점이 존재하는 실수도 마찬가지다. 그래서 실제 실수 계산할 때 다음과 같이 사람의 생각과 다른 결과가 나온다.
 
 ```python

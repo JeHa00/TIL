@@ -219,8 +219,6 @@ repr : t-wau - {'uniform_color': 'red', 'kind': 'LCC', 'price': 3000}
 
   - `object.__repr__` 를 통해 변환된 걸 반환한다.
 
-- `__str__`은 내부적으로 default로 `__repr__`을 호출한다면, 내부적으로 어떤 과정을 거쳐서 차이가 생기는지 알아보자.
-
 <br>
 
 ---

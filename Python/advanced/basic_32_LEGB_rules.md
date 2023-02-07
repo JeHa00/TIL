@@ -47,7 +47,7 @@
 | 참조 / 할당   | name을 **_'참조'_** 한다                    | name을 **_'할당'_** 한다                          |
 | 구체적인 의미 | name에 담겨진 value를 **_'단지 가져온다'_** | name을 **_'새롭게'_** 만들거나, **_'수정'_** 한다 |
 
-- 그리고, 할당한다는 건 특정 scope이 결정된다는 걸 말한다.
+그리고, 할당한다는 건 특정 scope이 결정된다는 걸 말한다.
 
 <br>
 
@@ -55,7 +55,7 @@
 
 > **_Namespace_ 설명은 [[TIL] Python basic 14: class](https://jeha00.github.io/post/python_basic/python_basic_14_class/#23-namespace-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0)을 참고한다.**
 
-- namespace는 각각 다른 지점에서 만들어지기 때문에, 다른 `수명 시간(life time)`을 가지고 있다. 어느 위치에서 사용할 수 있는지가 결정되어 있다. (from [Python-course.eu: Namespaces](https://python-course.eu/python-tutorial/namespaces.php))
+- namespace는 각각 다른 지점에서 만들어지기 때문에, 다른 `수명 시간(life time)`을 가지고 있다. 어느 위치에서 사용할 수 있는 지가 결정되어 있다. (from [Python-course.eu: Namespaces](https://python-course.eu/python-tutorial/namespaces.php))
 
 - **`__dir__`을 통해서 할당된 name이 가지는 scope을 보여준다.**
 
@@ -81,7 +81,7 @@
 
 <br>
 
-- **_Local(or function) scope: 지역 범휘_**
+- **_Local(or function) scope: 지역 범위_**
 
   - Python function의 body 또는 code block 부분이 local scope이다.
   - function이 호출될 때, 이 function에 대한 namespace가 생성된다.
@@ -132,7 +132,6 @@
 
 # 2. LEGB rules를 code로 이해해보기
 
-<br>
 
 ## 2.1 LEGB rules: The Local Scope
 
@@ -248,7 +247,7 @@ UnboundLocalError: local variable 'var' referenced before assignment
 
   - 전역 변수를 업데이트한 것이 아닌 function의 body 부분에 있기 때문에 지역 변수를 새로 만든 것이다.
 
-- 즉, 다음 사실을 알 수 있다.
+즉, 다음 사실을 알 수 있다.
 
 > **_Python은 global variable과 동일한 이름으로 function body에 선언해도 local variable로 인식한다._**
 
@@ -258,7 +257,6 @@ UnboundLocalError: local variable 'var' referenced before assignment
 
 - `locals()` 과 `globals()` function을 통해서 지역 변수와 전역 변수를 출력해보자.
 
-<br>
 
 ### 2.4.1 locals()
 
@@ -285,7 +283,7 @@ UnboundLocalError: local variable 'var' referenced before assignment
 
 ### 2.4.2 globals()
 
-- globals는 이 코드를 실행할 때 입력한 모든 전역 변수가 입력되기 때문에, 다음과 같이 하여 알아본다.
+- globals는 코드를 실행할 때 입력한 모든 전역 변수가 입력되기 때문에, 다음과 같이 하여 알아본다.
 - `globals()`는 global 영역의 변수를 입력할 때 호출된다.
 
 ```yml
@@ -367,8 +365,6 @@ TypeError: 'int' object is not callable
 
 # 2. Python memory structure
 
-<br>
-
 ## 2.1 코드 영역
 
 > **실행할 프로그램의 코드가 저장**되는 영역 (text 영역이라고도 한다)
@@ -406,7 +402,7 @@ TypeError: 'int' object is not callable
 
 ## 2.2 Heap
 
-> **_사용자가 직접 관리할수 잇는 영역으로, 객체가 생성된다._**
+> **_사용자가 직접 관리할수 있는 영역으로 객체가 생성된다._**
 
 - 사용자에 의해 메모리 공간이 동적으로 할당되고, 해제된다.
 - heap 영역은 `런타임 시`에 크기가 결정된다 (메모리가 할당된다)

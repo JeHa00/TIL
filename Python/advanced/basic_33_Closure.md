@@ -6,15 +6,13 @@
 
 <br>
 
-- Closure가 필요한 이유 그리고, 잘못 사용된 사례에 대해 알아보자.
-
-<br>
+Closure가 필요한 이유 그리고, 잘못 사용된 사례에 대해 알아보자.
 
 ---
 
 # 1. UnboundLocalError
 
-- 전역 변수와 지역 변수에 대해 간단히 복습해보자.
+전역 변수와 지역 변수에 대해 간단히 복습해보자.
 
 ```yml
 # global (전역) 변수
@@ -81,8 +79,6 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
 
 # 2. Closure
 
-<br>
-
 ## 2.1 What is closure ??
 
 > **_Reference에 따른 closure 정의: 외부에서 호출된 함수의 변수값, 상태(레퍼런스)를 복사 후 저장한다. 그 후에 접근(액세스)이 가능하도록 하는 도구_**
@@ -95,7 +91,7 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
     - 정의되지 않은 code block에 사용되는 변수
     - 여러 번 호출이 일어나도 상태 정보를 보유하기 위해 closure가 사용하는 원리
 
-- closure는 outer function을 호출해서 innter function을 return 했지만, outer function의 **_enclosing scope_** 에 있던 **_자유변수(free variable)를 계속해서 기억한다._**
+- closure는 outer function을 호출해서 inner function을 return 했지만, outer function의 **_enclosing scope_** 에 있던 **_자유변수(free variable)를 계속해서 기억한다._**
 
 - 그래서, 함수실행이 끝나도 그 시점의 변수를 이어서 작업할 수 있다.
 
@@ -111,7 +107,7 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
   - 한정된 메모리 공간에서 여러 자원이 접근하면 `교착상태(Dead lock)`에 부딪힌다.
   - 이를 해결하는 게 `동시성(Concurrency) 제어`다.
   - closure는 불변자료 (immutable, Read Only) 구조 및 atom, STM 이므로 multi-thread 프로그래밍에 강점을 가진다.
-  - multi-thread가 아닌 **_단일 thread_** 인데도 동시성을 갖도록 하는 기반이 되는 게 바로 이 closure다.
+  - multi-thread가 아닌 **_단일 thread_** 인데도 동시성을 갖도록 하는 기반이 되는 게 바로 closure다.
 
 - 또한, 이 클로저는 함수형 프로그래밍에도 연결된다.
 
@@ -135,7 +131,6 @@ UnboundLocalError: local variable 'c' referenced before assignmnet
 # 인스턴스 생성
 > averager_cls = Averager()
 
-# 누적
 # instance를 생성했는데, function처럼 사용하고 있다.
 # Avenger()를 사용하면 __call_ method의 return 값이 출력된다.
 
@@ -150,7 +145,7 @@ inner >>> [15, 35, 40] / 3
 30.0
 ```
 
-- 위의 예시처럼 class 실행이 끝나서, 변수가 소멸되야하는데 유지되고 있다. 상태를 기억하고 있기 때문에 계속해서 누적된다. 그래서 중간부터 해도 이어서 할 수 있다.
+위의 예시처럼 class 실행이 끝나서, 변수가 소멸되야하는데 유지되고 있다. 상태를 기억하고 있기 때문에 계속해서 누적된다. 그래서 중간부터 해도 이어서 할 수 있다.
 
 <br>
 
@@ -158,14 +153,14 @@ inner >>> [15, 35, 40] / 3
 
 # 3. Exercises for closure
 
-- closure는 pattern이 정해져 있다.
+closure는 pattern이 정해져 있다.
 
 ```yml
 # global scope
 > def closure_ex1():
 
 # closure_ex1의 local scope이면서
-# averager(v)의 the enclosing scope 또는 자유영역
+# avenger(v)의 the enclosing scope 또는 자유영역
 # 이 영역에 정의된 변수: series
 >   series = []
 

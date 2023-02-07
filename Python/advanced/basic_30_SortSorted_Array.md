@@ -16,10 +16,9 @@
 | --------- | ------ | --------------- |
 | 원본 수정 | O      | X               |
 | 반환값    | None   | New list object |
+| function or method | method | function |
 
 - list data model에서 자주 사용하는 함수인 `sort` 와 `sorted`에 대해 알아보자.
-
-- 실습 예제를 통해 확인하자.
 
 ```yml
 > f_list = ['orange', 'apple', 'mango', 'papaya', 'lemon', 'strawberry', 'coconut']

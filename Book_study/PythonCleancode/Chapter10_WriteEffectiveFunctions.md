@@ -241,7 +241,69 @@ print('cat', 'dog', 'moose', **kwargsForPrint) # cat-dog-moose
 
 ## *를 사용해 가변인수 함수 만들기
 
+```python
+def product(*args):
+    result = 1
+    for num in args:
+        result *= num
+    return result
+
+product(3,3) # 9
+product(2, 1, 2, 3) # 12
+```
+
+함수 내부에서 args는 모든 위치 기반 인수를 포함하는 표준적인 파이썬 튜플인데, *로 시작하면 어떤 이름도 가능하지만, 관례에 따라 args라는 이름이 붙인다.  
+
+
+### How to design parameters
+
+그렇다면 파라미터 설계는 어떻게 해야할까??
+
+보통 어떻게 사용할지를 사전에 예측해서 결정하는 편이 좋다.  
+
+아래 코드를 봐보자. 
+
+```python
+def myMinFunction(*args):
+    if len(args) == 1:
+        values = args[0]
+    elif len(args) == 0:
+        raise ValueError('myMinFunction() args is an empty sequence')
+    else:
+        values = args 
+
+    for i, value in enumerate(values):
+        if i == 0 or value < smallestValue: 
+            smallestValue = vale
+    return smallestVale
+```
+
+args의 길이에 따라 조건을 분기시켜 길이에 따라 다른 실행을 하도록 설계하면 가변인수 설계가 가능하다.
+
+* 구문을 사용하여 튜플로 가변인수를 받아들인다. 
+
+이 튜플에 값이 하나만 포함되어 있는 경우, 시퀀스라고 가정한다.  
+
+2개 이상이면 나머지 코드에서 살펴볼 값의 시퀀스를 포함한다.  
+
+아무것도 입력되지 않으면 ValueError을 발생시킨다.  
+
+나머지 코드는 값을 순회하는 과정에서 발견된 가장 작은 값을 반환한다. 
+
+### 두 가지 가변인수 전달 방식을 모두 사용하지 않는 이유
+
+> **_함수를 최대한 단순하게 유지하는 게 최선이기 때문이다._**
+
+대체로 함수가 프로그램이 실행되는 동안 생성된 데이터 구조를 다룬다면, 단일 파라미터를 받아들이는 편이 좋다.
+
+그리고, 함수가 프로그래머에 의해 명세된 인수를 다룬다면 * 구문을 사용해 가변인수를 받아들이는 편이 낫다.  
+
+<br>
+
 ## **를 사용해 가변인수 함수 만들기 
+
+
+<br>
 
 ## *와 **로 래퍼 함수 만들기
 

@@ -17,13 +17,31 @@
 from typing import List
 
 def solution(nums: List) -> int:
+    """주어진 폰켓몬 목록을 받으면 최대로 가질 수 있는 경우의 수를 반환하는 함수
 
-    answer = 0
+    Args:
+        nums (List): 주어진 폰켓몬 목록
 
+    Returns:
+        int: 최대 경우의 수
+    """
 
-    return answer
+    max_count = len(nums) // 2
+    phonketmon = dict()
+
+    for num in nums:
+        if phonketmon.get(num) == None:
+            phonketmon[num] = 0
+        else:
+            phonketmon[num] += 1
+
+    if len(phonketmon) >= max_count:
+        return max_count
+    else:
+        return len(phonketmon)
 
 if __name__ == "__main__":
     nums_list = [[3,1,2,3], [3,3,3,2,2,4], [3,3,3,2,2,2]]
+    ff = dict()
     for nums in nums_list:
-        solution(nums)
+       print(solution(nums))

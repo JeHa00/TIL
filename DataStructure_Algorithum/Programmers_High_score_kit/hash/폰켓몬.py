@@ -42,6 +42,5 @@ def solution(nums: List) -> int:
 
 if __name__ == "__main__":
     nums_list = [[3,1,2,3], [3,3,3,2,2,4], [3,3,3,2,2,2]]
-    ff = dict()
     for nums in nums_list:
        print(solution(nums))

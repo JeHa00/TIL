@@ -300,7 +300,7 @@ Stopped Iteration
 # 인덱스를 기억하지 않아도 된다.
 >       self._text = text.split('')
 
->   def __next__(self):
+>   def __iter__(self):
 >       for word in self._text:
 
 # 이것이 제네레이터이며, 이 제네레이터가 위치 정보를 기억한다.

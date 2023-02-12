@@ -11,31 +11,36 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42579
 제한 사항
 - genres와 plays의 길이는 동일  
 - 장르 종류 < 100개
+- 장르에 속한 곡이 하나라면, 하나의 곡만 선택합니다.
+- 모든 장르는 재생된 횟수가 다르다. 
 """
 from typing import List
 def solution(genres:List, plays:List) -> List:
+    answer = []
 
-    hash_map = dict() 
-    for i, genre in enumerate(genres):
-        if genre not in hash_map.keys():
-            hash_map[genre] = []
-            hash_map[genre].append(i)
-            
-    
-    # 장르의 총 재생 수를 계산
-    # 총 재생 수가 많은 장르부터 앨범에 수록
-    # 각 장르마다 최대 2곡만 수록 
+    total_info = dict()
+    songs_per_genre = dict()
+    for i, (genre, play_count) in enumerate(zip(genres, plays)): 
+        # {'classic': [(0, 500), (2, 150), (3, 800)], 'pop': [(1, 600), (4, 2500)]}
+        if genre not in total_info:
+            total_info[genre] = []
+            total_info[genre].append((i, play_count))
+        else:
+            total_info[genre].append((i, play_count))
 
-    # 장르별 재생 수
-    play_count = dict() 
-    for key in hash_map.keys(): # classic, pop
-        play_count[key] = 0
-        for i in hash_map[key]: # [0, 2, 3] / [1, 4]
-            play_count[key] += plays[i]
-    # {'classic': 1450, 'pop': 3100}
-    for item in play_count.items():
-        pass
+        # {'classic': 1450, 'pop': 3100}
+        if genre not in songs_per_genre:
+            songs_per_genre[genre] = play_count 
+        else:
+            songs_per_genre[genre] += play_count
 
+    # item의 1 인덱스에 있는 게 재생 횟수이므로, 이를 기준으로 내림차순으로 정렬한다. 
+    # 정렬하여 재생횟수가 제일 많은 것부터 플레이 리스트에 추가한다.
+    for genre, _ in sorted(songs_per_genre.items(), key=lambda x:x[1], reverse=True):
+        for i, _ in sorted(total_info[genre], key=lambda x:x[1], reverse=True)[:2]:
+            answer.append(i)
+
+    return answer
 
 if __name__ == "__main__":
     genres = ["classic", "pop", "classic", "classic", "pop"]

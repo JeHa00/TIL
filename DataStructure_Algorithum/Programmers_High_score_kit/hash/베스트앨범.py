@@ -15,24 +15,21 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42579
 - 모든 장르는 재생된 횟수가 다르다. 
 """
 from typing import List
+from collections import defaultdict
+
 def solution(genres:List, plays:List) -> List:
     answer = []
 
-    total_info = dict()
-    songs_per_genre = dict()
+    # key에 대한 기본 데이터 형태가 정해지면 defaultdict를 사용하기  
+    total_info = defaultdict(list)
+    songs_per_genre = defaultdict(int)
+    
     for i, (genre, play_count) in enumerate(zip(genres, plays)): 
         # {'classic': [(0, 500), (2, 150), (3, 800)], 'pop': [(1, 600), (4, 2500)]}
-        if genre not in total_info:
-            total_info[genre] = []
-            total_info[genre].append((i, play_count))
-        else:
-            total_info[genre].append((i, play_count))
+        total_info[genre].append((i, play_count))
 
         # {'classic': 1450, 'pop': 3100}
-        if genre not in songs_per_genre:
-            songs_per_genre[genre] = play_count 
-        else:
-            songs_per_genre[genre] += play_count
+        songs_per_genre[genre] += play_count
 
     # item의 1 인덱스에 있는 게 재생 횟수이므로, 이를 기준으로 내림차순으로 정렬한다. 
     # 정렬하여 재생횟수가 제일 많은 것부터 플레이 리스트에 추가한다.

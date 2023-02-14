@@ -9,7 +9,7 @@
 
 - 해당 챌린지의 목표는 주니어 개발자 및 개발 준비생을 대상으로 하기 때문에, MySQL의 특징을 이해하여 효율적으로 사용하고, MySQL 기본 개념들을 학습하여 기술 면접에 대비하는 게 목적입니다.
 
-- 그래서 운영체제의 cache 운용도가 높은 storage engine을 최적화할 때 어떻게 해야하는가 또는 쿼리 효율 개선 같은 내용은 다루지 않는다.
+- 그래서 운영체제의 cache 운용도가 높은 storage engine을 최적화할 때 어떻게 해야하는가 또는 쿼리 효율 개선 같은 내용은 다루지 않습니다.
 
 ### 해당 포스팅의 주제와 키워드
 
@@ -194,19 +194,19 @@ table의 각 row들이 disk에 저장될 때 한 줄로 저장된다.
 
 그리고 disk에는 다음과 같이 각 row 들로 저장된다. 
 
-- disk 1
+- block 1
 
     | Name | City | Age |
     | ---- | ---- | ---- |
     | James | Seoul | 29 | 
 
-- disk 2
+- block 2
 
     | Name | City | Age |
     | ---- | ---- | ---- |
     | Kang | London | 33 | 
 
-- disk 3
+- block 3
 
     | Name | City | Age |
     | ---- | ---- | ---- |
@@ -296,21 +296,21 @@ table의 각 row들이 disk에 저장될 때 한 줄로 저장된다.
 
 그리고, 디스크에는 다음과 같이 저장된다.
 
-- Disk 1
+- block 1
 
     | Name |  | |
     | ---- |---- | ---- |
     | James | Kang | Mac |
 
 
-- Disk 2
+- block 2
 
     |City| ||
     | ---- |---- | ---- |
     | Seoul | London | London |
 
 
-- Disk 3
+- block 3
 
     |Age|||
     | ---- |---- | ---- |
@@ -464,3 +464,4 @@ NoSQL: 인스타그램
 - [원티드 백엔드 챌린지 2월: MySQL '잘' 사용하기](https://www.wanted.co.kr/events/pre_challenge_be_4)
 - [Understanding NoSQL Databases by the CAP Theorem](https://data-science-blog.com/blog/2021/10/14/cap-theorem/)  
 - [What is MongoDB – Working and Features](https://www.geeksforgeeks.org/what-is-mongodb-working-and-features/)  
+- [How row oriented and column oriented db works?](https://www.youtube.com/watch?v=uMkVi4SDLbM)

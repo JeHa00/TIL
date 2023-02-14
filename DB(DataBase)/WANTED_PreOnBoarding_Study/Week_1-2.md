@@ -1,12 +1,12 @@
----
-title: "[DB]원티드 프리온보딩 백엔드 챌린지 MySQL: Transaction, Database Lock, Isolation Level"
-date: 2023-02-14T01:12:29+09:00
-draft: true
-summary: MySQL storage engine들의 종류들과 default engine인 InnoDB /  Transaction이란 무엇인지 / Database Lock의 종류에는 어떤 것들이 있고, 왜 필요한지 / Isolation level에 대해 알아본다.
-tags: ["DB"]
-categories: ["DB"]
----
 # 0. Introduction
+
+> 1. [MySQL을 사용하는 BigTech와 이유](#1-mysql을-사용하는-bigtech와-이유)  
+> 2. [MySQL storage engine](#2-mysql-storage-engine)    
+> 3. [Transaction](#3-🔆-transaction)  
+> 4. [Database Lock](#4-database-lock)    
+> 5. [Isolation Level(격리수준)](#5-isolation-level격리수준)    
+> 6. [알아두면 좋은 명령어](#6-알아두면-좋은-명령어)    
+
 
 - [원티드 백엔드 챌린지 2월: MySQL '잘' 사용하기](https://www.wanted.co.kr/events/pre_challenge_be_4) 를 듣고 제 언어로 정리한 포스팅입니다.  
 
@@ -396,14 +396,16 @@ transaction에도 상태(state)가 존재한다.
 
 🔆 격리 수준의 종류에는 무엇이 있고, 각 격리 수준은 무엇이며 장단점은 뭔지, 그래서 무엇을 사용하면 좋은지에 대해서만 먼저 알고 있자.
 
-- 격리 수준의 종류
+- 격리 수준의 종류: 각 격리 수준마다 단점이 존재하는데 이 모든 걸 다 해결하는 방법은 default engine인 innoDB를 사용하는 것  
     - read uncommitted
     - read committed
     - repeatable read: 나머지는 이런 게 있다는 정도로만 알고, 이를 자세히 알자.  
     - serializable
 
 ❗️ 격리 기본 수준 값을 변경하려고 할 때, 트랜잭션이 진행 중이라 바꿀 수 없다는 Error가 발생했다면 `COMMIT`을 사용하라.    
-❗️ autocommit = 1 이어도 start transcation으로 트랜잭션을 명시적으로 시작해주면  commit 명령어를 입력해야 DB에 적용이 된다.    
+❗️ autocommit = 1 이어도 start transcation으로 트랜잭션을 명시적으로 시작해주면 commit 명령어를 입력해야 DB에 적용이 된다.    
+❗️ mysql에서 나갔다가 다시 들어오면 autocommit은 다시 1로 세팅된다.  
+
 
 
 ## 5.1 Read uncommitted (dirty read)
@@ -416,9 +418,9 @@ transaction에도 상태(state)가 존재한다.
 
 - 트랜잭션의 변경 내용이 commit이나 rollback 여부에 상관 없이 보인다.  
 
-### 문제점
+### 문제점: 데이터 정합성 준수 x
 
-> **_나의 transaction이 아닌데도 COMMIT 전 데이터를 읽을 수 있다._**  
+> **_다른 트랜젝션에서 '데이터를 업데이트한 시점'을 기준으로 한 트랜젝션에서 조회되는 데이터가 달라진다. 즉, 나의 transaction이 아닌데도 COMMIT 전 데이터를 읽을 수 있다._**  
 
 나의 transaction이 진행 중 rollback되어 데이터 업데이트가 취소되어도 취소된 데이터가 남아 있어서 에러가 발생될 수 있다.
 
@@ -429,27 +431,28 @@ transaction에도 상태(state)가 존재한다.
     - 결과 확인: `SHOW GLOBAL VARIABLES LIKE 'autocommit';`
     - 실제 작업할 때는 건드리지 않는다.  
 2) 기본 isolation level 값을 A, B terminal에서 모두 변경: `SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;`
+3) A, B terminal에서 모두 트랜젝션 시작: `START TRANSACTION;`
     - 변경된 isolation level을 mysql 8.0 부터는 확인할 수 없다.  
-3) TABLE 새로 생성: `CREATE TABLE auto (id INT NOT_NULL AUTO_INCREMENT, name VAR(4), PRIMARY_KEY(id));`
-5) 트랜젝션 시작: `START TRANSACTION`
-6) 데이터 추가: `INSERT INTO auto (name) VALUES ('kang');`
-7) A terminal에서 데이터 추가: `INSERT INTO auto (name) VALUES ('jeha');` 
+4) TABLE 새로 생성: `CREATE TABLE auto (id INT NOT_NULL AUTO_INCREMENT, name VAR(4), PRIMARY_KEY(id));`
+5) A, B terminal에서 모두 트랜젝션 시작: `START TRANSACTION`
+6) A terminal에서 데이터 추가: `INSERT INTO auto (name) VALUES ('jeha');` 
     - 현재 나의 transaction이므로 추가된 데이터가 보인다.  
-8) B terminal에서 확인하기: `SELECT * FROM auto;`
-    - B terminal은 나의 transaction이 아닌데도 추가된 데이터가 보인다. 
-9) ROLLBACK을 진행하여 TRANSACTION 취소: `ROLLBACK;`
-10) A terminal: `SELECT * FROM auto;` -> commit을 실행하여 TRANSACTION을 마무리: `COMMIT;`
+7) B terminal에서 확인하기: `SELECT * FROM auto;`
+    - 다른 transaction인데 commit되지 않은 추가된 데이터가 보인다.   
+8) ROLLBACK을 진행하여 TRANSACTION 취소: `ROLLBACK;`
+9) A terminal: `SELECT * FROM auto;` -> commit을 실행하여 TRANSACTION을 마무리: `COMMIT;`
     - 취소된 데이터를 확인할 수 없다. 
 
 
-ROLLBACK하여 추가된 데이터가 사라졌지만, 8)번에서 조회한 데이터를 계속 남아 있으므로 문제가 발생된다.  
+A terminal에 트랜젝션 과정 중에 데이터를 추가한 6번을 기준으로, B terminal에서 진행되는 트랜젝션 과정에서 조회되는 데이터가 달라진다.
 
+한 트랜젝션 과정에서 데이터의 정합성이 보장되지 못하는 문제점이 발생된다. 또한 이로 인해서 여러 문제점이 발생될 것이다.
 
 &nbsp;
 
 ## 5.2 Read committed: Non repeatable read
 
-> **_COMMIT된 것만 읽을 수 있는 격리 수준으로, 트랜젝션이 완료된 데이터만 다른 트랜잭션에서 조회 가능하다._**
+> **_COMMIT된 것만 읽을 수 있는 격리 수준으로 트랜젝션이 완료된 데이터만 다른 트랜잭션에서 조회 가능하다._**
 
 ### Read committed란?
 
@@ -459,7 +462,9 @@ ROLLBACK하여 추가된 데이터가 사라졌지만, 8)번에서 조회한 데
 - 그 후 커밋이 안되어있으면 데이터를 가져올 때 undo log에 있는 데이터를 조회한다.  
 
 
-### 문제점
+### 문제점: 데이터 정합성 준수 x
+
+> **_다른 트랜젝션에서 COMMIT을 한 시점을 기준으로 한 트랜젝션에서 조회되는 데이터가 달라진다._**
 
 동일 트랜젝션 과정에서 COMMIT 전후로 가져오는 데이터가 달라지기 때문에 정합성에서 어긋난다.  
 
@@ -481,6 +486,20 @@ ROLLBACK하여 추가된 데이터가 사라졌지만, 8)번에서 조회한 데
     - 실제 작업할 때는 건드리지 않는다.  
 2) 기본 isolation level 값을 A, B terminal에서 모두 변경: `SET TRANSACTION ISOLATION LEVEL READ COMMITTED;`
     - 변경된 isolation level을 mysql 8.0 부터는 확인할 수 없다.  
+3) A, B terminal에서 모두 트랜젝션 시작: `START TRANSACTION;`
+4) 데이터 추가 전 데이터 조회 in A, B terminal: `SELECT * FROM auto;`
+5) A terminal에서 데이터 변경 후 확인: `UPDATE auto SET name='kim' WHERE name='lee'` -> `SELECT * FROM auto;`
+    - 데이터 변경이 진행된 동일한 트랜젝션이므로 확인할 수 있다.  
+6) B terminal에서 데이터 조회: `SELECT * FROM auto;`
+    - 변경 전 데이터로 조회된다.  
+7) A terminal에서 commit 실행: `COMMIT;`
+8) B terminal에서 데이터 조회: `SELECT * FROM auto;` 
+    - 변경 후 데이터로 조회된다.  
+7) B terminal에서 commit 실행: `COMMIT;`
+
+READ UNCOMMITED와의 차이점을 확인했고, 문제점도 확인했다.
+
+7)번 단계를 기준으로 B terminal에서 transaction이 진행 중인데 조회되는 데이터가 달라졌다. 이 부분이 transaction 진행 중에 데이터의 정합성이 보장되어야하는데 그러지 못하는 문제점이다. 
 
 
 &nbsp;
@@ -493,29 +512,55 @@ ROLLBACK하여 추가된 데이터가 사라졌지만, 8)번에서 조회한 데
 
 - 언두 영역에 백업된 이전 데이터를 이용해서 동일 트랜잭션에서는 같은 내용을 보여줄 수 있도록 함
 
-### 문제점
-- phantom read
-    - 언두 레코드에는 lock을 걸 수 없어서 같은 트랜잭션에서 조회 가능
-    - 왔다갔다 해서 phantom read(유령)이라고 함
+### 문제점: phantom read
+
+- undo record에는 lock을 걸 수 없어서 같은 트랜잭션에서 조회 가능
+- 왔다갔다 해서 phantom read(유령)이라고 함
 
 ### 해결책
 
-innoDB에서는 undo log를 transaction-id을 기준으로 버전관리를 하여, 해당 transaction-id 가 끝날 때까지 보관하기 때문에 phantom read가 문제가 되지 않는다.
+InnoDB에서는 undo log를 transaction-id을 기준으로 버전관리를 하여, 해당 transaction-id가 끝날 때까지 보관하기 때문에 phantom read가 문제가 되지 않는다.
 
 그래서 innoDB를 default engine으로 계속해서 사용한다.  
+
+### 실습
+
+1) autocommit을 off 시킨다: `SET GLOBAL autocommit=0;`
+    - 결과 확인: `SHOW GLOBAL VARIABLES LIKE 'autocommit';`
+    - 실제 작업할 때는 건드리지 않는다.  
+2) 기본 isolation level 값을 A, B terminal에서 모두 변경: `SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;`
+    - 변경된 isolation level을 mysql 8.0 부터는 확인할 수 없다.  
+3) A, B terminal에서 모두 트랜젝션 시작: `START TRANSACTION;`
+4) 데이터 추가 전 데이터 조회 in A, B terminal: `SELECT * FROM auto;`
+5) A terminal에서 데이터 변경: `UPDATE auto SET name='lee' WHERE name='kim';`
+6) B terminal에서 데이터 조회: 4번과 동일한 데이터가 조회된다.  
+    - read uncommited라면 5번을 기준으로 B terminal에서 조회되는 데이터가 달라지만, 그렇지 않았다.  
+7) A terminal에서 commit: `COMMIT;`
+8) B terminal에서 데이터 조회: 4번과 동일한 데이터가 조회된다.  
+    - read commited라면 7번을 기준으로 B terminal에서 조회되는 데이터가 달라지만, 그렇지 않았다.  
+9) B terminal에서 트랜젝션 종료 후 데이터 조회: `ROLLBACK;` -> `SELECT * FROM auto;`
+    - 5번에서 추가된 데이터를 확인할 수 있다.  
+
+
+한 TRANSACTION 동안 조회되는 데이터가 정합성을 준수하는 걸 확인했다.  
 
 &nbsp;
 
 ## 5.4 Serializable
 
-> **_transaction 간의 격리를 완전히 시켜서, 하나의 transaction에서 lock을 가지고 있는 record에는 다른 transaction이 접근할 수 없다._**
+> **_위에 여러 read의 문제점을 해결하는 방법으로, 하나의 transaction에서 접근한 record에 lock을 걸어 다른 transaction이 동일한 데이터 접근할 경우 이를 막아 transaction 간의 완전한 격리를 이루는 기능_**
+
+### 문제점
 
 - read도 lock을 획득해야만 가능하다.
     - 이 전 isolation level에서는 read에 lock을 걸면 write만 할 수 없고, write에 lock을 걸면 read만 할 수 없었다.
     - 하지만, read에 lock을 걸면 write나 update, delete 등을 실행할 수 없다.
     - 그래서 시간이 많이 걸려 효율적이지 않아 사용하지 않는다.
-    
-- InnoDB에서 repeatable read를 사용하면 serializable은 불필요하다.    
+
+
+### 해결책: default인 innodb 사용하기
+
+InnoDB에서 repeatable read를 사용하면 serializable은 불필요하다.    
     
 &nbsp;
 
@@ -523,7 +568,6 @@ innoDB에서는 undo log를 transaction-id을 기준으로 버전관리를 하�
 ---
 
 # 6. 알아두면 좋은 명령어
-
 
 ### SHOW CREATE TABLE
 

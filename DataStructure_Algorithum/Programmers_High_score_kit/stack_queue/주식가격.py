@@ -20,17 +20,23 @@ def main01(prices:List) -> List:
 
 
 def main02(prices:List) -> List:
+    """
+    첫 번째 방식과의 차이점은 range를 사용하냐 아니면 슬라이싱을 사용하냐의 차이다. 
+    슬라이싱으로 그 때 그 때 생성하다보니 range보다 확실히 오래걸리는 걸로 판단된다. 
+    하지만, 이 방식도 시간이 꽤 걸린다. 그리고 range(len()) 파이썬에서 권장하지 않는 방식이다.
+    """
 
     answer = [0] * len(prices)
+    for i, selected_price in enumerate(prices):
+        for j in range(i+1, len(prices)):
+            answer[i] += 1 
+            if selected_price > prices[j]:
+                break
 
-    """
-    ## 첫 번째 값을 기준
-    # 기준값 다음 인덱스부터 기준 값 이상인 값이 나오면 answer에 += 1 
-    
-    ## n 번째 값을 기준
-    # n+1 번재 숫자부터 기준값 이상인 값이 나오면 answer의 해당 index 값 += 1 
-    """
-    
+    return answer
+
+
+def main03(prices:List) -> List: 
     
     return 
 
@@ -38,5 +44,6 @@ def main02(prices:List) -> List:
 if __name__=="__main__":
     prices_list = [[1, 2, 3, 2, 3]]
     for prices in prices_list:
-        print(main01(prices))
-        print(main02(prices))
+        print('main01: ', main01(prices))
+        print('main02: ', main02(prices))
+        print('main03: ', main03(prices))

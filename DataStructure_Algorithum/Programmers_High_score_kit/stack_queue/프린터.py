@@ -31,4 +31,3 @@ if __name__ == "__main__":
     location_list = [2, 0, 2]
     for priorities, location in zip(priorities_list, location_list):
         print(main(priorities, location))
-

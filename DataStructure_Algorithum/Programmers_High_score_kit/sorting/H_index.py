@@ -8,20 +8,17 @@
 
 from typing import List
 
-def solution(citations: List) -> int:
+def solution(citations: List) -> int: 
 
-    answer = 0
-    count = 0
-    count_per_citation = []
-    
-    for citation in citations:
-        count = [citation, 0]
-        for value in citation:
-            if citation >= value:
-                count[1] += 1
-        count_per_citation.append(count)
-    
-    return answer
+    citations.sort(reverse=True)
+    for i, citation in enumerate(citations):
+        if i+1 == citation:
+            return citation 
+
+        elif i+1 > citation: # 테스트 11번, 16번
+            return i # citations[i] 에서 i로 바꾸니 정답처리 되었다. 논문 수를 반환해야 한다. 
+
+    return len(citations) # 테스트 9번 케이스
 
 if __name__ == "__main__":
     citations = [3, 0, 6, 1, 5]

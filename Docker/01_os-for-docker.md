@@ -336,4 +336,4 @@ ubuntu     25543   25390  0 10:25 pts/0    00:00:00 grep --color=auto while_loop
 
 # Reference
 
-- [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)의 
+- [러닝스푼즈 - 나노디그리 Python & Django backed course](https://learningspoons.com/course/detail/django-backend/)

@@ -12,7 +12,6 @@ def main(sizes: List) -> int:
             sorted_sizes.append([size[1], size[0]])
         else:
             sorted_sizes.append([size[0], size[1]])
-    print(sorted_sizes)
     max_width = sorted(sorted_sizes, key=lambda x: x[0], reverse=True)[0][0]
     max_height = sorted(sorted_sizes, key=lambda x:x[1], reverse=True)[0][1]
     answer = max_width * max_height

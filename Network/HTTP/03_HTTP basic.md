@@ -295,7 +295,7 @@
 
 - 그러면 HTTP 지속 연결로 어떻게 변했을까??
 
-<p align="center"><image src ="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F46a04f27-85b1-4573-931a-88e7df14c211%2FUntitled.png&blockId=318906c9-6dfc-4a2e-a813-0d08920d69ac" width = '600' height ='400'/> </p>
+<p align="center"><image src ="https://user-images.githubusercontent.com/78094972/234801264-85af6185-60bf-466a-9027-1334306d70f9.png" width = '600' height ='400'/> </p>
 
 - 클라이언트는 서버와 연결을 한 다음, 필요한 자원들을 모두 다운받을 떄까지 요청/응답이 반복된 뒤 종료된다.
 

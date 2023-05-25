@@ -1,38 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
-string word;
-int a;
+string s;
 int main()
 {
-    getline(cin, word);
-    for (int i = 0; i < word.size(); i++)
+    getline(cin, s);
+
+    for (int i = 0; i < s.size(); i++)
     {
-        if (65 <= word[i] && word[i] <= 90)
+        if (65 <= int(s[i]) && int(s[i]) <= 90)
         {
-            if (90 < word[i] + 13)
+            if (90 < s[i] + 13)
             {
-                word[i] = char(word[i] - 13);
+                s[i] -= 26;
             }
-            else
-            {
-                word[i] = char(word[i] + 13);
-            }
+            s[i] += 13;
         }
 
-        else if (97 <= word[i] && word[i] <= 122)
+        else if (97 <= int(s[i]) && int(s[i]) <= 122)
         {
-            if (122 < (word[i] + 13))
+
+            if (122 < s[i] + 13)
             {
-                word[i] = char(word[i] - 13);
+                s[i] -= 26;
             }
-            else
-            {
-                word[i] = char(word[i] + 13);
-            }
+            s[i] += 13;
         }
     }
 
-    cout << word << "\n";
-
-    return 0;
+    cout << s << "\n";
 }

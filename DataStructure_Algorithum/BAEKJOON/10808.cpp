@@ -5,16 +5,14 @@ int a[26];
 int main()
 {
     cin >> word;
-
-    for (char s : word)
+    for (auto w : word)
     {
-        a[(int)s - 97]++;
+        a[w - 'a']++;
     }
 
-    for (int i : a)
+    for (auto i : a)
     {
         cout << i << " ";
     }
-
     return 0;
 }

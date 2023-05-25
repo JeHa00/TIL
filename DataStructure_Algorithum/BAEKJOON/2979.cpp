@@ -1,34 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-int sum = 0;
-int A, B, C, a, b;
-int time_table[104];
-
+int a, b, c, s, e, sum, t[100];
 int main()
 {
-    cin >> A >> B >> C;
+    cin >> a >> b >> c;
     for (int i = 0; i < 3; i++)
     {
-        cin >> a >> b;
-        for (int i = a; i < b; i++)
+        cin >> s >> e;
+        for (int i = s; i < e; i++)
         {
-            time_table[i]++;
+            t[i]++;
         }
     }
-    for (auto count : time_table)
+
+    for (int i : t)
     {
-        if (count == 1)
-        {
-            sum += A;
-        }
-        else if (count == 2)
-        {
-            sum += B * 2;
-        }
-        else if (count == 3)
-        {
-            sum += C * 3;
-        }
+        if (i == 1)
+            sum += i * a;
+        else if (i == 2)
+            sum += i * b;
+        else
+            sum += i * c;
     }
-    cout << sum << "\n";
+
+    cout << sum;
+
+    return 0;
 }

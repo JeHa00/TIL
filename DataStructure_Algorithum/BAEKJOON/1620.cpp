@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-map<string, int> mp;
-map<int, string> mp2;
 int n, m;
 string name;
+map<string, int> mp;
+map<int, string> mp2;
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -21,13 +21,14 @@ int main()
     for (int i = 0; i < m; i++)
     {
         cin >> name;
-        if (atoi(name.c_str()) == 0)
+        int k = atoi(name.c_str());
+        if (k == 0)
         {
             cout << mp[name] << "\n";
         }
         else
         {
-            cout << mp2[atoi(name.c_str())] << "\n";
+            cout << mp2[k] << "\n";
         }
     }
     return 0;

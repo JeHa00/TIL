@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-string word;
-string r;
+string word, r;
 int main()
 {
     ios::sync_with_stdio(false);

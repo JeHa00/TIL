@@ -19,7 +19,7 @@ int main()
     for (int i = 0; i < 26; i++)
     {
         if (a[i] >= 5)
-            s += char(i + 97);
+            s += i + 97;
     }
 
     if (s.size())

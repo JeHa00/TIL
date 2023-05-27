@@ -1,48 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int total_count = 9;
-int sum;
-int a[total_count];
-vector<int> v;
-pair<int, int> p;
-
+int sum, a[9];
+pair<int, int> ret;
 void solve()
 {
-    for (int i = 0; i < total_count; i++)
+    for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < i; j++)
         {
             if (sum - a[i] - a[j] == 100)
-                p = {i, j};
+            {
+                ret = {i, j};
+                return;
+            }
         }
     }
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    for (int i = 0; i < total_count; i++)
+    for (int i = 0; i < 9; i++)
     {
         cin >> a[i];
         sum += a[i];
     }
 
+    sort(a, a + 9);
+
     solve();
 
-    for (int i = 0; i < total_count; i++)
+    for (int i = 0; i < 7; i++)
     {
-        if (p.first == i || p.second == i)
+        if (ret.first == i || ret.second == i)
+        {
             continue;
-        v.push_back(a[i]);
+        }
+        cout << a[i] << "\n";
     }
-
-    sort(v.begin(), v.end());
-
-    for (auto i : v)
-        cout << i << "\n";
 
     return 0;
 }

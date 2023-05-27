@@ -1,32 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-int a[26];
-int N;
-string word, s;
+int n, a[26];
+string name, ans;
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    cin >> N;
-    for (int i = 0; i < N; i++)
+    cin >> n;
+    for (int i = 0; i < n; i++)
     {
-        cin >> word;
-        a[word[0] - 97]++;
+        cin >> name;
+        a[name[0] - 'a']++;
     }
 
     for (int i = 0; i < 26; i++)
     {
         if (a[i] >= 5)
-            s += i + 97;
+        {
+            ans += i + 'a';
+        }
     }
-
-    if (s.size())
-        cout << s << "\n";
+    if (ans.size())
+        cout << ans;
     else
-        cout << "PREDAJA"
-             << "\n";
-
+        cout << "PREDAJA";
     return 0;
 }

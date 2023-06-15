@@ -1,40 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 vector<int> a[50];
-int n, m, visited[50], d, cnt;
+int n, m, d, root;
 
-void go(int idx)
+int dfs(int idx)
 {
-    visited[idx] = 1;
-    if (a[idx].size() == 0 && idx != d)
-    {
-        cnt++;
-    }
+    int ret = 0;
+    int child = 0;
     for (int there : a[idx])
     {
-        if (visited[there] || there == d)
-            continue;
-        go(there);
+        if (there == d) continue;
+        ret += dfs(there);
+        child++;
     }
-    return;
+    if (child == 0) return 1;
+    return ret;
 }
 
 int main()
 {
     cin >> n;
-    for (int i = 0; i < n; i++)
-    {
+    for(int i = 0; i < n; i++){
         cin >> m;
-        if (m == -1)
-            continue;
-        a[m].push_back(i);
+        if (m == -1) root = i;
+        else a[m].push_back(i);
     }
 
     cin >> d;
-    for (int i = 0; i < n; i++)
+
+    if (d == root)
     {
-        if (a[i].size() && visited[i] == 0 && i != d)
-            go(i);
+        cout << "0\n";
+        return 0;
     }
-    cout << cnt << '\n';
+
+    cout << dfs(root) << '\n';
 }

@@ -1,45 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
-string s;
-int lcnt, vcnt;
-bool isVowel(int idx){
-	return (idx == 'a' || idx == 'e' || idx == 'i' || idx == 'o' || idx == 'u');
+int v_count, c_count, w_count;
+bool flag, v_must;
+string word;
+
+bool isVowel(char w)
+{
+    return (w == 'a' || w == 'e' || w == 'i' || w == 'o' || w == 'u');
 }
 
-int main(){
-	while (true) {
-		cin >> s;
-		if (s == "end") break;
-		lcnt = vcnt = 0;
-		bool flag = 0;
-		bool is_include_v = 0;
-		int prev = -1;
-		for (int i = 0; i < s.size(); i++)
-		{
-			int idx = s[i];
-			if (isVowel(idx))
-			{
-				lcnt++, vcnt = 0;
-				is_include_v = 1;
-			}
-			else
-			{
-				vcnt++;
-				lcnt = 0;
-			}
+int main()
+{
+    while (cin >> word)
+    {
+        if (word == "end") break;
+        v_must = false;
+        v_count = 0;
+        c_count = 0;
+        flag = false;
+        char v = ' ';
 
-			if (vcnt == 3 || lcnt == 3) flag = 1;
-			if (i >= 1 && (prev == idx) && (idx != 'o'&& idx != 'e')) {
-				flag = 1;
-			}
-			prev = idx;
-		}
-		if (!is_include_v) flag = 1;
+        for (char w : word)
+        {
+            if (isVowel(w))
+            {
+                v_must = true;
+                v_count++;
+                c_count = 0;
+                flag = 0;
+            }
+            else
+            {
+                c_count++;
+                v_count = 0;
+            }
 
-		if (flag)
-			cout << '<' << s << "> is not acceptable.\n";
-		else
-			cout << '<' << s << "> is acceptable.\n";
-	};
-	return 0;
+            if (w == v && (w != 'e' && w != 'o')) flag = true;
+            if (v_count == 3 || c_count == 3) flag = true;
+            if (flag) break;
+            v = w;
+        }
+        if (!v_must) flag = true;
+        if (flag) cout << "<" << word << "> is not acceptable.\n";
+        else cout << "<" << word << "> is acceptable.\n";
+    };
+    return 0;
 }

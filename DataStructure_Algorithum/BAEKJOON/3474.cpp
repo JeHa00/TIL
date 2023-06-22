@@ -1,19 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-int t, n, two_n, ret5, ret, j;
+int t, n;
+
 int main()
 {
     cin >> t;
     while (t--)
     {
         cin >> n;
-
-        for (int i = 5; i < n; i *= 5)
+        int five_cnt = 0;
+        for (int i = 5; i <= n; i *= 5)
         {
-            ret5 += n / i;
+            five_cnt += n / i;
         }
-
-        cout << ret5 << '\n';
+        cout << five_cnt << "\n";
     }
 
     return 0;

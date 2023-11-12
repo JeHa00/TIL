@@ -1,5 +1,3 @@
-from typing import List
-
 input_data = [
     "babad",
     "aasedddefff",

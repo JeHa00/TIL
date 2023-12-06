@@ -51,38 +51,3 @@ if __name__ == "__main__":
             assert solution01(nums) == [[-1, 0, 1]]
         else:
             assert solution01(nums) == [[[-2, 0, 2], [-2, 1, 1]]]
-
-
-nums = []
-
-nums.sort()
-
-answer = []
-
-for i, num in enumerate(nums):
-    # 값 중복을 방지
-    if i > 0 and nums[i] == nums[i - 1]:
-        continue
-
-    left, right = i + 1, len(nums) - 1
-
-    while left < right:
-        left_value = nums[left]
-        right_value = nums[right]
-
-        if num + left_value + right_value < 0:
-            left += 1
-        elif num + left_value + right_value > 0:
-            right -= 1
-        else:
-            answer.append([num, left_value, right_value])
-
-            # 값 중복을 방지하기 위해서 동일값 확인하기
-            while left < right and left_value == nums[left + 1]:
-                left += 1
-            while left < right and right_value == nums[right - 1]:
-                right -= 1
-
-            # while문에서 나오기 위해 입력
-            left += 1
-            right -= 1

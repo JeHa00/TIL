@@ -30,7 +30,7 @@ public class ProductOrderMain {
     }
 
     static ProductOrder createProductOrder(String productName, int price, int quantity) {
-        ProductOrder order = new ProductOrder();
+        ProductOrder order = new ProductOrder(); // 객체이므로 실제 값이 아닌 참조값이 할당
         order.productName = productName; 
         order.price = price; 
         order.quantity = quantity;
@@ -38,6 +38,7 @@ public class ProductOrderMain {
     }
 
     static void printOrders(ProductOrder[] orders) {
+        // intellij 로 iter을 입력하면 자동으로서 향상된 for문이 입력됨  
         for (ProductOrder order : orders) {
             System.out.println("상품명: " + order.productName + ", 가격: " + order.price + ", 수량: " + order.quantity);
         }

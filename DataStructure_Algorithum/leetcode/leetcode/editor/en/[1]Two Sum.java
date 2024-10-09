@@ -50,18 +50,15 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int answers[] = new int[2];
-        Map<Integer, Integer> pair = new HashMap<>();
-        for (int i = 0; i < nums.length; i++){
-            if (pair.containKey(Integer.valueOf(target - nums[i]))) {
-                answers[0] = pair.get(Integer.valueOf(target - nums[i]));
-                answers[1] = i;
-                break;
-            }
+        Map<Integer, Integer> map = new HashMap<>();
 
-            pair.put(Integer.valueOf(target - nums[i]), Integer.valueOf(i));
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                return new int[]{map.get(nums[i]), i};
+            }
+            map.put(target - nums[i], i);
         }
-        return answers;
+        return new int[]{};
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

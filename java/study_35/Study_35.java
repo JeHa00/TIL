@@ -1,3 +1,5 @@
+package study_35;
+
 import java.util.Scanner;
 
 public class Study_35 {

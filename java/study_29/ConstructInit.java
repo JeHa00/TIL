@@ -1,3 +1,5 @@
+package study_29;
+
 public class ConstructInit {
     static final int CONST_VALUE = 10;
     final int value; // final로 인스턴스 변수 선언

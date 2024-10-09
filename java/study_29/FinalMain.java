@@ -1,4 +1,6 @@
-public class FinaldMain {
+package study_29;
+
+public class FinalMain {
     public static void main(String[] args) {
         System.out.println("생성자 초기화");
         ConstructInit constructInit1 = new ConstructInit(10);

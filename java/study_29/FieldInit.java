@@ -1,3 +1,4 @@
+package study_29;
 
 public class FieldInit {
     static final int CONST_VALUE = 10;

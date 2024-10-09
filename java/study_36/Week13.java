@@ -1,4 +1,4 @@
-package Week13;
+package study_36;
 
 import java.util.Scanner;
 

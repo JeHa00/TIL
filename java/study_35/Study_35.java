@@ -1,8 +1,6 @@
-package Week13;
-
 import java.util.Scanner;
 
-public class Exercise {
+public class Study_35 {
     public static void main(String[] args) {
         program();
     }

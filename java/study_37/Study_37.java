@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Exercise {
+public class Study_37 {
     public static void main(String[] args) {
         String[] foodMenus = {"타코야키", "떡볶이", "순대", "오뎅", "볶음밥"};
         int[] foodPrices = {2000, 3000, 2000, 1000, 3000};

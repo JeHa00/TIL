@@ -44,6 +44,7 @@ class LeetCode01 {
                 return new int[]{map.get(nums[i]), i};
             }
             map.put(target - nums[i], i);
+            System.out.println();
         }
         return new int[]{};
     }

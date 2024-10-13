@@ -16,8 +16,7 @@ public class ShortestDistanceBetweenChar {
         for (int i = 0; i < string.length(); i++) {
             int min = string.length();
             for (Integer integer : list) {
-                int value = Math.abs(integer.intValue() - i);
-                min = Math.min(min, value);
+                min = Math.min(min, Math.abs(integer.intValue() - i));
             }
             answer[i] = min;
         }

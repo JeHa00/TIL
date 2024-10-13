@@ -21,13 +21,10 @@ public class Palindrome01 {
     }
 
     public static String solution02(String string) {
-        String answer = "YES";
         String reverse = new StringBuilder(string).reverse().toString();
-        if (string.equalsIgnoreCase(reverse)) {
-            return answer;
-        }
-        answer = "NO";
-        return answer;
+
+        return (string.equalsIgnoreCase(reverse)) ? "True" : "NO";
+
     }
 
     public static void main(String[] args) {

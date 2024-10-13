@@ -39,6 +39,7 @@ public class RemoveDuplication {
                 sb.append(string.charAt(i));
             }
         }
+
         return sb.toString();
     }
 

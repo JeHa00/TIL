@@ -6,17 +6,18 @@ public class CalculateNth {
     public static void solution01(int[] scores) {
         for (int i = 0; i < scores.length; i++) {
             int nth = 1;
-            for (int j = 0; j < scores.length; j++) {
-                if (scores[j] > scores[i]) {
+            for (int j = 0; j < scores.length / 2; j++) {
+                int score = scores[i];
+                if (scores[j] > score) {
+                    nth++;
+                }
+
+                if (scores[scores.length - 1 - j] > score) {
                     nth++;
                 }
             }
             System.out.print(nth + " ");
         }
-    }
-
-    public static void solution02(int[] scores) {
-        
     }
 
     public static void main(String[] args) {

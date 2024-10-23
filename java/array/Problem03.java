@@ -2,7 +2,7 @@ package array;
 
 import java.util.Scanner;
 
-public class RSP {
+public class Problem03 {
     public static void solution01(int[] A, int[] B) {
         for (int i = 0;  i < A.length; i++) {
             System.out.println(decideWinner(A[i], B[i]));

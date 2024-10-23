@@ -3,7 +3,7 @@ package array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class FindMaxInMatrix {
+public class Problem09 {
     public static int solution01(int[][] matrix01, int[][] matrix02) {
         int sum = 0;
         int sum02 = 0;

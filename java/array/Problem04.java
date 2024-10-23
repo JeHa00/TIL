@@ -3,7 +3,7 @@ package array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Fibonachi {
+public class Problem04 {
     public static void solution01(int amount) {
         int array[] = new int[amount];
         array[0] = 1;

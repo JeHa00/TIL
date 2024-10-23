@@ -2,7 +2,7 @@ package array;
 
 import java.util.Scanner;
 
-public class CalculateScore {
+public class Problem07 {
     public static int solution01(int[] answers) {
         int count = 0;
         int score = 0;

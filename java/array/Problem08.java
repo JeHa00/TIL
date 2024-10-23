@@ -2,7 +2,7 @@ package array;
 
 import java.util.Scanner;
 
-public class CalculateNth {
+public class Problem08 {
     public static void solution01(int[] scores) {
         for (int i = 0; i < scores.length; i++) {
             int nth = 1;

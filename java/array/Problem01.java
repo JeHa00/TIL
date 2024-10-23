@@ -3,7 +3,7 @@ package array;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class PrintBiggerInteger {
+public class Problem01 {
     public static void solution01(int[] numbers) {
         LinkedList<Integer> list = new LinkedList<>();
         list.add(numbers[0]);

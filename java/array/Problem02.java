@@ -2,7 +2,7 @@ package array;
 
 import java.util.Scanner;
 
-public class CountBiggerThanFirst {
+public class Problem02 {
     public static int solution01(int[] list) {
         int count = 1;
         int max = list[0];

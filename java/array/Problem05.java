@@ -2,7 +2,7 @@ package array;
 
 import java.util.Scanner;
 
-public class FindPrimeNumber {
+public class Problem05 {
     public static int solution01(int amount) {
         int count = 1;
 

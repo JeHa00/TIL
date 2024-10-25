@@ -10,31 +10,43 @@ public class Problem03 {
     }
 
     public static String decideWinner(int A, int B) {
-        if (A == 1) {
-            if (B == 1) {
-                return "D";
-            } else if (B == 2) {
-                return "B";
-            } else {
-                return "A";
-            }
-        } else if (A == 2) {
-            if (B == 1) {
-                return "A";
-            } else if (B == 2) {
-                return "D";
-            } else {
-                return "B";
-            }
-        } else { // A == 3
-            if (B == 1) {
-                return "B";
-            } else if (B == 2) {
-                return "A";
-            } else {
-                return "D";
-            }
+        if (A == B) {
+            return "D";
+        } else if (A == 1 && B == 3) {
+            return "A";
+        } else if (A == 2 && B == 1) {
+            return "A";
+        } else if (A == 3 && B == 2) {
+            return "A";
+        } else {
+            return "B";
         }
+//
+//        if (A == 1) {
+//            if (B == 1) {
+//                return "D";
+//            } else if (B == 2) {
+//                return "B";
+//            } else {
+//                return "A";
+//            }
+//        } else if (A == 2) {
+//            if (B == 1) {
+//                return "A";
+//            } else if (B == 2) {
+//                return "D";
+//            } else {
+//                return "B";
+//            }
+//        } else { // A == 3
+//            if (B == 1) {
+//                return "B";
+//            } else if (B == 2) {
+//                return "A";
+//            } else {
+//                return "D";
+//            }
+//        }
     }
 
     public static void main(String[] args) {

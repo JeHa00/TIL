@@ -1,4 +1,4 @@
-package array;
+package algorithum.array;
 
 import java.util.LinkedList;
 import java.util.Scanner;

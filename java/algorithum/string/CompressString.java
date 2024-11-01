@@ -1,4 +1,4 @@
-package string;
+package algorithum.string;
 
 import java.util.*;
 

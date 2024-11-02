@@ -10,40 +10,34 @@ public class Problem04 {
         System.out.println(solution01(value01, value02));
     }
 
-    public static int solution01(String value01, String value02) {
-        Set<String> answer = new HashSet<>();
-        for (char c : value02.toCharArray()) {
-            answer.add(String.valueOf(c));
+
+    public static int solution01(String s, String anagram) {
+        HashMap<Character, Integer> answer = new HashMap<>();
+        for (int i = 0; i < anagram.length(); i++) {
+            answer.put(anagram.charAt(i), answer.getOrDefault(anagram.charAt(i), 0) + 1);
         }
 
-        Set<String> checkAnagram = new HashSet<>();
-        Deque<String> substring = new ArrayDeque<>();
-        int lp = 0, count = 0;
+        int count = 0, lp = 0;
+        HashMap<Character, Integer> choices = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            choices.put(s.charAt(i), choices.getOrDefault(s.charAt(i), 0) + 1);
 
-        for (char c : value01.toCharArray()) {
-            checkAnagram.add(String.valueOf(c));
-            substring.add(String.valueOf(c));
+            if ((i - lp) == anagram.length() - 1) {
 
-            while (substring.size() > value02.length()) {
-                substring.pollFirst();
-                lp++;
-            }
-
-            if (checkAnagram.size() == value02.length()) {
-                boolean result = true;
-                for (String value : answer) {
-                    if (!checkAnagram.contains(value)) {
-                        result = false;
-                    }
-                }
-
-                checkAnagram.remove(String.valueOf(value01.charAt(lp)));
-
-                if (result) {
+                if (answer.equals(choices)) {
                     count++;
                 }
+
+                choices.put(s.charAt(lp), choices.get(s.charAt(lp)) - 1);
+                if (choices.get(s.charAt(lp)) == 0) {
+                    choices.remove(s.charAt(lp));
+                }
+                lp++;
+
             }
         }
+
         return count;
+
     }
 }

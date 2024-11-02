@@ -15,6 +15,24 @@ public class Problem03 {
         }
     }
 
+    // O(n)
+    public static void solution02(int[] sales, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int lp = 0;
+        for (int i = 0; i < sales.length; i++) {
+            map.put(sales[i], map.getOrDefault(sales[i], 0) + 1);
+
+            if ((i - lp) == k - 1) {
+                System.out.print(map.keySet().size() + " ");
+                map.put(sales[lp], map.get(sales[lp]) - 1);
+                if (map.get(sales[lp]) == 0) {
+                    map.remove(sales[lp]);
+                }
+                lp++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();
@@ -24,5 +42,7 @@ public class Problem03 {
             sales[i] = input.nextInt();
         }
         solution01(sales, k);
+        System.out.println();
+        solution02(sales, k);
     }
 }

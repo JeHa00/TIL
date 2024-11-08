@@ -19,10 +19,11 @@ public class Problem02 {
                 deque.push(c);
             } else if (c == ')' && deque.peek() == '(') { // deque.peekLast()
                 deque.pop(); // deque.pollLast()
-            } else if ((c != '(' && c != ')') && deque.isEmpty()) {
+            } else if (Character.isAlphabetic(c) && deque.isEmpty()) {
                 System.out.print(c);
             }
         }
 
     }
 }
+

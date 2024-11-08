@@ -17,7 +17,7 @@ public class Problem06 {
             queue.offerLast(i);
         }
         int count = 0;
-        while (queue.size() > 1) {
+        while (!queue.isEmpty()) {
             Integer prince = queue.pollFirst();
             count++;
             if (count != k) {

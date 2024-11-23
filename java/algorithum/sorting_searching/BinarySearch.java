@@ -23,6 +23,7 @@ public class BinarySearch {
         int lp = 0;
         int rp = values.length - 1;
         int answer = 0;
+
         while (lp <= rp) {
             int mid = (lp + rp) / 2;
             if (values[mid] > target) {

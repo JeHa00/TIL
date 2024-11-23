@@ -16,6 +16,9 @@ public class checkDuplication {
         System.out.println(solution01(values));
     }
 
+
+    // HashMap으로 해도 되지만, 이를 정렬로도 풀 수 있는 것을 이야기하기 위함이다.
+    // HashMap으로 하면 시간복잡도가 O(n)이다.
     public static String solution01(int[] values) {
         Map<Integer, Integer> map = new HashMap();
 

@@ -128,12 +128,12 @@ newGreetings = [word for word in greetings if word == 'hello']
 >> import sys
 >> sys.getsizeof('cat') 
 52 # 52바이트
->> sys.getsizeof('a much longer string than just "cat"')
+>> sys.getsizeof('a much longer algorithum.string than just "cat"')
 85 # 85바이트
 
 >> sys.getsizeof(['cat']) 
 64 # 64바이트
->> sys.getsizeof(['a much longer string than just "cat"'])
+>> sys.getsizeof(['a much longer algorithum.string than just "cat"'])
 64 # 64바이트
 ```
 

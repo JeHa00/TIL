@@ -31,7 +31,7 @@ dict: 사전
 - 그러면 각 자료형의 구체적인 예를 알아보자.
 
 ```yml
-# str : string 의 약어로, 문자열 자료형을 의미한다.
+# str : algorithum.string 의 약어로, 문자열 자료형을 의미한다.
 > str1 = "Jeha"
 > str2 = "Anacondacong"
 
@@ -313,7 +313,7 @@ d = 13.55
 > print(complex(3)) # 정수 -> 복소수
 3 +0j
 
-# string data type을 숫자형으로 바꾸고 나서 복소수를 처리해야 하는데, 바로 처리된다.
+# algorithum.string data type을 숫자형으로 바꾸고 나서 복소수를 처리해야 하는데, 바로 처리된다.
 > print(complex('3')) # 문자형 -> 복소수
 3 + 0j
 

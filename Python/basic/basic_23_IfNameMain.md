@@ -13,7 +13,7 @@
 ### 1.1 \_\_name\_\_이란??
 
 > The file name is the module name with the suffix `.py` appended.  
-> Within a module, the module’s name (as a string) is available as the value of the global variable `__name__`  
+> Within a module, the module’s name (as a algorithum.string) is available as the value of the global variable `__name__`  
 > 출처: [파이썬 공식 문서](https://docs.python.org/3/tutorial/modules.html#modules)
 
 - 위 내용을 요약하면 \_\_name\_\_이란?

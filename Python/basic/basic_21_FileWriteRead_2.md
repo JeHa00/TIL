@@ -109,7 +109,7 @@ Andorra|AD
 <class 'list'>
 ['Andorra', 'AD']
 
-## list를 string 형식으로 바꿔보자.
+## list를 algorithum.string 형식으로 바꿔보자.
 # 첫 번째 Name, Code가 헤더로, 열정보 다.
 >   print(''.join(c))
 NameCode

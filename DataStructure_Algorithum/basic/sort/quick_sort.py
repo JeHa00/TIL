@@ -1,25 +1,25 @@
 from typing import List
 
-def quick_sort(array: List) -> List:
+def quick_sort(algorithum.array: List) -> List:
     """Quick Sorting algorithum
     pivot 을 기준으로 분류하고, 최소 크기로 쪼개어 정렬하는 방법
 
     Args:
-        array (List): 정렬할 리스트
+        algorithum.array (List): 정렬할 리스트
 
     Returns:
         List: 정렬된 리스트
     """
-    if len(array) <= 1:
-        return array
+    if len(algorithum.array) <= 1:
+        return algorithum.array
     
     else: 
-        pivot = array[0]
+        pivot = algorithum.array[0]
 
         greater_list = []
         less_list = []
         eq_list = []
-        for element in array:
+        for element in algorithum.array:
             if element < pivot:
                 less_list.append(element)
             

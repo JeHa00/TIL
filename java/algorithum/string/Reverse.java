@@ -33,8 +33,8 @@ public class Reverse {
     }
 
     public static void solution03(String[] words) {
-        for (int i = 0; i < words.length; i++) {
-            String word = new StringBuilder(words[i]).reverse().toString();
+        for (String word: words) {
+            word = (new StringBuilder(word)).reverse().toString();
             System.out.println(word);
         }
     }

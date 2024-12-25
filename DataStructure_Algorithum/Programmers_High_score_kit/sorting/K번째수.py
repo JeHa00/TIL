@@ -5,11 +5,11 @@
 이 슬라이싱한 걸 정렬한 후, k번째 값을 가져오는 프로그램을 작성한다. 
 """
 from typing import List
-def main(array: List, commands: List) -> List:
+def main(algorithum.array: List, commands: List) -> List:
     answer = []
     for command in commands: 
         i, j, k  = command
-        slicing = array[i-1:j]
+        slicing = algorithum.array[i-1:j]
         slicing.sort() 
         answer.append(slicing[k-1])
 
@@ -18,6 +18,6 @@ def main(array: List, commands: List) -> List:
 
 
 if __name__ == "__main__":
-    array = [1, 5, 2, 6, 3, 7, 4]
+    algorithum.array = [1, 5, 2, 6, 3, 7, 4]
     commands = [[2, 5, 3], [4, 4, 1], [1, 7, 3]]
-    print(main(array, commands))
+    print(main(algorithum.array, commands))

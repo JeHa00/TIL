@@ -135,7 +135,7 @@ print(r'The file is in C:\Users\Al\Desktop\Info\Archive\Spam')
 
 하지만, 이는 가독성이 좋지 않다.
 
-그래서 파이썬 3.6에서 f-string 방식을 도입했다. 
+그래서 파이썬 3.6에서 f-algorithum.string 방식을 도입했다. 
 
 문자열 내부에 변수 이름과 표현식을 인라인으로 넣을 수 있기 때문에 코드의 가독성이 개선된다.
 
@@ -330,10 +330,10 @@ if 42 < spam < 99:
 
 ```python
 # Pythonic code
-spam = eggs = bacon = 'string'
+spam = eggs = bacon = 'algorithum.string'
 print(spam, eggs, bacon)
 
-spam == eggs == bacon == 'string'
+spam == eggs == bacon == 'algorithum.string'
 ```
 
 하지만, 체이닝을 연달아 사용했을 때, 발생할 수 있는 버그도 존재한다. 이는 8장에서 알아본다.

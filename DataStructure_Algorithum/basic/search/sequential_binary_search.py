@@ -2,9 +2,9 @@
 # 데이터의 수에 비례하여 시간 복잡도가 커진다. 
 # 데이터가 정렬되지 않은 상태에서도 사용 가능하다. 
 
-def sequentialSearch(array, target):
-    for i in range(len(array)): 
-        if array[i] == target:
+def sequentialSearch(algorithum.array, target):
+    for i in range(len(algorithum.array)):
+        if algorithum.array[i] == target:
             return i 
     return False 
 
@@ -15,7 +15,7 @@ def sequentialSearch(array, target):
         if i == len(a):
             return False
 
-        if array[i] == target:
+        if algorithum.array[i] == target:
             return i 
         
         i += 1
@@ -39,16 +39,16 @@ print(sequentialSearch(li, 11)) # False
 """
 li = [1, 3, 5, 6, 7, 8, 9, 13, 15, 17, 19]
 
-def binarySearch(array, target):
+def binarySearch(algorithum.array, target):
     start = 0
-    end = len(array) - 1
+    end = len(algorithum.array) - 1
 
     while start <= end: 
         mid = (start+end) // 2
-        if array[mid] > target: 
+        if algorithum.array[mid] > target:
             end = mid - 1 
 
-        elif array[mid] < target:
+        elif algorithum.array[mid] < target:
             start = mid + 1 
         else:
             return mid 

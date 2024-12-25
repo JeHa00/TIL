@@ -107,7 +107,7 @@ I love u
 
 > **_formatting으로 특정 케이스에 원하는 형식대로 출력할 수 있고, 가독성이 높아진다._**
 
-- d는 정수, s는 string, f는 실수를 의미한다.
+- d는 정수, s는 algorithum.string, f는 실수를 의미한다.
 - `' % ' % ()` 로 formatting 하는 방법과 `' {} '.format()` 을 사용해서 formatting하는 방법이 있다.
   - 다 익숙해져야 하지만, 후자를 더 빈번히 사용한다.
 
@@ -203,7 +203,7 @@ _____likel
   - n2는 출력되길 원하는 문자열의 총 자리수를 의미
   - '-'는 정렬 방향을 역으로 한다.
   - 정렬 방향 default는 오른쪽, (-)는 왼쪽 정렬을 의미
-- print('{:^ > < n1.n2}'.format('string'))
+- print('{:^ > < n1.n2}'.format('algorithum.string'))
   - n1은 전체 자릿수
   - n2는 출력되길 원하는 문자열의 총 자리수를 의미
   - '^' 는 가운데 정렬

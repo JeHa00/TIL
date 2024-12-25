@@ -172,7 +172,7 @@ list나 dictionary 처럼 컨테이너 객체 안에 있는 객체를 파이썬�
 | 리스트(list) | 정수(Integer)|
 | 딕셔너리(Dictionary) | 부동소수점(Floating-point number)|
 | 집합(set) | 부울(Boolean) |
-| 바이트 배열 | 문자열(string) |
+| 바이트 배열 | 문자열(algorithum.string) |
 | 배열(Array) | 고정집합(Frozen set) |
 | | 튜플(tuple) |
 | |바이트(Byte)|
@@ -273,7 +273,7 @@ dictionary에서 인덱싱은 key 값을 사용한다. 그래서 해시 가능�
 
 객체의 해시는 객체의 수명 주기 동안 절대로 변하지 않으며, 객체의 값이 같다면 해시도 반드시 같아야 한다. 이 값을 기준으로 해시를 반환하기 때문이다. 그래서 객체의 id는 달라도, 값이 같으면 해시는 같다.
 
-해시가 가능한 대상은 immutable data type(ex: string, integer, tuple ...)만 가능하다. 
+해시가 가능한 대상은 immutable data type(ex: algorithum.string, integer, tuple ...)만 가능하다. 
 그래서 딕셔너리에서는 해시 가능한 아이템만 키로 사용할 수 있고, 해시 불가능한 리스트가 포함된 튜플은 키로 사용할 수 없다.
 
 ```python
@@ -461,7 +461,7 @@ math.sqrt(25)
 
 for 문에서 사용되기 위해서는 iterable object (반복가능한 객체)여야 한다.
 
-반복 가능한 객체로는 range, list, tuple, string 같은 유형이 포함된다.
+반복 가능한 객체로는 range, list, tuple, algorithum.string 같은 유형이 포함된다.
 
 for 루프문에는 iter() 과 next() 를 호출한다.
 

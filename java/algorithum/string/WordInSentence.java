@@ -5,16 +5,16 @@ import java.util.Scanner;
 public class WordInSentence {
     public static String solution01(String string) {
         String answer = "";
-        int m = Integer.MIN_VALUE;
         String[] s = string.split(" ");
         for (String x : s) {
-            if (x.length() > m) {
-                m = x.length();
+            if (x.length() > answer.length()) {
                 answer = x;
             }
         }
         return answer;
     }
+
+
 
     public static String solution02(String string) {
         String answer = "";

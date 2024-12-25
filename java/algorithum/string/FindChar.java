@@ -17,8 +17,9 @@ public class FindChar {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String str = input.next();
+        String str = input.next().toUpperCase();
         char c = input.next().charAt(0);
+        c = Character.toUpperCase(c);
         System.out.println(FindChar.solution(str, c));
     }
 }

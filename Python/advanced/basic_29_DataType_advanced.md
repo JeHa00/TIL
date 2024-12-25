@@ -30,7 +30,7 @@ Python의 data type은 **여러 기준**으로 분류될 수 있다.
    ex) list, tuple, collections.deque..
 
 - **flat 형**: 한 가지 자료형만 담을 수 있다.  
-   ex) string, bytes, byte array, array, memoryview...
+   ex) algorithum.string, bytes, byte algorithum.array, algorithum.array, memoryview...
 
 ```yml
 # Container의 예: 정수, 실수, 문자열 같이 서로 다른 자료형을 담을 수 있다.
@@ -45,7 +45,7 @@ Python의 data type은 **여러 기준**으로 분류될 수 있다.
 ### 1.2 element가 수정될 수 있는가?? 없는가??
 
 - **Mutable**: 변경할 수 있는 date type  
-  ex) list, dictionary, set, bytearray, array, memoryview, deque..
+  ex) list, dictionary, set, bytearray, algorithum.array, memoryview, deque..
 
 - **Immutable**: 변경할 수 없는 data type  
   ex) tuple, str, bytes, int, float...
@@ -58,7 +58,7 @@ Python의 data type은 **여러 기준**으로 분류될 수 있다.
 ### 1.3 순서가 있는가 없는가???
 
 - **Sequence**: 순서가 존재한다.  
-  ex) list, tuple, string ..
+  ex) list, tuple, algorithum.string ..
 
 - **Collections**: 순서가 존재하지 않는다.  
   ex) set, dictionary ..
@@ -173,7 +173,7 @@ TypeError: 'str' object does not support item assignment
 
 > chars = '+_)(*&^'
 
-# ord: Return the Unicode code point for a one-character string.
+# ord: Return the Unicode code point for a one-character algorithum.string.
 # ord: 유니 코드로 전환하는 함수
 > for s in chars:
 >   code_list1.append(ord(s))

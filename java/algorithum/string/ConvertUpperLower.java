@@ -4,16 +4,14 @@ import java.util.Scanner;
 
 public class ConvertUpperLower {
     public static String solution01(String string) {
-        String answer = "";
-        for (char c : string.toCharArray()) {
-            if (Character.isUpperCase(c)) {
-                answer += Character.toLowerCase(c);
-            } else {
-                answer += Character.toUpperCase(c);
-            }
+
+        StringBuilder answer = new StringBuilder();
+        for (char w : string.toCharArray()) {
+            char convertedC = (Character.isUpperCase(w)) ? Character.toLowerCase(w) : Character.toUpperCase(w);
+            answer.append(convertedC);
         }
 
-        return answer;
+        return answer.toString();
     }
 
     public static String solution02(String string) {

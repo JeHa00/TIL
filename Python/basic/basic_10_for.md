@@ -17,7 +17,7 @@
 - 파이썬 공식 사이트에서는 다음과 같은 구조로 설명한다.
   - `<collection>` 이란 반복 가능한 객체, `iterable object (= interator)`를 말한다.
   - 그러면 어떤 게 `iterator` 인가?? `dir()`를 사용했을 때 `__iter__` 을 확인할 수 있으면 `iterator`다.
-  - 예를 들어서 string, list, tuple, dictionary, set을 말한다.
+  - 예를 들어서 algorithum.string, list, tuple, dictionary, set을 말한다.
 
 ```yml
 > for i in <collection>:
@@ -146,7 +146,7 @@ Current number : 36
 Current number : 37
 
 # 예제3
-# Iterable : string
+# Iterable : algorithum.string
 > word = 'Beautiful'
 > for s in word:
 >   print('word : ', s)
@@ -185,13 +185,13 @@ Seoul
 ```
 
 - Iterable에 사용되는 함수를 사용하여 대문자로 출력해보자.
-- `<string iterable>.isupper` : 문자가 대문자인지 확인하는 함수
-- `<string iterable>.islower` : 문자가 소문자인지 확인하는 함수
-- `<string iterable>.upper` : 문자열을 대문자로 변경하는 함수
-- `<string iterable>.lower` : 문자열을 소문자로 변경하는 함수
+- `<algorithum.string iterable>.isupper` : 문자가 대문자인지 확인하는 함수
+- `<algorithum.string iterable>.islower` : 문자가 소문자인지 확인하는 함수
+- `<algorithum.string iterable>.upper` : 문자열을 대문자로 변경하는 함수
+- `<algorithum.string iterable>.lower` : 문자열을 소문자로 변경하는 함수
 
 ```yml
-# Iterable : string
+# Iterable : algorithum.string
 > name = 'FineApplE'
 
 # 지난 시간에 배운 중첩 조건문을 의미

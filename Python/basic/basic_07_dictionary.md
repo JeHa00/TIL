@@ -47,13 +47,13 @@ TypeError: unhashable type: 'list'
 - 이 다양한 방법들의 공통점은 { }, key, value 로 기본적으로 구성된다.
 
 ```yml
-# key와 value 모두 string
+# key와 value 모두 algorithum.string
 > a = {'name' : 'Kim', 'phone': '01012345678', 'birth': '870124'}
 
-# key는 integer 자료형, value는 string
+# key는 integer 자료형, value는 algorithum.string
 > b = {0 : 'Hello Python!'}
 
-# key는 string, value는 list
+# key는 algorithum.string, value는 list
 > c = {'arr': [1, 2, 3, 4]}
 
 > d = {

@@ -45,7 +45,7 @@
 | fget | 속성의 값을 반환하는 함수 (read)       | \_\_get\_\_         |
 | fset | 속성의 값을 수정하는 함수 (write)      | \_\_set\_\_         |
 | fdel | 속성의 값을 삭제하는 함수              | \_\_delete\_\_      |
-| doc  | property에 대해 설명하는 문자열 string |                     |
+| doc  | property에 대해 설명하는 문자열 algorithum.string |                     |
 
 
 
@@ -87,7 +87,7 @@
 >       if isinstance(name, str):
 >           self.name = name
 >       else:
->           raise TypeError("Name should be string")
+>           raise TypeError("Name should be algorithum.string")
 
 >   def __delete__(self, obj):
 >       print('Delete method called.')
@@ -108,7 +108,7 @@ Set method called
 
 ## Ex() class의 __set__ method에 작성한 대로 error가 발생된다.
 > s1.name = 7
-TypeError: Name should be string
+TypeError: Name should be algorithum.string
 
 ## __get__ 호출
 > print(s1.name)
@@ -251,7 +251,7 @@ name : None
 >            # Return whether an object is an instance of a class or of a subclass thereof.
 >            self._name = value
 >        else:
->            raise TypeError('Name should be string')
+>            raise TypeError('Name should be algorithum.string')
 
 >    def delVal(self):
 >        print('Delete method called')

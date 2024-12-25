@@ -90,24 +90,24 @@ sorted - None ['strawberry', 'coconut', 'mango', 'lemon', 'orange', 'apple', 'pa
 - `Array` 자료형에 대해 알아보자.
 
 - Array의 구조는 다음과 같다.
-  - Array(`type code`, [array 원소값])
+  - Array(`type code`, [algorithum.array 원소값])
   - 여기서 `type code`는 형 코드를 말하는데, 다음 대표 reference를 참조하자.
   - [Array in docs.python](https://docs.python.org/ko/3/library/array.html#module-array)
 
 ```yml
-# array module을 가져오는 것부터 시작한다.
-> import array
+# algorithum.array module을 가져오는 것부터 시작한다.
+> import algorithum.array
 
 > chars = '+_)(*&^%$#@!~)'
 
-# array module의 array method를 사용한다.
-# ord: Return the Unicode code point for a one-character string
-> array_g = array.array('I', (ord(s) for s in chars))
+# algorithum.array module의 algorithum.array method를 사용한다.
+# ord: Return the Unicode code point for a one-character algorithum.string
+> array_g = algorithum.array.algorithum.array('I', (ord(s) for s in chars))
 
 > print(type(array_g), array_g)
-<class 'array.array'> array('I', [43, 95, 41, 40, 42, 38, 94, 37, 36, 35, 64, 33, 126, 41])
+<class 'algorithum.array.algorithum.array'> algorithum.array('I', [43, 95, 41, 40, 42, 38, 94, 37, 36, 35, 64, 33, 126, 41])
 
-# .tolist(): array data type을 list로 바꿔주는 함수
+# .tolist(): algorithum.array data type을 list로 바꿔주는 함수
 > array_l = array_g.tolist()
 
 > print(type(array_l))

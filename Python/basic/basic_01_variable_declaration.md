@@ -73,7 +73,7 @@
 > print(type(var))
 > print(id(var))
 
-# int. 형이 아닌 string 형 데이터를 재할당한다.
+# int. 형이 아닌 algorithum.string 형 데이터를 재할당한다.
 > var = "Change Value"
 > print(var)
 > print(type(var))

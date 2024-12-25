@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class ReverseSpecificChar {
     public static String solution01(String string) {
         char[] chars = string.toCharArray();
-
         int left = 0;
         int right = chars.length - 1;
 

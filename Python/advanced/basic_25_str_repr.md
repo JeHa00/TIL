@@ -136,7 +136,7 @@ str : t-wau - {'uniform_color': 'red', 'kind': 'LCC', 'price': 3000}
 - \_\_str\_\_ 과 \_\_repr\_\_ 의 공통점
 
   - `__str__` 와 `__repr__` 은 클래스의 인스턴스에 대한 memory address를 출력하는 게 아닌, 사용자가 원하는 출력문 즉, 이 magic method에서 반환한 형식으로 출력한다.
-    - To customize the string representation of a class instance, the class needs to implement the `__str__` magic method. [출처: [python tutorial: \_\_str\_\_](https://www.pythontutorial.net/python-oop/python-__str__/)]
+    - To customize the algorithum.string representation of a class instance, the class needs to implement the `__str__` magic method. [출처: [python tutorial: \_\_str\_\_](https://www.pythontutorial.net/python-oop/python-__str__/)]
   - `__str__` 와 `__repr__` 이 같이 사용되면 `__str__`이 출력된다.
 
 - \_\_str\_\_ 과 \_\_repr\_\_ 의 차이점 from [Python \_\_repr\_\_](https://www.pythontutorial.net/python-oop/python-__repr__/)
@@ -145,7 +145,7 @@ str : t-wau - {'uniform_color': 'red', 'kind': 'LCC', 'price': 3000}
 | ------------------ | ---------------------------------- | ------------------------------------ |
 | 대상               | 사람이 읽기 쉬운 결과물            | 기계(interpreter)가 읽기 쉬운 결과물 |
 | 목적               | 간결히 읽기 위함                   | 문자열로 객체를 다시 생성하기 위함   |
-| Informal / Offical | **_Informal_** string presentation | **_Offical_** string presentation    |
+| Informal / Offical | **_Informal_** algorithum.string presentation | **_Offical_** algorithum.string presentation    |
 
 ```yml
 > a = datetime.datetime(2022,3,13)

@@ -83,10 +83,10 @@
 ## 2.2 Iterator 관련 data type
 
 - iterator를 반환하는 data type들:
-  - for, collections, string, list, dict, set, tuple, unpacking, \*args
+  - for, collections, algorithum.string, list, dict, set, tuple, unpacking, \*args
 
   ```yml
-  # string
+  # algorithum.string
   > iter('foobar')
   <str_iterator object at 0x036E2750>
 

@@ -11,13 +11,13 @@
 
 - find()를 사용할 수 있지만, 실행 시간을 비교해보면 find보다 index()를 사용하여 로직을 직접 짜는 게 더 빠르다. 
 
-- from string import ascii_lowercase 로 알파벳 소문자 배열을 쉽게 만들 수 있다. 
+- from algorithum.string import ascii_lowercase 로 알파벳 소문자 배열을 쉽게 만들 수 있다.
 
 """
 
 
 def main(text: str) -> int:
-    from string import ascii_lowercase
+    from algorithum.string import ascii_lowercase
     alphabet_list = list(ascii_lowercase)
     result = []
     for i in alphabet_list:

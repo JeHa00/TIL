@@ -106,11 +106,11 @@ secret type: <class 'str'>
 secret2 type: <class 'dict'>
 ```
 
-- 즉, `.read()` 는 json 파일은 string 문자열로 읽어오고, `json.loads()`는 이를 dictionry인 `json` object로 읽어온다.   
+- 즉, `.read()` 는 json 파일은 algorithum.string 문자열로 읽어오고, `json.loads()`는 이를 dictionry인 `json` object로 읽어온다.   
 
 
 그러면 read()와 dumps() 의 차이는 무엇일까??? 
-둘 다 string 을 반환하지만, dumps는 json 형태의 string으로 바꾸고, read()는 작성된 형태 그대로 읽어온다.
+둘 다 algorithum.string 을 반환하지만, dumps는 json 형태의 string으로 바꾸고, read()는 작성된 형태 그대로 읽어온다.
 
 #### json.dumps
 
@@ -126,7 +126,7 @@ print(type(dump))
 <class 'str'>
 ```
 
-- 즉, `json` object로 넘겨주면 데이터를 추출하여 이를 string type으로 반환한다는 걸 알 수 있다.  
+- 즉, `json` object로 넘겨주면 데이터를 추출하여 이를 algorithum.string type으로 반환한다는 걸 알 수 있다.  
 
 <br>
 

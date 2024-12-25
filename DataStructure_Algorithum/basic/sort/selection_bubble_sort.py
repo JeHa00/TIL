@@ -16,21 +16,21 @@ from typing import List
 - 데이터의 크기가 n일 때, 위 과정을 n-1 번 반복하면 정렬이 완료된다. 
 - 가장 구현이 쉬운 알고리즘이지만, 모든 값을 비교하기 때문에 속도가 느린 편이다. 
 """
-def selectionSorting(array: List) -> List:
+def selectionSorting(algorithum.array: List) -> List:
     """
     범위를 좁혀가면서 각 범위마다 가장 작은 값을 선택하여 위치를 교환하는 정렬
     """
-    for i in range(len(array)): 
+    for i in range(len(algorithum.array)):
         # 여기서 i는 최소값을 둘 자리를 의미한다. 
         min_idx = i
         # 최소값을 찾는 알고리즘이 포함되어 있다. 
-        for j in range(i + 1, len(array)): 
-            if array[min_idx] > array[j]:
+        for j in range(i + 1, len(algorithum.array)):
+            if algorithum.array[min_idx] > algorithum.array[j]:
                 min_idx = j # min_idx만 for문이 돌아가는 동안 계속해서 바꾼다. 
         
          # '교환'을 해야하기 때문 
-        array[i], array[min_idx] = array[min_idx], array[i]
-    return array
+        algorithum.array[i], algorithum.array[min_idx] = algorithum.array[min_idx], algorithum.array[i]
+    return algorithum.array
 
 
 """
@@ -40,24 +40,24 @@ def selectionSorting(array: List) -> List:
 - 선택 정렬과 마찬가지로 비교 횟수가 많은 방식이기 때문에, 데이터 수가 많을수록 비효율적이다. 
 - 거의 정렬되어 있는 상태라면 빠른 속도로 정렬 완료 가능
 """
-# def bubbleSorting(array: List) -> List: 
-#     for i in range(len(array) + 1):
+# def bubbleSorting(algorithum.array: List) -> List:
+#     for i in range(len(algorithum.array) + 1):
 #         min_idx = i 
-#         for j in range(len(array) - 1 - i):
-#             if array[j] > array[j + 1]:
-#                 array[j], array[j + 1] = array[j + 1], array[i]
-#     return array
+#         for j in range(len(algorithum.array) - 1 - i):
+#             if algorithum.array[j] > algorithum.array[j + 1]:
+#                 algorithum.array[j], algorithum.array[j + 1] = algorithum.array[j + 1], algorithum.array[i]
+#     return algorithum.array
 
 
-def bubbleSorting(array: List) -> List: 
-    for i in range(len(array)-1): # 9
-        for j in range(len(array)-1-i):
+def bubbleSorting(algorithum.array: List) -> List:
+    for i in range(len(algorithum.array)-1): # 9
+        for j in range(len(algorithum.array)-1-i):
             # 한 번 loop를 돌면 해당 범위에서 제일 큰 값이 맨 뒤로 가기 때문에, i를 뺀다. 
             print(f"i : {i} / j : {j}")
-            if array[j] > array[j+1]:
-                print(f"array[j] : {array[j]} / array[j+1] : {array[j+1]}")
-                array[j], array[j+1] = array[j+1], array[j]
-    return array 
+            if algorithum.array[j] > algorithum.array[j+1]:
+                print(f"algorithum.array[j] : {algorithum.array[j]} / algorithum.array[j+1] : {algorithum.array[j+1]}")
+                algorithum.array[j], algorithum.array[j+1] = algorithum.array[j+1], algorithum.array[j]
+    return algorithum.array
 
 
 if __name__ == "__main__":

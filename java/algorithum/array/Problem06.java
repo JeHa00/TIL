@@ -25,7 +25,7 @@ public class Problem06 {
     public static void solution01(String[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
             String reversedValue = new StringBuilder(numbers[i]).reverse().toString();
-            int value = Integer.valueOf(reversedValue);
+            int value = Integer.parseInt(reversedValue);
 
             if (isPrime(value)) {
                 System.out.print(value + " ");

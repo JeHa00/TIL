@@ -1,7 +1,7 @@
 # 0. Introduction
 
 > 1. [문자열 생성, 출력 그리고, 길이](#-1-문자열-생성,-출력-그리고,-길이)
-> 2. [Escape, raw string and multi line](#-2-Escape-raw-string-and-multi-line)
+> 2. [Escape, raw algorithum.string and multi line](#-2-Escape-raw-string-and-multi-line)
 > 3. [문자형 연산](#-3-문자형-연산)
 > 4. [문자형 형 변환(Type conversion), 문자형 함수](<#-4-문자형-형-변환(Type-conversion),-문자형-함수>)
 > 5. [**Slicing**](#-5-Slicing)
@@ -57,7 +57,7 @@ Pyton <class 'str'>
 
 <br>
 
-# 2. Escape, raw string and multi line
+# 2. Escape, raw algorithum.string and multi line
 
 ## 2.1 Escape code
 
@@ -107,12 +107,12 @@ Check!
 - 이런 게 있다는 정도만 알고 있기
 
 ```python
-# raw string 미포함
+# raw algorithum.string 미포함
 > raw_s1 = "\\x\y\z\q"
 > print(raw_s1)
 \x\y\z\q
 
-# raw string 포함
+# raw algorithum.string 포함
 > raw_s1 = r"\\x\y\z\q"
 > print(raw_s1)
 \\x\y\z\q
@@ -146,7 +146,7 @@ Check!
 ### 결론
 
 - 이스케이프 코드를 사용하여 개행, 탭만큼 띄우기, 따옴표 문자 삽입이 가능하다.
-- 이스케이프 코드를 사용하고 싶지 않을 때는 string code를 사용한다.
+- 이스케이프 코드를 사용하고 싶지 않을 때는 algorithum.string code를 사용한다.
 - 한 줄로는 너무 길어서 여러 줄로 표현하고 싶을 때, 백슬러쉬와 따옴표 3개를 사용하여 멀티라인으로 출력한다.
 
 ---
@@ -203,11 +203,11 @@ False
 # 실수 -> 문자열
 > print(str(10.1))
 
-# boolean  -> string
+# boolean  -> algorithum.string
 > print(str(True), type(str(True)))
 True <class 'str'>
 
-# complex -> string
+# complex -> algorithum.string
 > print(str(complex(12)))
 12 + 0j
 ```
@@ -219,7 +219,7 @@ True <class 'str'>
 > `print(dir())` 함수에 변수를 입력하면 그 변수의 속성들을 보여준다.
 
 - 이 속성들에는 변수가 사용할 수 있는 함수들도 포함된다.
-- string type의 data를 넣으면 string이 사용할 수 있는 함수를 보여준다.
+- algorithum.string type의 data를 넣으면 string이 사용할 수 있는 함수를 보여준다.
 - list면 list가 사용할 수 있는 함수를 보여준다.
 
   ```python

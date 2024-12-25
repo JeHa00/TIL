@@ -130,7 +130,7 @@
 - key = value 형태로 되어 있다.
 - ?로 시작하며 &로 추가 가능하다.
   - ex) ?keyA=valueA&keyB=valueB
-- query parameer, query string 등으로 불린다. 웹서버에 제공하는 파라미터, 문자형태다.  
+- query parameer, query algorithum.string 등으로 불린다. 웹서버에 제공하는 파라미터, 문자형태다.  
   <br>
 
 ### 1.2.7 fragment

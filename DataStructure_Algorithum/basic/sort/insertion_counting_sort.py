@@ -7,14 +7,14 @@
 """
 from typing import List
 
-def insertionSort(array: List):
-    for i in range(1, len(array)):
+def insertionSort(algorithum.array: List):
+    for i in range(1, len(algorithum.array)):
         for j in range(i, 0, -1): 
-            if array[j-1] > array[j]:
-                array[j-1], array[j] = array[j], array[j-1]
+            if algorithum.array[j-1] > algorithum.array[j]:
+                algorithum.array[j-1], algorithum.array[j] = algorithum.array[j], algorithum.array[j-1]
             else:
                 break
-        print(array)
+        print(algorithum.array)
 
 
 
@@ -27,22 +27,22 @@ def insertionSort(array: List):
 - 문제로 내지는 않는데, 문제에 녹아든 경우가 많다. 
 - 중복이 있을 때 사용하면 빠르다.
 """
-def countingSort(array):
+def countingSort(algorithum.array):
     
     # array의 원소 값으르 인덱스로 사용
     # 해당 인덱스에 위치한 원소값을 1 증가
-    count_array = [0] * (len(array) + 1)
+    count_array = [0] * (len(algorithum.array) + 1)
     
-    for element in array:
+    for element in algorithum.array:
         count_array[element] += 1
     
-    array.clear() 
+    algorithum.array.clear()
     
     for index, count in enumerate(count_array):
         for _ in range(count):
-            array.append(index)
+            algorithum.array.append(index)
     
-    return array
+    return algorithum.array
 
     
 if __name__ == "__main__":

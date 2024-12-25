@@ -80,10 +80,10 @@ True
 - 다음으로 namedtuple의 다양한 선언법에 대해 알아보자.
 
 ```yml
-# list 안에 string 성분으로 입력하는 방법
+# list 안에 algorithum.string 성분으로 입력하는 방법
 > Point = namedtuple('Point', ['x', 'y', 'z'])
 
-# string 묶음으로 입력하는 방법
+# algorithum.string 묶음으로 입력하는 방법
 > Point = namedtuple('Point', 'x y z')
 > Point = namedtuple('Point', 'x, y, z')
 

@@ -1,44 +1,43 @@
 package algorithum.RecursionGraph;
 
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Scanner;
 
 public class Problem08 {
-    static int E;
-    static int min;
+    static boolean[] isVisited = new boolean[10001];
+    static int[] dx = {-1, 1, 5};
+    static Deque<Integer> queue = new ArrayDeque<>();
+    static int level;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int S = input.nextInt();
-        E = input.nextInt();
-
-        int[] movements = new int[3]; // -1, +1, +5
-        System.out.println(min);
+        int E = input.nextInt();
+        System.out.println(bfs(S, E));
     }
 
-    public static void bfs() {
+    public static int bfs(int S, int E) {
+        isVisited[S] = true;
+        queue.offerFirst(S);
 
+        while (!queue.isEmpty()) {
+            int length = queue.size();
+            for (int i = 0; i < length; i++) {
+                int x = queue.pollLast();
+
+                for (int j = 0; j < dx.length; j++) {
+                    int nx = x + dx[j];
+                    if (nx == E) return level + 1;
+
+                    if (1 <= nx && nx < 10000  && !isVisited[nx]) {
+                        isVisited[nx] = true;
+                        queue.offerFirst(nx);
+                    }
+                }
+            }
+            level++;
+        }
+        return 0;
     }
-
-    // stackOverFlowError 발생
-//    public static int bfs(int currentPosition, int[] movements) {
-//        int movementDistance = movements[0] * (-1) + movements[1] * 1 + movements[2] * 5;
-//
-//        if (movementDistance + currentPosition - E < 5) {
-//            int[] plus = Arrays.copyOf(movements, movements.length);
-//            plus[1]++;
-//            return bfs(currentPosition, plus) + 1;
-//        } else if (movementDistance + currentPosition - E >= 5) {
-//            int[] jump = Arrays.copyOf(movements, movements.length);
-//            jump[2]++;
-//            return bfs(currentPosition, jump) + 1;
-//        } else if (movementDistance + currentPosition < E) {
-//            int[] minus = Arrays.copyOf(movements, movements.length);
-//            minus[0]++;
-//            return bfs(currentPosition, minus) + 1;
-//        } else {
-//            return 0;
-//        }
-//    }
-
 }

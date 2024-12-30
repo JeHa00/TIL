@@ -6,14 +6,11 @@ public class Problem12 {
     static int N, M, answer, level;
     static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
     static boolean[] isVisited;
-    static Deque<Integer> queue = new ArrayDeque<>();
 
     public static void main(String[] args) {
         init();
 
         for (int i = 2; i <= N; i++) {
-            answer = 0;
-            level = 0;
             bfs(1, i);
             System.out.println(i + " : " + answer);
         }
@@ -56,6 +53,10 @@ public class Problem12 {
     }
 
     public static void bfs(int start, int end) {
+        answer = 0;
+        level = 0;
+        isVisited[start] = true;
+        Deque<Integer> queue = new ArrayDeque<>();
         queue.offerFirst(start);
 
         while (!queue.isEmpty()) {
@@ -70,10 +71,34 @@ public class Problem12 {
                 }
 
                 for (int to : graph.get(start)) {
-                    queue.offerFirst(to);
+                    if (!isVisited[to]) {
+                        isVisited[to] = true;
+                        queue.offerFirst(to);
+                    }
                 }
             }
             level++;
         }
+    }
+
+    public static void bfs02(int vortex) {
+        int[] dis = new int[N + 1];
+        dis[vortex] = 1;
+        isVisited[vortex] = true;
+        Deque<Integer> queue = new ArrayDeque<>();
+        queue.offerFirst(vortex);
+
+        while (!queue.isEmpty()) {
+            int cv = queue.pollLast();
+            for (int to : graph.get(cv)) {
+                if (!isVisited[to]) {
+                    isVisited[to] = true;
+                    queue.offerFirst(to);
+                    dis[to] = dis[cv] + 1;
+                }
+            }
+        }
+
+        // dis를 2부터 출력하기
     }
 }

@@ -24,8 +24,6 @@ public class Problem06 {
 
         isIncluded[element] = false;
         findSubSet(element + 1, isIncluded);
-
-
     }
 
     public static String makeSubSet(boolean[] isIncluded) {

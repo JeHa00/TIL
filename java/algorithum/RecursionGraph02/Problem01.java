@@ -1,85 +1,44 @@
 package algorithum.RecursionGraph02;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Scanner;
+import java.util.*;
 
 public class Problem01 {
-    static int[] dx = {-1, 1, 5};
 
+    static int[] set;
+    static boolean[] isIncluded;
+    static String answer = "NO";
+    static int total;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int S = input.nextInt();
-        int E = input.nextInt();
-
-        bfs(S, E);
+        int N = input.nextInt();
+        set = new int[N];
+        isIncluded = new boolean[N];
+        for (int i = 0; i < N; i++) {
+            set[i] = input.nextInt();
+            total += set[i];
+        }
+        dfs(0, 0);
+        System.out.println(answer);
     }
 
-    public static void bfs(int S, int E) {
-        Deque<Integer> queue = new ArrayDeque<>();
-        queue.offerFirst(S);
-        boolean[] isVisited = new boolean[10_001];
-        isVisited[S] = true;
-        int level = 0;
+    public static void dfs(int nth, int sum) {
+        if (answer.equalsIgnoreCase("YES")) {
+            return;
+        }
 
-        while (!queue.isEmpty()) {
-            int length = queue.size();
+        if (sum > total - sum) {
+            return;
+        }
 
-            for (int i = 0; i < length; i++) {
-                int currentPoint = queue.pollLast();
-                for (int j = 0; j < dx.length; j++) {
-                    int x = currentPoint + dx[j];
-                    if (x == E) {
-                        System.out.println(level + 1);
-                        return;
-                    }
-
-                    if (1 <= x && x <= 10_000) {
-                        isVisited[x] = true;
-                        queue.offerFirst(x);
-                    }
-                }
+        if (nth == set.length) {
+            if ((total - sum) == sum) {
+                answer = "YES";
             }
-            level++;
+            return;
         }
+
+        dfs(nth + 1, sum + set[nth]);
+        dfs(nth + 1, sum);
     }
-
-    static void init(Node first) {
-        Node two = new Node(2);
-        Node third = new Node(3);
-        Node four = new Node(4);
-        Node five = new Node(5);
-        Node six = new Node(6);
-        Node seven = new Node(7);
-
-        first.setPrev(two);
-        first.setNext(third);
-
-        two.setPrev(four);
-        two.setNext(five);
-
-        third.setPrev(six);
-        third.setNext(seven);
-    }
-
-    static class Node {
-        int value;
-        Node prev;
-        Node next;
-
-        Node(int value) {
-            this.value = value;
-        }
-
-        void setPrev(Node prev) {
-            this.prev = prev;
-        }
-
-        void setNext(Node next) {
-            this.next = next;
-        }
-    }
-
-
 }

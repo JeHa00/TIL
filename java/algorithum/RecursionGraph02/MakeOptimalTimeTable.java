@@ -1,76 +1,9 @@
-package algorithum.RecursionGraph02;
-
 import java.util.*;
 
-/**
- * 2. 강의 시간표 짜기
- * 대학교 강의 시간표를 짜는 프로그램을 만들어보도록 합시다.
- * 모든 강의는 요일, 시작시간, 끝나는 시간, 교수명과 강의명을 저장합니다.
- * 나는 지난 학기에 학사경고를 받아, 이번 학기에 최대한 많은 수업을 들어 성적을 극복하려고 합니다.
- * 어떻게 해야 최대한 많은 강의를 듣는 시간표를 짤 수 있을까요?
- * 수업은 겹쳐 들을 수 없으며, 가장 최적의 시간표를 출력해야합니다.
- *
- * 최대한 많은 강의를 들을 수 있는 시간표 조합:
- *
- * 예시1
- * 저장해야 하는 강의 :
- * 대학물리1(김영명, 09:00-11:50, 월)
- * 대학물리1(김영명, 14:00-16:50, 목)
- * 미분적분학1(윤기현, 13:00-17:50, 금)
- * 미분적분학1(윤기현, 10:00-12:50, 목)
- * 실무소프트웨어(박연희, 13:00-15:00, 화)
- * 소프트웨어분석및설계(한미현, 14:00-15:00, 수)
- * 공학윤리와사상(김지민, 15:00-16:00, 금)
- * 일상생활과 법(고연준, 14:00-16:00, 목)
- * IT의 미래(민성준, 16:00-17:00, 화)
- * 지구의 지질과 자연재해(현이현, 13:00-14:00, 화)
- * 종료
- *
- * 출력
- * 나의 시간표 :
- * 대학물리1(김영명, 09:00-11:50, 월)
- * 실무소프트웨어(박연희, 13:00-15:00, 화)
- * IT의 미래(민성준, 16:00-17:00, 화)
- * 소프트웨어분석및설계(한미현, 14:00-15:00, 수)
- * 미분적분학1(윤기현, 10:00-12:50, 목)
- * 대학물리1(김영명, 14:00-16:50, 목)
- * 미분적분학1(윤기현, 13:00-17:50, 금)
- *
- * 예시2
- * 생활속의 소프트웨어(송기현, 15:00-17:00, 수)
- * 대학물리1(김영명, 09:00-11:50, 월)
- * 대학물리1(김영명, 14:00-16:50, 목)
- * 소프트웨어분석및설계(한미현, 14:00-15:00, 수)
- * 영어회화1(Kutress Michale, 14:00-15:30, 월)
- * 미분적분학1(윤기현, 13:00-17:50, 금)
- * 미분적분학1(윤기현, 10:00-12:50, 목)
- * 실무소프트웨어(박연희, 13:00-15:00, 화)
- * 공학윤리와사상(김지민, 15:00-16:00, 금)
- * 지구의 지질과 자연재해(현이현, 13:00-14:00, 화)
- * 영어회화1(Richard R.Hushle, 10:00-11:50, 월)
- * 기업용소프트웨어납품(송기현, 11:00-13:00, 수)
- * 일상생활과 법(고연준, 14:00-16:00, 목)
- * IT의 미래(민성준, 16:00-17:00, 화)
- *
- * 출력
- * 나의 시간표 :
- * 대학물리1(김영명, 09:00-11:50, 월)
- * 영어회화1(Kutress Michale, 14:00-15:30, 월)
- * 실무소프트웨어(박연희, 13:00-15:00, 화)
- * IT의 미래(민성준, 16:00-17:00, 화)
- * 기업용소프트웨어납품(송기현, 11:00-13:00, 수)
- * 소프트웨어분석및설계(한미현, 14:00-15:00, 수)
- * 생활속의 소프트웨어(송기현, 15:00-17:00, 수)
- * 미분적분학1(윤기현, 10:00-12:50, 목)
- * 대학물리1(김영명, 14:00-16:50, 목)
- * 미분적분학1(윤기현, 13:00-17:50, 금)
- *
- */
-public class MakeOptimalTimeTable {
+public class Exercise04 {
 
     static ArrayList<Lecture> list, answer, schedule;
     static ArrayDeque<Lecture> queue;
-    static boolean[][] isIncluded = new boolean[7][24 + 1];
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -89,24 +22,41 @@ public class MakeOptimalTimeTable {
             list.add(new Lecture(lecture));
         }
 
-        bfs();
+        dfs(0);
 
         Collections.sort(answer);
-        System.out.println("나의 시간표: ");
+        System.out.println("나의 시간표: " + answer.size() + "개");
         for (Lecture lecture : answer) {
             System.out.println(lecture);
         }
     }
 
+    static void dfs(int length) {
+        if (length == list.size()) {
+            if (answer.size() == 0 || answer.size() < schedule.size()) {
+                answer = (ArrayList<Lecture>) schedule.clone();
+            }
+            return;
+        }
+
+        Lecture lecture = list.get(length);
+        if (canAttend(lecture)) {
+            schedule.add(lecture);
+            dfs(length + 1);
+            schedule.remove(lecture);
+        }
+
+        dfs( length + 1);
+
+    }
+
     static void bfs() {
         for (Lecture lecture : list) {
             schedule.add(lecture);
-            markAsTrueInTimeTable(lecture);
 
             for (Lecture next : list) {
                 if (!schedule.contains(next) && canAttend(next)) {
                     schedule.add(next);
-                    markAsTrueInTimeTable(next);
                 }
             }
 
@@ -114,24 +64,18 @@ public class MakeOptimalTimeTable {
                 answer = new ArrayList<>(schedule);
             }
 
-            isIncluded = new boolean[7][24 + 1];
             schedule.clear();
         }
     }
 
-    static void markAsTrueInTimeTable(Lecture lecture) {
-        for (int hour = lecture.startTime; hour <= lecture.endTime; hour++) {
-            isIncluded[lecture.dayOfTheWeek][hour] = true;
-        }
-    }
 
-    static boolean canAttend(Lecture lecture) {
-        for (int hour = lecture.startTime; hour <= lecture.endTime; hour++) {
-            if (isIncluded[lecture.dayOfTheWeek][hour]) {
+    static boolean canAttend(Lecture newLecture) {
+        for (Lecture lecture : schedule) {
+            if (lecture.dayOfTheWeek == newLecture.dayOfTheWeek &&
+                    (Math.max(lecture.startTime, newLecture.startTime) < Math.min(lecture.endTime, newLecture.endTime))) {
                 return false;
             }
         }
-
         return true;
     }
 

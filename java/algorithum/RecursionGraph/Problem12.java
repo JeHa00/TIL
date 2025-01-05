@@ -80,25 +80,4 @@ public class Problem12 {
             level++;
         }
     }
-
-    public static void bfs02(int vortex) {
-        int[] dis = new int[N + 1];
-        dis[vortex] = 1;
-        isVisited[vortex] = true;
-        Deque<Integer> queue = new ArrayDeque<>();
-        queue.offerFirst(vortex);
-
-        while (!queue.isEmpty()) {
-            int cv = queue.pollLast();
-            for (int to : graph.get(cv)) {
-                if (!isVisited[to]) {
-                    isVisited[to] = true;
-                    queue.offerFirst(to);
-                    dis[to] = dis[cv] + 1;
-                }
-            }
-        }
-
-        // dis를 2부터 출력하기
-    }
 }

@@ -1,6 +1,8 @@
+package algorithum.RecursionGraph02;
+
 import java.util.*;
 
-public class Exercise04 {
+public class MakeOptimalTimeTable {
 
     static ArrayList<Lecture> list, answer, schedule;
     static ArrayDeque<Lecture> queue;
@@ -22,33 +24,103 @@ public class Exercise04 {
             list.add(new Lecture(lecture));
         }
 
-        dfs(0);
+//        dfsSolution(); 이 방법은 dfs를 사용한 방법이고
+        greedy(); // 이 방법은 그리디와 dfs를 섞어서 사용한 방법입니다.
 
-        Collections.sort(answer);
+
         System.out.println("나의 시간표: " + answer.size() + "개");
         for (Lecture lecture : answer) {
             System.out.println(lecture);
         }
     }
 
-    static void dfs(int length) {
-        if (length == list.size()) {
+    public static void dfsSolution() {
+        dfs(0);
+        Collections.sort(answer);
+    }
+
+    static void dfs(int nth) {
+        if (nth == list.size()) {
             if (answer.size() == 0 || answer.size() < schedule.size()) {
                 answer = (ArrayList<Lecture>) schedule.clone();
             }
             return;
         }
 
-        Lecture lecture = list.get(length);
+        Lecture lecture = list.get(nth);
         if (canAttend(lecture)) {
             schedule.add(lecture);
-            dfs(length + 1);
+            dfs(nth + 1);
+
             schedule.remove(lecture);
+            dfs( nth + 1);
+        }
+    }
+
+
+    static boolean canAttend(Lecture newLecture) {
+        for (Lecture lecture : schedule) {
+            if (lecture.dayOfTheWeek == newLecture.dayOfTheWeek &&
+                    (Math.max(lecture.startTime, newLecture.startTime) < Math.min(lecture.endTime, newLecture.endTime))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean canAttend(Lecture newLecture, LinkedList<Lecture> lecturesOnTheDay) {
+        for (Lecture lecture : lecturesOnTheDay) {
+            if (lecture.dayOfTheWeek == newLecture.dayOfTheWeek &&
+                    (Math.max(lecture.startTime, newLecture.startTime) < Math.min(lecture.endTime, newLecture.endTime))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    static void greedy() {
+        ArrayList<ArrayList<Lecture>> lectures = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            lectures.add(new ArrayList<>());
         }
 
-        dfs( length + 1);
+        for (Lecture lecture : list) {
+            ArrayList<Lecture> lecturesOnTheDay = lectures.get(lecture.dayOfTheWeek);
+            lecturesOnTheDay.add(lecture);
+        }
 
+        for (int i = 1; i < 6; i++) {
+            ArrayList<Lecture> lecturesOnTheDay = lectures.get(i);
+            ArrayList<Lecture> selectedLectures = new ArrayList<>();
+            findMaxSchedule(0, lecturesOnTheDay, selectedLectures);
+            schedule.clear();
+            answer.addAll(selectedLectures);
+        }
     }
+
+    static void findMaxSchedule(int nth, ArrayList<Lecture> lecturesOnTheDay, ArrayList<Lecture> selectedLectures) {
+        if (nth == lecturesOnTheDay.size()) {
+            if (selectedLectures.size() == 0 || selectedLectures.size() < schedule.size()) {
+                selectedLectures.clear();
+                for (Lecture lecture: schedule) {
+                    selectedLectures.add(lecture);
+                }
+            }
+            return;
+        }
+
+        Lecture lecture = lecturesOnTheDay.get(nth);
+        if (canAttend(lecture)) {
+            schedule.add(lecture);
+            findMaxSchedule(nth + 1, lecturesOnTheDay, selectedLectures);
+
+            schedule.remove(lecture);
+            findMaxSchedule( nth + 1, lecturesOnTheDay, selectedLectures);
+        }
+    }
+
+
 
     static void bfs() {
         for (Lecture lecture : list) {
@@ -66,17 +138,6 @@ public class Exercise04 {
 
             schedule.clear();
         }
-    }
-
-
-    static boolean canAttend(Lecture newLecture) {
-        for (Lecture lecture : schedule) {
-            if (lecture.dayOfTheWeek == newLecture.dayOfTheWeek &&
-                    (Math.max(lecture.startTime, newLecture.startTime) < Math.min(lecture.endTime, newLecture.endTime))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     static class Lecture implements Comparable<Lecture>{

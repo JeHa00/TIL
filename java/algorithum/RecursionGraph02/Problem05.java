@@ -29,8 +29,12 @@ public class Problem05 {
         }
 
         for (int i = 0; i < coins.length; i++) {
-            dfs(tempChange + coins[i], amount + 1);
-//            dfs(tempChange, amount); 예를 들어 5원이 3개인 것은 그대로인 값에서 시작하는 것이 아닌 5 5 5에서 시작
+            if (tempChange + coins[i] <= change) {
+                dfs(tempChange + coins[i], amount + 1);
+            }
+//            dfs(tempChange, amount);
+//            동전을 사용하지 않는 경우에 대해 추가한 것이지만, 이 코드로 무한 호출이 발생하므로 적합하지 않은 코드다.
+//            그리고 동전은 중복으로 사용되므로 해당 동전에 대해 사용하지 않는 경우는 적합하지 않다.
 
         }
     }

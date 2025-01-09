@@ -1,11 +1,11 @@
-package Week40;
+package algorithum.RecursionGraph02;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Exercise01 {
+public class MakeOptimalTimeTable {
     static String[][] boards;
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, -1, 0, 1};

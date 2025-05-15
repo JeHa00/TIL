@@ -1,24 +1,6 @@
 ﻿# Today I Learned
 
-[![Version](https://img.shields.io/badge/version-2023.01.09-red.svg)](./CHANGELOG) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
-
-- 좋은 개발자가 되기 위해 꾸준한 학습이 필요하다. 이를 위해 매일 하루동안 개발과 관련된 내용이나 경험을 기록으로 남긴다.
-- Today I Learned인데 날짜를 표시하지 않는 이유는 날짜 표기로 나 자신을 조급하게 만들지 않기 위해서다.
-
-- 발전은 모방으로부터 시작한다.
-
-인프런에서 [Integerous](https://github.com/namjunemy)님이 만드신 강의를 통해서 [namjunemy](https://github.com/namjunemy)님의 Github TIL을 보고 시작한다.
-
-<br>
-
-# 작성 규칙
-
-- 폴더와 파일명은 영문으로 작성한다.
-- 해당 문서를 다시 봤을 때, 추가적인 검색이 필요하지 않도록, 훗날 동료들과 공유하기 위해 자세히 기록한다.
-- 자세히 적을려고 하되, 완벽히 작성하려고 하지 않는다. 과한 부담은 꾸준함을 막는다.
-- 쉴 땐 확실히 쉰다.
-- contributions를 초록색으로 채우는 것에 집착하지 않는다.
-- Reference를 확실히 명시하며, 참고를 허용하는 자료만 사용한다.
+좋은 개발자가 되기 위해 꾸준한 학습이 필요하다. 이를 위해 매일 하루동안 개발과 관련된 내용이나 경험을 기록으로 남긴다.
 
 <br>
 
@@ -26,19 +8,10 @@
 
 <br>
 
-### [Python](https://github.com/JeHa00/TIL/tree/main/Python) & [Django](https://github.com/JeHa00/TIL/tree/main/Django)
-
-- [Python basic](https://github.com/JeHa00/TIL/tree/main/Python/basic)
-- [Python advanced](https://github.com/JeHa00/TIL/tree/main/Python/advanced)
-- [Django](https://github.com/JeHa00/TIL/tree/main/Django)
-
-<br>
-
 ### [Network](https://github.com/JeHa00/TIL/tree/main/Network)
 
 - [HTTP](https://github.com/JeHa00/TIL/tree/main/Network/HTTP)
 - [Web Application Basic](https://github.com/JeHa00/TIL/tree/main/Network/WebApplicationBasic)
-
 
 <br>
 
@@ -80,7 +53,6 @@
 
 ### [Git](https://github.com/JeHa00/TIL/tree/main/Git)
 
-- [Pro git 2E](https://github.com/JeHa00/TIL/blob/main/Git/Pro_git_2E)
 - [Git Lecture](https://github.com/JeHa00/TIL/tree/main/Git/Git_Lecture)
 
 <br>
@@ -104,35 +76,29 @@
 - [데이터 저장과 패키지](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter08)
 - [HDD와 파티션](https://github.com/JeHa00/TIL/tree/main/Linux/Chapter09)
 
-
 <br>
 
 ### [Docker](https://github.com/JeHa00/TIL/tree/main/Docker)
 
-- [Docker를 위한 운영체제 지식](https://github.com/JeHa00/TIL/blob/main/Docker/os-for-docker.md)  
-- [Docker란?](https://github.com/JeHa00/TIL/blob/main/Docker/02_what-is-docker.md)  
+- [Docker를 위한 운영체제 지식](https://github.com/JeHa00/TIL/blob/main/Docker/os-for-docker.md)
+- [Docker란?](https://github.com/JeHa00/TIL/blob/main/Docker/02_what-is-docker.md)
 - [Docker commands list 01](https://github.com/JeHa00/TIL/blob/main/Docker/00_docker-commands-01.md)
-    - docker installation 관련 명령어
-    - docker image 관련 명령어  
-    - docker container 관련 명령어  
-    - docker pull
+
+  - docker installation 관련 명령어
+  - docker image 관련 명령어
+  - docker container 관련 명령어
+  - docker pull
 
 - [Docker commands list 02](https://github.com/JeHa00/TIL/blob/main/Docker/00_docker-commands-02.md)
-    - 서로 다른 터미널에 접속 및 종료 시키기  
-    - 컨테이너와 docker host 간 파일 전송
-
-
-<br>
-
-### [AWS](https://github.com/JeHa00/TIL/tree/main/AWS)
-
-- [DevOps와 AWS 그리고, DevOps와 MSA](https://github.com/JeHa00/TIL/tree/main/AWS/LectureNote01.md)
+  - 서로 다른 터미널에 접속 및 종료 시키기
+  - 컨테이너와 docker host 간 파일 전송
 
 <br>
 
-### [Book Study](https://github.com/JeHa00/TIL/tree/main/Book_study)
+### [Python](https://github.com/JeHa00/TIL/tree/main/Python) & [Django](https://github.com/JeHa00/TIL/tree/main/Django)
 
-- [함께 자라기: 애자일로 가는 길](https://github.com/JeHa00/TIL/tree/main/Book_study/Agile)  
-- [1일 1로그 100일](https://github.com/JeHa00/TIL/tree/main/Book_study/1day-1log-100days-completion)  
-- [Clean Code](https://github.com/JeHa00/TIL/tree/main/Book_study/CleanCode)  
-- [클린 코드: 이제는 파이썬이다.](https://github.com/JeHa00/TIL/tree/main/Book_study/PythonCleancode)
+- [Python basic](https://github.com/JeHa00/TIL/tree/main/Python/basic)
+- [Python advanced](https://github.com/JeHa00/TIL/tree/main/Python/advanced)
+- [Django](https://github.com/JeHa00/TIL/tree/main/Django)
+
+<br>
